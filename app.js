@@ -160,6 +160,7 @@ const storageKeys = {
 };
 
 let selectedId = locations[0].id;
+let hoveredId = "";
 let currentUser = loadJson(storageKeys.user, null);
 let collections = loadJson(storageKeys.collections, {});
 let updateRequests = loadJson(storageKeys.requests, []);
@@ -362,8 +363,13 @@ function renderList(filtered) {
     button.className = `location-card ${location.id === selectedId ? "active" : ""}`;
     button.addEventListener("click", () => {
       selectedId = location.id;
+      shouldFocusSelected = true;
       renderAll();
     });
+    button.addEventListener("mouseenter", () => setHoveredLocation(location.id));
+    button.addEventListener("mouseleave", () => setHoveredLocation(""));
+    button.addEventListener("focus", () => setHoveredLocation(location.id));
+    button.addEventListener("blur", () => setHoveredLocation(""));
 
     button.innerHTML = `
       <h3>${escapeHtml(location.cardName)}</h3>
@@ -382,8 +388,7 @@ function renderList(filtered) {
 function renderMap(filtered) {
   if (!mapReady) return;
 
-  const source = map.getSource("locations");
-  if (source) source.setData(toLocationFeatureCollection(filtered));
+  updateLocationSource(filtered);
 
   const currentSource = map.getSource("current-location");
   if (currentSource) currentSource.setData(toCurrentLocationFeatureCollection());
@@ -399,6 +404,18 @@ function renderMap(filtered) {
     }
     shouldFocusSelected = false;
   }
+}
+
+function setHoveredLocation(locationId) {
+  if (hoveredId === locationId) return;
+  hoveredId = locationId;
+  updateLocationSource();
+}
+
+function updateLocationSource(filtered = getFilteredLocations()) {
+  if (!mapReady) return;
+  const source = map.getSource("locations");
+  if (source) source.setData(toLocationFeatureCollection(filtered));
 }
 
 function renderDetail() {
@@ -703,7 +720,7 @@ function addLocationLayers() {
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "highlighted"], true], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -738,7 +755,7 @@ function addLocationLayers() {
         "#737373",
         "#c5522f"
       ],
-      "circle-radius": ["case", ["==", ["get", "selected"], true], 10, 7],
+      "circle-radius": ["case", ["==", ["get", "highlighted"], true], 10, 7],
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": [
         "match",
@@ -761,7 +778,7 @@ function addLocationLayers() {
     id: "selected-shaped-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "highlighted"], true], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -788,7 +805,7 @@ function addLocationLayers() {
         "▲",
         "◆"
       ],
-      "text-size": ["case", ["==", ["get", "selected"], true], 24, 19],
+      "text-size": ["case", ["==", ["get", "highlighted"], true], 24, 19],
       "text-allow-overlap": true,
       "text-ignore-placement": true
     },
@@ -897,6 +914,7 @@ function toLocationFeatureCollection(items) {
         coordinateAccuracy: location.coordinateAccuracy || "prefecture_approx",
         collected: Boolean(collections[location.id]?.collected),
         selected: location.id === selectedId,
+        highlighted: location.id === selectedId || location.id === hoveredId,
         visualState: pinClass(location),
         hasApproximate: isApproximateLocation(location),
         hasStoppedUnknown: coordinateCategory(location) === "stopped-unknown",
