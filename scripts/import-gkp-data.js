@@ -53,6 +53,14 @@ const prefectures = [
 
 const htmlDir = join(process.cwd(), ".tmp", "gkp");
 const outputPath = join(process.cwd(), "data", "locations.json");
+const today = new Date().toISOString().slice(0, 10);
+const existingLocations = await readExistingLocations();
+const existingById = new Map(existingLocations.map((location) => [location.id, location]));
+const existingByImageKey = new Map(
+  existingLocations
+    .map((location) => [imageKey(location.imageUrl), location])
+    .filter(([key]) => key)
+);
 
 const locations = [];
 await mkdir(htmlDir, { recursive: true });
@@ -73,13 +81,14 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const series = cleanupText(seriesHtml);
     const issuedOn = cleanupText(issuedHtml);
     const distributionText = cleanupText(distributionHtml);
-    const imageUrl = firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i);
+    const imageUrl = absolutizeUrl(firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i));
     const sourceUrl = firstMatch(distributionHtml, /<a[^>]+href=["']([^"']+)["']/i);
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
     const municipalityName = municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim();
     const address = findAddress(distributionText, prefecture, municipalityName);
     const [lat, lng] = approximateCoordinate(baseLat, baseLng, prefectureIndex);
-    const id = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
+    const legacyId = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
+    const id = stableLocationId(imageUrl, legacyId);
     const stock = cleanupText(stockHtml) || "不明";
 
     locations.push({
@@ -102,11 +111,20 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       issuedOn,
       sourceType: "gkp_prefecture_page",
       coordinateAccuracy: "prefecture_approx",
-      updatedAt: "2026-06-29"
+      updatedAt: today
     });
 
     prefectureIndex += 1;
   }
+}
+
+for (const location of locations) {
+  const existing = existingById.get(location.id) ?? existingByImageKey.get(imageKey(location.imageUrl));
+  if (!existing) continue;
+
+  const legacyIds = [...new Set(existing.legacyIds ?? [])];
+  if (legacyIds.length > 0) location.legacyIds = legacyIds;
+  if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
 }
 
 await mkdir(join(process.cwd(), "data"), { recursive: true });
@@ -202,13 +220,55 @@ function slugify(value) {
     .toLowerCase();
 }
 
+function stableLocationId(imageUrl, fallback) {
+  return imageKey(imageUrl) || fallback;
+}
+
+function imageKey(imageUrl) {
+  const fileName = String(imageUrl ?? "").split("/").pop() ?? "";
+  return fileName
+    .replace(/\.[^.]+$/, "")
+    .normalize("NFKC")
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+}
+
+function hasSameImportedContent(existing, next) {
+  const keys = [
+    "cardName",
+    "prefecture",
+    "municipality",
+    "place",
+    "address",
+    "hours",
+    "closed",
+    "condition",
+    "stock",
+    "status",
+    "sourceUrl",
+    "imageUrl",
+    "series",
+    "issuedOn",
+    "sourceType"
+  ];
+  return keys.every((key) => String(existing[key] ?? "") === String(next[key] ?? ""));
+}
+
 function absolutizeUrl(url) {
-  if (!url) return "";
-  if (url.startsWith("//")) return `https:${url}`;
-  if (url.startsWith("http://www.gk-p.jp")) return url.replace("http://", "https://");
-  if (url.startsWith("http")) return url;
-  if (url.startsWith("/")) return `https://www.gk-p.jp${url}`;
-  return url;
+  const value = String(url ?? "").trim();
+  if (!value) return "";
+  let resolved = value;
+  if (resolved.startsWith("//")) resolved = `https:${resolved}`;
+  else if (resolved.startsWith("/")) resolved = `https://www.gk-p.jp${resolved}`;
+  if (resolved.startsWith("http://www.gk-p.jp")) resolved = resolved.replace("http://", "https://");
+
+  try {
+    const parsed = new URL(resolved);
+    return ["http:", "https:"].includes(parsed.protocol) ? parsed.toString() : "";
+  } catch {
+    return "";
+  }
 }
 
 function approximateCoordinate(baseLat, baseLng, index) {
@@ -235,5 +295,14 @@ async function readPrefectureHtml(code) {
     await writeFile(filePath, html, "utf8");
     await new Promise((resolve) => setTimeout(resolve, 150));
     return html;
+  }
+}
+
+async function readExistingLocations() {
+  try {
+    const parsed = JSON.parse(await readFile(outputPath, "utf8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
   }
 }

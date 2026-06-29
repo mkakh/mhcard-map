@@ -271,6 +271,7 @@ Important fields:
 | Field | Meaning |
 | --- | --- |
 | `id` | Stable location identifier |
+| `legacyIds` | Previous identifiers used for localStorage migration |
 | `cardName` | Card display name |
 | `prefecture` | Prefecture |
 | `municipality` | Municipality |
@@ -293,6 +294,15 @@ Important fields:
 | `coordinateAccuracy` | Coordinate accuracy |
 | `plusCode` | Plus Code |
 | `updatedAt` | Data update date |
+
+Location IDs are generated from the GKP card image filename.
+
+```text
+16-205-A-01.jpg -> 16-205-a-01
+```
+
+Older row-position-based IDs are kept in `legacyIds`. On first load, the app
+migrates local collection and memo data from legacy IDs to current stable IDs.
 
 ### 11.2 Coordinate Accuracy
 
@@ -433,6 +443,7 @@ The HTML head includes:
 - Twitter Card metadata
 - Web App Manifest
 - App install icon
+- iOS Apple Touch Icon PNG
 
 Canonical URL:
 
@@ -469,6 +480,7 @@ respective rights holders. See `NOTICE.md`.
 - Some coordinates are approximate.
 - Some stock rows have no stock URL and fall back to the GKP prefecture page.
 - External URLs may change or become unavailable.
+- External links from scraped data are restricted to `http:` and `https:`.
 
 ## 18. Current Completion Status
 

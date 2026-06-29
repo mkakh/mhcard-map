@@ -203,6 +203,7 @@ async function init() {
   updateRequests = await loadUpdateRequests();
   updateFormConfig = await loadUpdateFormConfig();
   selectedId = locations[0]?.id ?? "";
+  migrateCollectionKeys();
   fillPrefectures();
   bindEvents();
   switchMobilePanel("map");
@@ -471,12 +472,14 @@ function renderDetail() {
   const collection = collections[location.id] ?? {};
   const plusCode = location.plusCode || "未生成";
   const coordinatesText = `${location.lat}, ${location.lng}`;
-  const requestsForLocation = updateRequests.filter((request) => request.locationId === location.id);
+  const locationIds = new Set([location.id, ...(location.legacyIds ?? [])]);
+  const requestsForLocation = updateRequests.filter((request) => locationIds.has(request.locationId));
   const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.lat},${location.lng}`)}`;
   const sourceUrl = location.sourceUrl || "";
   const facilityUrl = location.facilityUrl || "";
   const conditionUrl = location.conditionUrl || sourceUrl;
   const stockUrl = location.stockUrl || facilityUrl || sourceUrl;
+  const safeSourceUrl = safeExternalUrl(sourceUrl);
 
   elements.detailContent.innerHTML = `
     <section class="detail-head">
@@ -492,7 +495,7 @@ function renderDetail() {
         <button id="toggleCollected" class="primary-button" type="button">${collection.collected ? "未取得に戻す" : "取得済みにする"}</button>
         <button id="openRequest" class="ghost-button" type="button">更新要求</button>
         <a class="ghost-button link-button" href="${googleUrl}" target="_blank" rel="noreferrer">Google Map</a>
-        ${sourceUrl ? `<a class="ghost-button link-button" href="${escapeAttribute(sourceUrl)}" target="_blank" rel="noreferrer">配布情報元</a>` : '<button class="ghost-button" type="button" disabled>配布情報元なし</button>'}
+        ${safeSourceUrl ? `<a class="ghost-button link-button" href="${escapeAttribute(safeSourceUrl)}" target="_blank" rel="noreferrer">配布情報元</a>` : '<button class="ghost-button" type="button" disabled>配布情報元なし</button>'}
       </div>
     </section>
 
@@ -548,8 +551,9 @@ function renderSourceLinkedValue(value, sourceUrl) {
 
 function renderExternalLinkedValue(value, url) {
   if (!value) return "";
-  if (!url) return escapeHtml(value);
-  return `<a class="inline-source-link" href="${escapeAttribute(url)}" target="_blank" rel="noreferrer">${escapeHtml(value)}</a>`;
+  const safeUrl = safeExternalUrl(url);
+  if (!safeUrl) return escapeHtml(value);
+  return `<a class="inline-source-link" href="${escapeAttribute(safeUrl)}" target="_blank" rel="noreferrer">${escapeHtml(value)}</a>`;
 }
 
 function bindCopyButton(id, value, message) {
@@ -1332,6 +1336,34 @@ function saveJson(key, value) {
     return;
   }
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function migrateCollectionKeys() {
+  let changed = false;
+
+  locations.forEach((location) => {
+    (location.legacyIds ?? []).forEach((legacyId) => {
+      if (!legacyId || legacyId === location.id || !collections[legacyId]) return;
+      collections[location.id] = {
+        ...collections[legacyId],
+        ...(collections[location.id] ?? {})
+      };
+      delete collections[legacyId];
+      changed = true;
+    });
+  });
+
+  if (changed) saveJson(storageKeys.collections, collections);
+}
+
+function safeExternalUrl(value) {
+  if (!value) return "";
+  try {
+    const url = new URL(String(value).trim(), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.toString() : "";
+  } catch {
+    return "";
+  }
 }
 
 function escapeHtml(value) {

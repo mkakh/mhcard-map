@@ -6,7 +6,7 @@ const htmlDir = join(process.cwd(), ".tmp", "gkp");
 
 const verifiedDistributionSources = new Map([
   [
-    "17-金沢市-001",
+    "17-201-a-01",
     {
       sourceUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
       facilityUrl: "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html",
@@ -203,11 +203,17 @@ function decodeEntities(value) {
 function absolutizeUrl(url) {
   const value = cleanUrl(url).replace(/&amp;/g, "&");
   if (!value) return "";
-  if (value.startsWith("//")) return `https:${value}`;
-  if (value.startsWith("http://www.gk-p.jp")) return value.replace("http://", "https://");
-  if (value.startsWith("http")) return value;
-  if (value.startsWith("/")) return `https://www.gk-p.jp${value}`;
-  return value;
+  let resolved = value;
+  if (resolved.startsWith("//")) resolved = `https:${resolved}`;
+  else if (resolved.startsWith("/")) resolved = `https://www.gk-p.jp${resolved}`;
+  if (resolved.startsWith("http://www.gk-p.jp")) resolved = resolved.replace("http://", "https://");
+
+  try {
+    const parsed = new URL(resolved);
+    return ["http:", "https:"].includes(parsed.protocol) ? parsed.toString() : "";
+  } catch {
+    return "";
+  }
 }
 
 function normalizeUrl(url) {
