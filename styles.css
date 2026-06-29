@@ -46,7 +46,7 @@ button {
   height: 100dvh;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
 }
 
@@ -471,6 +471,16 @@ label {
   max-width: 220px;
 }
 
+.map-popup-card {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
 .map-popup-image {
   display: block;
   width: 100%;
@@ -482,6 +492,7 @@ label {
 }
 
 .map-popup-title {
+  display: block;
   margin: 0 0 4px;
   color: var(--text);
   font-size: 14px;
@@ -489,6 +500,7 @@ label {
 }
 
 .map-popup-subtitle {
+  display: block;
   margin: 0;
   color: var(--muted);
   font-size: 12px;
@@ -747,6 +759,7 @@ label {
   .app-shell {
     height: 100dvh;
     min-height: 0;
+    grid-template-rows: auto auto minmax(0, 1fr);
     overflow: hidden;
   }
 

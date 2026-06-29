@@ -227,6 +227,9 @@ function bindEvents() {
   elements.mobileTabButtons.forEach((button) => {
     button.addEventListener("click", () => switchMobilePanel(button.dataset.mobilePanel));
   });
+  window.addEventListener("resize", () => {
+    if (mapReady) map.resize();
+  });
 }
 
 function fillPrefectures() {
@@ -690,6 +693,7 @@ function initMap() {
 
   map.on("load", () => {
     mapReady = true;
+    map.resize();
     addLocationLayers();
     addCurrentLocationLayer();
     renderAll();
@@ -892,7 +896,6 @@ function selectMapFeature(feature) {
   selectedId = feature.properties.id;
   shouldFocusSelected = false;
   renderAll();
-  switchMobilePanel("detail");
   showMapPopup(feature);
 }
 
@@ -976,6 +979,7 @@ function toCurrentLocationFeatureCollection() {
 
 function showMapPopup(feature) {
   showManagedPopup({
+    locationId: feature.properties.id,
     coordinates: feature.geometry.coordinates,
     imageUrl: feature.properties.imageUrl,
     cardName: feature.properties.cardName,
@@ -987,6 +991,7 @@ function showLocationPopup(location) {
   if (!mapReady) return;
 
   showManagedPopup({
+    locationId: location.id,
     coordinates: [location.lng, location.lat],
     imageUrl: location.imageUrl || "",
     cardName: location.cardName,
@@ -994,19 +999,26 @@ function showLocationPopup(location) {
   });
 }
 
-function showManagedPopup({ coordinates, imageUrl, cardName, place }) {
+function showManagedPopup({ locationId, coordinates, imageUrl, cardName, place }) {
   if (!mapReady) return;
 
   activePopup?.remove();
   const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: true, offset: 12 })
     .setLngLat(coordinates)
     .setHTML(`
-      ${renderPopupImage(imageUrl || "", cardName)}
-      <p class="map-popup-title">${escapeHtml(cardName)}</p>
-      <p class="map-popup-subtitle">${escapeHtml(place)}</p>
+      <button class="map-popup-card" type="button" data-popup-location="${escapeAttribute(locationId)}">
+        ${renderPopupImage(imageUrl || "", cardName)}
+        <span class="map-popup-title">${escapeHtml(cardName)}</span>
+        <span class="map-popup-subtitle">${escapeHtml(place)}</span>
+      </button>
     `)
     .addTo(map);
   activePopup = popup;
+  popup.getElement().querySelector("[data-popup-location]")?.addEventListener("click", () => {
+    selectedId = locationId;
+    renderAll();
+    switchMobilePanel("detail");
+  });
   popup.on("close", () => {
     if (activePopup === popup) activePopup = null;
   });
