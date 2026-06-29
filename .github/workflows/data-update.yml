@@ -29,6 +29,8 @@ jobs:
         run: npm run import:forms
         env:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
+      - name: Validate generated data
+        run: npm run validate:data
       - name: Create update pull request
         uses: peter-evans/create-pull-request@v6
         with:

@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="マンホールカードマップ | 配布場所・取得状況・メモ管理">
     <meta name="twitter:description" content="全国のマンホールカード配布場所を地図と検索リストで確認。取得済みチェック、メモ、在庫確認リンクを管理できます。">
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css">
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
@@ -121,9 +121,10 @@
               <span><i class="pin-dot collected"></i>取得済み</span>
               <span><i class="pin-dot paused"></i>休止</span>
               <span><i class="pin-dot review"></i>要確認</span>
-              <span><i class="shape-dot stopped-known">■</i>中止・住所既知</span>
-              <span><i class="shape-dot stopped-unknown">◆</i>中止・住所不明</span>
-              <span><i class="shape-dot geocode-failed">▲</i>住所検索失敗</span>
+              <span><i class="pin-dot approximate"></i>座標未確定</span>
+              <span><i class="shape-dot stopped-known">S</i>中止・住所既知</span>
+              <span><i class="shape-dot stopped-unknown">?</i>中止・住所不明</span>
+              <span><i class="shape-dot geocode-failed">!</i>住所検索失敗</span>
               <span><i class="pin-dot current"></i>現在地</span>
             </div>
             <button id="locateButton" class="ghost-button locate-button" type="button">現在地</button>
@@ -147,7 +148,7 @@
       </form>
     </dialog>
 
-    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

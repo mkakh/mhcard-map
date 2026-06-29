@@ -324,6 +324,7 @@ function getFilteredLocations() {
         location.cardName,
         location.prefecture,
         location.municipality,
+        displayPlace(location),
         location.place,
         location.address,
         location.plusCode,
@@ -349,6 +350,8 @@ function resetFilters() {
   elements.collectionFilter.value = "all";
   elements.statusFilter.value = "all";
   elements.viewportFilterToggle.checked = false;
+  elements.sortSelect.value = userPosition ? "distance" : "prefecture";
+  renderAll();
   resetMapToCurrentLocation();
 }
 
@@ -399,7 +402,7 @@ function renderList(filtered) {
 
     button.innerHTML = `
       <h3>${escapeHtml(location.cardName)}</h3>
-      <p>${escapeHtml(location.place)}</p>
+      <p>${escapeHtml(displayPlace(location))}</p>
       <p>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</p>
       <div class="badge-row">
         ${renderStatusBadge(location)}
@@ -504,7 +507,7 @@ function renderDetail() {
         ${renderCoordinateBadge(location)}
       </div>
       <h2>${escapeHtml(location.cardName)}</h2>
-      <p>${escapeHtml(location.place)}</p>
+      <p>${escapeHtml(displayPlace(location))}</p>
       <div class="detail-actions">
         <button id="toggleCollected" class="primary-button" type="button">${collection.collected ? "未取得に戻す" : "取得済みにする"}</button>
         <button id="openRequest" class="ghost-button" type="button">更新要求</button>
@@ -515,7 +518,7 @@ function renderDetail() {
 
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
-      <tr><th>配布場所</th><td>${renderExternalLinkedValue(location.place, facilityUrl)}</td></tr>
+      <tr><th>配布場所</th><td>${renderExternalLinkedValue(displayPlace(location), facilityUrl)}</td></tr>
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
       ${renderInfoCodeRow("住所", location.address || "未登録", Boolean(location.address), "copyAddress")}
@@ -568,6 +571,10 @@ function renderExternalLinkedValue(value, url) {
   const safeUrl = safeExternalUrl(url);
   if (!safeUrl) return escapeHtml(value);
   return `<a class="inline-source-link" href="${escapeAttribute(safeUrl)}" target="_blank" rel="noreferrer">${escapeHtml(value)}</a>`;
+}
+
+function displayPlace(location) {
+  return location.place || location.address || `${location.prefecture} ${location.municipality}（配布場所未確認）`;
 }
 
 function bindCopyButton(id, value, message) {
@@ -959,7 +966,7 @@ function toLocationFeatureCollection(items) {
       properties: {
         id: location.id,
         cardName: location.cardName,
-        place: location.place,
+        place: displayPlace(location),
         imageUrl: location.imageUrl || "",
         municipality: `${location.prefecture} ${location.municipality}`,
         status: location.status,
@@ -1013,7 +1020,7 @@ function showLocationPopup(location) {
     coordinates: [location.lng, location.lat],
     imageUrl: location.imageUrl || "",
     cardName: location.cardName,
-    place: location.place
+    place: displayPlace(location)
   });
 }
 
@@ -1153,7 +1160,7 @@ function openMyPage() {
                 (location) => `
                   <button class="memo-list-item" type="button" data-memo-location="${escapeAttribute(location.id)}">
                     <strong>${escapeHtml(location.cardName)}</strong>
-                    <span>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)} / ${escapeHtml(location.place)}</span>
+                    <span>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)} / ${escapeHtml(displayPlace(location))}</span>
                     <small>${escapeHtml(collections[location.id].memo)}</small>
                   </button>
                 `

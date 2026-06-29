@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
+import { extname, relative, resolve } from "node:path";
 
 const port = Number(process.env.PORT || 4173);
 const root = process.cwd();
@@ -10,15 +10,18 @@ const contentTypes = {
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".png": "image/png",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
   ".svg": "image/svg+xml"
 };
 
 const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", `http://${request.headers.host}`);
   const requestedPath = url.pathname === "/" ? "/index.html" : url.pathname;
-  const filePath = normalize(join(root, requestedPath));
+  const filePath = resolve(root, `.${decodeURIComponent(requestedPath)}`);
+  const relativePath = relative(root, filePath);
 
-  if (!filePath.startsWith(root)) {
+  if (relativePath.startsWith("..") || relativePath === "" || resolve(relativePath) === relativePath) {
     response.writeHead(403);
     response.end("Forbidden");
     return;
