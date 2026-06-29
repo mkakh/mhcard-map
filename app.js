@@ -236,8 +236,9 @@ function bindEvents() {
     button.addEventListener("click", () => switchMobilePanel(button.dataset.mobilePanel));
   });
   window.addEventListener("resize", () => {
-    if (mapReady) map.resize();
+    resizeMapSoon();
   });
+  window.addEventListener("orientationchange", resizeMapAfterOrientationChange);
 }
 
 function renderAllAfterSearchInput() {
@@ -1218,11 +1219,32 @@ function switchMobilePanel(panel) {
   document.body.dataset.mobilePanel = panel;
   elements.mobileTabButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.mobilePanel === panel);
+    button.setAttribute("aria-selected", String(button.dataset.mobilePanel === panel));
   });
 
   if (panel === "map" && mapReady) {
-    window.setTimeout(() => map.resize(), 0);
+    resizeMapAfterLayoutChange();
   }
+}
+
+function resizeMapSoon() {
+  if (!mapReady) return;
+  window.requestAnimationFrame(() => {
+    map.resize();
+    updateLocationSource();
+  });
+}
+
+function resizeMapAfterLayoutChange() {
+  [0, 120, 320].forEach((delay) => {
+    window.setTimeout(resizeMapSoon, delay);
+  });
+}
+
+function resizeMapAfterOrientationChange() {
+  [0, 120, 320, 700].forEach((delay) => {
+    window.setTimeout(resizeMapSoon, delay);
+  });
 }
 
 function locateUser() {
