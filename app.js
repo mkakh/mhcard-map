@@ -192,7 +192,8 @@ const elements = {
   myPageDialog: document.querySelector("#myPageDialog"),
   myPageContent: document.querySelector("#myPageContent"),
   closeMyPageDialog: document.querySelector("#closeMyPageDialog"),
-  locateButton: document.querySelector("#locateButton")
+  locateButton: document.querySelector("#locateButton"),
+  mobileTabButtons: document.querySelectorAll(".mobile-tab")
 };
 
 init();
@@ -204,6 +205,7 @@ async function init() {
   selectedId = locations[0]?.id ?? "";
   fillPrefectures();
   bindEvents();
+  switchMobilePanel("map");
   initMap();
   renderAll();
 }
@@ -222,6 +224,9 @@ function bindEvents() {
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
   elements.locateButton.addEventListener("click", locateUser);
+  elements.mobileTabButtons.forEach((button) => {
+    button.addEventListener("click", () => switchMobilePanel(button.dataset.mobilePanel));
+  });
 }
 
 function fillPrefectures() {
@@ -296,15 +301,16 @@ function getFilteredLocations() {
 
   return locations
     .filter((location) => {
+      const collection = collections[location.id];
       const haystack = [
         location.cardName,
         location.prefecture,
         location.municipality,
         location.place,
         location.address,
-        location.plusCode
+        location.plusCode,
+        collection?.memo
       ].join(" ").toLowerCase();
-      const collection = collections[location.id];
       const collected = Boolean(collection?.collected);
       return (
         (!query || haystack.includes(query)) &&
@@ -380,6 +386,7 @@ function renderList(filtered) {
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
+        ${collections[location.id]?.memo ? '<span class="badge memo">メモあり</span>' : ""}
         ${renderCoordinateBadge(location)}
       </div>
     `;
@@ -422,6 +429,7 @@ function selectListLocation(locationId) {
   listHoverSuspended = true;
   shouldFocusSelected = true;
   renderAll();
+  switchMobilePanel("map");
   showLocationPopup(location);
 }
 
@@ -884,6 +892,7 @@ function selectMapFeature(feature) {
   selectedId = feature.properties.id;
   shouldFocusSelected = false;
   renderAll();
+  switchMobilePanel("detail");
   showMapPopup(feature);
 }
 
@@ -1082,6 +1091,7 @@ function buildUpdateRequestUrl(location) {
 
 function openMyPage() {
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
+  const memoLocations = locations.filter((location) => collections[location.id]?.memo);
   const byPrefecture = locations.reduce((acc, location) => {
     acc[location.prefecture] ??= { total: 0, collected: 0 };
     acc[location.prefecture].total += 1;
@@ -1104,8 +1114,46 @@ function openMyPage() {
       <tr><th>保存済みメモ</th><td>${Object.values(collections).filter((item) => item.memo).length}件</td></tr>
       <tr><th>保存先</th><td>この端末のブラウザ</td></tr>
     </table>
+    <section class="memo-list">
+      <h3>メモあり</h3>
+      ${
+        memoLocations.length
+          ? memoLocations
+              .map(
+                (location) => `
+                  <button class="memo-list-item" type="button" data-memo-location="${escapeAttribute(location.id)}">
+                    <strong>${escapeHtml(location.cardName)}</strong>
+                    <span>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)} / ${escapeHtml(location.place)}</span>
+                    <small>${escapeHtml(collections[location.id].memo)}</small>
+                  </button>
+                `
+              )
+              .join("")
+          : '<p class="inline-hint">保存済みメモはありません。</p>'
+      }
+    </section>
   `;
+  elements.myPageContent.querySelectorAll("[data-memo-location]").forEach((button) => {
+    button.addEventListener("click", () => {
+      elements.myPageDialog.close();
+      selectListLocation(button.dataset.memoLocation);
+      switchMobilePanel("detail");
+    });
+  });
   elements.myPageDialog.showModal();
+}
+
+function switchMobilePanel(panel) {
+  if (!panel) return;
+
+  document.body.dataset.mobilePanel = panel;
+  elements.mobileTabButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.mobilePanel === panel);
+  });
+
+  if (panel === "map" && mapReady) {
+    window.setTimeout(() => map.resize(), 0);
+  }
 }
 
 function locateUser() {

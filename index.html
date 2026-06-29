@@ -18,9 +18,15 @@
           </div>
         </div>
         <div class="top-actions">
-          <button id="myPageButton" class="ghost-button" type="button">保存データ</button>
+          <button id="myPageButton" class="ghost-button" type="button">取得・メモ</button>
         </div>
       </header>
+
+      <nav class="mobile-tabs" aria-label="表示切り替え">
+        <button class="mobile-tab active" type="button" data-mobile-panel="map">地図</button>
+        <button class="mobile-tab" type="button" data-mobile-panel="list">検索</button>
+        <button class="mobile-tab" type="button" data-mobile-panel="detail">詳細</button>
+      </nav>
 
       <main class="workspace">
         <aside class="sidebar" aria-label="検索と配布場所一覧">
@@ -112,7 +118,7 @@
     <dialog id="myPageDialog" class="modal wide">
       <form method="dialog">
         <header>
-          <h2>保存データ</h2>
+          <h2>取得・メモ</h2>
           <button id="closeMyPageDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
         </header>
         <div id="myPageContent" class="my-page"></div>
