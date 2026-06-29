@@ -309,7 +309,9 @@ migrates local collection and memo data from legacy IDs to current stable IDs.
 Known values:
 
 - `address`
+- `address_contains`
 - `prefecture_approx`
+- `geocode_failed`
 
 Additional category logic distinguishes:
 
@@ -342,6 +344,8 @@ npm run geocode
 npm run normalize:links
 npm run update:codes
 npm run import:forms
+npm run validate:data
+npm run generate:icons
 ```
 
 Workflow:
@@ -445,6 +449,7 @@ The HTML head includes:
 - Web App Manifest
 - App install icon
 - iOS Apple Touch Icon PNG
+- MapLibre CDN version pinning with SRI
 
 Icon source of truth:
 
@@ -460,6 +465,13 @@ Canonical URL:
 ```text
 https://mhcard-map.com/
 ```
+
+Startup geolocation:
+
+- The app automatically centers on the current location only when browser
+  geolocation permission is already granted.
+- Otherwise it starts at the fallback map center and waits for the current
+  location button.
 
 ## 16. License And Notices
 

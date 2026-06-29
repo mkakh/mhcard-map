@@ -169,6 +169,7 @@ let mapReady = false;
 let activePopup = null;
 let shouldFocusSelected = false;
 let searchRenderTimer = 0;
+let currentFilteredLocations = [];
 
 const searchDebounceMs = 150;
 
@@ -301,6 +302,7 @@ function renderAll() {
   }
 
   const filtered = getFilteredLocations();
+  currentFilteredLocations = filtered;
   if (!filtered.some((location) => location.id === selectedId)) {
     selectedId = filtered[0]?.id ?? "";
   }
@@ -309,6 +311,10 @@ function renderAll() {
   renderMap(filtered);
   renderDetail();
   renderSummary(filtered);
+}
+
+function selectedOrHighlightedExpression() {
+  return ["any", ["==", ["get", "selected"], true], ["==", ["get", "highlighted"], true]];
 }
 
 function getFilteredLocations() {
@@ -345,14 +351,18 @@ function getFilteredLocations() {
 }
 
 function resetFilters() {
+  clearFilters();
+  elements.sortSelect.value = userPosition ? "distance" : "prefecture";
+  renderAll();
+  resetMapToCurrentLocation();
+}
+
+function clearFilters() {
   elements.searchInput.value = "";
   elements.prefectureFilter.value = "all";
   elements.collectionFilter.value = "all";
   elements.statusFilter.value = "all";
   elements.viewportFilterToggle.checked = false;
-  elements.sortSelect.value = userPosition ? "distance" : "prefecture";
-  renderAll();
-  resetMapToCurrentLocation();
 }
 
 function isInsideActiveViewport(location) {
@@ -441,10 +451,11 @@ function selectedFocusZoom(location) {
   return Math.max(map.getZoom(), 13);
 }
 
-function selectListLocation(locationId) {
+function selectListLocation(locationId, options = {}) {
   const location = locations.find((item) => item.id === locationId);
   if (!location) return;
 
+  if (options.clearFilters) clearFilters();
   selectedId = location.id;
   clearHoveredLocation();
   listHoverSuspended = true;
@@ -473,7 +484,7 @@ function clearHoveredLocation() {
   updateLocationSource();
 }
 
-function updateLocationSource(filtered = getFilteredLocations()) {
+function updateLocationSource(filtered = currentFilteredLocations) {
   if (!mapReady) return;
   const source = map.getSource("locations");
   if (source) source.setData(toLocationFeatureCollection(filtered));
@@ -789,7 +800,7 @@ function addLocationLayers() {
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "highlighted"], true], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -824,7 +835,7 @@ function addLocationLayers() {
         "#737373",
         "#c5522f"
       ],
-      "circle-radius": ["case", ["==", ["get", "highlighted"], true], 10, 7],
+      "circle-radius": ["case", selectedOrHighlightedExpression(), 10, 7],
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": [
         "match",
@@ -847,7 +858,7 @@ function addLocationLayers() {
     id: "selected-shaped-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "highlighted"], true], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -864,7 +875,7 @@ function addLocationLayers() {
     filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     layout: {
       "text-field": ["match", ["get", "visualState"], "stopped-known", "S", "stopped-unknown", "?", "geocode-failed", "!", "?"],
-      "text-size": ["case", ["==", ["get", "highlighted"], true], 24, 19],
+      "text-size": ["case", selectedOrHighlightedExpression(), 24, 19],
       "text-allow-overlap": true,
       "text-ignore-placement": true
     },
@@ -885,6 +896,18 @@ function addLocationLayers() {
     }
   });
 
+  map.addLayer({
+    id: "location-hit-area",
+    type: "circle",
+    source: "locations",
+    filter: ["all", ["!", ["has", "point_count"]]],
+    paint: {
+      "circle-color": "#000000",
+      "circle-radius": ["case", selectedOrHighlightedExpression(), 28, 22],
+      "circle-opacity": 0.01
+    }
+  });
+
   map.on("click", "clusters", async (event) => {
     const features = map.queryRenderedFeatures(event.point, { layers: ["clusters"] });
     const clusterId = features[0].properties.cluster_id;
@@ -895,15 +918,11 @@ function addLocationLayers() {
     });
   });
 
-  map.on("click", "unclustered-locations", (event) => {
+  map.on("click", "location-hit-area", (event) => {
     selectMapFeature(event.features[0]);
   });
 
-  map.on("click", "shaped-locations", (event) => {
-    selectMapFeature(event.features[0]);
-  });
-
-  ["clusters", "unclustered-locations", "shaped-locations"].forEach((layerId) => {
+  ["clusters", "unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
     map.on("mouseenter", layerId, () => {
       map.getCanvas().style.cursor = "pointer";
     });
@@ -1129,6 +1148,7 @@ function buildUpdateRequestUrl(location) {
 function openMyPage() {
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
   const memoLocations = locations.filter((location) => collections[location.id]?.memo);
+  const progressPercent = locations.length ? Math.round((collectedLocations.length / locations.length) * 100) : 0;
   const byPrefecture = locations.reduce((acc, location) => {
     acc[location.prefecture] ??= { total: 0, collected: 0 };
     acc[location.prefecture].total += 1;
@@ -1140,7 +1160,7 @@ function openMyPage() {
     <div class="progress-grid">
       <div class="progress-card"><strong>${collectedLocations.length}</strong><span>取得済み</span></div>
       <div class="progress-card"><strong>${locations.length - collectedLocations.length}</strong><span>未取得</span></div>
-      <div class="progress-card"><strong>${Math.round((collectedLocations.length / locations.length) * 100)}%</strong><span>達成率</span></div>
+      <div class="progress-card"><strong>${progressPercent}%</strong><span>達成率</span></div>
     </div>
     <table class="info-table">
       ${Object.entries(byPrefecture)
@@ -1173,7 +1193,7 @@ function openMyPage() {
   elements.myPageContent.querySelectorAll("[data-memo-location]").forEach((button) => {
     button.addEventListener("click", () => {
       elements.myPageDialog.close();
-      selectListLocation(button.dataset.memoLocation);
+      selectListLocation(button.dataset.memoLocation, { clearFilters: true });
       switchMobilePanel("detail");
     });
   });
@@ -1224,6 +1244,21 @@ function locateUserOnStartup() {
     return;
   }
 
+  if (!navigator.permissions?.query) {
+    focusFallbackMapView();
+    return;
+  }
+
+  navigator.permissions
+    .query({ name: "geolocation" })
+    .then((permission) => {
+      if (permission.state === "granted") requestStartupLocation();
+      else focusFallbackMapView();
+    })
+    .catch(focusFallbackMapView);
+}
+
+function requestStartupLocation() {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       applyUserPosition(position, { zoom: 10, duration: 0 });

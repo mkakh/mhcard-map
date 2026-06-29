@@ -16,18 +16,26 @@ const contentTypes = {
 };
 
 const server = createServer(async (request, response) => {
-  const url = new URL(request.url ?? "/", `http://${request.headers.host}`);
-  const requestedPath = url.pathname === "/" ? "/index.html" : url.pathname;
-  const filePath = resolve(root, `.${decodeURIComponent(requestedPath)}`);
-  const relativePath = relative(root, filePath);
-
-  if (relativePath.startsWith("..") || relativePath === "" || resolve(relativePath) === relativePath) {
-    response.writeHead(403);
-    response.end("Forbidden");
+  let filePath;
+  try {
+    const url = new URL(request.url ?? "/", `http://${request.headers.host}`);
+    const requestedPath = url.pathname === "/" ? "/index.html" : url.pathname;
+    filePath = resolve(root, `.${decodeURIComponent(requestedPath)}`);
+  } catch {
+    response.writeHead(400, { "content-type": "text/plain; charset=utf-8" });
+    response.end("Bad request");
     return;
   }
 
   try {
+    const relativePath = relative(root, filePath);
+
+    if (relativePath.startsWith("..") || relativePath === "" || resolve(relativePath) === relativePath) {
+      response.writeHead(403);
+      response.end("Forbidden");
+      return;
+    }
+
     const body = await readFile(filePath);
     response.writeHead(200, {
       "content-type": contentTypes[extname(filePath)] ?? "application/octet-stream",
