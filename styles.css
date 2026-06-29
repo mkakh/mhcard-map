@@ -870,3 +870,191 @@ label {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 900px) and (orientation: landscape) {
+  body {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .app-shell {
+    height: 100dvh;
+    min-height: 0;
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+
+  .topbar {
+    min-height: 44px;
+    padding: 5px 10px;
+  }
+
+  .brand {
+    gap: 7px;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brand h1 {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .top-actions button {
+    min-height: 30px;
+    padding: 0 9px;
+    font-size: 12px;
+  }
+
+  .mobile-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mobile-tab {
+    min-height: 34px;
+    font-size: 13px;
+  }
+
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .sidebar,
+  .map-area,
+  .detail-panel {
+    display: none;
+    border: 0;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  body[data-mobile-panel="list"] .sidebar,
+  body[data-mobile-panel="map"] .map-area,
+  body[data-mobile-panel="detail"] .detail-panel {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .map-area,
+  .map-canvas {
+    min-height: 0;
+  }
+
+  body[data-mobile-panel="map"] .map-area {
+    overflow: hidden;
+  }
+
+  .map-canvas {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .map-toolbar {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 8px;
+  }
+
+  .legend {
+    max-width: calc(100vw - 76px);
+    max-height: 58px;
+    padding: 6px 8px;
+    gap: 6px;
+    overflow: auto;
+    font-size: 11px;
+  }
+
+  .locate-button {
+    width: 34px;
+    min-height: 34px;
+  }
+
+  .search-panel {
+    padding: 10px;
+  }
+
+  .filter-grid {
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: 8px;
+  }
+
+  input,
+  select {
+    min-height: 34px;
+  }
+
+  .summary-strip div {
+    padding: 8px 10px;
+  }
+
+  .location-list {
+    padding: 10px;
+  }
+
+  .location-card {
+    padding: 10px;
+  }
+
+  .detail-panel {
+    padding: 10px;
+  }
+
+  .detail-head {
+    grid-template-columns: minmax(110px, 28%) minmax(0, 1fr);
+    align-items: start;
+    gap: 8px 12px;
+    padding-bottom: 10px;
+  }
+
+  .detail-head .card-image {
+    grid-row: span 4;
+  }
+
+  .card-image.detail {
+    min-height: 110px;
+  }
+
+  .card-image img {
+    max-height: 150px;
+  }
+
+  .detail-actions {
+    grid-template-columns: repeat(4, minmax(90px, 1fr));
+    gap: 6px;
+  }
+
+  .detail-actions .primary-button,
+  .detail-actions .ghost-button,
+  .detail-actions .link-button {
+    min-height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  .info-table {
+    margin-top: 8px;
+  }
+
+  .info-table th,
+  .info-table td {
+    padding: 7px 0;
+  }
+}
