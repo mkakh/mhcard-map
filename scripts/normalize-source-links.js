@@ -8,7 +8,10 @@ const verifiedDistributionSources = new Map([
     "17-金沢市-001",
     {
       sourceUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
-      facilityUrl: "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html"
+      facilityUrl: "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html",
+      stockUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
+      conditionUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
+      condition: "在庫状況を確認のうえ、1人1枚まで配布"
     }
   ]
 ]);
@@ -18,17 +21,26 @@ let updated = 0;
 let facilityUrlsAdded = 0;
 let gkpSourcesAssigned = 0;
 let verifiedSourcesAssigned = 0;
+let stockUrlsAssigned = 0;
+let conditionUrlsAssigned = 0;
+let conditionsUpdated = 0;
 
 for (const location of locations) {
   const before = JSON.stringify({
     sourceUrl: location.sourceUrl,
-    facilityUrl: location.facilityUrl
+    facilityUrl: location.facilityUrl,
+    stockUrl: location.stockUrl,
+    conditionUrl: location.conditionUrl,
+    condition: location.condition
   });
   const verified = verifiedDistributionSources.get(location.id);
 
   if (verified) {
     location.sourceUrl = verified.sourceUrl;
     location.facilityUrl = verified.facilityUrl;
+    location.stockUrl = verified.stockUrl;
+    location.conditionUrl = verified.conditionUrl;
+    location.condition = verified.condition;
     verifiedSourcesAssigned += 1;
   } else {
     const currentSourceUrl = cleanUrl(location.sourceUrl);
@@ -47,11 +59,31 @@ for (const location of locations) {
         gkpSourcesAssigned += 1;
       }
     }
+
+    const stockUrl = cleanUrl(location.facilityUrl) || cleanUrl(location.sourceUrl);
+    if (stockUrl && location.stockUrl !== stockUrl) {
+      location.stockUrl = stockUrl;
+      stockUrlsAssigned += 1;
+    }
+
+    const conditionUrl = cleanUrl(location.sourceUrl);
+    if (conditionUrl && location.conditionUrl !== conditionUrl) {
+      location.conditionUrl = conditionUrl;
+      conditionUrlsAssigned += 1;
+    }
+
+    if (isGenericCondition(location.condition)) {
+      location.condition = "公式情報を確認";
+      conditionsUpdated += 1;
+    }
   }
 
   const after = JSON.stringify({
     sourceUrl: location.sourceUrl,
-    facilityUrl: location.facilityUrl
+    facilityUrl: location.facilityUrl,
+    stockUrl: location.stockUrl,
+    conditionUrl: location.conditionUrl,
+    condition: location.condition
   });
   if (before !== after) updated += 1;
 }
@@ -65,7 +97,10 @@ console.log(
       updated,
       facilityUrlsAdded,
       gkpSourcesAssigned,
-      verifiedSourcesAssigned
+      verifiedSourcesAssigned,
+      stockUrlsAssigned,
+      conditionUrlsAssigned,
+      conditionsUpdated
     },
     null,
     2
@@ -82,4 +117,8 @@ function isGkpSource(value) {
 
 function getPrefectureCode(id) {
   return String(id ?? "").match(/^(\d{2})-/)?.[1] ?? "";
+}
+
+function isGenericCondition(value) {
+  return ["GKP掲載情報を確認", "公式情報を確認"].includes(String(value ?? "").trim());
 }

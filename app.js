@@ -433,6 +433,8 @@ function renderDetail() {
   const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.lat},${location.lng}`)}`;
   const sourceUrl = location.sourceUrl || "";
   const facilityUrl = location.facilityUrl || "";
+  const conditionUrl = location.conditionUrl || sourceUrl;
+  const stockUrl = location.stockUrl || facilityUrl || sourceUrl;
 
   elements.detailContent.innerHTML = `
     <section class="detail-head">
@@ -463,8 +465,8 @@ function renderDetail() {
       <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
       <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
-      <tr><th>配布条件</th><td>${renderSourceLinkedValue(location.condition, sourceUrl)}</td></tr>
-      <tr><th>在庫</th><td>${renderSourceLinkedValue(location.stock, sourceUrl)}</td></tr>
+      <tr><th>配布条件</th><td>${renderSourceLinkedValue(location.condition, conditionUrl)}</td></tr>
+      <tr><th>在庫</th><td>${renderSourceLinkedValue(location.stock, stockUrl)}</td></tr>
       <tr><th>最終更新</th><td>${escapeHtml(location.updatedAt)}</td></tr>
       <tr><th>更新要求</th><td>${requestsForLocation.length}件</td></tr>
     </table>
