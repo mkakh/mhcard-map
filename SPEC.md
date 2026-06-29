@@ -406,6 +406,8 @@ Published files:
 - `index.html`
 - `app.js`
 - `styles.css`
+- `manifest.webmanifest`
+- `icons/`
 - `LICENSE`
 - `NOTICE.md`
 - `CNAME`
@@ -429,6 +431,8 @@ The HTML head includes:
 - Canonical URL
 - OGP metadata
 - Twitter Card metadata
+- Web App Manifest
+- App install icon
 
 Canonical URL:
 

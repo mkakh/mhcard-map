@@ -26,6 +26,8 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html app.js styles.css dist/
+          cp manifest.webmanifest dist/
+          cp -R icons dist/icons
           cp LICENSE NOTICE.md dist/
           cp CNAME dist/
           cp -R data dist/data
