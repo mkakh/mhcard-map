@@ -336,6 +336,7 @@ function getFilteredLocations() {
         location.place,
         location.address,
         location.plusCode,
+        cardNumber(location),
         collection?.memo
       ].join(" ").toLowerCase();
       const collected = Boolean(collection?.collected);
@@ -377,6 +378,10 @@ function sortLocations(a, b) {
     return b.updatedAt.localeCompare(a.updatedAt);
   }
 
+  if (elements.sortSelect.value === "cardNumber") {
+    return compareCardNumber(a, b);
+  }
+
   if (elements.sortSelect.value === "distance" && userPosition) {
     return distanceFromUser(a) - distanceFromUser(b);
   }
@@ -390,6 +395,21 @@ function sortLocations(a, b) {
 
 function prefectureCode(location) {
   return location.id.split("-")[0] || "99";
+}
+
+function cardNumber(location) {
+  const id = String(location.id ?? "");
+  const match = id.match(/^(\d{2})-(\d{3})-(.+)$/);
+  if (!match) return id;
+  const suffix = match[3].replace(/-/g, "").toUpperCase();
+  return `${match[1]}-${match[2]}-${suffix}`;
+}
+
+function compareCardNumber(a, b) {
+  return (
+    cardNumber(a).localeCompare(cardNumber(b), "en", { numeric: true, sensitivity: "base" }) ||
+    a.cardName.localeCompare(b.cardName, "ja")
+  );
 }
 
 function renderList(filtered) {
@@ -531,6 +551,7 @@ function renderDetail() {
 
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
+      <tr><th>カード番号</th><td>${escapeHtml(cardNumber(location))}</td></tr>
       <tr><th>配布場所</th><td>${renderExternalLinkedValue(displayPlace(location), facilityUrl)}</td></tr>
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}

@@ -126,6 +126,7 @@ round pins, so they remain distinguishable from normal collection state.
 Search target fields:
 
 - Card name
+- Card number
 - Prefecture
 - Municipality
 - Distribution place
@@ -144,6 +145,7 @@ Sort modes:
 
 - Prefecture order
 - Distance from current location
+- Card number
 - Updated date
 
 Filter reset behavior:
@@ -159,6 +161,7 @@ The detail panel shows:
 
 - Card image
 - Card name
+- Card number
 - Prefecture and municipality
 - Distribution status badge
 - Collection badge
@@ -173,7 +176,6 @@ The detail panel shows:
 - Stock information
 - Coordinate accuracy explanation
 - Google Maps link
-- Apple Maps link
 - Source links
 - Collected toggle
 - Collected date
@@ -501,6 +503,10 @@ respective rights holders. See `NOTICE.md`.
 - Some stock rows have no stock URL and fall back to the GKP prefecture page.
 - External URLs may change or become unavailable.
 - External links from scraped data are restricted to `http:` and `https:`.
+- Current imported data has a single `updatedAt` value, so updated-date sorting
+  may not visibly change order until future updates create date differences.
+- `要確認` remains a supported status filter, but the current imported dataset
+  may contain no matching records.
 
 ## 18. Current Completion Status
 
