@@ -398,12 +398,17 @@ function renderMap(filtered) {
     if (selected) {
       map.easeTo({
         center: [selected.lng, selected.lat],
-        zoom: isApproximateLocation(selected) ? Math.min(Math.max(map.getZoom(), 6), 7) : Math.max(map.getZoom(), 8),
+        zoom: selectedFocusZoom(selected),
         duration: 450
       });
     }
     shouldFocusSelected = false;
   }
+}
+
+function selectedFocusZoom(location) {
+  if (isApproximateLocation(location)) return Math.min(Math.max(map.getZoom(), 6), 7);
+  return Math.max(map.getZoom(), 13);
 }
 
 function setHoveredLocation(locationId) {
@@ -794,17 +799,7 @@ function addLocationLayers() {
     source: "locations",
     filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     layout: {
-      "text-field": [
-        "match",
-        ["get", "visualState"],
-        "stopped-known",
-        "■",
-        "stopped-unknown",
-        "◆",
-        "geocode-failed",
-        "▲",
-        "◆"
-      ],
+      "text-field": ["match", ["get", "visualState"], "stopped-known", "S", "stopped-unknown", "?", "geocode-failed", "!", "?"],
       "text-size": ["case", ["==", ["get", "highlighted"], true], 24, 19],
       "text-allow-overlap": true,
       "text-ignore-placement": true
