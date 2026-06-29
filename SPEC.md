@@ -366,7 +366,8 @@ Pipeline steps:
 3. Normalize source links
 4. Generate Plus Codes
 5. Import Google Form responses
-6. Create a pull request
+6. Validate generated data
+7. Create a pull request
 
 The workflow does not directly push generated data to `main`. Generated changes
 are reviewed through a pull request.
@@ -444,6 +445,15 @@ The HTML head includes:
 - Web App Manifest
 - App install icon
 - iOS Apple Touch Icon PNG
+
+Icon source of truth:
+
+- `icons/mhcard-icon.svg` is the master logo.
+- PNG install icons are generated from the SVG master.
+- `npm run generate:icons` regenerates:
+  - `icons/apple-touch-icon.png`
+  - `icons/icon-192.png`
+  - `icons/icon-512.png`
 
 Canonical URL:
 

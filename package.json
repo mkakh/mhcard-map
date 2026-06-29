@@ -11,6 +11,7 @@
     "normalize:links": "node scripts/normalize-source-links.js",
     "update:codes": "node scripts/update-location-codes.js",
     "geocode": "node scripts/geocode-locations.js",
+    "generate:icons": "node scripts/generate-icons.js",
     "validate:data": "node scripts/validate-data.js"
   }
 }

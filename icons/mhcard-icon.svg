@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Manhole Card Map">
-  <rect width="512" height="512" rx="108" fill="#1f7a4d"/>
+  <rect width="512" height="512" fill="#1f7a4d"/>
   <circle cx="256" cy="256" r="152" fill="#f4f7f2"/>
   <circle cx="256" cy="256" r="126" fill="#172018"/>
   <circle cx="256" cy="256" r="104" fill="none" stroke="#f4f7f2" stroke-width="10"/>
