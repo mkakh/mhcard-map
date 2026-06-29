@@ -124,6 +124,12 @@ button {
   border: 1px solid var(--line);
 }
 
+.link-button {
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+}
+
 .icon-button {
   width: 36px;
   background: var(--surface-2);
@@ -210,6 +216,21 @@ textarea:focus {
 .reset-button {
   width: 100%;
   margin-top: 12px;
+}
+
+.viewport-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.viewport-toggle input {
+  width: 16px;
+  min-height: 16px;
+  margin: 0;
 }
 
 label {
@@ -508,6 +529,36 @@ label {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
+}
+
+.ghost-button:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.inline-copy {
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1d5f99;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.inline-copy:hover {
+  color: var(--primary-strong);
+}
+
+.inline-disabled,
+.inline-hint {
+  color: var(--muted);
+}
+
+.inline-hint {
+  font-size: 12px;
 }
 
 .info-table {
