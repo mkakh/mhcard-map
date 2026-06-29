@@ -168,6 +168,9 @@ let map = null;
 let mapReady = false;
 let activePopup = null;
 let shouldFocusSelected = false;
+let searchRenderTimer = 0;
+
+const searchDebounceMs = 150;
 
 const fallbackMapView = {
   center: [139.7671, 35.6812],
@@ -212,8 +215,9 @@ async function init() {
 }
 
 function bindEvents() {
+  elements.searchInput.addEventListener("input", renderAllAfterSearchInput);
+
   [
-    elements.searchInput,
     elements.prefectureFilter,
     elements.collectionFilter,
     elements.statusFilter,
@@ -231,6 +235,11 @@ function bindEvents() {
   window.addEventListener("resize", () => {
     if (mapReady) map.resize();
   });
+}
+
+function renderAllAfterSearchInput() {
+  window.clearTimeout(searchRenderTimer);
+  searchRenderTimer = window.setTimeout(renderAll, searchDebounceMs);
 }
 
 function fillPrefectures() {
@@ -286,6 +295,11 @@ async function loadUpdateRequests() {
 }
 
 function renderAll() {
+  if (searchRenderTimer) {
+    window.clearTimeout(searchRenderTimer);
+    searchRenderTimer = 0;
+  }
+
   const filtered = getFilteredLocations();
   if (!filtered.some((location) => location.id === selectedId)) {
     selectedId = filtered[0]?.id ?? "";
@@ -1299,7 +1313,8 @@ function applyUserPosition(position, options = {}) {
 function distanceFromUser(location) {
   if (!userPosition) return Number.POSITIVE_INFINITY;
   const latDiff = location.lat - userPosition.lat;
-  const lngDiff = location.lng - userPosition.lng;
+  const averageLat = ((location.lat + userPosition.lat) / 2) * (Math.PI / 180);
+  const lngDiff = (location.lng - userPosition.lng) * Math.cos(averageLat);
   return Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
 }
 
