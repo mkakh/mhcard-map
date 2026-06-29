@@ -7,7 +7,7 @@
 - 更新要求はGoogle Formsを外部リンクで開き、Google Sheetsに集約する。
 - Google Sheetsの回答はGitHub Actionsで取り込み、PR化して管理者が承認する。
 - 公開はGitHub Pagesを第一候補とする。
-- 独自ドメインは `mkakh.com` をGitHub PagesのCNAMEとして利用する。
+- 独自ドメインは `mhcard-map.com` をGitHub PagesのCNAMEとして利用する。
 - 本章は旧ログイン・サーバー保存前提の記述より優先する。
 
 ## 1. 目的

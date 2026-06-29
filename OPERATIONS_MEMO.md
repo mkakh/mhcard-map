@@ -11,7 +11,7 @@
 - GitHub Actions で定期的にデータ更新とフォーム回答取り込みを行う。
 - 自動反映ではなく、自動PRを作成して管理者が承認・マージする。
 - 公開は GitHub Pages を第一候補にする。
-- 独自ドメイン `mkakh.com` は GitHub Pages の CNAME で利用する。
+- 独自ドメイン `mhcard-map.com` は GitHub Pages の CNAME で利用する。
 - さくらサーバーは将来のAPI/DB用途として温存し、初期公開では必須にしない。
 
 ## データ保存
@@ -80,7 +80,7 @@ GitHub Actions の方針:
 
 - GitHub Pages
 - public repository
-- 独自ドメインは `mkakh.com` をCNAME設定
+- 独自ドメインは `mhcard-map.com` をCNAME設定
 - 画像は外部URL参照のまま
 - データは `data/locations.json` を静的配信
 
@@ -120,7 +120,7 @@ GitHub Actions の方針:
 ## 手動で残る作業
 
 - GitHub Pagesをリポジトリ設定で有効化する。
-- `mkakh.com` のDNSをGitHub Pagesへ向ける。
+- `mhcard-map.com` のDNSをGitHub Pagesへ向ける。
 - Google Formを作成する。
 - Google Formのentry IDを `data/update-form-config.json` に設定する。
 - Google SheetsのCSV URLをActions secret `GOOGLE_FORM_RESPONSES_CSV_URL` に設定する。
