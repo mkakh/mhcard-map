@@ -1,15 +1,15 @@
 {
-  "formUrl": "",
+  "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdgNissX9z2haE7cHQZ6BkbtLtlzmqW-x9kxCh1tLVab5TI2w/viewform",
   "entries": {
-    "locationId": "",
-    "cardName": "",
-    "prefecture": "",
-    "municipality": "",
-    "place": "",
-    "address": "",
-    "sourceUrl": "",
-    "facilityUrl": "",
-    "stockUrl": "",
-    "conditionUrl": ""
+    "locationId": "entry.1850722437",
+    "cardName": "entry.582690237",
+    "prefecture": "entry.707806178",
+    "municipality": "entry.1253844542",
+    "place": "entry.1358103102",
+    "address": "entry.283107822",
+    "sourceUrl": "entry.1987575133",
+    "facilityUrl": "entry.750393850",
+    "stockUrl": "entry.398493335",
+    "conditionUrl": "entry.2032106482"
   }
 }
