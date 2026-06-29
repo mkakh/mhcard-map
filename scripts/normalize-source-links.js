@@ -1,7 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
+const htmlDir = join(process.cwd(), ".tmp", "gkp");
 
 const verifiedDistributionSources = new Map([
   [
@@ -17,53 +18,56 @@ const verifiedDistributionSources = new Map([
 ]);
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
+const gkpRowsByImageUrl = await loadGkpRowsByImageUrl();
+
 let updated = 0;
-let facilityUrlsAdded = 0;
-let gkpSourcesAssigned = 0;
 let verifiedSourcesAssigned = 0;
+let sourceUrlsAssigned = 0;
+let facilityUrlsAssigned = 0;
 let stockUrlsAssigned = 0;
+let stockUrlsFallbackAssigned = 0;
 let conditionUrlsAssigned = 0;
 let conditionsUpdated = 0;
+let rowsMatched = 0;
 
 for (const location of locations) {
-  const before = JSON.stringify({
-    sourceUrl: location.sourceUrl,
-    facilityUrl: location.facilityUrl,
-    stockUrl: location.stockUrl,
-    conditionUrl: location.conditionUrl,
-    condition: location.condition
-  });
+  const before = JSON.stringify(linkSnapshot(location));
   const verified = verifiedDistributionSources.get(location.id);
 
   if (verified) {
-    location.sourceUrl = verified.sourceUrl;
-    location.facilityUrl = verified.facilityUrl;
-    location.stockUrl = verified.stockUrl;
-    location.conditionUrl = verified.conditionUrl;
-    location.condition = verified.condition;
+    Object.assign(location, verified);
     verifiedSourcesAssigned += 1;
   } else {
-    const currentSourceUrl = cleanUrl(location.sourceUrl);
-    const currentFacilityUrl = cleanUrl(location.facilityUrl);
-
-    if (currentSourceUrl && !isGkpSource(currentSourceUrl) && !currentFacilityUrl) {
-      location.facilityUrl = currentSourceUrl;
-      facilityUrlsAdded += 1;
-    }
-
     const prefectureCode = getPrefectureCode(location.id);
-    if (prefectureCode) {
-      const gkpUrl = `https://www.gk-p.jp/mhcard/?pref=${prefectureCode}#mhcard_result`;
-      if (location.sourceUrl !== gkpUrl) {
-        location.sourceUrl = gkpUrl;
-        gkpSourcesAssigned += 1;
-      }
+    const gkpUrl = prefectureCode ? `https://www.gk-p.jp/mhcard/?pref=${prefectureCode}#mhcard_result` : "";
+    const gkpRow = gkpRowsByImageUrl.get(normalizeUrl(location.imageUrl));
+
+    if (gkpUrl && location.sourceUrl !== gkpUrl) {
+      location.sourceUrl = gkpUrl;
+      sourceUrlsAssigned += 1;
     }
 
-    const stockUrl = cleanUrl(location.facilityUrl) || cleanUrl(location.sourceUrl);
-    if (stockUrl && location.stockUrl !== stockUrl) {
-      location.stockUrl = stockUrl;
-      stockUrlsAssigned += 1;
+    if (gkpRow) {
+      rowsMatched += 1;
+
+      if (gkpRow.facilityUrl && location.facilityUrl !== gkpRow.facilityUrl) {
+        location.facilityUrl = gkpRow.facilityUrl;
+        facilityUrlsAssigned += 1;
+      }
+
+      const stockUrl = gkpRow.stockUrl || gkpUrl;
+      if (stockUrl && location.stockUrl !== stockUrl) {
+        location.stockUrl = stockUrl;
+        if (gkpRow.stockUrl) stockUrlsAssigned += 1;
+        else stockUrlsFallbackAssigned += 1;
+      }
+
+      if (gkpRow.stockText && location.stock !== gkpRow.stockText) {
+        location.stock = gkpRow.stockText;
+      }
+    } else if (gkpUrl && location.stockUrl !== gkpUrl) {
+      location.stockUrl = gkpUrl;
+      stockUrlsFallbackAssigned += 1;
     }
 
     const conditionUrl = cleanUrl(location.sourceUrl);
@@ -72,19 +76,13 @@ for (const location of locations) {
       conditionUrlsAssigned += 1;
     }
 
-    if (isGenericCondition(location.condition)) {
+    if (isGenericCondition(location.condition) && location.condition !== "公式情報を確認") {
       location.condition = "公式情報を確認";
       conditionsUpdated += 1;
     }
   }
 
-  const after = JSON.stringify({
-    sourceUrl: location.sourceUrl,
-    facilityUrl: location.facilityUrl,
-    stockUrl: location.stockUrl,
-    conditionUrl: location.conditionUrl,
-    condition: location.condition
-  });
+  const after = JSON.stringify(linkSnapshot(location));
   if (before !== after) updated += 1;
 }
 
@@ -95,10 +93,12 @@ console.log(
     {
       total: locations.length,
       updated,
-      facilityUrlsAdded,
-      gkpSourcesAssigned,
+      rowsMatched,
       verifiedSourcesAssigned,
+      sourceUrlsAssigned,
+      facilityUrlsAssigned,
       stockUrlsAssigned,
+      stockUrlsFallbackAssigned,
       conditionUrlsAssigned,
       conditionsUpdated
     },
@@ -107,12 +107,115 @@ console.log(
   )
 );
 
-function cleanUrl(value) {
-  return String(value ?? "").trim();
+function linkSnapshot(location) {
+  return {
+    sourceUrl: location.sourceUrl,
+    facilityUrl: location.facilityUrl,
+    stockUrl: location.stockUrl,
+    conditionUrl: location.conditionUrl,
+    condition: location.condition,
+    stock: location.stock
+  };
 }
 
-function isGkpSource(value) {
-  return /^https:\/\/www\.gk-p\.jp\/mhcard\/\?pref=\d{2}#mhcard_result$/.test(cleanUrl(value));
+async function loadGkpRowsByImageUrl() {
+  await mkdir(htmlDir, { recursive: true });
+  const files = await ensurePrefectureHtmlFiles();
+  const rowsByImageUrl = new Map();
+
+  for (const file of files) {
+    const html = await readFile(join(htmlDir, file), "utf8");
+    const rows = html.match(/<tr[\s\S]*?<\/tr>/gi) ?? [];
+
+    for (const row of rows) {
+      const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((match) => match[1]);
+      if (cells.length < 7) continue;
+
+      const [, imageHtml, , , distributionHtml, , stockHtml] = cells.slice(-7);
+      const imageUrl = absolutizeUrl(firstHrefOrSrc(imageHtml, "src"));
+      if (!imageUrl) continue;
+
+      rowsByImageUrl.set(normalizeUrl(imageUrl), {
+        facilityUrl: absolutizeUrl(firstHrefOrSrc(distributionHtml, "href")),
+        stockUrl: absolutizeUrl(firstHrefOrSrc(stockHtml, "href")),
+        stockText: cleanupText(stockHtml)
+      });
+    }
+  }
+
+  return rowsByImageUrl;
+}
+
+async function ensurePrefectureHtmlFiles() {
+  let files = [];
+  try {
+    files = (await readdir(htmlDir)).filter((file) => /^pref-\d{2}\.html$/.test(file));
+  } catch {
+    files = [];
+  }
+
+  const existingCodes = new Set(files.map((file) => file.match(/^pref-(\d{2})\.html$/)?.[1]).filter(Boolean));
+  for (let number = 1; number <= 47; number += 1) {
+    const code = String(number).padStart(2, "0");
+    if (existingCodes.has(code)) continue;
+
+    const file = `pref-${code}.html`;
+    const url = `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch ${url}: HTTP ${response.status}`);
+    await writeFile(join(htmlDir, file), await response.text(), "utf8");
+    files.push(file);
+    await new Promise((resolve) => setTimeout(resolve, 150));
+  }
+
+  return files.sort();
+}
+
+function firstHrefOrSrc(value, attribute) {
+  return String(value ?? "").match(new RegExp(`<[^>]+${attribute}=["']([^"']+)["']`, "i"))?.[1] ?? "";
+}
+
+function cleanupText(html) {
+  return decodeEntities(
+    String(html ?? "")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<\/p>|<\/div>|<\/li>/gi, "\n")
+      .replace(/<[^>]+>/g, "")
+      .replace(/\r/g, "")
+      .split("\n")
+      .map((line) => line.replace(/\s+/g, " ").trim())
+      .filter(Boolean)
+      .join("\n")
+  ).trim();
+}
+
+function decodeEntities(value) {
+  return value
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&#038;/g, "&");
+}
+
+function absolutizeUrl(url) {
+  const value = cleanUrl(url).replace(/&amp;/g, "&");
+  if (!value) return "";
+  if (value.startsWith("//")) return `https:${value}`;
+  if (value.startsWith("http://www.gk-p.jp")) return value.replace("http://", "https://");
+  if (value.startsWith("http")) return value;
+  if (value.startsWith("/")) return `https://www.gk-p.jp${value}`;
+  return value;
+}
+
+function normalizeUrl(url) {
+  return absolutizeUrl(url).replace(/\s+/g, "").replace(/\/$/, "");
+}
+
+function cleanUrl(value) {
+  return String(value ?? "").trim();
 }
 
 function getPrefectureCode(id) {
