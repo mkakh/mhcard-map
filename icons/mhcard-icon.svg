@@ -1,15 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Manhole Card Map">
   <rect width="512" height="512" fill="#1f7a4d"/>
-  <circle cx="256" cy="256" r="152" fill="#f4f7f2"/>
-  <circle cx="256" cy="256" r="126" fill="#172018"/>
-  <circle cx="256" cy="256" r="104" fill="none" stroke="#f4f7f2" stroke-width="10"/>
-  <g fill="none" stroke="#f4f7f2" stroke-width="8" opacity="0.95">
-    <circle cx="256" cy="256" r="66"/>
-    <path d="M152 256h208"/>
-    <path d="M256 152v208"/>
-    <path d="M182 182l148 148"/>
-    <path d="M330 182L182 330"/>
+  <g transform="translate(256 256) scale(0.86) translate(-256 -256)">
+    <circle cx="256" cy="256" r="152" fill="#f4f7f2"/>
+    <circle cx="256" cy="256" r="126" fill="#172018"/>
+    <circle cx="256" cy="256" r="104" fill="none" stroke="#f4f7f2" stroke-width="10"/>
+    <g fill="none" stroke="#f4f7f2" stroke-width="8" opacity="0.95">
+      <circle cx="256" cy="256" r="66"/>
+      <path d="M152 256h208"/>
+      <path d="M256 152v208"/>
+      <path d="M182 182l148 148"/>
+      <path d="M330 182L182 330"/>
+    </g>
+    <path fill="#c5522f" d="M338 142c-43 0-78 35-78 78 0 59 78 150 78 150s78-91 78-150c0-43-35-78-78-78z"/>
+    <circle cx="338" cy="220" r="29" fill="#fff"/>
   </g>
-  <path fill="#c5522f" d="M338 142c-43 0-78 35-78 78 0 59 78 150 78 150s78-91 78-150c0-43-35-78-78-78z"/>
-  <circle cx="338" cy="220" r="29" fill="#fff"/>
 </svg>

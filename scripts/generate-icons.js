@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { pathToFileURL } from "node:url";
@@ -21,6 +21,7 @@ if (!browserPath) {
 }
 
 await mkdir(tempDir, { recursive: true });
+const svgMarkup = await readFile(svgPath, "utf8");
 await writeFile(
   tempHtmlPath,
   `<!doctype html>
@@ -37,15 +38,15 @@ await writeFile(
         background: transparent;
       }
 
-      img {
+      svg {
         display: block;
-        width: 100vw;
-        height: 100vh;
+        width: 512px;
+        height: 512px;
       }
     </style>
   </head>
   <body>
-    <img src="${pathToFileURL(svgPath).href}" alt="">
+    ${svgMarkup}
   </body>
 </html>
 `,
@@ -83,9 +84,11 @@ function renderPng(outputPath, size) {
     "--disable-extensions",
     "--hide-scrollbars",
     "--no-first-run",
-    "--force-device-scale-factor=1",
+    `--force-device-scale-factor=${size / 512}`,
+    "--run-all-compositor-stages-before-draw",
+    "--virtual-time-budget=1000",
     `--user-data-dir=${join(tempDir, `profile-${size}`)}`,
-    `--window-size=${size},${size}`,
+    "--window-size=512,512",
     `--screenshot=${outputPath}`,
     pathToFileURL(tempHtmlPath).href
   ];
