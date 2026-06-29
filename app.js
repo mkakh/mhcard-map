@@ -444,7 +444,7 @@ function renderDetail() {
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
       <tr><th>住所</th><td>${escapeHtml(location.address)}</td></tr>
       <tr><th>緯度経度</th><td>${location.lat}, ${location.lng}</td></tr>
-      <tr><th>座標精度</th><td>${escapeHtml(formatCoordinateAccuracy(location))}</td></tr>
+      ${renderMapPositionRows(location)}
       <tr><th>マップコード</th><td>${escapeHtml(mapcode)} (${escapeHtml(location.mapcodeStatus)})</td></tr>
       <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
@@ -528,25 +528,48 @@ function renderCoordinateBadge(location) {
   return `<span class="badge ${category}">${labels[category]}</span>`;
 }
 
-function formatCoordinateAccuracy(location) {
+function renderMapPositionRows(location) {
+  return mapPositionRows(location)
+    .map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`)
+    .join("");
+}
+
+function mapPositionRows(location) {
   if (location.coordinateAccuracy === "address") {
-    const prefix = location.status === "休止中" ? "配布中止・住所既知" : "住所検索";
-    return `${prefix}: ${location.geocodeTitle || location.geocodeQuery || "一致"}`;
+    const position = location.status === "休止中" ? "住所から推定（配布中止）" : "住所から推定";
+    return [
+      ["地図位置", position],
+      ["検索結果住所", location.geocodeTitle || location.geocodeQuery || "住所検索結果あり"]
+    ];
   }
 
   if (location.status === "休止中" && !location.address) {
-    return "配布中止・住所不明: 都道府県中心付近に仮配置";
+    return [
+      ["地図位置", "都道府県内の仮位置"],
+      ["理由", "配布中止・住所不明"]
+    ];
   }
 
   if (location.status === "休止中" && location.address) {
-    return `配布中止・住所既知: 住所検索失敗のため仮配置 (${location.geocodeError || "未検索"})`;
+    return [
+      ["地図位置", "都道府県内の仮位置"],
+      ["理由", `配布中止・住所検索失敗 (${location.geocodeError || "未検索"})`],
+      ["抽出住所", location.address]
+    ];
   }
 
   if (location.geocodeError) {
-    return `住所検索失敗: 都道府県中心付近に仮配置 (${location.geocodeError})`;
+    return [
+      ["地図位置", "都道府県内の仮位置"],
+      ["理由", `住所検索に失敗 (${location.geocodeError})`],
+      ["抽出住所", location.address]
+    ];
   }
 
-  return "住所不明: 都道府県中心付近に仮配置";
+  return [
+    ["地図位置", "都道府県内の仮位置"],
+    ["理由", "住所不明"]
+  ];
 }
 
 function initMap() {
