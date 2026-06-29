@@ -154,16 +154,14 @@ let locations = [
 ];
 
 const storageKeys = {
-  user: "mhc_user",
-  collections: "mhc_collections",
-  requests: "mhc_update_requests"
+  collections: "mhc_collections"
 };
 
 let selectedId = locations[0].id;
 let hoveredId = "";
-let currentUser = loadJson(storageKeys.user, null);
 let collections = loadJson(storageKeys.collections, {});
-let updateRequests = loadJson(storageKeys.requests, []);
+let updateRequests = [];
+let updateFormConfig = null;
 let userPosition = null;
 let map = null;
 let mapReady = false;
@@ -188,19 +186,6 @@ const elements = {
   totalCount: document.querySelector("#totalCount"),
   collectedCount: document.querySelector("#collectedCount"),
   requestCount: document.querySelector("#requestCount"),
-  loginButton: document.querySelector("#loginButton"),
-  loginDialog: document.querySelector("#loginDialog"),
-  loginForm: document.querySelector("#loginForm"),
-  emailInput: document.querySelector("#emailInput"),
-  passwordInput: document.querySelector("#passwordInput"),
-  closeLoginDialog: document.querySelector("#closeLoginDialog"),
-  requestDialog: document.querySelector("#requestDialog"),
-  requestForm: document.querySelector("#requestForm"),
-  requestLocationId: document.querySelector("#requestLocationId"),
-  requestType: document.querySelector("#requestType"),
-  requestMessage: document.querySelector("#requestMessage"),
-  referenceUrl: document.querySelector("#referenceUrl"),
-  closeRequestDialog: document.querySelector("#closeRequestDialog"),
   myPageButton: document.querySelector("#myPageButton"),
   myPageDialog: document.querySelector("#myPageDialog"),
   myPageContent: document.querySelector("#myPageContent"),
@@ -212,6 +197,8 @@ init();
 
 async function init() {
   locations = await loadLocations();
+  updateRequests = await loadUpdateRequests();
+  updateFormConfig = await loadUpdateFormConfig();
   selectedId = locations[0]?.id ?? "";
   fillPrefectures();
   bindEvents();
@@ -230,11 +217,6 @@ function bindEvents() {
   ].forEach((element) => element.addEventListener("input", renderAll));
 
   elements.resetFiltersButton.addEventListener("click", resetFilters);
-  elements.loginButton.addEventListener("click", handleLoginButton);
-  elements.loginForm.addEventListener("submit", handleLogin);
-  elements.closeLoginDialog.addEventListener("click", () => elements.loginDialog.close());
-  elements.requestForm.addEventListener("submit", handleUpdateRequest);
-  elements.closeRequestDialog.addEventListener("click", () => elements.requestDialog.close());
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
   elements.locateButton.addEventListener("click", locateUser);
@@ -268,8 +250,31 @@ async function loadLocations() {
   }
 }
 
+async function loadUpdateFormConfig() {
+  try {
+    const response = await fetch("./data/update-form-config.json", { cache: "no-store" });
+    if (!response.ok) return null;
+    const config = await response.json();
+    return config?.formUrl ? config : null;
+  } catch (error) {
+    console.info("Update request form is not configured:", error);
+    return null;
+  }
+}
+
+async function loadUpdateRequests() {
+  try {
+    const response = await fetch("./data/update-requests.json", { cache: "no-store" });
+    if (!response.ok) return [];
+    const requests = await response.json();
+    return Array.isArray(requests) ? requests : [];
+  } catch (error) {
+    console.info("Update requests data is not available:", error);
+    return [];
+  }
+}
+
 function renderAll() {
-  updateLoginState();
   const filtered = getFilteredLocations();
   if (!filtered.some((location) => location.id === selectedId)) {
     selectedId = filtered[0]?.id ?? "";
@@ -968,7 +973,6 @@ function renderPopupImage(imageUrl, cardName) {
 }
 
 function toggleCollected(locationId) {
-  if (!requireLogin()) return;
   const current = collections[locationId] ?? {};
   collections[locationId] = {
     ...current,
@@ -980,7 +984,6 @@ function toggleCollected(locationId) {
 }
 
 function saveMemo(locationId) {
-  if (!requireLogin()) return;
   collections[locationId] = {
     ...(collections[locationId] ?? {}),
     collected: Boolean(collections[locationId]?.collected),
@@ -992,69 +995,43 @@ function saveMemo(locationId) {
   renderAll();
 }
 
-function handleLoginButton() {
-  if (currentUser) {
-    currentUser = null;
-    saveJson(storageKeys.user, null);
-    updateLoginState();
-    showToast("ログアウトしました");
+function openRequestDialog(locationId) {
+  const location = locations.find((item) => item.id === locationId);
+  const url = buildUpdateRequestUrl(location);
+  if (!url) {
+    showToast("更新要求フォームが未設定です。data/update-form-config.json にGoogle Formを設定してください");
     return;
   }
-  elements.loginDialog.showModal();
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
-function handleLogin(event) {
-  event.preventDefault();
-  currentUser = {
-    email: elements.emailInput.value.trim(),
-    loginAt: new Date().toISOString()
+function buildUpdateRequestUrl(location) {
+  if (!location || !updateFormConfig?.formUrl) return "";
+
+  const url = new URL(updateFormConfig.formUrl);
+  const entries = updateFormConfig.entries ?? {};
+  const values = {
+    locationId: location.id,
+    cardName: location.cardName,
+    prefecture: location.prefecture,
+    municipality: location.municipality,
+    place: location.place,
+    address: location.address,
+    sourceUrl: location.sourceUrl,
+    facilityUrl: location.facilityUrl,
+    stockUrl: location.stockUrl,
+    conditionUrl: location.conditionUrl
   };
-  saveJson(storageKeys.user, currentUser);
-  elements.loginDialog.close();
-  elements.loginForm.reset();
-  renderAll();
-  showToast("ログインしました");
-}
 
-function updateLoginState() {
-  elements.loginButton.textContent = currentUser ? "ログアウト" : "ログイン";
-}
-
-function requireLogin() {
-  if (currentUser) return true;
-  elements.loginDialog.showModal();
-  showToast("ログインが必要です");
-  return false;
-}
-
-function openRequestDialog(locationId) {
-  if (!requireLogin()) return;
-  elements.requestLocationId.value = locationId;
-  elements.requestDialog.showModal();
-}
-
-function handleUpdateRequest(event) {
-  event.preventDefault();
-  const locationId = elements.requestLocationId.value;
-  updateRequests.unshift({
-    id: crypto.randomUUID(),
-    locationId,
-    userEmail: currentUser?.email ?? "",
-    type: elements.requestType.value,
-    referenceUrl: elements.referenceUrl.value.trim(),
-    message: elements.requestMessage.value.trim(),
-    status: "未確認",
-    createdAt: new Date().toISOString()
+  Object.entries(entries).forEach(([key, entryId]) => {
+    if (!entryId || values[key] == null) return;
+    url.searchParams.set(entryId, values[key]);
   });
-  saveJson(storageKeys.requests, updateRequests);
-  elements.requestDialog.close();
-  elements.requestForm.reset();
-  renderAll();
-  showToast("更新要求を送信しました");
+
+  return url.toString();
 }
 
 function openMyPage() {
-  if (!requireLogin()) return;
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
   const byPrefecture = locations.reduce((acc, location) => {
     acc[location.prefecture] ??= { total: 0, collected: 0 };
@@ -1075,8 +1052,8 @@ function openMyPage() {
         .join("")}
     </table>
     <table class="info-table">
-      <tr><th>更新要求</th><td>${updateRequests.length}件</td></tr>
-      <tr><th>ログイン</th><td>${escapeHtml(currentUser.email)}</td></tr>
+      <tr><th>保存済みメモ</th><td>${Object.values(collections).filter((item) => item.memo).length}件</td></tr>
+      <tr><th>保存先</th><td>この端末のブラウザ</td></tr>
     </table>
   `;
   elements.myPageDialog.showModal();

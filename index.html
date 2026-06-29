@@ -18,8 +18,7 @@
           </div>
         </div>
         <div class="top-actions">
-          <button id="myPageButton" class="ghost-button" type="button">取得状況</button>
-          <button id="loginButton" class="primary-button" type="button">ログイン</button>
+          <button id="myPageButton" class="ghost-button" type="button">保存データ</button>
         </div>
       </header>
 
@@ -110,60 +109,10 @@
       </main>
     </div>
 
-    <dialog id="loginDialog" class="modal">
-      <form method="dialog" id="loginForm">
-        <header>
-          <h2>ログイン</h2>
-          <button id="closeLoginDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
-        </header>
-        <label>
-          メールアドレス
-          <input id="emailInput" type="email" required placeholder="collector@example.com">
-        </label>
-        <label>
-          パスワード
-          <input id="passwordInput" type="password" required minlength="4" placeholder="4文字以上">
-        </label>
-        <button class="primary-button full" value="default" type="submit">ログイン</button>
-      </form>
-    </dialog>
-
-    <dialog id="requestDialog" class="modal">
-      <form method="dialog" id="requestForm">
-        <header>
-          <h2>情報更新要求</h2>
-          <button id="closeRequestDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
-        </header>
-        <input id="requestLocationId" type="hidden">
-        <label>
-          種類
-          <select id="requestType">
-            <option>配布場所が違う</option>
-            <option>配布時間が違う</option>
-            <option>休館日が違う</option>
-            <option>在庫がない</option>
-            <option>配布再開</option>
-            <option>住所または位置が違う</option>
-            <option>公式URLが違う</option>
-            <option>その他</option>
-          </select>
-        </label>
-        <label>
-          参考URL
-          <input id="referenceUrl" type="url" placeholder="https://example.jp">
-        </label>
-        <label>
-          本文
-          <textarea id="requestMessage" rows="5" required placeholder="確認した内容を入力"></textarea>
-        </label>
-        <button class="primary-button full" value="default" type="submit">送信</button>
-      </form>
-    </dialog>
-
     <dialog id="myPageDialog" class="modal wide">
       <form method="dialog">
         <header>
-          <h2>取得状況</h2>
+          <h2>保存データ</h2>
           <button id="closeMyPageDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
         </header>
         <div id="myPageContent" class="my-page"></div>

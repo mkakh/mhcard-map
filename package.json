@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "import:gkp": "node scripts/import-gkp-data.js",
+    "import:forms": "node scripts/import-form-requests.js",
     "normalize:links": "node scripts/normalize-source-links.js",
     "update:codes": "node scripts/update-location-codes.js",
     "geocode": "node scripts/geocode-locations.js"

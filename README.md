@@ -27,15 +27,16 @@ http://localhost:4173
 - 配布場所詳細
 - Plus Code、緯度経度、Google Mapsリンク
 - Google Maps、Apple Mapsリンク
-- ローカルログイン
+- ログインなしの端末内保存
 - 取得済みチェック
 - 取得日、メモ保存
-- 情報更新要求の送信
+- Google Forms連携による情報更新要求
 - 取得状況の集計
 
 ## データ保存
 
-現在はプロトタイプのため、ログイン、取得済み情報、メモ、更新要求はブラウザの `localStorage` に保存します。
+現在はプロトタイプのため、取得済み情報とメモはブラウザの `localStorage` に保存します。
+更新要求は `data/update-form-config.json` にGoogle Formsを設定すると外部フォームへ送信できます。
 
 今後、APIとDBを追加する場合は `app.js` の保存処理を置き換えます。
 
