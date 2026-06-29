@@ -432,6 +432,7 @@ function renderDetail() {
   const requestsForLocation = updateRequests.filter((request) => request.locationId === location.id);
   const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.lat},${location.lng}`)}`;
   const sourceUrl = location.sourceUrl || "";
+  const facilityUrl = location.facilityUrl || "";
 
   elements.detailContent.innerHTML = `
     <section class="detail-head">
@@ -453,15 +454,17 @@ function renderDetail() {
 
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
+      <tr><th>配布場所</th><td>${renderExternalLinkedValue(location.place, facilityUrl)}</td></tr>
       ${renderInfoCodeRow("マップコード", mapcode, mapcode !== "未登録", "copyMapcode", "カーナビ")}
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
       ${renderInfoCodeRow("住所", location.address || "未登録", Boolean(location.address), "copyAddress")}
       ${renderMapPositionRows(location)}
+      <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
       <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
-      <tr><th>配布条件</th><td>${escapeHtml(location.condition)}</td></tr>
-      <tr><th>在庫</th><td>${escapeHtml(location.stock)}</td></tr>
+      <tr><th>配布条件</th><td>${renderSourceLinkedValue(location.condition, sourceUrl)}</td></tr>
+      <tr><th>在庫</th><td>${renderSourceLinkedValue(location.stock, sourceUrl)}</td></tr>
       <tr><th>最終更新</th><td>${escapeHtml(location.updatedAt)}</td></tr>
       <tr><th>更新要求</th><td>${requestsForLocation.length}件</td></tr>
     </table>
@@ -495,6 +498,16 @@ function renderInfoCodeRow(label, value, copyable, copyId, hint = "") {
     : `<span class="inline-disabled">${escapeHtml(value)}</span>${hintText}`;
 
   return `<tr><th>${escapeHtml(label)}</th><td>${valueControl}</td></tr>`;
+}
+
+function renderSourceLinkedValue(value, sourceUrl) {
+  return renderExternalLinkedValue(value, sourceUrl);
+}
+
+function renderExternalLinkedValue(value, url) {
+  if (!value) return "";
+  if (!url) return escapeHtml(value);
+  return `<a class="inline-source-link" href="${escapeAttribute(url)}" target="_blank" rel="noreferrer">${escapeHtml(value)}</a>`;
 }
 
 function bindCopyButton(id, value, message) {

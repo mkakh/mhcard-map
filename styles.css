@@ -537,7 +537,8 @@ label {
   opacity: 0.68;
 }
 
-.inline-copy {
+.inline-copy,
+.inline-source-link {
   max-width: 100%;
   padding: 0;
   border: 0;
@@ -548,7 +549,8 @@ label {
   text-underline-offset: 2px;
 }
 
-.inline-copy:hover {
+.inline-copy:hover,
+.inline-source-link:hover {
   color: var(--primary-strong);
 }
 
