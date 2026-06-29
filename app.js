@@ -159,12 +159,14 @@ const storageKeys = {
 
 let selectedId = locations[0].id;
 let hoveredId = "";
+let listHoverSuspended = false;
 let collections = loadJson(storageKeys.collections, {});
 let updateRequests = [];
 let updateFormConfig = null;
 let userPosition = null;
 let map = null;
 let mapReady = false;
+let activePopup = null;
 let shouldFocusSelected = false;
 
 const fallbackMapView = {
@@ -366,15 +368,10 @@ function renderList(filtered) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `location-card ${location.id === selectedId ? "active" : ""}`;
-    button.addEventListener("click", () => {
-      selectedId = location.id;
-      shouldFocusSelected = true;
-      renderAll();
-    });
+    button.addEventListener("click", () => selectListLocation(location.id));
     button.addEventListener("mouseenter", () => setHoveredLocation(location.id));
+    button.addEventListener("mousemove", () => resumeListHover(location.id));
     button.addEventListener("mouseleave", () => setHoveredLocation(""));
-    button.addEventListener("focus", () => setHoveredLocation(location.id));
-    button.addEventListener("blur", () => setHoveredLocation(""));
 
     button.innerHTML = `
       <h3>${escapeHtml(location.cardName)}</h3>
@@ -416,9 +413,34 @@ function selectedFocusZoom(location) {
   return Math.max(map.getZoom(), 13);
 }
 
+function selectListLocation(locationId) {
+  const location = locations.find((item) => item.id === locationId);
+  if (!location) return;
+
+  selectedId = location.id;
+  clearHoveredLocation();
+  listHoverSuspended = true;
+  shouldFocusSelected = true;
+  renderAll();
+  showLocationPopup(location);
+}
+
 function setHoveredLocation(locationId) {
+  if (listHoverSuspended) return;
   if (hoveredId === locationId) return;
   hoveredId = locationId;
+  updateLocationSource();
+}
+
+function resumeListHover(locationId) {
+  if (!listHoverSuspended) return;
+  listHoverSuspended = false;
+  setHoveredLocation(locationId);
+}
+
+function clearHoveredLocation() {
+  if (!hoveredId) return;
+  hoveredId = "";
   updateLocationSource();
 }
 
@@ -914,7 +936,7 @@ function toLocationFeatureCollection(items) {
         coordinateAccuracy: location.coordinateAccuracy || "prefecture_approx",
         collected: Boolean(collections[location.id]?.collected),
         selected: location.id === selectedId,
-        highlighted: location.id === selectedId || location.id === hoveredId,
+        highlighted: location.id === hoveredId,
         visualState: pinClass(location),
         hasApproximate: isApproximateLocation(location),
         hasStoppedUnknown: coordinateCategory(location) === "stopped-unknown",
@@ -944,14 +966,41 @@ function toCurrentLocationFeatureCollection() {
 }
 
 function showMapPopup(feature) {
-  new maplibregl.Popup({ closeButton: false, closeOnClick: true, offset: 12 })
-    .setLngLat(feature.geometry.coordinates)
+  showManagedPopup({
+    coordinates: feature.geometry.coordinates,
+    imageUrl: feature.properties.imageUrl,
+    cardName: feature.properties.cardName,
+    place: feature.properties.place
+  });
+}
+
+function showLocationPopup(location) {
+  if (!mapReady) return;
+
+  showManagedPopup({
+    coordinates: [location.lng, location.lat],
+    imageUrl: location.imageUrl || "",
+    cardName: location.cardName,
+    place: location.place
+  });
+}
+
+function showManagedPopup({ coordinates, imageUrl, cardName, place }) {
+  if (!mapReady) return;
+
+  activePopup?.remove();
+  const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: true, offset: 12 })
+    .setLngLat(coordinates)
     .setHTML(`
-      ${renderPopupImage(feature.properties.imageUrl, feature.properties.cardName)}
-      <p class="map-popup-title">${escapeHtml(feature.properties.cardName)}</p>
-      <p class="map-popup-subtitle">${escapeHtml(feature.properties.place)}</p>
+      ${renderPopupImage(imageUrl || "", cardName)}
+      <p class="map-popup-title">${escapeHtml(cardName)}</p>
+      <p class="map-popup-subtitle">${escapeHtml(place)}</p>
     `)
     .addTo(map);
+  activePopup = popup;
+  popup.on("close", () => {
+    if (activePopup === popup) activePopup = null;
+  });
 }
 
 function renderCardImage(location, variant) {
