@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html app.js styles.css dist/
+          cp LICENSE NOTICE.md dist/
           cp CNAME dist/
           cp -R data dist/data
       - uses: actions/configure-pages@v5
@@ -33,4 +34,4 @@ jobs:
         with:
           path: dist
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -707,7 +707,8 @@ label {
   }
 
   .workspace {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .sidebar,
@@ -715,13 +716,36 @@ label {
     border: 0;
   }
 
-  .map-canvas {
-    min-height: 420px;
-    height: 420px;
+  .map-area {
+    order: 1;
+    min-height: min(62dvh, 520px);
+    height: min(62dvh, 520px);
+    border-bottom: 1px solid var(--line);
   }
 
-  .map-area {
-    min-height: 420px;
+  .map-canvas {
+    min-height: min(62dvh, 520px);
+    height: min(62dvh, 520px);
+  }
+
+  .sidebar {
+    order: 2;
+    max-height: 58dvh;
+    overflow: auto;
+  }
+
+  .detail-panel {
+    order: 3;
+  }
+
+  .map-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .legend {
+    max-height: 92px;
+    overflow: auto;
   }
 
   .filter-grid,
