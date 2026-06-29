@@ -1,4 +1,4 @@
-const locations = [
+let locations = [
   {
     id: "tokyo-fuchu-001",
     cardName: "府中市 A001",
@@ -201,21 +201,26 @@ const elements = {
   loginForm: document.querySelector("#loginForm"),
   emailInput: document.querySelector("#emailInput"),
   passwordInput: document.querySelector("#passwordInput"),
+  closeLoginDialog: document.querySelector("#closeLoginDialog"),
   requestDialog: document.querySelector("#requestDialog"),
   requestForm: document.querySelector("#requestForm"),
   requestLocationId: document.querySelector("#requestLocationId"),
   requestType: document.querySelector("#requestType"),
   requestMessage: document.querySelector("#requestMessage"),
   referenceUrl: document.querySelector("#referenceUrl"),
+  closeRequestDialog: document.querySelector("#closeRequestDialog"),
   myPageButton: document.querySelector("#myPageButton"),
   myPageDialog: document.querySelector("#myPageDialog"),
   myPageContent: document.querySelector("#myPageContent"),
+  closeMyPageDialog: document.querySelector("#closeMyPageDialog"),
   locateButton: document.querySelector("#locateButton")
 };
 
 init();
 
-function init() {
+async function init() {
+  locations = await loadLocations();
+  selectedId = locations[0]?.id ?? "";
   fillPrefectures();
   bindEvents();
   initMap();
@@ -233,12 +238,16 @@ function bindEvents() {
 
   elements.loginButton.addEventListener("click", handleLoginButton);
   elements.loginForm.addEventListener("submit", handleLogin);
+  elements.closeLoginDialog.addEventListener("click", () => elements.loginDialog.close());
   elements.requestForm.addEventListener("submit", handleUpdateRequest);
+  elements.closeRequestDialog.addEventListener("click", () => elements.requestDialog.close());
   elements.myPageButton.addEventListener("click", openMyPage);
+  elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
   elements.locateButton.addEventListener("click", locateUser);
 }
 
 function fillPrefectures() {
+  elements.prefectureFilter.querySelectorAll("option:not([value='all'])").forEach((option) => option.remove());
   const prefectures = [...new Set(locations.map((location) => location.prefecture))].sort();
   prefectures.forEach((prefecture) => {
     const option = document.createElement("option");
@@ -246,6 +255,23 @@ function fillPrefectures() {
     option.textContent = prefecture;
     elements.prefectureFilter.append(option);
   });
+}
+
+async function loadLocations() {
+  try {
+    const response = await fetch("./data/locations.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const realLocations = await response.json();
+    if (!Array.isArray(realLocations) || realLocations.length === 0) {
+      throw new Error("locations data is empty");
+    }
+    showToast(`GKP実データ ${realLocations.length}件を読み込みました`);
+    return realLocations;
+  } catch (error) {
+    console.warn("Falling back to bundled sample data:", error);
+    showToast("実データを読み込めないためサンプルを表示しています");
+    return locations;
+  }
 }
 
 function renderAll() {

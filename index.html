@@ -106,7 +106,7 @@
       <form method="dialog" id="loginForm">
         <header>
           <h2>ログイン</h2>
-          <button class="icon-button" value="cancel" aria-label="閉じる" type="submit">×</button>
+          <button id="closeLoginDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
         </header>
         <label>
           メールアドレス
@@ -124,7 +124,7 @@
       <form method="dialog" id="requestForm">
         <header>
           <h2>情報更新要求</h2>
-          <button class="icon-button" value="cancel" aria-label="閉じる" type="submit">×</button>
+          <button id="closeRequestDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
         </header>
         <input id="requestLocationId" type="hidden">
         <label>
@@ -157,7 +157,7 @@
       <form method="dialog">
         <header>
           <h2>取得状況</h2>
-          <button class="icon-button" value="cancel" aria-label="閉じる" type="submit">×</button>
+          <button id="closeMyPageDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
         </header>
         <div id="myPageContent" class="my-page"></div>
       </form>

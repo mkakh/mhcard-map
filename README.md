@@ -20,6 +20,7 @@ http://localhost:4173
 - MapLibre GL JSによる実地図表示
 - GeoJSON sourceによる地点描画
 - 地点クラスタリング
+- GKP検索ページから生成した実データ1265件の表示
 - キーワード検索
 - 都道府県、取得状態、配布状態フィルター
 - 現在地から近い順の並び替え
@@ -37,6 +38,20 @@ http://localhost:4173
 現在はプロトタイプのため、ログイン、取得済み情報、メモ、更新要求はブラウザの `localStorage` に保存します。
 
 今後、APIとDBを追加する場合は `app.js` の保存処理を置き換えます。
+
+## 実データ
+
+配布場所データは `data/locations.json` から読み込みます。
+
+現在のJSONはGKPの都道府県別検索ページから生成しています。
+
+```bash
+npm run import:gkp
+```
+
+インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。
+
+現時点では配布場所の住所ジオコーディングは未実装です。地図表示用の緯度経度は都道府県重心を基準に分散配置しており、各レコードの `coordinateAccuracy` は `prefecture_approx` です。
 
 ## 地図
 
