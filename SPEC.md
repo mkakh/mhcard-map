@@ -1,464 +1,489 @@
-# マンホールカード収集者用 地図サイト 仕様書
+# Manhole Card Map Specification
 
-## 0. 現行採用方針
+## 1. Overview
 
-- ログイン機能は廃止する。
-- 取得済み、取得日、メモはログインなしでブラウザの `localStorage` に保存する。
-- 更新要求はGoogle Formsを外部リンクで開き、Google Sheetsに集約する。
-- Google Sheetsの回答はGitHub Actionsで取り込み、PR化して管理者が承認する。
-- 公開はGitHub Pagesを第一候補とする。
-- 独自ドメインは `mhcard-map.com` をGitHub PagesのCNAMEとして利用する。
-- 本章は旧ログイン・サーバー保存前提の記述より優先する。
+Manhole Card Map is a free static web application for manhole card collectors.
+It shows distribution locations on a real map, supports search and filtering,
+and lets users track collected cards and notes on their own device.
 
-## 1. 目的
+The production domain is:
 
-マンホールカード収集者が、配布場所を地図上で確認し、取得済みカードを管理し、現地ナビに必要な情報へすばやくアクセスできる完全無料のWebサイトを提供する。
+```text
+https://mhcard-map.com/
+```
 
-## 2. 基本方針
+The app is intentionally loginless. User collection state is stored only in the
+browser. Public distribution data is maintained in repository JSON files and
+updated by GitHub Actions pull requests.
 
-- 利用料金は完全無料とする。
-- ユーザー登録とログインに対応する。
-- ログインユーザーは取得済みカードをチェックできる。
-- 配布場所ごとに住所、緯度経度、Plus Code、ナビ用リンクを表示する。
-- 配布情報は定期的に自動更新する。
-- ユーザーは配布場所、配布時間、在庫、休止、移転などの情報更新要求を送信できる。
-- 公式情報を優先し、ユーザー投稿は確認済み状態になるまで参考情報として扱う。
+## 2. Current Policy
 
-## 3. 対象ユーザー
+- The app is completely free to use.
+- Login and user accounts are not provided.
+- Collected state, collected date, and memo are stored in `localStorage`.
+- Update requests are submitted through Google Forms.
+- Google Form responses are imported through GitHub Actions and reviewed by PR.
+- Hosting uses GitHub Pages with a static HTML deployment workflow.
+- The custom domain is `mhcard-map.com`.
+- The core map library is MapLibre GL JS.
+- Mapcode support is removed. Plus Code and latitude/longitude are used instead.
 
-- マンホールカードを収集している個人ユーザー
-- 旅行やドライブ中に近隣の配布場所を探したいユーザー
-- 取得済みカードを一覧管理したいユーザー
-- 配布情報の変更を発見し、サイトへ更新要求したいユーザー
+## 3. Repository Structure
 
-## 4. 主要機能
+```text
+index.html
+app.js
+styles.css
+data/locations.json
+data/update-form-config.json
+data/update-requests.json
+scripts/import-gkp-data.js
+scripts/geocode-locations.js
+scripts/normalize-source-links.js
+scripts/update-location-codes.js
+scripts/import-form-requests.js
+.github/workflows/pages.yml
+.github/workflows/data-update.yml
+CNAME
+LICENSE
+NOTICE.md
+```
 
-### 4.1 地図表示
+## 4. Runtime Architecture
 
-- 全国のマンホールカード配布場所を地図上にピン表示する。
-- 現在地周辺の配布場所を表示する。
-- ピンの状態を以下で色分けする。
-  - 未取得
-  - 取得済み
-  - 配布休止中
-  - 要確認情報あり
-- ピンは配布場所(distribution_locations)単位で表示する。
-- 色分けの判定ルールは以下とする。
-  - 取得済み: 当該配布場所のカードを、ログインユーザーが取得済み(user_collections.collected=true)としている。1カードが複数配布場所を持つ場合、そのカードの全配布場所を取得済み色とする。
-  - 配布休止中: distribution_locations.status='休止中'。
-  - 要確認情報あり: distribution_locations.status='要確認'、または当該配布場所に未確認(status='未確認')のupdate_requestsが1件以上存在する。
-  - 未取得: 上記いずれにも該当しない。
-- 状態の優先順位は、配布休止中 > 要確認情報あり > 取得済み > 未取得 とする。
-- 地図上のピンを選択すると、配布場所の概要カードを表示する。
+The app runs as static files.
 
-### 4.2 配布場所詳細
+- No backend server is required for production.
+- No database is required for production.
+- `server.js` is only for local development.
+- Map and data are loaded in the browser.
+- `data/locations.json` is the main public dataset.
+- `data/update-form-config.json` configures the Google Form prefill URL.
+- `data/update-requests.json` stores imported update request summaries.
 
-各配布場所の詳細ページまたは詳細パネルに以下を表示する。
+Local development:
 
-- カード名
-- 都道府県
-- 市区町村
-- 配布場所名
-- 住所
-- 緯度
-- 経度
+```bash
+npm run dev
+```
+
+## 5. Screen Layout
+
+### 5.1 Desktop
+
+Desktop layout has three columns:
+
+- Left: search, filters, summary, location list
+- Center: MapLibre map
+- Right: selected location detail
+
+### 5.2 Mobile
+
+Mobile layout uses tabs:
+
+```text
+地図 / 検索 / 詳細
+```
+
+Initial mobile view is `地図`.
+
+Mobile interactions:
+
+- Tapping a list item switches to `地図`, focuses the marker, and opens a popup.
+- Tapping a map marker opens a popup only.
+- Tapping the popup switches to `詳細`.
+
+## 6. Map Specification
+
+Map rendering uses MapLibre GL JS with OpenStreetMap raster tiles.
+
+Features:
+
+- Marker clustering
+- Current location button
+- Fallback to Tokyo station area if geolocation fails
+- Viewport filter
+- Selected/list-focused marker popup
+- Card image shown in popup when available
+
+Marker states:
+
+- Uncollected
+- Collected
+- Paused
+- Review needed
+- Distribution stopped with known address
+- Distribution stopped with unknown address
+- Geocode failed
+- Approximate coordinate
+- Current location
+
+Stopped and geocode-failed locations use shaped symbol markers rather than only
+round pins, so they remain distinguishable from normal collection state.
+
+## 7. Search And Filters
+
+Search target fields:
+
+- Card name
+- Prefecture
+- Municipality
+- Distribution place
+- Address
 - Plus Code
-- 配布時間
-- 休館日
-- 配布条件
-- 在庫状況
-- 公式ページURL
-- Google Mapsリンク
-- Apple Mapsリンク
-- Yahoo!カーナビ用リンク
-- 最終更新日
-- 情報ソース
-
-### 4.3 取得済みチェック
-
-- ログインユーザーはカードごとに「取得済み」をチェックできる。
-- 取得済み状態はユーザー単位で保存する。
-- 取得日を任意で登録できる。
-- メモを任意で登録できる。
-- 取得済みカード数、未取得カード数、都道府県別達成率を表示する。
-
-### 4.4 ログイン
-
-- メールアドレスとパスワードによるログインに対応する。
-- OAuthログインは任意対応とする。
-  - Google
-  - Apple
-- パスワード再設定に対応する。
-- 退会機能を提供する。
-- 退会時のデータ取り扱いは以下とする。
-  - 取得済み情報(user_collections)とメモは削除する。
-  - 更新要求(update_requests)と変更履歴(change_logs)は配布場所データへの反映根拠として残し、user_id をNULL化して匿名化する。
-  - 更新要求本文、参考URL、添付画像に個人情報が含まれる可能性があるため、退会時に未処理の更新要求は本文と添付を削除し、承認済みの更新要求は管理者確認済みの要約のみ保持する。
-  - ユーザーから削除要求があった場合、配布場所データの正当性維持に不要な本文、参考URL、添付画像は削除する。
-
-### 4.5 検索・絞り込み
-
-- キーワード検索
-  - カード名
-  - 市区町村
-  - 配布場所名
-  - 住所
-- 都道府県フィルター
-- 取得状態フィルター
-  - すべて
-  - 未取得
-  - 取得済み
-- 配布状態フィルター
-  - 配布中
-  - 配布休止中
-  - 要確認
-- 現在地からの距離順表示
-  - 現在地はサーバーへ保存しないため、距離計算はクライアント側で行う。
-  - 距離順は、表示範囲または都道府県単位で取得済みの配布場所集合に対して適用する。範囲外のより近い配布場所は、表示範囲を広げるか都道府県を切り替えるまで対象に含めない。
-
-### 4.6 ナビ用機能
-
-- 配布場所ごとにPlus Codeを表示する。
-- Plus Codeはコピーできる。
-- 住所、緯度経度、地図アプリリンクをナビ導線として表示する。
-- 住所、緯度経度もコピーできる。
-- ナビアプリを開くリンクを提供する。
-- スマートフォンでは外部地図アプリを起動しやすいUIにする。
-
-### 4.7 自動更新
-
-- 定期バッチで公式情報を取得する。
-- 更新頻度は1日1回を標準とする。
-- 取得元は公式配布情報、自治体ページ、関連公式ページを優先する。
-- 自動更新対象は以下とする。
-  - 新規カード
-  - 配布場所変更
-  - 配布時間変更
-  - 休館日変更
-  - 配布休止
-  - 在庫状況
-  - 公式ページURL
-- 自動取得できない情報は管理者確認待ちにする。
-- 差分検出時は変更履歴に記録する。
-- 自動反映と管理者確認待ちの振り分け基準は以下とする。
-  - 自動反映: 取得元の対象レコードを source_type、source_url、source_record_key、card_id、location_id の組み合わせで一意に特定でき、かつ変更項目が構造化された値(在庫状況、配布時間、休館日、公式ページURL、配布休止フラグ)で、新値が空でない場合。
-  - 管理者確認待ち: 上記を満たさない場合。具体的には、レコードの突合が曖昧、緯度経度・住所・配布場所名の変更、新規カードの追加、または取得値が空・形式不正の場合。
-- 自動更新の取得結果は、取得元ごとのレコード識別子と取得内容ハッシュを保存し、前回取得との差分を追跡する。
-
-### 4.8 ユーザー情報更新要求
-
-- ユーザーは配布場所詳細から情報更新要求を送信できる。
-- 更新要求の種類は以下とする。
-  - 配布場所が違う
-  - 配布時間が違う
-  - 休館日が違う
-  - 在庫がない
-  - 配布再開
-  - 住所または位置が違う
-  - 公式URLが違う
-  - その他
-- 更新要求には任意で本文、参考URL、写真を添付できる。
-- 写真添付の仕様は以下とする。
-  - 保存先はオブジェクトストレージとし、添付情報は update_request_attachments に保存する。
-  - 形式は jpeg、png、webp を許可する。
-  - 1枚あたり最大5MB、1更新要求あたり最大3枚とする。
-  - アップロード時にMIMEタイプとサイズを検証する。
-  - 画像は公開URLではなく、認可済みユーザーのみアクセスできる署名付きURLで表示する。
-  - 承認後に証跡として不要な画像は削除できる。
-- 投稿後は管理者確認待ちにする。
-- 同一配布場所に複数の更新要求がある場合、件数を管理画面で確認できる。
-- 確認済みの更新要求は配布場所データへ反映する。
-
-## 5. 画面仕様
-
-### 5.1 トップ画面
-
-- 地図を主画面として表示する。
-- ヘッダーには検索欄、ログイン状態、取得済み一覧への導線を配置する。
-- サイドパネルには選択中の配布場所詳細または検索結果を表示する。
-
-### 5.2 ログイン画面
-
-- メールアドレス
-- パスワード
-- ログインボタン
-- 新規登録リンク
-- パスワード再設定リンク
-
-### 5.3 マイページ
-
-- 取得済みカード一覧
-- 都道府県別の取得状況
-- 最近取得したカード
-- ユーザー投稿した更新要求の履歴
-- アカウント設定
-
-### 5.4 配布場所詳細画面
-
-- 基本情報
-- 地図
-- ナビ用リンク
-- Plus Codeコピー
-- 取得済みチェック
-- メモ入力
-- 情報更新要求ボタン
-
-### 5.5 管理画面
-
-- 配布場所一覧
-- 配布場所編集
-- 自動更新差分一覧
-- ユーザー更新要求一覧
-- 更新要求の承認、却下、保留
-- 変更履歴確認
-
-## 6. データ仕様
-
-### 6.0 users
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | ユーザーID |
-| email | string | メールアドレス |
-| password_hash | string | パスワードハッシュ。OAuthのみの場合はnull可 |
-| role | string | user、admin |
-| created_at | datetime | 作成日時 |
-| updated_at | datetime | 更新日時 |
-| deleted_at | datetime | 退会日時。退会済みはnull以外 |
-
-- 管理者は role='admin' で識別する。§7 の管理者操作は role='admin' のユーザーのみに許可する。
-
-### 6.1 cards
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | カードID |
-| name | string | カード名 |
-| prefecture | string | 都道府県 |
-| municipality | string | 市区町村 |
-| series | integer | 弾数。数値順ソート用に整数で保持する |
-| image_url | string | カード画像URL |
-| official_url | string | 公式URL |
-| created_at | datetime | 作成日時 |
-| updated_at | datetime | 更新日時 |
-
-- cards と distribution_locations は1対多とする。1枚のカードが複数の配布場所を持ち得る。
-
-### 6.2 distribution_locations
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | 配布場所ID |
-| card_id | string | カードID |
-| source_type | string | 取得元種別。official_list、municipality_page、manual など |
-| name | string | 配布場所名 |
-| address | string | 住所 |
-| latitude | number | 緯度 |
-| longitude | number | 経度 |
-| opening_hours | string | 配布時間 |
-| closed_days | string | 休館日 |
-| distribution_condition | string | 配布条件 |
-| stock_status | string | 在庫状況。あり、僅少、なし、不明 |
-| status | string | 配布中、休止中、要確認 |
-| source_url | string | 情報ソースURL |
-| source_record_key | string | 取得元内で配布場所を識別するキー。存在しない場合は管理者が付与する |
-| source_content_hash | string | 前回取得内容のハッシュ |
-| source_checked_at | datetime | ソース確認日時 |
-| created_at | datetime | 作成日時 |
-| updated_at | datetime | 更新日時 |
-
-### 6.3 user_collections
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | ID |
-| user_id | string | ユーザーID |
-| card_id | string | カードID |
-| location_id | string | 取得した配布場所ID。任意。複数配布場所のあるカードでどこで取得したかを記録する |
-| collected | boolean | 取得済み |
-| collected_on | date | 取得日 |
-| memo | string | メモ |
-| created_at | datetime | 作成日時 |
-| updated_at | datetime | 更新日時 |
-
-### 6.4 update_requests
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | 更新要求ID |
-| user_id | string | ユーザーID |
-| location_id | string | 配布場所ID |
-| request_type | string | 更新要求種別 |
-| message | string | 本文 |
-| reference_url | string | 参考URL |
-| status | string | 未確認、承認、却下、保留 |
-| admin_note | string | 管理者メモ |
-| verified_summary | string | 承認済み更新要求の要約。退会後も保持可能な個人情報を含まない内容 |
-| created_at | datetime | 作成日時 |
-| reviewed_at | datetime | 確認日時 |
-
-### 6.5 update_request_attachments
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | 添付ID |
-| update_request_id | string | 更新要求ID |
-| storage_key | string | オブジェクトストレージ上の保存キー |
-| mime_type | string | MIMEタイプ |
-| file_size | integer | ファイルサイズ |
-| scan_status | string | 未スキャン、安全、危険、エラー |
-| created_at | datetime | 作成日時 |
-| deleted_at | datetime | 削除日時。削除済みはnull以外 |
-
-### 6.6 change_logs
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| id | string | 変更履歴ID |
-| entity_type | string | 対象種別 |
-| entity_id | string | 対象ID |
-| field_name | string | 変更項目 |
-| old_value | string | 変更前 |
-| new_value | string | 変更後 |
-| source | string | auto、admin、user_request |
-| operator_id | string | 操作者ユーザーID。source='admin'のとき管理者ID。auto時はnull |
-| created_at | datetime | 作成日時 |
-
-## 7. 権限仕様
-
-| 操作 | 未ログイン | ログインユーザー | 管理者 |
-| --- | --- | --- | --- |
-| 地図閲覧 | 可 | 可 | 可 |
-| 配布場所詳細閲覧 | 可 | 可 | 可 |
-| 取得済みチェック | 不可 | 可 | 可 |
-| メモ登録 | 不可 | 可 | 可 |
-| 情報更新要求 | 不可 | 可 | 可 |
-| 配布場所編集 | 不可 | 不可 | 可 |
-| 更新要求確認 | 不可 | 不可 | 可 |
-| 自動更新差分確認 | 不可 | 不可 | 可 |
-
-## 8. 非機能要件
-
-### 8.1 無料運用
-
-- ユーザー向けの基本機能はすべて無料で提供する。
-- 課金機能は設けない。
-- 広告を入れる場合でも、取得済みチェックや地図閲覧などの主要機能を制限しない。
-- 運用コストは無料枠または低額枠を優先するが、ユーザーへの課金は行わない。
-- 地図タイル、認証、データベース、メール送信、画像ストレージ、cron実行は無料枠の上限を監視する。
-- 無料枠の上限に近づいた場合は、画像添付数、バッチ頻度、地図タイルアクセス、管理者向け通知など運用側の制限で調整し、ユーザーの取得済み管理と地図閲覧は維持する。
-
-### 8.2 パフォーマンス
-
-- 初回表示は3秒以内を目標とする。
-- 地図ピンはクラスタリングし、大量表示時の描画負荷を抑える。
-- 都道府県単位、表示範囲単位で配布場所データを取得する。
-
-### 8.3 セキュリティ
-
-- パスワードはハッシュ化して保存する。
-- 認証トークンは安全な方式で管理する。
-- 更新要求の本文、URL、画像はバリデーションする。
-- 管理画面は管理者のみアクセス可能にする。
-- レート制限によりスパム投稿を防ぐ。
-
-### 8.4 プライバシー
-
-- 取得済み情報は本人のみ閲覧可能とする。
-- 現在地はユーザー操作時のみ取得し、サーバーへ保存しないことを標準とする。
-- 退会時は個人に紐づくデータを削除または匿名化する。
-
-### 8.5 可用性
-
-- 地図表示やカード閲覧はログインなしでも利用できる。
-- 自動更新に失敗しても既存データの閲覧は継続できる。
-- 更新バッチ失敗時は管理者へ通知する。
-
-## 9. 推奨技術構成
-
-### 9.1 フロントエンド
-
-- Next.js
-- React
-- TypeScript
-- MapLibre GL JS または Leaflet
-- Tailwind CSS
-
-### 9.2 バックエンド
-
-- Next.js API Routes または FastAPI
-- PostgreSQL
-- Prisma または SQLAlchemy
-- Redis 任意
-
-### 9.3 認証
-
-- Auth.js
-- Supabase Auth
-- Firebase Authentication
-
-### 9.4 地図
-
-- OpenStreetMapベースの地図タイル
-- MapLibre GL JS
-- 地図タイルの利用規約とアクセス制限を確認する。
-
-### 9.5 自動更新
-
-- GitHub Actions、Cloudflare Workers Cron、またはサーバー側cron
-- 差分検出ジョブ
-- 管理者確認キュー
-
-## 10. 自動更新フロー
-
-1. 定期バッチを実行する。
-2. 公式情報ソースを取得する。
-3. 既存データと比較する。
-4. 明確に一致する項目は自動更新する。
-5. 判定が曖昧な変更は管理者確認待ちにする。
-6. 変更履歴を保存する。
-7. 更新完了または失敗を管理者へ通知する。
-
-## 11. ユーザー更新要求フロー
-
-1. ユーザーが配布場所詳細から更新要求を送信する。
-2. システムが入力内容を検証する。
-3. 更新要求を未確認状態で保存する。
-4. 管理者が内容と参考情報を確認する。
-5. 承認時は配布場所データへ反映する。
-6. 却下または保留時は理由を管理メモに記録する。
-7. 変更履歴へ記録する。
-
-## 12. MVP範囲
-
-初期リリースでは以下を必須とする。
-
-- 全国配布場所の地図表示
-- 配布場所詳細表示
-- ログイン
-- 取得済みチェック
-- マイページの取得済み一覧
-- Plus Code表示とコピー。住所、緯度経度、地図アプリリンクも併用する。
-- Google Mapsリンク
-- 情報更新要求
-- 管理画面での更新要求確認
-- 1日1回の自動更新バッチ
-
-## 13. 将来拡張
-
-- カード画像の一覧表示
-- 旅行ルート作成
-- 未取得カードだけを巡るルート提案
-- オフライン用リスト保存
-- 都道府県別ランキング
-- 近くの観光地や道の駅との連携
-- 配布場所の混雑メモ
-- 取得済みデータのCSVエクスポート
-
-## 14. 注意事項
-
-- 法令、ライセンス、利用規約の確認は本仕様時点では対象外とし、公開前の確認事項として扱う。
-- 公式情報の著作権、利用規約、転載可否は公開前に確認する。
-- 地図タイル、ジオコーディング、ナビリンクの利用規約は公開前に確認する。
-- 在庫状況は変動が大きいため、最終確認日時を必ず表示する。
-- ユーザー投稿情報は公式確認前に断定表示しない。
+- User memo
+
+Filters:
+
+- Prefecture
+- Collection state
+- Distribution status
+- Current viewport only
+
+Sort modes:
+
+- Prefecture order
+- Distance from current location
+- Updated date
+
+Filter reset behavior:
+
+- Clears search and filters
+- Disables viewport-only filter
+- Uses current location when available
+- Falls back to Tokyo center when current location is unavailable
+
+## 8. Location Detail
+
+The detail panel shows:
+
+- Card image
+- Card name
+- Prefecture and municipality
+- Distribution status badge
+- Collection badge
+- Coordinate accuracy badge when needed
+- Plus Code
+- Address
+- Distribution place
+- Distribution hours
+- Closed days
+- Distribution status
+- Distribution condition
+- Stock information
+- Coordinate accuracy explanation
+- Google Maps link
+- Apple Maps link
+- Source links
+- Collected toggle
+- Collected date
+- Memo
+- Update request action
+
+Clickable source fields:
+
+- Distribution place uses `facilityUrl`
+- Distribution condition uses `conditionUrl`
+- Stock uses `stockUrl`
+- Main source button uses `sourceUrl`
+
+## 9. Collection And Memo Storage
+
+Browser storage key:
+
+```text
+localStorage.mhc_collections
+```
+
+Stored per location:
+
+- `collected`
+- `collectedOn`
+- `memo`
+
+Storage rules:
+
+- Data stays on the user's browser/device.
+- Data is not uploaded.
+- Data is not synced across devices.
+- Clearing browser storage removes collection data.
+
+The `取得数・メモ` dialog shows:
+
+- Collected count
+- Uncollected count
+- Completion rate
+- Prefecture-level counts
+- Saved memo count
+- Memo list
+
+Memo discoverability:
+
+- Location list shows a `メモあり` badge.
+- Memo text is included in search.
+- Memo list items can jump to the relevant location.
+
+## 10. Update Request Specification
+
+Users can request data updates without logging in.
+
+The detail screen opens Google Forms using a prefilled URL configured in:
+
+```text
+data/update-form-config.json
+```
+
+Configured prefilled fields:
+
+| App key | Form entry |
+| --- | --- |
+| `locationId` | `entry.1850722437` |
+| `cardName` | `entry.582690237` |
+| `prefecture` | `entry.707806178` |
+| `municipality` | `entry.1253844542` |
+| `place` | `entry.1358103102` |
+| `address` | `entry.283107822` |
+| `sourceUrl` | `entry.1987575133` |
+| `facilityUrl` | `entry.750393850` |
+| `stockUrl` | `entry.398493335` |
+| `conditionUrl` | `entry.2032106482` |
+
+Google Form URL:
+
+```text
+https://docs.google.com/forms/d/e/1FAIpQLSdgNissX9z2haE7cHQZ6BkbtLtlzmqW-x9kxCh1tLVab5TI2w/viewform
+```
+
+If the form config is missing, the app shows a toast instead of opening the form.
+
+## 11. Data Model
+
+### 11.1 Location
+
+Primary file:
+
+```text
+data/locations.json
+```
+
+Important fields:
+
+| Field | Meaning |
+| --- | --- |
+| `id` | Stable location identifier |
+| `cardName` | Card display name |
+| `prefecture` | Prefecture |
+| `municipality` | Municipality |
+| `place` | Distribution place |
+| `address` | Distribution address |
+| `lat` | Latitude |
+| `lng` | Longitude |
+| `hours` | Distribution hours |
+| `closed` | Closed days |
+| `condition` | Distribution condition |
+| `stock` | Stock text |
+| `status` | Distribution status |
+| `sourceUrl` | Main source URL |
+| `facilityUrl` | Distribution place URL |
+| `stockUrl` | Stock confirmation URL |
+| `conditionUrl` | Distribution condition URL |
+| `imageUrl` | Card image URL |
+| `series` | Card series |
+| `issuedOn` | Issue date |
+| `coordinateAccuracy` | Coordinate accuracy |
+| `plusCode` | Plus Code |
+| `updatedAt` | Data update date |
+
+### 11.2 Coordinate Accuracy
+
+Known values:
+
+- `address`
+- `prefecture_approx`
+
+Additional category logic distinguishes:
+
+- Normal address geocode
+- Approximate coordinate
+- Distribution stopped with known address
+- Distribution stopped with unknown address
+- Geocode failed
+
+Uncertain coordinates are visually separated and distributed around the
+prefecture center to avoid stacking all uncertain points in one place.
+
+### 11.3 Update Requests
+
+Imported update request summaries are stored in:
+
+```text
+data/update-requests.json
+```
+
+The app uses this file to show update request counts per location.
+
+## 12. Data Update Pipeline
+
+Manual scripts:
+
+```bash
+npm run import:gkp
+npm run geocode
+npm run normalize:links
+npm run update:codes
+npm run import:forms
+```
+
+Workflow:
+
+```text
+.github/workflows/data-update.yml
+```
+
+Schedule:
+
+```text
+0 18 * * 0
+```
+
+This is weekly at 18:00 UTC. The workflow can also be run manually with
+`workflow_dispatch`.
+
+Pipeline steps:
+
+1. Import GKP data
+2. Geocode locations
+3. Normalize source links
+4. Generate Plus Codes
+5. Import Google Form responses
+6. Create a pull request
+
+The workflow does not directly push generated data to `main`. Generated changes
+are reviewed through a pull request.
+
+## 13. Source Link Normalization
+
+`scripts/normalize-source-links.js` extracts link fields from GKP HTML by row.
+
+Rules:
+
+- Distribution place column link -> `facilityUrl`
+- Stock status column link -> `stockUrl`
+- Stock status column text -> `stock`
+- If no stock link exists, `stockUrl` falls back to the GKP prefecture page
+- `conditionUrl` remains the main source URL unless manually verified
+
+Known verified override:
+
+- Kanazawa Central Tourist Information Center has manually verified source,
+  facility, stock, and condition URLs.
+
+Current verification result after normalization:
+
+- GKP rows matched: 1265
+- Rows with stock link: 1153
+- `stockUrl` mismatches against GKP stock-link column: 0
+- Rows without stock link: 112
+
+## 14. Deployment
+
+Workflow:
+
+```text
+.github/workflows/pages.yml
+```
+
+Deployment flow:
+
+1. Push to `main` or manual dispatch
+2. Create `dist`
+3. Copy static files into `dist`
+4. Upload Pages artifact
+5. Deploy to GitHub Pages
+
+Published files:
+
+- `index.html`
+- `app.js`
+- `styles.css`
+- `LICENSE`
+- `NOTICE.md`
+- `CNAME`
+- `data/`
+
+Pages configuration:
+
+- Source: GitHub Actions
+- Custom domain: `mhcard-map.com`
+- HTTPS: enabled
+
+## 15. Metadata
+
+The HTML head includes:
+
+- Title
+- Description
+- Keywords
+- Robots
+- Theme color
+- Canonical URL
+- OGP metadata
+- Twitter Card metadata
+
+Canonical URL:
+
+```text
+https://mhcard-map.com/
+```
+
+## 16. License And Notices
+
+Code license:
+
+```text
+MIT
+```
+
+Important exclusions:
+
+- Card data
+- Facility data
+- Map data
+- Card images
+- Source-site text
+- Other third-party materials
+
+These are not covered by the MIT license unless explicitly stated by their
+respective rights holders. See `NOTICE.md`.
+
+## 17. Known Constraints
+
+- Collection and memo data are browser-local only.
+- There is no account sync.
+- Google Forms cannot fully hide or lock prefilled fields.
+- User-submitted update requests require review before data changes.
+- Some coordinates are approximate.
+- Some stock rows have no stock URL and fall back to the GKP prefecture page.
+- External URLs may change or become unavailable.
+
+## 18. Current Completion Status
+
+Completed:
+
+- Login removal
+- Local collection and memo storage
+- MapLibre map
+- Current location button
+- Mobile tab layout
+- List-to-map focus
+- Popup-tap-to-detail navigation
+- Card image display in popup/detail
+- Google Forms prefilled update request link
+- GitHub Pages deployment workflow
+- Data update pull request workflow
+- Stock URL normalization from GKP stock column
+- Custom domain configuration for `mhcard-map.com`
+- Site metadata
+- MIT license and third-party notice
+
+No open high-priority manual setup remains in this specification.
