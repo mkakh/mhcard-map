@@ -95,7 +95,7 @@ Mobile interactions:
 
 ## 6. Map Specification
 
-Map rendering uses MapLibre GL JS with OpenStreetMap raster tiles.
+Map rendering uses MapLibre GL JS with the MapTiler `jp-gsi-standard` style.
 
 Features:
 
@@ -309,9 +309,7 @@ migrates local collection and memo data from legacy IDs to current stable IDs.
 Known values:
 
 - `address`
-- `address_contains`
 - `prefecture_approx`
-- `geocode_failed`
 
 Additional category logic distinguishes:
 

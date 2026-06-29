@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
-const allowedCoordinateAccuracy = new Set(["address", "address_contains", "prefecture_approx", "geocode_failed"]);
+const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
 const allowedStatuses = new Set(["配布中", "休止中", "要確認"]);
 const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "imageUrl"];
 const requiredStringFields = ["id", "cardName", "prefecture", "municipality", "status", "updatedAt", "plusCode"];
