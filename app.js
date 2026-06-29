@@ -182,7 +182,7 @@ let updateRequests = loadJson(storageKeys.requests, []);
 let userPosition = null;
 let map = null;
 let mapReady = false;
-let shouldFocusSelected = true;
+let shouldFocusSelected = false;
 
 const elements = {
   searchInput: document.querySelector("#searchInput"),
@@ -401,6 +401,7 @@ function renderDetail() {
 
   elements.detailContent.innerHTML = `
     <section class="detail-head">
+      ${renderCardImage(location, "detail")}
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collection.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
@@ -565,6 +566,7 @@ function initMap() {
     addLocationLayers();
     addCurrentLocationLayer();
     renderAll();
+    locateUserOnStartup();
   });
 }
 
@@ -592,11 +594,11 @@ function addLocationLayers() {
       "circle-color": [
         "case",
         ["==", ["get", "hasGeocodeFailed"], 1],
-        "#a23b3b",
+        "#7b7486",
         ["==", ["get", "hasStoppedUnknown"], 1],
-        "#4b5563",
+        "#8b9298",
         ["==", ["get", "hasStoppedKnown"], 1],
-        "#8a6a12",
+        "#6f7d86",
         ["==", ["get", "hasApproximate"], 1],
         "#737373",
         ["step", ["get", "point_count"], "#4d8bc8", 20, "#2f75b5", 80, "#1d5f99"]
@@ -626,7 +628,7 @@ function addLocationLayers() {
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true]],
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -640,7 +642,7 @@ function addLocationLayers() {
     id: "unclustered-locations",
     type: "circle",
     source: "locations",
-    filter: ["!", ["has", "point_count"]],
+    filter: ["all", ["!", ["has", "point_count"]], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": [
         "match",
@@ -652,11 +654,11 @@ function addLocationLayers() {
         "review",
         "#6f5aa8",
         "stopped-known",
-        "#8a6a12",
+        "#6f7d86",
         "stopped-unknown",
-        "#4b5563",
+        "#8b9298",
         "geocode-failed",
-        "#a23b3b",
+        "#7b7486",
         "approximate",
         "#737373",
         "#c5522f"
@@ -680,6 +682,58 @@ function addLocationLayers() {
     }
   });
 
+  map.addLayer({
+    id: "selected-shaped-location-halo",
+    type: "circle",
+    source: "locations",
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    paint: {
+      "circle-color": "#ffffff",
+      "circle-radius": 18,
+      "circle-opacity": 0.88,
+      "circle-stroke-color": "#172018",
+      "circle-stroke-width": 2
+    }
+  });
+
+  map.addLayer({
+    id: "shaped-locations",
+    type: "symbol",
+    source: "locations",
+    filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    layout: {
+      "text-field": [
+        "match",
+        ["get", "visualState"],
+        "stopped-known",
+        "■",
+        "stopped-unknown",
+        "◆",
+        "geocode-failed",
+        "▲",
+        "◆"
+      ],
+      "text-size": ["case", ["==", ["get", "selected"], true], 24, 19],
+      "text-allow-overlap": true,
+      "text-ignore-placement": true
+    },
+    paint: {
+      "text-color": [
+        "match",
+        ["get", "visualState"],
+        "stopped-known",
+        "#6f7d86",
+        "stopped-unknown",
+        "#8b9298",
+        "geocode-failed",
+        "#7b7486",
+        "#737373"
+      ],
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 2
+    }
+  });
+
   map.on("click", "clusters", async (event) => {
     const features = map.queryRenderedFeatures(event.point, { layers: ["clusters"] });
     const clusterId = features[0].properties.cluster_id;
@@ -691,14 +745,14 @@ function addLocationLayers() {
   });
 
   map.on("click", "unclustered-locations", (event) => {
-    const feature = event.features[0];
-    selectedId = feature.properties.id;
-    shouldFocusSelected = false;
-    renderAll();
-    showMapPopup(feature);
+    selectMapFeature(event.features[0]);
   });
 
-  ["clusters", "unclustered-locations"].forEach((layerId) => {
+  map.on("click", "shaped-locations", (event) => {
+    selectMapFeature(event.features[0]);
+  });
+
+  ["clusters", "unclustered-locations", "shaped-locations"].forEach((layerId) => {
     map.on("mouseenter", layerId, () => {
       map.getCanvas().style.cursor = "pointer";
     });
@@ -706,6 +760,17 @@ function addLocationLayers() {
       map.getCanvas().style.cursor = "";
     });
   });
+}
+
+function markerShapeStates() {
+  return ["stopped-known", "stopped-unknown", "geocode-failed"];
+}
+
+function selectMapFeature(feature) {
+  selectedId = feature.properties.id;
+  shouldFocusSelected = false;
+  renderAll();
+  showMapPopup(feature);
 }
 
 function addCurrentLocationLayer() {
@@ -751,6 +816,7 @@ function toLocationFeatureCollection(items) {
         id: location.id,
         cardName: location.cardName,
         place: location.place,
+        imageUrl: location.imageUrl || "",
         municipality: `${location.prefecture} ${location.municipality}`,
         status: location.status,
         coordinateAccuracy: location.coordinateAccuracy || "prefecture_approx",
@@ -788,10 +854,29 @@ function showMapPopup(feature) {
   new maplibregl.Popup({ closeButton: false, closeOnClick: true, offset: 12 })
     .setLngLat(feature.geometry.coordinates)
     .setHTML(`
+      ${renderPopupImage(feature.properties.imageUrl, feature.properties.cardName)}
       <p class="map-popup-title">${escapeHtml(feature.properties.cardName)}</p>
       <p class="map-popup-subtitle">${escapeHtml(feature.properties.place)}</p>
     `)
     .addTo(map);
+}
+
+function renderCardImage(location, variant) {
+  if (!location.imageUrl) return "";
+
+  return `
+    <figure class="card-image ${variant}">
+      <img src="${escapeAttribute(location.imageUrl)}" alt="${escapeAttribute(`${location.cardName} カード画像`)}" loading="lazy">
+    </figure>
+  `;
+}
+
+function renderPopupImage(imageUrl, cardName) {
+  if (!imageUrl) return "";
+
+  return `
+    <img class="map-popup-image" src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(`${cardName} カード画像`)}" loading="lazy">
+  `;
 }
 
 function toggleCollected(locationId) {
@@ -920,25 +1005,7 @@ function locateUser() {
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      userPosition = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      elements.sortSelect.value = "distance";
-      const nearest = [...locations].sort((a, b) => distanceFromUser(a) - distanceFromUser(b))[0];
-      if (nearest) selectedId = nearest.id;
-      elements.locateButton.classList.add("active");
-      elements.locateButton.textContent = "現在地表示中";
-      elements.locateButton.disabled = false;
-      shouldFocusSelected = false;
-      if (mapReady) {
-        map.easeTo({
-          center: [userPosition.lng, userPosition.lat],
-          zoom: 11,
-          duration: 650
-        });
-      }
-      renderAll();
+      applyUserPosition(position, { zoom: 11, duration: 650 });
       showToast("現在地を表示し、最寄り順に並べ替えました");
     },
     () => {
@@ -948,6 +1015,48 @@ function locateUser() {
     },
     { enableHighAccuracy: false, timeout: 8000 }
   );
+}
+
+function locateUserOnStartup() {
+  if (!navigator.geolocation) return;
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      applyUserPosition(position, { zoom: 10, duration: 0 });
+      showToast("現在地を初期表示しました");
+    },
+    () => {
+      elements.locateButton.textContent = "現在地";
+      elements.locateButton.disabled = false;
+    },
+    { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
+  );
+}
+
+function applyUserPosition(position, options = {}) {
+  userPosition = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
+  elements.sortSelect.value = "distance";
+
+  const nearest = [...locations].sort((a, b) => distanceFromUser(a) - distanceFromUser(b))[0];
+  if (nearest) selectedId = nearest.id;
+
+  elements.locateButton.classList.add("active");
+  elements.locateButton.textContent = "現在地表示中";
+  elements.locateButton.disabled = false;
+  shouldFocusSelected = false;
+
+  if (mapReady) {
+    map.easeTo({
+      center: [userPosition.lng, userPosition.lat],
+      zoom: options.zoom ?? 11,
+      duration: options.duration ?? 650
+    });
+  }
+
+  renderAll();
 }
 
 function distanceFromUser(location) {
@@ -999,4 +1108,8 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replaceAll("`", "&#096;");
 }
