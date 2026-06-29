@@ -376,6 +376,7 @@ label {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  pointer-events: none;
 }
 
 .legend {
@@ -388,6 +389,7 @@ label {
   box-shadow: var(--shadow);
   font-size: 12px;
   font-weight: 700;
+  pointer-events: auto;
 }
 
 .legend span {
@@ -467,6 +469,10 @@ label {
   color: #fff;
   background: #1e63b6;
   border-color: #1e63b6;
+}
+
+.locate-button {
+  pointer-events: auto;
 }
 
 .maplibregl-popup-content {
