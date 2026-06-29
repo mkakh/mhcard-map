@@ -401,8 +401,15 @@ function cardNumber(location) {
   const id = String(location.id ?? "");
   const match = id.match(/^(\d{2})-(\d{3})-(.+)$/);
   if (!match) return id;
-  const suffix = match[3].replace(/-/g, "").toUpperCase();
+  const suffix = normalizeCardNumberSuffix(match[3]);
   return `${match[1]}-${match[2]}-${suffix}`;
+}
+
+function normalizeCardNumberSuffix(value) {
+  const suffix = String(value ?? "").toUpperCase();
+  const match = suffix.match(/^([A-Z])-?(\d{1,3})(.*)$/);
+  if (!match) return suffix.replace(/-/g, "");
+  return `${match[1]}${match[2].padStart(3, "0")}${match[3]}`;
 }
 
 function compareCardNumber(a, b) {
