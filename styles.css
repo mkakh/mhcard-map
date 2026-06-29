@@ -297,6 +297,26 @@ label {
   background: var(--review);
 }
 
+.badge.approximate {
+  color: #fff;
+  background: #737373;
+}
+
+.badge.stopped-known {
+  color: #fff;
+  background: #8a6a12;
+}
+
+.badge.stopped-unknown {
+  color: #fff;
+  background: #4b5563;
+}
+
+.badge.geocode-failed {
+  color: #fff;
+  background: #a23b3b;
+}
+
 .map-area {
   position: relative;
   min-height: 0;
@@ -355,6 +375,22 @@ label {
 
 .pin-dot.review {
   background: var(--review);
+}
+
+.pin-dot.stopped-known {
+  background: #8a6a12;
+}
+
+.pin-dot.stopped-unknown {
+  background: #4b5563;
+}
+
+.pin-dot.geocode-failed {
+  background: #a23b3b;
+}
+
+.pin-dot.approximate {
+  background: #737373;
 }
 
 .pin-dot.current {

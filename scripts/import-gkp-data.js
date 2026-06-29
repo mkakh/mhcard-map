@@ -76,15 +76,17 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const imageUrl = firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i);
     const sourceUrl = firstMatch(distributionHtml, /<a[^>]+href=["']([^"']+)["']/i);
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
-    const address = findAddress(distributionText, prefecture);
+    const municipalityName = municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim();
+    const address = findAddress(distributionText, prefecture, municipalityName);
     const [lat, lng] = approximateCoordinate(baseLat, baseLng, prefectureIndex);
     const id = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
+    const stock = cleanupText(stockHtml) || "不明";
 
     locations.push({
       id,
       cardName: cardCode ? `${municipality.replace(/\s*[（(][^）)]+[）)]\s*/g, "").trim()} ${cardCode}` : municipality,
       prefecture,
-      municipality: municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim(),
+      municipality: municipalityName,
       place,
       address,
       lat,
@@ -94,8 +96,8 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       hours: cleanupText(hoursHtml),
       closed: "要確認",
       condition: "GKP掲載情報を確認",
-      stock: cleanupText(stockHtml) || "不明",
-      status: cleanupText(stockHtml).includes("配布終了") ? "休止中" : "配布中",
+      stock,
+      status: isDistributionStopped(stock, distributionText) ? "休止中" : "配布中",
       sourceUrl: absolutizeUrl(sourceUrl) || `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`,
       imageUrl: absolutizeUrl(imageUrl),
       series,
@@ -146,8 +148,48 @@ function firstMeaningfulLine(html) {
   return cleanupText(html).split("\n").find((line) => !line.startsWith("電話")) ?? "配布場所要確認";
 }
 
-function findAddress(text, prefecture) {
-  return text.split("\n").find((line) => line.includes(prefecture)) ?? "";
+function findAddress(text, prefecture, municipality) {
+  const municipalityTokens = municipality
+    .split(/\s+/)
+    .map((token) => token.replace(/[（(][^）)]+[）)]/g, "").trim())
+    .filter(Boolean);
+
+  const candidates = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => ({
+      line,
+      score: scoreAddressLine(line, prefecture, municipalityTokens)
+    }))
+    .filter((candidate) => candidate.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return candidates[0]?.line ?? "";
+}
+
+function scoreAddressLine(line, prefecture, municipalityTokens) {
+  if (isNonAddressLine(line)) return 0;
+
+  let score = 0;
+  if (line.includes(prefecture)) score += 100;
+  if (municipalityTokens.some((token) => token && line.includes(token))) score += 80;
+  if (/[市区町村郡]/.test(line)) score += 18;
+  if (/[0-9０-９]/.test(line)) score += 12;
+  if (/(丁目|番地|番|号|条|西|東|南|北)/.test(line)) score += 18;
+  if (/(ビル|会館|センター|庁舎|役所|駅|階|F)/i.test(line)) score += 4;
+  if (line.length < 5) score -= 20;
+  if (line.length > 80) score -= 35;
+
+  return score >= 30 ? score : 0;
+}
+
+function isNonAddressLine(line) {
+  return /^(電話|TEL|FAX|※|ただし|なお|詳しく|詳細|こちら|配布|在庫|休館|開館|営業時間|問い合わせ|お問い合わせ|平日|土日|祝日)/i.test(line);
+}
+
+function isDistributionStopped(stock, distributionText) {
+  return /配布終了|配布を一時中止|配布休止|一時中止|中止しています/.test(`${stock}\n${distributionText}`);
 }
 
 function extractCardCode(value) {
@@ -174,7 +216,7 @@ function absolutizeUrl(url) {
 function approximateCoordinate(baseLat, baseLng, index) {
   const ring = Math.floor(index / 12) + 1;
   const angle = ((index % 12) / 12) * Math.PI * 2;
-  const radius = 0.08 * ring;
+  const radius = 0.025 * ring;
   return [
     Number((baseLat + Math.sin(angle) * radius).toFixed(6)),
     Number((baseLng + Math.cos(angle) * radius).toFixed(6))

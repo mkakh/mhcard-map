@@ -357,6 +357,7 @@ function renderList(filtered) {
         ${renderStatusBadge(location)}
         ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
         <span class="badge">${escapeHtml(location.mapcodeStatus)}</span>
+        ${renderCoordinateBadge(location)}
       </div>
     `;
     elements.locationList.append(button);
@@ -377,7 +378,7 @@ function renderMap(filtered) {
     if (selected) {
       map.easeTo({
         center: [selected.lng, selected.lat],
-        zoom: Math.max(map.getZoom(), 8),
+        zoom: isApproximateLocation(selected) ? Math.min(Math.max(map.getZoom(), 6), 7) : Math.max(map.getZoom(), 8),
         duration: 450
       });
     }
@@ -403,6 +404,7 @@ function renderDetail() {
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collection.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
+        ${renderCoordinateBadge(location)}
       </div>
       <h2>${escapeHtml(location.cardName)}</h2>
       <p>${escapeHtml(location.place)}</p>
@@ -468,22 +470,59 @@ function renderStatusBadge(location) {
 }
 
 function pinClass(location) {
+  const coordinateClass = coordinateCategory(location);
+  if (coordinateClass !== "address") return coordinateClass;
   if (location.status === "休止中") return "paused";
   if (location.status === "要確認") return "review";
   if (collections[location.id]?.collected) return "collected";
   return "uncollected";
 }
 
+function isApproximateLocation(location) {
+  return location.coordinateAccuracy !== "address";
+}
+
+function coordinateCategory(location) {
+  if (location.status === "休止中" && location.address) return "stopped-known";
+  if (location.status === "休止中" && !location.address) return "stopped-unknown";
+  if (location.geocodeError) return "geocode-failed";
+  if (location.coordinateAccuracy !== "address") return "approximate";
+  return "address";
+}
+
+function renderCoordinateBadge(location) {
+  const category = coordinateCategory(location);
+  if (category === "address") return "";
+
+  const labels = {
+    "stopped-known": "中止・住所既知",
+    "stopped-unknown": "中止・住所不明",
+    "geocode-failed": "住所検索失敗",
+    approximate: "座標未確定"
+  };
+
+  return `<span class="badge ${category}">${labels[category]}</span>`;
+}
+
 function formatCoordinateAccuracy(location) {
   if (location.coordinateAccuracy === "address") {
-    return `住所検索: ${location.geocodeTitle || location.geocodeQuery || "一致"}`;
+    const prefix = location.status === "休止中" ? "配布中止・住所既知" : "住所検索";
+    return `${prefix}: ${location.geocodeTitle || location.geocodeQuery || "一致"}`;
+  }
+
+  if (location.status === "休止中" && !location.address) {
+    return "配布中止・住所不明: 都道府県中心付近に仮配置";
+  }
+
+  if (location.status === "休止中" && location.address) {
+    return `配布中止・住所既知: 住所検索失敗のため仮配置 (${location.geocodeError || "未検索"})`;
   }
 
   if (location.geocodeError) {
-    return `都道府県内の仮配置: 住所検索失敗 (${location.geocodeError})`;
+    return `住所検索失敗: 都道府県中心付近に仮配置 (${location.geocodeError})`;
   }
 
-  return "都道府県内の仮配置";
+  return "住所不明: 都道府県中心付近に仮配置";
 }
 
 function initMap() {
@@ -535,7 +574,13 @@ function addLocationLayers() {
     data: toLocationFeatureCollection(getFilteredLocations()),
     cluster: true,
     clusterMaxZoom: 10,
-    clusterRadius: 46
+    clusterRadius: 46,
+    clusterProperties: {
+      hasApproximate: ["max", ["case", ["get", "hasApproximate"], 1, 0]],
+      hasStoppedUnknown: ["max", ["case", ["get", "hasStoppedUnknown"], 1, 0]],
+      hasStoppedKnown: ["max", ["case", ["get", "hasStoppedKnown"], 1, 0]],
+      hasGeocodeFailed: ["max", ["case", ["get", "hasGeocodeFailed"], 1, 0]]
+    }
   });
 
   map.addLayer({
@@ -544,7 +589,18 @@ function addLocationLayers() {
     source: "locations",
     filter: ["has", "point_count"],
     paint: {
-      "circle-color": ["step", ["get", "point_count"], "#4d8bc8", 20, "#2f75b5", 80, "#1d5f99"],
+      "circle-color": [
+        "case",
+        ["==", ["get", "hasGeocodeFailed"], 1],
+        "#a23b3b",
+        ["==", ["get", "hasStoppedUnknown"], 1],
+        "#4b5563",
+        ["==", ["get", "hasStoppedKnown"], 1],
+        "#8a6a12",
+        ["==", ["get", "hasApproximate"], 1],
+        "#737373",
+        ["step", ["get", "point_count"], "#4d8bc8", 20, "#2f75b5", 80, "#1d5f99"]
+      ],
       "circle-radius": ["step", ["get", "point_count"], 19, 20, 25, 80, 32],
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": 3
@@ -595,11 +651,32 @@ function addLocationLayers() {
         "#b68421",
         "review",
         "#6f5aa8",
+        "stopped-known",
+        "#8a6a12",
+        "stopped-unknown",
+        "#4b5563",
+        "geocode-failed",
+        "#a23b3b",
+        "approximate",
+        "#737373",
         "#c5522f"
       ],
       "circle-radius": ["case", ["==", ["get", "selected"], true], 10, 7],
       "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 2
+      "circle-stroke-width": [
+        "match",
+        ["get", "visualState"],
+        ["stopped-known", "stopped-unknown", "geocode-failed", "approximate"],
+        3,
+        2
+      ],
+      "circle-stroke-opacity": [
+        "match",
+        ["get", "visualState"],
+        ["stopped-known", "stopped-unknown", "geocode-failed", "approximate"],
+        0.72,
+        1
+      ]
     }
   });
 
@@ -676,9 +753,14 @@ function toLocationFeatureCollection(items) {
         place: location.place,
         municipality: `${location.prefecture} ${location.municipality}`,
         status: location.status,
+        coordinateAccuracy: location.coordinateAccuracy || "prefecture_approx",
         collected: Boolean(collections[location.id]?.collected),
         selected: location.id === selectedId,
-        visualState: pinClass(location)
+        visualState: pinClass(location),
+        hasApproximate: isApproximateLocation(location),
+        hasStoppedUnknown: coordinateCategory(location) === "stopped-unknown",
+        hasStoppedKnown: coordinateCategory(location) === "stopped-known",
+        hasGeocodeFailed: coordinateCategory(location) === "geocode-failed"
       }
     }))
   };
