@@ -184,6 +184,11 @@ let map = null;
 let mapReady = false;
 let shouldFocusSelected = false;
 
+const fallbackMapView = {
+  center: [139.7671, 35.6812],
+  zoom: 10
+};
+
 const elements = {
   searchInput: document.querySelector("#searchInput"),
   prefectureFilter: document.querySelector("#prefectureFilter"),
@@ -324,10 +329,7 @@ function resetFilters() {
   elements.prefectureFilter.value = "all";
   elements.collectionFilter.value = "all";
   elements.statusFilter.value = "all";
-  elements.sortSelect.value = "prefecture";
-  selectedId = getFilteredLocations()[0]?.id ?? locations[0]?.id ?? "";
-  shouldFocusSelected = true;
-  renderAll();
+  resetMapToCurrentLocation();
 }
 
 function sortLocations(a, b) {
@@ -574,8 +576,8 @@ function initMap() {
         }
       ]
     },
-    center: [138.2529, 36.2048],
-    zoom: 4.4,
+    center: fallbackMapView.center,
+    zoom: fallbackMapView.zoom,
     minZoom: 3.4,
     maxZoom: 18
   });
@@ -1017,6 +1019,7 @@ function openMyPage() {
 
 function locateUser() {
   if (!navigator.geolocation) {
+    focusFallbackMapView();
     showToast("現在地取得に対応していません");
     return;
   }
@@ -1032,14 +1035,18 @@ function locateUser() {
     () => {
       elements.locateButton.textContent = "現在地";
       elements.locateButton.disabled = false;
-      showToast("現在地を取得できませんでした");
+      focusFallbackMapView();
+      showToast("現在地を取得できませんでした。東京中心で表示します");
     },
     { enableHighAccuracy: false, timeout: 8000 }
   );
 }
 
 function locateUserOnStartup() {
-  if (!navigator.geolocation) return;
+  if (!navigator.geolocation) {
+    focusFallbackMapView();
+    return;
+  }
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
@@ -1049,21 +1056,47 @@ function locateUserOnStartup() {
     () => {
       elements.locateButton.textContent = "現在地";
       elements.locateButton.disabled = false;
+      focusFallbackMapView();
     },
     { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
   );
 }
 
-function applyUserPosition(position, options = {}) {
-  userPosition = {
-    lat: position.coords.latitude,
-    lng: position.coords.longitude
-  };
-  elements.sortSelect.value = "distance";
+function resetMapToCurrentLocation() {
+  if (userPosition) {
+    elements.sortSelect.value = "distance";
+    applyStoredUserPosition({ zoom: 10, duration: 450 });
+    showToast("フィルターをリセットし、現在地中心に戻しました");
+    return;
+  }
 
+  if (!navigator.geolocation) {
+    focusFallbackMapView();
+    showToast("フィルターをリセットしました。東京中心で表示します");
+    return;
+  }
+
+  elements.locateButton.textContent = "取得中...";
+  elements.locateButton.disabled = true;
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      applyUserPosition(position, { zoom: 10, duration: 450 });
+      showToast("フィルターをリセットし、現在地中心に戻しました");
+    },
+    () => {
+      elements.locateButton.textContent = "現在地";
+      elements.locateButton.disabled = false;
+      focusFallbackMapView();
+      showToast("フィルターをリセットしました。現在地取得に失敗したため東京中心で表示します");
+    },
+    { enableHighAccuracy: false, timeout: 8000, maximumAge: 600000 }
+  );
+}
+
+function applyStoredUserPosition(options = {}) {
+  elements.sortSelect.value = "distance";
   const nearest = [...locations].sort((a, b) => distanceFromUser(a) - distanceFromUser(b))[0];
   if (nearest) selectedId = nearest.id;
-
   elements.locateButton.classList.add("active");
   elements.locateButton.textContent = "現在地表示中";
   elements.locateButton.disabled = false;
@@ -1072,12 +1105,40 @@ function applyUserPosition(position, options = {}) {
   if (mapReady) {
     map.easeTo({
       center: [userPosition.lng, userPosition.lat],
-      zoom: options.zoom ?? 11,
-      duration: options.duration ?? 650
+      zoom: options.zoom ?? 10,
+      duration: options.duration ?? 450
     });
   }
 
   renderAll();
+}
+
+function focusFallbackMapView() {
+  elements.sortSelect.value = "prefecture";
+  selectedId = getFilteredLocations()[0]?.id ?? locations[0]?.id ?? "";
+  elements.locateButton.classList.remove("active");
+  elements.locateButton.textContent = "現在地";
+  elements.locateButton.disabled = false;
+  shouldFocusSelected = false;
+
+  if (mapReady) {
+    map.easeTo({
+      center: fallbackMapView.center,
+      zoom: fallbackMapView.zoom,
+      duration: 450
+    });
+  }
+
+  renderAll();
+}
+
+function applyUserPosition(position, options = {}) {
+  userPosition = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
+  elements.sortSelect.value = "distance";
+  applyStoredUserPosition(options);
 }
 
 function distanceFromUser(location) {
