@@ -91,8 +91,6 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       address,
       lat,
       lng,
-      mapcode: "",
-      mapcodeStatus: "未登録",
       hours: cleanupText(hoursHtml),
       closed: "要確認",
       condition: "GKP掲載情報を確認",

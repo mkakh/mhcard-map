@@ -10,8 +10,6 @@ let locations = [
     lng: 139.4776,
     x: 63,
     y: 52,
-    mapcode: "5 012 345*67",
-    mapcodeStatus: "登録済み",
     hours: "9:00-17:00",
     closed: "年末年始",
     condition: "1人1枚。簡単なアンケートあり",
@@ -31,8 +29,6 @@ let locations = [
     lng: 139.6337,
     x: 62,
     y: 58,
-    mapcode: "8 706 122*41",
-    mapcodeStatus: "登録済み",
     hours: "10:00-16:30",
     closed: "土日祝",
     condition: "窓口で希望者へ配布",
@@ -52,8 +48,6 @@ let locations = [
     lng: 139.4858,
     x: 60,
     y: 47,
-    mapcode: "",
-    mapcodeStatus: "未登録",
     hours: "9:30-18:00",
     closed: "第2・第4水曜",
     condition: "入館者に配布",
@@ -73,8 +67,6 @@ let locations = [
     lng: 135.4549,
     x: 43,
     y: 66,
-    mapcode: "1 345 782*03",
-    mapcodeStatus: "登録済み",
     hours: "9:30-17:00",
     closed: "水曜",
     condition: "来館者に配布",
@@ -94,8 +86,6 @@ let locations = [
     lng: 135.7588,
     x: 45,
     y: 61,
-    mapcode: "7 527 020*11",
-    mapcodeStatus: "登録済み",
     hours: "8:30-17:15",
     closed: "土日祝",
     condition: "窓口で希望者へ配布",
@@ -115,8 +105,6 @@ let locations = [
     lng: 130.4017,
     x: 27,
     y: 78,
-    mapcode: "13 318 212*54",
-    mapcodeStatus: "登録済み",
     hours: "9:00-20:00",
     closed: "年末年始",
     condition: "1人1枚",
@@ -136,8 +124,6 @@ let locations = [
     lng: 141.3391,
     x: 75,
     y: 17,
-    mapcode: "9 670 451*80",
-    mapcodeStatus: "登録済み",
     hours: "9:30-17:00",
     closed: "月曜",
     condition: "来館者に配布",
@@ -157,8 +143,6 @@ let locations = [
     lng: 140.8814,
     x: 69,
     y: 36,
-    mapcode: "",
-    mapcodeStatus: "未登録",
     hours: "8:30-19:00",
     closed: "なし",
     condition: "希望者に配布",
@@ -310,7 +294,7 @@ function getFilteredLocations() {
         location.municipality,
         location.place,
         location.address,
-        location.mapcode
+        location.plusCode
       ].join(" ").toLowerCase();
       const collection = collections[location.id];
       const collected = Boolean(collection?.collected);
@@ -388,7 +372,6 @@ function renderList(filtered) {
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
-        <span class="badge">${escapeHtml(location.mapcodeStatus)}</span>
         ${renderCoordinateBadge(location)}
       </div>
     `;
@@ -426,7 +409,6 @@ function renderDetail() {
   }
 
   const collection = collections[location.id] ?? {};
-  const mapcode = location.mapcode || "未登録";
   const plusCode = location.plusCode || "未生成";
   const coordinatesText = `${location.lat}, ${location.lng}`;
   const requestsForLocation = updateRequests.filter((request) => request.locationId === location.id);
@@ -457,7 +439,6 @@ function renderDetail() {
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
       <tr><th>配布場所</th><td>${renderExternalLinkedValue(location.place, facilityUrl)}</td></tr>
-      ${renderInfoCodeRow("マップコード", mapcode, mapcode !== "未登録", "copyMapcode", "カーナビ")}
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
       ${renderInfoCodeRow("住所", location.address || "未登録", Boolean(location.address), "copyAddress")}
@@ -486,7 +467,6 @@ function renderDetail() {
 
   document.querySelector("#toggleCollected").addEventListener("click", () => toggleCollected(location.id));
   document.querySelector("#openRequest").addEventListener("click", () => openRequestDialog(location.id));
-  bindCopyButton("copyMapcode", location.mapcode, "マップコードをコピーしました");
   bindCopyButton("copyPlusCode", location.plusCode, "Plus Codeをコピーしました");
   bindCopyButton("copyCoordinates", coordinatesText, "緯度経度をコピーしました");
   bindCopyButton("copyAddress", location.address, "住所をコピーしました");

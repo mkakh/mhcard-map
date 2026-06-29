@@ -7,7 +7,6 @@ const pairResolutions = [20, 1, 0.05, 0.0025, 0.000125];
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
 let plusCodesUpdated = 0;
-let mapcodesNormalized = 0;
 let skipped = 0;
 
 for (const location of locations) {
@@ -24,11 +23,6 @@ for (const location of locations) {
     location.plusCode = plusCode;
     plusCodesUpdated += 1;
   }
-
-  if (!location.mapcode && location.mapcodeStatus !== "未登録") {
-    location.mapcodeStatus = "未登録";
-    mapcodesNormalized += 1;
-  }
 }
 
 await writeFile(dataPath, `${JSON.stringify(locations, null, 2)}\n`, "utf8");
@@ -38,7 +32,6 @@ console.log(
     {
       total: locations.length,
       plusCodesUpdated,
-      mapcodesNormalized,
       skipped
     },
     null,

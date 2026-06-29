@@ -25,7 +25,7 @@ http://localhost:4173
 - 都道府県、取得状態、配布状態フィルター
 - 現在地から近い順の並び替え
 - 配布場所詳細
-- マップコード表示とコピー
+- Plus Code、緯度経度、Google Mapsリンク
 - Google Maps、Apple Mapsリンク
 - ローカルログイン
 - 取得済みチェック
