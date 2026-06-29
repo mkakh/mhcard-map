@@ -17,10 +17,15 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
   color: var(--text);
   background: var(--bg);
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,9 +43,11 @@ button {
 }
 
 .app-shell {
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
 }
 
 .topbar {
@@ -131,7 +138,9 @@ button {
 .workspace {
   display: grid;
   grid-template-columns: minmax(290px, 360px) minmax(420px, 1fr) minmax(310px, 390px);
+  height: 100%;
   min-height: 0;
+  overflow: hidden;
 }
 
 .sidebar,
@@ -195,6 +204,11 @@ textarea:focus {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+  margin-top: 12px;
+}
+
+.reset-button {
+  width: 100%;
   margin-top: 12px;
 }
 
@@ -411,7 +425,7 @@ label {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - 71px);
+  min-height: 0;
 }
 
 .locate-button.active {
@@ -592,14 +606,39 @@ label {
 }
 
 @media (max-width: 1100px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+    height: auto;
+    overflow: visible;
+  }
+
   .workspace {
     grid-template-columns: 330px 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .sidebar {
+    overflow: visible;
+  }
+
+  .map-area {
+    min-height: 560px;
+  }
+
+  .map-canvas {
+    min-height: 560px;
   }
 
   .detail-panel {
     grid-column: 1 / -1;
     border-left: 0;
     border-top: 1px solid var(--line);
+    overflow: visible;
   }
 }
 
@@ -625,6 +664,7 @@ label {
 
   .map-canvas {
     min-height: 420px;
+    height: 420px;
   }
 
   .map-area {

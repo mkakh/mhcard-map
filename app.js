@@ -190,6 +190,7 @@ const elements = {
   collectionFilter: document.querySelector("#collectionFilter"),
   statusFilter: document.querySelector("#statusFilter"),
   sortSelect: document.querySelector("#sortSelect"),
+  resetFiltersButton: document.querySelector("#resetFiltersButton"),
   locationList: document.querySelector("#locationList"),
   mapCanvas: document.querySelector("#mapCanvas"),
   detailContent: document.querySelector("#detailContent"),
@@ -236,6 +237,7 @@ function bindEvents() {
     elements.sortSelect
   ].forEach((element) => element.addEventListener("input", renderAll));
 
+  elements.resetFiltersButton.addEventListener("click", resetFilters);
   elements.loginButton.addEventListener("click", handleLoginButton);
   elements.loginForm.addEventListener("submit", handleLogin);
   elements.closeLoginDialog.addEventListener("click", () => elements.loginDialog.close());
@@ -317,6 +319,17 @@ function getFilteredLocations() {
     .sort(sortLocations);
 }
 
+function resetFilters() {
+  elements.searchInput.value = "";
+  elements.prefectureFilter.value = "all";
+  elements.collectionFilter.value = "all";
+  elements.statusFilter.value = "all";
+  elements.sortSelect.value = "prefecture";
+  selectedId = getFilteredLocations()[0]?.id ?? locations[0]?.id ?? "";
+  shouldFocusSelected = true;
+  renderAll();
+}
+
 function sortLocations(a, b) {
   if (elements.sortSelect.value === "updated") {
     return b.updatedAt.localeCompare(a.updatedAt);
@@ -326,7 +339,15 @@ function sortLocations(a, b) {
     return distanceFromUser(a) - distanceFromUser(b);
   }
 
-  return `${a.prefecture}${a.municipality}`.localeCompare(`${b.prefecture}${b.municipality}`, "ja");
+  return (
+    prefectureCode(a).localeCompare(prefectureCode(b)) ||
+    a.municipality.localeCompare(b.municipality, "ja") ||
+    a.cardName.localeCompare(b.cardName, "ja")
+  );
+}
+
+function prefectureCode(location) {
+  return location.id.split("-")[0] || "99";
 }
 
 function renderList(filtered) {
