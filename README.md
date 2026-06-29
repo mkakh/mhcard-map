@@ -51,7 +51,15 @@ npm run import:gkp
 
 インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。
 
-現時点では配布場所の住所ジオコーディングは未実装です。地図表示用の緯度経度は都道府県重心を基準に分散配置しており、各レコードの `coordinateAccuracy` は `prefecture_approx` です。
+住所ジオコーディングは以下で実行します。
+
+```bash
+npm run geocode
+```
+
+ジオコーディング結果は `data/geocode-cache.json` にキャッシュします。住所単位で成功したレコードは `coordinateAccuracy: "address"` になります。
+
+住所が抽出できない、または住所検索に失敗したレコードは都道府県重心を基準に分散配置し、`coordinateAccuracy: "prefecture_approx"` のまま残します。
 
 ## 地図
 

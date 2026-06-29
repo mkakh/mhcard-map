@@ -418,6 +418,7 @@ function renderDetail() {
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
       <tr><th>住所</th><td>${escapeHtml(location.address)}</td></tr>
       <tr><th>緯度経度</th><td>${location.lat}, ${location.lng}</td></tr>
+      <tr><th>座標精度</th><td>${escapeHtml(formatCoordinateAccuracy(location))}</td></tr>
       <tr><th>マップコード</th><td>${escapeHtml(mapcode)} (${escapeHtml(location.mapcodeStatus)})</td></tr>
       <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
@@ -471,6 +472,18 @@ function pinClass(location) {
   if (location.status === "要確認") return "review";
   if (collections[location.id]?.collected) return "collected";
   return "uncollected";
+}
+
+function formatCoordinateAccuracy(location) {
+  if (location.coordinateAccuracy === "address") {
+    return `住所検索: ${location.geocodeTitle || location.geocodeQuery || "一致"}`;
+  }
+
+  if (location.geocodeError) {
+    return `都道府県内の仮配置: 住所検索失敗 (${location.geocodeError})`;
+  }
+
+  return "都道府県内の仮配置";
 }
 
 function initMap() {

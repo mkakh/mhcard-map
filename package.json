@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
-    "import:gkp": "node scripts/import-gkp-data.js"
+    "import:gkp": "node scripts/import-gkp-data.js",
+    "geocode": "node scripts/geocode-locations.js"
   }
 }
