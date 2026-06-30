@@ -887,7 +887,7 @@ function addLocationLayers() {
     source: "locations",
     filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     layout: {
-      "text-field": ["match", ["get", "visualState"], "stopped-known", "S", "stopped-unknown", "?", "geocode-failed", "!", "?"],
+      "text-field": ["match", ["get", "visualState"], "stopped-known", "×", "stopped-unknown", "?", "geocode-failed", "!", "?"],
       "text-size": ["case", selectedOrHighlightedExpression(), 24, 19],
       "text-allow-overlap": true,
       "text-ignore-placement": true
@@ -1343,7 +1343,7 @@ function applyStoredUserPosition(options = {}) {
   const nearest = [...locations].sort((a, b) => distanceFromUser(a) - distanceFromUser(b))[0];
   if (nearest) selectedId = nearest.id;
   elements.locateButton.classList.add("active");
-  elements.locateButton.textContent = "現在地表示中";
+  elements.locateButton.textContent = "現在地";
   elements.locateButton.disabled = false;
   shouldFocusSelected = false;
 
