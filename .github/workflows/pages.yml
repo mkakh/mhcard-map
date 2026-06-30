@@ -31,6 +31,10 @@ jobs:
           cp LICENSE NOTICE.md dist/
           cp CNAME dist/
           cp -R data dist/data
+      - name: Set asset version
+        run: |
+          APP_VERSION="$(git rev-parse --short HEAD)"
+          find dist -type f \( -name "*.html" -o -name "*.js" \) -print0 | xargs -0 sed -i "s/__APP_VERSION__/${APP_VERSION}/g"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

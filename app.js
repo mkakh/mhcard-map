@@ -173,6 +173,7 @@ let searchRenderTimer = 0;
 let currentFilteredLocations = [];
 
 const searchDebounceMs = 150;
+const appVersion = "__APP_VERSION__";
 
 const fallbackMapView = {
   center: [139.7671, 35.6812],
@@ -266,7 +267,7 @@ function fillPrefectures() {
 
 async function loadLocations() {
   try {
-    const response = await fetch("./data/locations.json", { cache: "no-store" });
+    const response = await fetch(versionedAssetUrl("./data/locations.json"), { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const realLocations = await response.json();
     if (!Array.isArray(realLocations) || realLocations.length === 0) {
@@ -283,7 +284,7 @@ async function loadLocations() {
 
 async function loadUpdateFormConfig() {
   try {
-    const response = await fetch("./data/update-form-config.json", { cache: "no-store" });
+    const response = await fetch(versionedAssetUrl("./data/update-form-config.json"), { cache: "no-store" });
     if (!response.ok) return null;
     const config = await response.json();
     return config?.formUrl ? config : null;
@@ -295,7 +296,7 @@ async function loadUpdateFormConfig() {
 
 async function loadUpdateRequests() {
   try {
-    const response = await fetch("./data/update-requests.json", { cache: "no-store" });
+    const response = await fetch(versionedAssetUrl("./data/update-requests.json"), { cache: "no-store" });
     if (!response.ok) return [];
     const requests = await response.json();
     return Array.isArray(requests) ? requests : [];
@@ -303,6 +304,11 @@ async function loadUpdateRequests() {
     console.info("Update requests data is not available:", error);
     return [];
   }
+}
+
+function versionedAssetUrl(path) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}v=${encodeURIComponent(appVersion)}`;
 }
 
 function renderAll() {
