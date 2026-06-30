@@ -67,6 +67,10 @@ button {
   min-width: 0;
 }
 
+.brand > div {
+  min-width: 0;
+}
+
 .brand-mark {
   width: 42px;
   height: 42px;
@@ -80,6 +84,9 @@ button {
   margin: 0;
   font-size: 20px;
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .brand p {
@@ -383,6 +390,8 @@ label {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
   padding: 8px 10px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
@@ -727,38 +736,42 @@ label {
 
 @media (max-width: 1100px) {
   body {
-    overflow: auto;
+    height: 100dvh;
+    overflow: hidden;
   }
 
   .app-shell {
-    min-height: 100dvh;
-    height: auto;
-    overflow: visible;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .workspace {
-    grid-template-columns: 330px 1fr;
-    height: auto;
-    overflow: visible;
+    grid-template-columns: 330px minmax(0, 1fr);
+    grid-template-rows: minmax(360px, 1fr) minmax(280px, 40%);
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .sidebar {
-    overflow: visible;
+    grid-row: 1 / -1;
+    overflow: auto;
   }
 
   .map-area {
-    min-height: 560px;
+    min-height: 0;
   }
 
   .map-canvas {
-    min-height: 560px;
+    min-height: 0;
   }
 
   .detail-panel {
-    grid-column: 1 / -1;
+    grid-column: 2;
     border-left: 0;
     border-top: 1px solid var(--line);
-    overflow: visible;
+    overflow: auto;
   }
 }
 
@@ -776,6 +789,8 @@ label {
   }
 
   .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 10px;
     padding: 10px 12px;
@@ -783,6 +798,8 @@ label {
 
   .brand {
     gap: 9px;
+    flex: 1 1 0;
+    overflow: hidden;
   }
 
   .brand-mark {
@@ -802,7 +819,8 @@ label {
   .top-actions button {
     width: auto;
     min-height: 34px;
-    padding: 0 11px;
+    padding: 0 9px;
+    font-size: 12px;
   }
 
   .mobile-tabs {
@@ -876,6 +894,7 @@ label {
   }
 
   .legend {
+    max-width: calc(100vw - 28px);
     max-height: 92px;
     overflow: auto;
   }
@@ -887,7 +906,8 @@ label {
   }
 }
 
-@media (max-width: 900px) and (orientation: landscape) {
+@media (min-width: 761px) and (max-width: 900px),
+  (min-width: 901px) and (max-width: 1100px) and (max-height: 640px) {
   body {
     height: 100dvh;
     overflow: hidden;
