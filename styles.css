@@ -469,6 +469,34 @@ label {
   touch-action: none;
 }
 
+.print-map-image {
+  display: none;
+}
+
+.print-map-popup {
+  display: none;
+}
+
+.print-popup-card {
+  width: 220px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(23, 32, 24, 0.16);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.print-map-renderer {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  width: 1124px;
+  height: 776px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .maplibregl-canvas,
 .maplibregl-canvas-container {
   touch-action: none;
@@ -482,6 +510,17 @@ label {
 
 .locate-button {
   pointer-events: auto;
+}
+
+.map-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.map-actions .ghost-button {
+  white-space: nowrap;
 }
 
 .maplibregl-popup-content {
@@ -891,12 +930,29 @@ label {
   .map-toolbar {
     align-items: flex-start;
     flex-direction: column;
+    left: 14px;
+    right: 14px;
+    max-width: calc(100vw - 28px);
+    overflow: hidden;
   }
 
   .legend {
+    width: 100%;
     max-width: calc(100vw - 28px);
     max-height: 92px;
     overflow: auto;
+  }
+
+  .map-actions {
+    max-width: calc(100vw - 28px);
+  }
+
+  .map-actions .locate-button {
+    max-width: 100%;
+  }
+
+  .print-button {
+    display: none;
   }
 
   .filter-grid,
@@ -1019,8 +1075,22 @@ label {
   }
 
   .locate-button {
-    width: 34px;
+    width: auto;
     min-height: 34px;
+    padding: 0 10px;
+  }
+
+  .map-actions {
+    max-width: calc(100vw - 16px);
+    gap: 6px;
+  }
+
+  .map-actions .locate-button {
+    max-width: 100%;
+  }
+
+  .print-button {
+    display: none;
   }
 
   .search-panel {
@@ -1092,5 +1162,138 @@ label {
   .info-table th,
   .info-table td {
     padding: 7px 0;
+  }
+}
+
+body.printing-map .workspace {
+  display: block;
+  width: 281mm;
+  height: 194mm;
+}
+
+body.printing-map .map-area {
+  display: block !important;
+  width: 281mm !important;
+  height: 194mm !important;
+  max-width: 281mm !important;
+  max-height: 194mm !important;
+}
+
+body.printing-map .map-canvas {
+  width: 281mm !important;
+  height: 194mm !important;
+  min-height: 0 !important;
+}
+
+body.printing-map .print-map-image {
+  width: 281mm;
+  height: 194mm;
+}
+
+body.printing-map .print-map-popup:not(:empty) {
+  left: var(--popup-left);
+  top: var(--popup-top);
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .topbar,
+  .mobile-tabs,
+  .sidebar,
+  .detail-panel,
+  .map-actions,
+  .toast,
+  .print-map-renderer,
+  .maplibregl-control-container {
+    display: none !important;
+  }
+
+  .app-shell,
+  .workspace {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .map-area {
+    display: block !important;
+    width: 281mm;
+    height: 194mm;
+    max-width: 281mm;
+    max-height: 194mm;
+    overflow: hidden;
+    background: #fff;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .map-canvas {
+    position: relative;
+    width: 281mm;
+    height: 194mm;
+    min-height: 0;
+    display: none;
+  }
+
+  .print-map-image {
+    display: block;
+    width: 281mm;
+    height: 194mm;
+    object-fit: cover;
+  }
+
+  .print-map-popup:not(:empty) {
+    position: absolute;
+    z-index: 30;
+    display: block;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+  }
+
+  .print-popup-card {
+    box-shadow: none;
+  }
+
+  .map-toolbar {
+    top: 6mm;
+    left: 6mm;
+    right: 6mm;
+    z-index: 20;
+    display: block;
+    pointer-events: none;
+  }
+
+  .legend {
+    max-width: 100%;
+    max-height: none;
+    overflow: visible;
+    padding: 6px 8px;
+    border: 1px solid var(--line);
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.94);
+    color: #172018;
+    font-size: 10px;
   }
 }
