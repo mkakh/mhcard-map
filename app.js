@@ -167,6 +167,7 @@ let userPosition = null;
 let map = null;
 let mapReady = false;
 let activePopup = null;
+let printMapObjectUrl = "";
 let shouldFocusSelected = false;
 let searchRenderTimer = 0;
 let currentFilteredLocations = [];
@@ -199,6 +200,9 @@ const elements = {
   myPageContent: document.querySelector("#myPageContent"),
   closeMyPageDialog: document.querySelector("#closeMyPageDialog"),
   locateButton: document.querySelector("#locateButton"),
+  printMapButton: document.querySelector("#printMapButton"),
+  printMapImage: document.querySelector("#printMapImage"),
+  printMapPopup: document.querySelector("#printMapPopup"),
   mobileTabButtons: document.querySelectorAll(".mobile-tab")
 };
 
@@ -232,6 +236,7 @@ function bindEvents() {
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
   elements.locateButton.addEventListener("click", locateUser);
+  elements.printMapButton.addEventListener("click", printMap);
   elements.mobileTabButtons.forEach((button) => {
     button.addEventListener("click", () => switchMobilePanel(button.dataset.mobilePanel));
   });
@@ -239,6 +244,8 @@ function bindEvents() {
     resizeMapSoon();
   });
   window.addEventListener("orientationchange", resizeMapAfterOrientationChange);
+  window.addEventListener("beforeprint", resizeMapForPrint);
+  window.addEventListener("afterprint", resizeMapAfterPrint);
 }
 
 function renderAllAfterSearchInput() {
@@ -743,8 +750,8 @@ function initMap() {
   map.on("load", () => {
     mapReady = true;
     map.resize();
-    addLocationLayers();
-    addCurrentLocationLayer();
+    addLocationLayers(map);
+    addCurrentLocationLayer(map);
     renderAll();
     locateUserOnStartup();
   });
@@ -755,8 +762,8 @@ function handleMapMoveEnd() {
   renderAll();
 }
 
-function addLocationLayers() {
-  map.addSource("locations", {
+function addLocationLayers(targetMap = map, bindInteractions = true) {
+  targetMap.addSource("locations", {
     type: "geojson",
     data: toLocationFeatureCollection(getFilteredLocations()),
     cluster: true,
@@ -770,7 +777,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "clusters",
     type: "circle",
     source: "locations",
@@ -794,7 +801,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "cluster-count",
     type: "symbol",
     source: "locations",
@@ -809,7 +816,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
@@ -823,7 +830,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "unclustered-locations",
     type: "circle",
     source: "locations",
@@ -867,7 +874,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "selected-shaped-location-halo",
     type: "circle",
     source: "locations",
@@ -881,7 +888,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "shaped-locations",
     type: "symbol",
     source: "locations",
@@ -909,7 +916,7 @@ function addLocationLayers() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "location-hit-area",
     type: "circle",
     source: "locations",
@@ -921,26 +928,28 @@ function addLocationLayers() {
     }
   });
 
-  map.on("click", "clusters", async (event) => {
-    const features = map.queryRenderedFeatures(event.point, { layers: ["clusters"] });
+  if (!bindInteractions) return;
+
+  targetMap.on("click", "clusters", async (event) => {
+    const features = targetMap.queryRenderedFeatures(event.point, { layers: ["clusters"] });
     const clusterId = features[0].properties.cluster_id;
-    const zoom = await map.getSource("locations").getClusterExpansionZoom(clusterId);
-    map.easeTo({
+    const zoom = await targetMap.getSource("locations").getClusterExpansionZoom(clusterId);
+    targetMap.easeTo({
       center: features[0].geometry.coordinates,
       zoom
     });
   });
 
-  map.on("click", "location-hit-area", (event) => {
+  targetMap.on("click", "location-hit-area", (event) => {
     selectMapFeature(event.features[0]);
   });
 
   ["clusters", "unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
-    map.on("mouseenter", layerId, () => {
-      map.getCanvas().style.cursor = "pointer";
+    targetMap.on("mouseenter", layerId, () => {
+      targetMap.getCanvas().style.cursor = "pointer";
     });
-    map.on("mouseleave", layerId, () => {
-      map.getCanvas().style.cursor = "";
+    targetMap.on("mouseleave", layerId, () => {
+      targetMap.getCanvas().style.cursor = "";
     });
   });
 }
@@ -956,13 +965,13 @@ function selectMapFeature(feature) {
   showMapPopup(feature);
 }
 
-function addCurrentLocationLayer() {
-  map.addSource("current-location", {
+function addCurrentLocationLayer(targetMap = map) {
+  targetMap.addSource("current-location", {
     type: "geojson",
     data: toCurrentLocationFeatureCollection()
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "current-location-accuracy",
     type: "circle",
     source: "current-location",
@@ -973,7 +982,7 @@ function addCurrentLocationLayer() {
     }
   });
 
-  map.addLayer({
+  targetMap.addLayer({
     id: "current-location-point",
     type: "circle",
     source: "current-location",
@@ -1096,6 +1105,14 @@ function renderPopupImage(imageUrl, cardName) {
 
   return `
     <img class="map-popup-image" src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(`${cardName} カード画像`)}" loading="lazy">
+  `;
+}
+
+function renderPrintPopupImage(imageUrl, cardName) {
+  if (!imageUrl) return "";
+
+  return `
+    <img class="map-popup-image" src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(`${cardName} card image`)}" loading="eager">
   `;
 }
 
@@ -1245,6 +1262,228 @@ function resizeMapAfterOrientationChange() {
   [0, 120, 320, 700].forEach((delay) => {
     window.setTimeout(resizeMapSoon, delay);
   });
+}
+
+async function printMap() {
+  if (!mapReady) {
+    showToast("地図の読み込み完了後に印刷してください");
+    return;
+  }
+
+  elements.printMapButton.disabled = true;
+
+  try {
+    await preparePrintMapImage();
+    resizeMapForPrint();
+    window.setTimeout(() => window.print(), 80);
+  } catch (error) {
+    console.error(error);
+    cleanupPrintMapImage();
+    showToast("印刷用地図を作成できませんでした。地図の読み込み後に再試行してください");
+  } finally {
+    window.setTimeout(() => {
+      elements.printMapButton.disabled = false;
+    }, 1000);
+  }
+}
+
+function resizeMapForPrint() {
+  document.body.classList.add("printing-map");
+  [0, 80, 180, 300].forEach((delay) => {
+    window.setTimeout(resizeMapSoon, delay);
+  });
+}
+
+function resizeMapAfterPrint() {
+  document.body.classList.remove("printing-map");
+  cleanupPrintMapImage();
+  [0, 120, 320].forEach((delay) => {
+    window.setTimeout(resizeMapSoon, delay);
+  });
+}
+
+async function preparePrintMapImage() {
+  cleanupPrintMapImage();
+
+  const renderer = ensurePrintMapRenderer();
+  renderer.replaceChildren();
+
+  const printMap = new maplibregl.Map({
+    container: renderer,
+    style: mapStyleUrl,
+    center: map.getCenter().toArray(),
+    zoom: map.getZoom(),
+    bearing: map.getBearing(),
+    pitch: map.getPitch(),
+    interactive: false,
+    attributionControl: false,
+    fadeDuration: 0,
+    canvasContextAttributes: {
+      preserveDrawingBuffer: true,
+      antialias: true
+    }
+  });
+
+  try {
+    await waitForMapEvent(printMap, "load", 10000);
+    addLocationLayers(printMap, false);
+    addCurrentLocationLayer(printMap);
+    printMap.resize();
+    printMap.triggerRepaint();
+    await waitForMapIdle(printMap, 10000);
+    await waitForAnimationFrames(2);
+    printMapObjectUrl = await canvasToObjectUrl(printMap.getCanvas());
+    elements.printMapImage.src = printMapObjectUrl;
+    renderPrintMapPopup(printMap);
+    await waitForImage(elements.printMapImage);
+    await waitForImages(elements.printMapPopup);
+  } finally {
+    printMap.remove();
+    renderer.remove();
+  }
+}
+
+function renderPrintMapPopup(targetMap) {
+  if (!activePopup) {
+    clearPrintMapPopup();
+    return;
+  }
+
+  const location = locations.find((item) => item.id === selectedId);
+  if (!location || !Number.isFinite(location.lng) || !Number.isFinite(location.lat)) {
+    clearPrintMapPopup();
+    return;
+  }
+
+  if (!targetMap.getBounds().contains([location.lng, location.lat])) {
+    clearPrintMapPopup();
+    return;
+  }
+
+  const point = targetMap.project([location.lng, location.lat]);
+  const mapWidth = targetMap.getContainer().clientWidth;
+  const mapHeight = targetMap.getContainer().clientHeight;
+  const popupWidth = 220;
+  const popupHeight = location.imageUrl ? 205 : 78;
+  const horizontalPadding = 12;
+  const verticalPadding = 12;
+  const markerGap = 18;
+  const left = clamp(point.x, popupWidth / 2 + horizontalPadding, mapWidth - popupWidth / 2 - horizontalPadding);
+  const top = clamp(point.y - markerGap, popupHeight + verticalPadding, mapHeight - verticalPadding);
+
+  elements.printMapPopup.style.setProperty("--popup-left", `${(left / mapWidth) * 100}%`);
+  elements.printMapPopup.style.setProperty("--popup-top", `${(top / mapHeight) * 100}%`);
+  elements.printMapPopup.innerHTML = `
+    <div class="print-popup-card">
+      ${renderPrintPopupImage(location.imageUrl || "", location.cardName)}
+      <span class="map-popup-title">${escapeHtml(location.cardName)}</span>
+      <span class="map-popup-subtitle">${escapeHtml(displayPlace(location))}</span>
+    </div>
+  `;
+}
+
+function clearPrintMapPopup() {
+  if (!elements.printMapPopup) return;
+  elements.printMapPopup.innerHTML = "";
+  elements.printMapPopup.removeAttribute("style");
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function ensurePrintMapRenderer() {
+  const renderer = document.createElement("div");
+  renderer.className = "print-map-renderer";
+  document.body.append(renderer);
+  return renderer;
+}
+
+function waitForMapEvent(targetMap, eventName, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => {
+      reject(new Error(`Timed out waiting for map ${eventName}`));
+    }, timeoutMs);
+
+    targetMap.once(eventName, () => {
+      window.clearTimeout(timeout);
+      resolve();
+    });
+  });
+}
+
+function waitForMapIdle(targetMap, timeoutMs) {
+  return new Promise((resolve) => {
+    if (targetMap.loaded()) {
+      resolve();
+      return;
+    }
+
+    const timeout = window.setTimeout(resolve, timeoutMs);
+    targetMap.once("idle", () => {
+      window.clearTimeout(timeout);
+      resolve();
+    });
+  });
+}
+
+function waitForAnimationFrames(count) {
+  return new Promise((resolve) => {
+    const step = (remaining) => {
+      if (remaining <= 0) {
+        resolve();
+        return;
+      }
+      window.requestAnimationFrame(() => step(remaining - 1));
+    };
+    step(count);
+  });
+}
+
+function waitForImage(image) {
+  if (image.complete && image.naturalWidth > 0) {
+    return Promise.resolve();
+  }
+
+  if (image.decode) {
+    return image.decode().catch(() => undefined);
+  }
+
+  return new Promise((resolve) => {
+    image.addEventListener("load", resolve, { once: true });
+    image.addEventListener("error", resolve, { once: true });
+  });
+}
+
+function waitForImages(container) {
+  if (!container) return Promise.resolve();
+  const images = Array.from(container.querySelectorAll("img"));
+  return Promise.all(images.map(waitForImage));
+}
+
+function canvasToObjectUrl(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error("Map canvas could not be exported"));
+        return;
+      }
+      resolve(URL.createObjectURL(blob));
+    }, "image/png");
+  });
+}
+
+function cleanupPrintMapImage() {
+  if (printMapObjectUrl) {
+    URL.revokeObjectURL(printMapObjectUrl);
+    printMapObjectUrl = "";
+  }
+
+  if (elements.printMapImage) {
+    elements.printMapImage.removeAttribute("src");
+  }
+
+  clearPrintMapPopup();
 }
 
 function locateUser() {

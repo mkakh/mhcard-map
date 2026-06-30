@@ -128,9 +128,14 @@
               <span><i class="shape-dot geocode-failed">!</i>住所検索失敗</span>
               <span><i class="pin-dot current"></i>現在地</span>
             </div>
-            <button id="locateButton" class="ghost-button locate-button" type="button">現在地</button>
+            <div class="map-actions">
+              <button id="locateButton" class="ghost-button locate-button" type="button">現在地</button>
+              <button id="printMapButton" class="ghost-button print-button" type="button">印刷</button>
+            </div>
           </div>
           <div id="mapCanvas" class="map-canvas" role="application" aria-label="配布場所マップ"></div>
+          <img id="printMapImage" class="print-map-image" alt="" aria-hidden="true">
+          <div id="printMapPopup" class="print-map-popup" aria-hidden="true"></div>
         </section>
 
         <aside class="detail-panel" aria-label="配布場所詳細">
