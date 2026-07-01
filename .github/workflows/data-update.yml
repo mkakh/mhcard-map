@@ -24,7 +24,7 @@ jobs:
       - name: Import GKP data
         run: npm run import:gkp
       - name: Verify card image codes
-        run: npm run apply:image-codes
+        run: npm run verify:image-codes -- --warn-only
       - name: Normalize source links
         run: npm run normalize:links
       - name: Geocode locations

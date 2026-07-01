@@ -8,10 +8,17 @@ import { spawn, spawnSync } from "node:child_process";
 const locationsPath = join(process.cwd(), "data", "locations.json");
 const applyChanges = process.argv.includes("--apply");
 const strict = process.argv.includes("--strict");
+const warnOnly = process.argv.includes("--warn-only");
+const allImages = process.argv.includes("--all");
 const limitArg = process.argv.find((arg) => arg.startsWith("--limit="));
 const limit = limitArg ? Number(limitArg.split("=")[1]) : Infinity;
 const tesseractCommand = process.env.TESSERACT_COMMAND || "tesseract";
 const magickCommand = process.env.MAGICK_COMMAND || "magick";
+const cropSpecs = [
+  "28%x10%+8+10",
+  "30%x12%+6+9",
+  "42%x13%+8+10"
+];
 
 const tesseractCheck = spawnSync(tesseractCommand, ["--version"], { encoding: "utf8" });
 if (tesseractCheck.error || tesseractCheck.status !== 0) {
@@ -38,16 +45,13 @@ for (const [index, location] of candidates.entries()) {
   const imagePath = join(tempDir, `${index}-${location.id}.jpg`);
   try {
     await download(location.imageUrl, imagePath);
-    const cropPath = join(tempDir, `${index}-${location.id}-code.png`);
-    await cropCodeRegion(imagePath, cropPath);
-    const text = await ocr(cropPath);
-    const detectedCode = extractPrintedCode(text);
+    const currentCode = cardCodeFromId(location.id);
+    const detectedCode = await detectPrintedCode(imagePath, currentCode, index, location.id);
     if (!detectedCode) {
       warnings.push(`${location.id}: OCR did not find printed card code`);
       continue;
     }
 
-    const currentCode = cardCodeFromId(location.id);
     if (detectedCode === currentCode) continue;
 
     const nextId = idFromPrintedCode(detectedCode);
@@ -97,11 +101,21 @@ console.log(JSON.stringify({
   warnings
 }, null, 2));
 
+if (warnOnly) {
+  for (const change of changes) {
+    console.log(`::warning title=Card image code mismatch::${change.fromId} ${change.cardName}: ${change.fromCode} -> ${change.toCode}`);
+  }
+  for (const warning of warnings) {
+    console.log(`::warning title=Card image OCR warning::${warning}`);
+  }
+}
+
 if (strict && warnings.length > 0) process.exit(1);
-if (!applyChanges && changes.length > 0) process.exit(1);
+if (!applyChanges && changes.length > 0 && !warnOnly) process.exit(1);
 
 function isOcrCandidate(location) {
   if (!location.imageUrl) return false;
+  if (allImages) return true;
   if (cardCodeFromName(location.cardName)) return false;
 
   const key = imageKey(location.imageUrl);
@@ -117,6 +131,19 @@ async function download(url, outputPath) {
     throw new Error(`failed to download image (${response.status})`);
   }
   await pipeline(response.body, createWriteStream(outputPath));
+}
+
+async function detectPrintedCode(imagePath, currentCode, index, locationId) {
+  const detectedCodes = [];
+  for (const [cropIndex, cropSpec] of cropSpecs.entries()) {
+    const cropPath = join(tempDir, `${index}-${locationId}-code-${cropIndex}.png`);
+    await cropCodeRegion(imagePath, cropPath, cropSpec);
+    const detectedCode = extractPrintedCode(await ocr(cropPath));
+    if (!detectedCode) continue;
+    if (detectedCode === currentCode) return detectedCode;
+    detectedCodes.push(detectedCode);
+  }
+  return detectedCodes[0] ?? "";
 }
 
 function ocr(imagePath) {
@@ -144,17 +171,17 @@ function ocr(imagePath) {
   });
 }
 
-function cropCodeRegion(inputPath, outputPath) {
+function cropCodeRegion(inputPath, outputPath, cropSpec) {
   return new Promise((resolve, reject) => {
     const child = spawn(magickCommand, [
       inputPath,
       "-gravity",
       "northeast",
       "-crop",
-      "42%x13%+8+10",
+      cropSpec,
       "+repage",
       "-resize",
-      "600%",
+      "1800%",
       "-colorspace",
       "Gray",
       "-normalize",
