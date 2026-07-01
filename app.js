@@ -585,14 +585,14 @@ function renderDetail() {
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
       <tr><th>カード番号</th><td>${escapeHtml(cardNumber(location))}</td></tr>
-      <tr><th>配布場所</th><td>${renderExternalLinkedValue(displayPlace(location), facilityUrl)}</td></tr>
+      <tr><th>配布場所</th><td>${renderExternalLinkedValue(selectedPlace.name, facilityUrl)}</td></tr>
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
       ${renderInfoCodeRow("住所", selectedAddress, selectedAddress !== "未登録", "copyAddress")}
       ${renderMapPositionRows(location, selectedPlace)}
       <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
-      <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
-      <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
+      <tr><th>配布時間</th><td>${escapeHtml(selectedPlace.hours || location.hours || "未登録")}</td></tr>
+      <tr><th>休館日</th><td>${escapeHtml(selectedPlace.closed || location.closed || "未登録")}</td></tr>
       <tr><th>配布条件</th><td>${renderSourceLinkedValue(location.condition, conditionUrl)}</td></tr>
       <tr><th>在庫</th><td>${renderSourceLinkedValue(location.stock, stockUrl)}</td></tr>
       <tr><th>最終更新</th><td>${escapeHtml(location.updatedAt)}</td></tr>
