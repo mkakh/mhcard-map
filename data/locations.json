@@ -162,8 +162,8 @@
     "plusCode": "8RH2QP78+GV"
   },
   {
-    "id": "01-203-a-01",
-    "cardName": "小樽市",
+    "id": "01-203-a-02",
+    "cardName": "小樽市 A002",
     "prefecture": "北海道",
     "municipality": "小樽市",
     "place": "小樽市水道局本庁舎",
@@ -184,7 +184,7 @@
     "updatedAt": "2026-07-01",
     "legacyIds": [
       "01-小樽市-005",
-      "01-203-a-02"
+      "01-203-a-01"
     ],
     "facilityUrl": "https://www.city.otaru.lg.jp/docs/2020112200455/",
     "stockUrl": "https://www.city.otaru.lg.jp/docs/2020112200455/",
@@ -29300,8 +29300,8 @@
     "plusCode": "8Q7V2322+H7"
   },
   {
-    "id": "23-226-a-01",
-    "cardName": "尾張旭市",
+    "id": "23-226-a-02",
+    "cardName": "尾張旭市 A002",
     "prefecture": "愛知県",
     "municipality": "尾張旭市",
     "place": "尾張旭まち案内",
@@ -29322,8 +29322,7 @@
     "updatedAt": "2026-07-01",
     "legacyIds": [
       "23-尾張旭市-040",
-      "23-226-a02",
-      "23-226-a-02"
+      "23-226-a-01"
     ],
     "facilityUrl": "https://www.city.owariasahi.lg.jp/page/2168.html",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",

@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "node server.js",
     "import:gkp": "node scripts/import-gkp-data.js",
+    "verify:image-codes": "node scripts/verify-card-image-codes.js",
+    "apply:image-codes": "node scripts/verify-card-image-codes.js --apply --strict",
     "import:forms": "node scripts/import-form-requests.js",
     "normalize:links": "node scripts/normalize-source-links.js",
     "update:codes": "node scripts/update-location-codes.js",
