@@ -325,7 +325,7 @@ function renderAll() {
     selectedPlaceId = "";
   }
   const selectedLocation = locations.find((location) => location.id === selectedId);
-  if (selectedLocation && !distributionPlaces(selectedLocation).some((place) => place.id === selectedPlaceId)) {
+  if (selectedLocation && !allDistributionPlaces(selectedLocation).some((place) => place.id === selectedPlaceId)) {
     selectedPlaceId = primaryDistributionPlace(selectedLocation).id;
   }
 
@@ -355,7 +355,8 @@ function getFilteredLocations() {
         displayPlace(location),
         location.place,
         location.address,
-        distributionPlaces(location).map((place) => [place.name, place.address, place.days, place.hours].join(" ")).join(" "),
+        allDistributionPlaces(location).map((place) => [place.name, place.address, place.days, place.hours].join(" ")).join(" "),
+        englishVersionSearchText(location),
         location.plusCode,
         cardNumber(location),
         Object.values(placeMemos(collection)).join(" ")
@@ -391,7 +392,7 @@ function clearFilters() {
 
 function isInsideActiveViewport(location) {
   if (!elements.viewportFilterToggle.checked || !mapReady || !map) return true;
-  return distributionPlaces(location).some((place) => map.getBounds().contains([place.lng, place.lat]));
+  return allDistributionPlaces(location).some((place) => map.getBounds().contains([place.lng, place.lat]));
 }
 
 function sortLocations(a, b) {
@@ -466,6 +467,7 @@ function renderList(filtered) {
       <p>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</p>
       <div class="badge-row">
         ${renderStatusBadge(location)}
+        ${renderEnglishVersionBadge(location)}
         ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
         ${Object.keys(placeMemos(collections[location.id])).length > 0 ? '<span class="badge memo">メモあり</span>' : ""}
         ${renderCoordinateBadge(location, primaryDistributionPlace(location))}
@@ -550,7 +552,7 @@ function renderDetail() {
   }
 
   const collection = collections[location.id] ?? {};
-  const places = distributionPlaces(location);
+  const places = allDistributionPlaces(location);
   const selectedPlace = selectedDistributionPlace(location);
   const plusCode = selectedPlace.plusCode || "未生成";
   const selectedAddress = selectedPlace.address || location.address || "未登録";
@@ -585,6 +587,7 @@ function renderDetail() {
     <table class="info-table">
       <tr><th>自治体</th><td>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</td></tr>
       <tr><th>カード番号</th><td>${escapeHtml(cardNumber(location))}</td></tr>
+      <tr><th>英語版</th><td>${renderEnglishVersionValue(location)}</td></tr>
       <tr><th>配布場所</th><td>${renderExternalLinkedValue(selectedPlace.name, facilityUrl)}</td></tr>
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
@@ -690,6 +693,36 @@ function renderExternalLinkedValue(value, url) {
   return `<a class="inline-source-link" href="${escapeAttribute(safeUrl)}" target="_blank" rel="noreferrer">${escapeHtml(value)}</a>`;
 }
 
+function renderEnglishVersionValue(location) {
+  if (!location.hasEnglishVersion) return "GKP記載なし";
+  const label = englishVersionLabel(location);
+  const note = location.englishVersionNote ? `${label}（${location.englishVersionNote}）` : label;
+  const places = englishVersionDistributionPlaces(location);
+  const placeText = places.length > 0
+    ? ` 配布場所: ${places.map((place) => [place.name, place.hours].filter(Boolean).join(" ")).join(" / ")}`
+    : "";
+  return renderExternalLinkedValue(`${note}${placeText}`, location.englishVersionUrl || location.stockUrl || location.sourceUrl);
+}
+
+function renderEnglishVersionBadge(location) {
+  return location.hasEnglishVersion ? `<span class="badge">${escapeHtml(englishVersionLabel(location))}</span>` : "";
+}
+
+function englishVersionSearchText(location) {
+  const places = englishVersionDistributionPlaces(location)
+    .map((place) => [place.name, place.address, place.days, place.hours].join(" "))
+    .join(" ");
+  return location.hasEnglishVersion
+    ? ["英語版", "English", englishVersionLabel(location), location.englishVersionNote, places].filter(Boolean).join(" ")
+    : "";
+}
+
+function englishVersionLabel(location) {
+  if (location.englishVersionStatus === "out_of_stock") return "英語版（在庫なし）";
+  if (location.englishVersionStatus === "event_only") return "英語版（イベント配布）";
+  return "英語版あり";
+}
+
 function displayPlace(location) {
   return location.place || location.address || `${location.prefecture} ${location.municipality}（配布場所未確認）`;
 }
@@ -736,6 +769,36 @@ function distributionPlaces(location) {
     .filter((place) => Number.isFinite(place.lat) && Number.isFinite(place.lng));
 }
 
+function englishVersionDistributionPlaces(location) {
+  if (!Array.isArray(location.englishVersionDistributionPlaces)) return [];
+  return normalizeDistributionPlaces(location.englishVersionDistributionPlaces, location);
+}
+
+function allDistributionPlaces(location) {
+  return [...distributionPlaces(location), ...englishVersionDistributionPlaces(location)];
+}
+
+function normalizeDistributionPlaces(sourcePlaces, location) {
+  return sourcePlaces
+    .map((place, index) => ({
+      id: String(place.id || `place-${index + 1}`),
+      name: place.name || place.place || location.place || displayPlace(location),
+      address: place.address || "",
+      lat: Number(place.lat),
+      lng: Number(place.lng),
+      plusCode: place.plusCode || "",
+      days: place.days || "",
+      hours: place.hours || "",
+      closed: place.closed || "",
+      url: place.url || place.facilityUrl || location.facilityUrl || "",
+      coordinateAccuracy: place.coordinateAccuracy || location.coordinateAccuracy,
+      geocodeQuery: place.geocodeQuery || "",
+      geocodeTitle: place.geocodeTitle || "",
+      geocodeError: place.geocodeError || ""
+    }))
+    .filter((place) => Number.isFinite(place.lat) && Number.isFinite(place.lng));
+}
+
 function primaryDistributionPlace(location) {
   return distributionPlaces(location)[0] ?? {
     id: "primary",
@@ -753,7 +816,7 @@ function primaryDistributionPlace(location) {
 }
 
 function selectedDistributionPlace(location) {
-  const places = distributionPlaces(location);
+  const places = allDistributionPlaces(location);
   return places.find((place) => place.id === selectedPlaceId) ?? places[0] ?? primaryDistributionPlace(location);
 }
 
@@ -1151,7 +1214,7 @@ function toLocationFeatureCollection(items) {
   return {
     type: "FeatureCollection",
     features: items.flatMap((location) =>
-      distributionPlaces(location).map((place) => {
+      allDistributionPlaces(location).map((place) => {
         const category = placeCoordinateCategory(location, place);
         return {
           type: "Feature",
@@ -1807,7 +1870,7 @@ function applyUserPosition(position, options = {}) {
 function distanceFromUser(location) {
   if (!userPosition) return Number.POSITIVE_INFINITY;
   return Math.min(
-    ...distributionPlaces(location).map((place) => {
+    ...allDistributionPlaces(location).map((place) => {
       const latDiff = place.lat - userPosition.lat;
       const averageLat = ((place.lat + userPosition.lat) / 2) * (Math.PI / 180);
       const lngDiff = (place.lng - userPosition.lng) * Math.cos(averageLat);

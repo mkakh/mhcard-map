@@ -23,6 +23,11 @@ for (const location of locations) {
     if (limit > 0 && attempted >= limit) break;
     await geocodeTarget(place, place.address);
   }
+
+  for (const place of location.englishVersionDistributionPlaces ?? []) {
+    if (limit > 0 && attempted >= limit) break;
+    await geocodeTarget(place, place.address);
+  }
 }
 
 await writeJson(dataPath, locations);

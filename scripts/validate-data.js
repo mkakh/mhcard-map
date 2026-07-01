@@ -4,7 +4,8 @@ import { join } from "node:path";
 const dataPath = join(process.cwd(), "data", "locations.json");
 const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
 const allowedStatuses = new Set(["配布中", "休止中", "要確認"]);
-const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "imageUrl"];
+const allowedEnglishVersionStatuses = new Set(["available", "out_of_stock", "event_only", "unknown"]);
+const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "englishVersionUrl", "imageUrl"];
 const placeUrlFields = ["url", "facilityUrl", "stockUrl", "conditionUrl"];
 const requiredStringFields = ["id", "cardName", "prefecture", "municipality", "status", "updatedAt", "plusCode"];
 
@@ -53,6 +54,15 @@ function validateLocations(items) {
     if (!allowedStatuses.has(location.status)) fail(`${label}: unknown status ${location.status}`);
     if (!allowedCoordinateAccuracy.has(location.coordinateAccuracy)) fail(`${label}: unknown coordinateAccuracy ${location.coordinateAccuracy}`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(location.updatedAt ?? ""))) fail(`${label}: updatedAt must be YYYY-MM-DD`);
+    if (location.hasEnglishVersion !== undefined && typeof location.hasEnglishVersion !== "boolean") {
+      fail(`${label}: hasEnglishVersion must be a boolean`);
+    }
+    if (location.englishVersionStatus !== undefined && !allowedEnglishVersionStatuses.has(location.englishVersionStatus)) {
+      fail(`${label}: unknown englishVersionStatus ${location.englishVersionStatus}`);
+    }
+    if (location.hasEnglishVersion === true && !location.englishVersionStatus) {
+      fail(`${label}: englishVersionStatus is required when hasEnglishVersion is true`);
+    }
 
     validateCoordinate(label, "lat", location.lat, 20, 46);
     validateCoordinate(label, "lng", location.lng, 122, 154);
@@ -65,6 +75,7 @@ function validateLocations(items) {
     }
 
     validateDistributionPlaces(label, location.distributionPlaces);
+    validateDistributionPlaces(label, location.englishVersionDistributionPlaces, "englishVersionDistributionPlaces");
 
     if (!String(location.place ?? "").trim() && !String(location.address ?? "").trim()) {
       warnings.push(`${label}: both place and address are empty`);
@@ -72,16 +83,16 @@ function validateLocations(items) {
   });
 }
 
-function validateDistributionPlaces(label, distributionPlaces) {
+function validateDistributionPlaces(label, distributionPlaces, fieldName = "distributionPlaces") {
   if (distributionPlaces === undefined) return;
   if (!Array.isArray(distributionPlaces)) {
-    fail(`${label}: distributionPlaces must be an array`);
+    fail(`${label}: ${fieldName} must be an array`);
     return;
   }
 
   const ids = new Set();
   distributionPlaces.forEach((place, index) => {
-    const placeLabel = `${label}: distributionPlaces[${index}]`;
+    const placeLabel = `${label}: ${fieldName}[${index}]`;
     if (!place || typeof place !== "object") {
       fail(`${placeLabel}: must be an object`);
       return;
