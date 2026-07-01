@@ -144,6 +144,9 @@ for (const location of locations) {
 
   const legacyIds = [...new Set(existing.legacyIds ?? [])];
   if (legacyIds.length > 0) location.legacyIds = legacyIds;
+  if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
+    location.officialDesignNames = existing.officialDesignNames;
+  }
   mergeGeneratedDistributionPlaces(location, existing);
   if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
 }
@@ -621,6 +624,7 @@ function imageKey(imageUrl) {
 function hasSameImportedContent(existing, next) {
   const keys = [
     "cardName",
+    "officialDesignNames",
     "prefecture",
     "municipality",
     "place",

@@ -350,6 +350,7 @@ function getFilteredLocations() {
       const collection = collections[location.id];
       const haystack = [
         location.cardName,
+        officialDesignNamesText(location),
         location.prefecture,
         location.municipality,
         displayPlace(location),
@@ -694,7 +695,7 @@ function renderExternalLinkedValue(value, url) {
 }
 
 function renderEnglishVersionValue(location) {
-  if (!location.hasEnglishVersion) return "GKP記載なし";
+  if (!location.hasEnglishVersion) return "記載なし";
   const label = englishVersionLabel(location);
   const note = location.englishVersionNote ? `${label}（${location.englishVersionNote}）` : label;
   const places = englishVersionDistributionPlaces(location);
@@ -721,6 +722,10 @@ function englishVersionLabel(location) {
   if (location.englishVersionStatus === "out_of_stock") return "英語版（在庫なし）";
   if (location.englishVersionStatus === "event_only") return "英語版（イベント配布）";
   return "英語版あり";
+}
+
+function officialDesignNamesText(location) {
+  return Array.isArray(location.officialDesignNames) ? location.officialDesignNames.join(" ") : "";
 }
 
 function displayPlace(location) {
