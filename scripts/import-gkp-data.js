@@ -95,6 +95,8 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       municipalityName,
       prefecture
     });
+    const primaryPlace = distributionPlaces[0]?.name || place;
+    const primaryAddress = distributionPlaces[0]?.address || address;
     const [lat, lng] = approximateCoordinate(baseLat, baseLng, prefectureIndex);
     const legacyId = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
     const id = stableLocationId(imageUrl, legacyId);
@@ -105,8 +107,8 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       cardName: cardCode ? `${municipality.replace(/\s*[（(][^）)]+[）)]\s*/g, "").trim()} ${cardCode}` : municipality,
       prefecture,
       municipality: municipalityName,
-      place,
-      address,
+      place: primaryPlace,
+      address: primaryAddress,
       lat,
       lng,
       hours: cleanupText(hoursHtml),
@@ -248,8 +250,9 @@ function parseLinkedLines(html) {
   return String(html ?? "")
     .replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (_, attrs, label) => {
       const url = firstMatch(attrs, /href=["']([^"']+)["']/i);
-      return `\n[[LINK:${url}|${cleanupText(label)}]]\n`;
+      return ` [[LINK:${url}|${cleanupText(label)}]] `;
     })
+    .replace(/<B(?!R\b)(?=[^>\s/=])/gi, "\n")
     .replace(/<br\s*\/?>|<\/p>|<\/div>|<\/li>/gi, "\n")
     .replace(/<[^>]+>/g, "")
     .replace(/\r/g, "")
@@ -257,8 +260,11 @@ function parseLinkedLines(html) {
     .map((raw) => decodeEntities(raw).replace(/\s+/g, " ").trim())
     .filter(Boolean)
     .map((text) => {
-      const linked = text.match(/^\[\[LINK:(.*?)\|(.*?)\]\]$/);
-      return linked ? { text: linked[2].trim(), url: absolutizeUrl(linked[1]) } : { text, url: "" };
+      text = text.replace(/^.*電話[^[]*(\[\[LINK:)/, "$1").trim();
+      const linked = text.match(/\[\[LINK:(.*?)\|(.*?)\]\]/);
+      return linked
+        ? { text: text.replace(linked[0], linked[2]).trim(), url: absolutizeUrl(linked[1]) }
+        : { text, url: "" };
     });
 }
 
@@ -272,7 +278,7 @@ function parsePlaceLine(line, municipalityName, prefecture, currentDays = "") {
     return {
       marker,
       days: normalizeDays(days),
-      name: body,
+      name: normalizePlaceName(body),
       address: ""
     };
   }
@@ -289,13 +295,19 @@ function parsePlaceLine(line, municipalityName, prefecture, currentDays = "") {
 function splitNameAndAddress(value, municipalityName, prefecture) {
   const text = value.replace(/^[:：\s]+/, "").trim();
   const addressIndex = firstAddressIndex(text, municipalityName, prefecture);
+  if (addressIndex === 0) {
+    return {
+      name: "",
+      address: normalizeAddress(text)
+    };
+  }
   if (addressIndex > 0) {
     return {
-      name: text.slice(0, addressIndex).trim(),
+      name: normalizePlaceName(text.slice(0, addressIndex)),
       address: normalizeAddress(text.slice(addressIndex).trim())
     };
   }
-  return { name: text, address: "" };
+  return { name: normalizePlaceName(text), address: "" };
 }
 
 function firstAddressIndex(text, municipalityName, prefecture) {
@@ -304,8 +316,7 @@ function firstAddressIndex(text, municipalityName, prefecture) {
     ...allIndexes(text, municipalityName),
     ...municipalityName.split(/\s+/).filter(Boolean).flatMap((token) => allIndexes(text, token))
   ]
-    .filter(Boolean)
-    .filter((index) => index > 0);
+    .filter((index) => index >= 0);
   return candidates.length > 0 ? Math.min(...candidates) : -1;
 }
 
@@ -338,8 +349,13 @@ function isAddressOnlyLine(line, municipalityName, prefecture) {
 
 function hasAddressPattern(line, municipalityName, prefecture) {
   const text = normalizeAddress(line);
-  if (!/[0-9０-９一二三四五六七八九十]/.test(text)) return false;
+  if (!hasAddressNumberPattern(text)) return false;
   return firstAddressIndex(` ${text}`, municipalityName, prefecture) > 0 || text.includes(prefecture);
+}
+
+function hasAddressNumberPattern(text) {
+  return /[0-9０-９一二三四五六七八九十]+(?:丁目|番|号|条|線|[-－‐‑‒–—―ー−])/.test(text)
+    || /[都道府県市区町村].*[0-9０-９]{2,}(?:\s|$|[）)])/.test(text);
 }
 
 function parseHourGroups(text) {
@@ -453,6 +469,14 @@ function normalizeAddress(value) {
   return normalized;
 }
 
+function normalizePlaceName(value) {
+  return String(value ?? "")
+    .replace(/^[①-⑳]\s*/, "")
+    .replace(/<\w+\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function normalizeDays(value) {
   return String(value ?? "")
     .replace(/\s+/g, "")
@@ -462,7 +486,7 @@ function normalizeDays(value) {
 }
 
 function normalizeTimeText(value) {
-  return String(value ?? "").replace(/\s+/g, " ").trim();
+  return String(value ?? "").replace(/^[①-⑳]\s*/, "").replace(/\s+/g, " ").trim();
 }
 
 function normalizeClosedText(value) {
