@@ -1,0 +1,6 @@
+interface:
+  display_name: "Manhole Card Official Audit"
+  short_description: "Audit official names, English versions, and sources"
+  default_prompt: "Use $manhole-card-official-audit to review official manhole-card source candidates in this repository."
+policy:
+  allow_implicit_invocation: true

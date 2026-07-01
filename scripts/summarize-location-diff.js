@@ -59,6 +59,10 @@ const lines = [
   "",
   ...fieldCountLines(),
   "",
+  "## Manual Codex Review",
+  "",
+  ...manualCodexReviewLines(),
+  "",
   "## Added",
   "",
   ...locationListLines(added),
@@ -89,6 +93,49 @@ function fieldCountLines() {
   const entries = [...fieldCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   if (entries.length === 0) return ["No field-level changes detected."];
   return entries.map(([field, count]) => `- ${field}: ${count}`);
+}
+
+function manualCodexReviewLines() {
+  const gkpOnly = after.filter((location) => isGkpOnlyLocation(location));
+  const missingOfficialDesignNames = after.filter((location) => !hasOfficialDesignNames(location));
+  const changedSourceFields = meaningfulChanged.filter((location) =>
+    location.meaningfulFields.some((field) =>
+      ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "officialDesignNames", "hasEnglishVersion", "englishVersionStatus", "englishVersionNote", "englishVersionUrl", "englishVersionDistributionPlaces"].includes(field)
+    )
+  );
+
+  const lines = [
+    "- Codex/AI search is not run by this workflow.",
+    "- If the counts below look suspicious, run `$manhole-card-official-audit` manually and treat search results as candidates only.",
+    `- GKP-only source records: ${gkpOnly.length}`,
+    `- Records without officialDesignNames: ${missingOfficialDesignNames.length}`,
+    `- Source/English/official-name records changed in this PR: ${changedSourceFields.length}`
+  ];
+
+  if (gkpOnly.length > 0) {
+    lines.push("", "Top GKP-only records:");
+    lines.push(...gkpOnly.slice(0, 10).map((location) => `- ${locationLabel(location)}`));
+    if (gkpOnly.length > 10) lines.push(`- Additional GKP-only records omitted: ${gkpOnly.length - 10}`);
+  }
+
+  return lines;
+}
+
+function isGkpOnlyLocation(location) {
+  const urls = [location.sourceUrl, location.stockUrl, location.conditionUrl].filter(Boolean);
+  return urls.length > 0 && urls.every(isGkpUrl);
+}
+
+function isGkpUrl(value) {
+  try {
+    return new URL(value).hostname.endsWith("gk-p.jp");
+  } catch {
+    return false;
+  }
+}
+
+function hasOfficialDesignNames(location) {
+  return Array.isArray(location.officialDesignNames) && location.officialDesignNames.length > 0;
 }
 
 function locationListLines(locations) {

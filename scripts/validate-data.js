@@ -63,6 +63,7 @@ function validateLocations(items) {
     if (location.hasEnglishVersion === true && !location.englishVersionStatus) {
       fail(`${label}: englishVersionStatus is required when hasEnglishVersion is true`);
     }
+    validateStringList(label, "officialDesignNames", location.officialDesignNames);
 
     validateCoordinate(label, "lat", location.lat, 20, 46);
     validateCoordinate(label, "lng", location.lng, 122, 154);
@@ -80,6 +81,22 @@ function validateLocations(items) {
     if (!String(location.place ?? "").trim() && !String(location.address ?? "").trim()) {
       warnings.push(`${label}: both place and address are empty`);
     }
+  });
+}
+
+function validateStringList(label, field, values) {
+  if (values === undefined) return;
+  if (!Array.isArray(values)) {
+    fail(`${label}: ${field} must be an array`);
+    return;
+  }
+
+  const normalized = new Set();
+  values.forEach((value, index) => {
+    const text = String(value ?? "").trim();
+    if (!text) fail(`${label}: ${field}[${index}] must be a non-empty string`);
+    if (normalized.has(text)) fail(`${label}: duplicate ${field} value ${text}`);
+    normalized.add(text);
   });
 }
 

@@ -275,6 +275,7 @@ Important fields:
 | `id` | Stable location identifier |
 | `legacyIds` | Previous identifiers used for localStorage migration |
 | `cardName` | Card display name |
+| `officialDesignNames` | Official design/topic names used by source pages, when available |
 | `prefecture` | Prefecture |
 | `municipality` | Municipality |
 | `place` | Distribution place |

@@ -8123,7 +8123,7 @@
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
-    "englishVersionNote": "マンホールカードについて マンホールカードは「下水道広報プラットホーム（Ｇkp）」（事務局：（公社）日本下水道協会）が企画・監修するマンホール蓋のコレクションカードです。茨城県内では水戸市（第1弾）、つくば市（第2弾）、石岡市（第3弾、第4弾）に続き、第5弾として、鹿島アントラーズデザインマンホール蓋のカードを配布しています。平成31年2月15日より英語版の配布も開始しています。",
+    "englishVersionNote": "日本語・英語版共に、下記配布場所へ直接お越しいただき、1人につき1枚限定でお渡しします。",
     "englishVersionUrl": "https://city.kashima.ibaraki.jp/soshiki/54/3262.html",
     "geocodeQuery": "茨城県鹿嶋市粟生東山2887",
     "geocodeTitle": "茨城県鹿嶋市粟生",
@@ -22021,7 +22021,7 @@
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
-    "englishVersionNote": "北前船廻船問屋森家のマンホールカードに英語版ができました。配布場所は日本語版と同様です。",
+    "englishVersionNote": "※日本語版と英語版のどちらか一枚のみのお渡しとなります。",
     "englishVersionUrl": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html",
     "geocodeQuery": "富山市岩瀬天神町48",
     "geocodeTitle": "富山県富山市岩瀬天神町４８番地",
@@ -22085,7 +22085,7 @@
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
-    "englishVersionNote": "越中八尾おわら風の盆のマンホールカードに英語版ができました。配布場所は日本語版と同様です。",
+    "englishVersionNote": "※日本語版と英語版のどちらか一枚のみのお渡しとなります。",
     "englishVersionUrl": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html",
     "geocodeQuery": "富山市八尾町上新町2898-1",
     "geocodeTitle": "富山県富山市八尾町上新町２８９８番地",
@@ -22538,6 +22538,9 @@
     "facilityUrl": "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html",
     "stockUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
     "conditionUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
+    "officialDesignNames": [
+      "加賀水引"
+    ],
     "geocodeQuery": "石川県金沢市南町4-1金沢ニュ-グランドビル1階",
     "geocodeTitle": "石川県金沢市南町４番１号",
     "geocodedAt": "2026-07-01",
@@ -22727,6 +22730,9 @@
     "facilityUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
     "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+    "officialDesignNames": [
+      "林業集落排水専用マンホール蓋"
+    ],
     "geocodeQuery": "石川県鳳珠郡穴水町字大町チの41番地6",
     "geocodeTitle": "石川県穴水町字大町チ",
     "geocodedAt": "2026-07-01",
@@ -22759,6 +22765,9 @@
     "facilityUrl": "https://www.town.anamizu.lg.jp/",
     "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+    "officialDesignNames": [
+      "ぼらまちやぐら"
+    ],
     "geocodeQuery": "石川県鳳珠郡穴水町字川島ラの174番地",
     "geocodeTitle": "石川県穴水町字川島ラ",
     "geocodedAt": "2026-07-01",
@@ -39561,6 +39570,9 @@
     "facilityUrl": "https://hiroshima-resthouse.jp/",
     "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+    "officialDesignNames": [
+      "広島サミット県民会議"
+    ],
     "hasEnglishVersion": true,
     "englishVersionStatus": "out_of_stock",
     "englishVersionNote": "広島サミット県民会議 英語版：在庫なし",
@@ -39693,6 +39705,9 @@
     "facilityUrl": "http://www.cf.city.hiroshima.jp/misasa-k/",
     "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+    "officialDesignNames": [
+      "折り鶴"
+    ],
     "hasEnglishVersion": true,
     "englishVersionStatus": "out_of_stock",
     "englishVersionNote": "英語版 ：在庫なし",
@@ -43748,6 +43763,13 @@
     "facilityUrl": "https://www.kitakyushuspacelabo.jp/",
     "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+    "officialDesignNames": [
+      "官営八幡製鐵所旧本事務所"
+    ],
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "available",
+    "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
+    "englishVersionUrl": "https://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "geocodeQuery": "福岡県北九州市八幡東区東田4-1-1",
     "geocodeTitle": "福岡県北九州市八幡東区東田四丁目１番",
     "geocodedAt": "2026-07-01",
@@ -43814,6 +43836,13 @@
     "facilityUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01300023.html",
     "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+    "officialDesignNames": [
+      "ギラヴァンツ北九州 ギラン"
+    ],
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "available",
+    "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
+    "englishVersionUrl": "https://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "geocodeQuery": "北九州市小倉北区西港町96-3",
     "geocodeTitle": "福岡県北九州市小倉北区西港町９６番地",
     "geocodedAt": "2026-07-01",
@@ -43846,6 +43875,13 @@
     "facilityUrl": "https://www.ktqmm.jp/",
     "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+    "officialDesignNames": [
+      "銀河鉄道999 メーテル"
+    ],
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "available",
+    "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
+    "englishVersionUrl": "https://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "geocodeQuery": "福岡県北九州市小倉北区浅野2丁目14-5",
     "geocodeTitle": "福岡県北九州市小倉北区浅野二丁目１４番",
     "geocodedAt": "2026-07-01",
@@ -43878,6 +43914,13 @@
     "facilityUrl": "https://seven-eleven.areamarker.com/711map/info/547276?shopid=547276",
     "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+    "officialDesignNames": [
+      "若松区"
+    ],
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "available",
+    "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
+    "englishVersionUrl": "https://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
     "geocodeQuery": "福岡県北九州市若松区浜町1丁目1-4",
     "geocodeTitle": "福岡県北九州市若松区浜町一丁目１番４号",
     "geocodedAt": "2026-07-01",

@@ -35,6 +35,18 @@ const verifiedEnglishVersionDistributionPlaces = new Map([
   ]
 ]);
 
+const verifiedOfficialDesignNames = new Map([
+  ["17-201-a-01", ["加賀水引"]],
+  ["17-461-a-01", ["林業集落排水専用マンホール蓋"]],
+  ["17-461-b-01", ["ぼらまちやぐら"]],
+  ["34-100-c-01", ["広島サミット県民会議"]],
+  ["34-100-g-01", ["折り鶴"]],
+  ["40-100-a-01", ["官営八幡製鐵所旧本事務所"]],
+  ["40-100-b-01", ["ギラヴァンツ北九州 ギラン"]],
+  ["40-100-c-01", ["銀河鉄道999 メーテル"]],
+  ["40-100-d-01", ["若松区"]]
+]);
+
 const verifiedEnglishVersions = new Map([
   [
     "01-214-b01",
@@ -144,6 +156,7 @@ for (const location of locations) {
 const sourcePages = await loadEnglishVersionSourcePages(locations);
 for (const location of locations) {
   const before = JSON.stringify(linkSnapshot(location));
+  applyVerifiedOfficialDesignNames(location);
   applyEnglishVersionFromSourcePages(location, sourcePages);
   applyVerifiedEnglishVersion(location);
   applyVerifiedEnglishVersionDistributionPlaces(location);
@@ -186,7 +199,8 @@ function linkSnapshot(location) {
     englishVersionStatus: location.englishVersionStatus,
     englishVersionNote: location.englishVersionNote,
     englishVersionUrl: location.englishVersionUrl,
-    englishVersionDistributionPlaces: location.englishVersionDistributionPlaces
+    englishVersionDistributionPlaces: location.englishVersionDistributionPlaces,
+    officialDesignNames: location.officialDesignNames
   };
 }
 
@@ -296,6 +310,12 @@ function applyVerifiedEnglishVersionDistributionPlaces(location) {
   location.hasEnglishVersion = true;
   location.englishVersionStatus = englishVersionStatus(location.englishVersionNote);
   location.englishVersionDistributionPlaces = places;
+}
+
+function applyVerifiedOfficialDesignNames(location) {
+  const names = verifiedOfficialDesignNames.get(location.id);
+  if (!names) return;
+  location.officialDesignNames = names;
 }
 
 function applyVerifiedEnglishVersion(location) {
@@ -447,6 +467,9 @@ function cardSuffix(location) {
 }
 
 function sourcePageSegmentForLocation(location, lines) {
+  const designSegment = sourcePageSegmentByOfficialDesignName(location, lines);
+  if (designSegment.length > 0) return designSegment;
+
   const series = String(location.series ?? "").trim();
   if (!series) return sourcePageSegmentByPlace(location, lines);
 
@@ -460,6 +483,30 @@ function sourcePageSegmentForLocation(location, lines) {
     .findIndex((line) => (!includesCurrentSeries(line) && /第[0-9０-９]+弾/.test(line)) || isSourcePageSectionBoundary(line));
   const end = endOffset === -1 ? Math.min(lines.length, start + 50) : start + 1 + endOffset;
   return lines.slice(start, end);
+}
+
+function sourcePageSegmentByOfficialDesignName(location, lines) {
+  const names = Array.isArray(location.officialDesignNames) ? location.officialDesignNames : [];
+  const nameKeys = names.map(normalizePlaceKey).filter(Boolean);
+  if (nameKeys.length === 0) return [];
+
+  const start = lines.findIndex((line) => {
+    const lineKey = normalizePlaceKey(line);
+    return nameKeys.some((nameKey) => lineKey.includes(nameKey));
+  });
+  if (start === -1) return [];
+
+  const endOffset = lines
+    .slice(start + 1)
+    .findIndex((line) => isOfficialDesignSectionBoundary(line, nameKeys));
+  const end = endOffset === -1 ? Math.min(lines.length, start + 20) : start + 1 + endOffset;
+  return lines.slice(start, end);
+}
+
+function isOfficialDesignSectionBoundary(line, currentNameKeys) {
+  const key = normalizePlaceKey(line);
+  if (currentNameKeys.some((nameKey) => key.includes(nameKey))) return false;
+  return /^「.+」のカード/.test(line) || isLocalCardHeading(line) || isSourcePageSectionBoundary(line);
 }
 
 function sourcePageSegmentByPlace(location, lines) {
@@ -516,7 +563,8 @@ function bestEnglishVersionNote(location, lines) {
   const bilingualLines = lines.filter((line) => /日本語版と英語版/.test(line));
   if (bilingualLines.length > 1) return `${location.series}マンホールカード（日本語版と英語版）`;
 
-  return lines.find((line) => /マンホールカード.*英語版ができました|English\s+version/i.test(line))
+  return lines.find((line) => /英語版.*(配布も開始|配布しています|お渡し|配布中)/.test(line) && line.length <= 120)
+    ?? lines.find((line) => /マンホールカード.*英語版ができました|English\s+version/i.test(line))
     ?? lines.find((line) => /日本語版の他に.*英語版/.test(line))
     ?? lines.find((line) => /英語版.*(配布は終了|配布終了|配布.*終了|在庫なし)/.test(line))
     ?? lines.find((line) => /英語版.*配布/.test(line) && !/配布.*終了/.test(line) && !/パンフレット/.test(line))
