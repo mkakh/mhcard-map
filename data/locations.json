@@ -162,7 +162,7 @@
     "plusCode": "8RH2QP78+GV"
   },
   {
-    "id": "01-203-a-02",
+    "id": "01-203-a-01",
     "cardName": "小樽市",
     "prefecture": "北海道",
     "municipality": "小樽市",
@@ -183,7 +183,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-小樽市-005"
+      "01-小樽市-005",
+      "01-203-a-02"
     ],
     "facilityUrl": "https://www.city.otaru.lg.jp/docs/2020112200455/",
     "stockUrl": "https://www.city.otaru.lg.jp/docs/2020112200455/",
@@ -3101,7 +3102,7 @@
     "plusCode": "8RG3C84R+9V"
   },
   {
-    "id": "03-000-a-02",
+    "id": "03-000-a-01",
     "cardName": "岩手県 （流域下水道）",
     "prefecture": "岩手県",
     "municipality": "岩手県",
@@ -3122,7 +3123,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "03-岩手県-流域下水道-001"
+      "03-岩手県-流域下水道-001",
+      "03-000-a-02"
     ],
     "stockUrl": "https://www.pref.iwate.jp/kendozukuri/toshigesui/gesui/1036130/1022445.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=03#mhcard_result",
@@ -10635,7 +10637,7 @@
     "plusCode": "8Q7XRMG5+WH"
   },
   {
-    "id": "11-010-a101",
+    "id": "11-010-a-01",
     "cardName": "埼玉県下水道公社",
     "prefecture": "埼玉県",
     "municipality": "埼玉県下水道公社",
@@ -10656,7 +10658,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-埼玉県下水道公社-002"
+      "11-埼玉県下水道公社-002",
+      "11-010-a101"
     ],
     "facilityUrl": "http://www.saitama-swg.or.jp/nanbu_hp_20120423/index.html",
     "stockUrl": "https://www.saitama-swg.or.jp/manholecard.html",
@@ -29297,7 +29300,7 @@
     "plusCode": "8Q7V2322+H7"
   },
   {
-    "id": "23-226-a-02",
+    "id": "23-226-a-01",
     "cardName": "尾張旭市",
     "prefecture": "愛知県",
     "municipality": "尾張旭市",
@@ -29319,7 +29322,8 @@
     "updatedAt": "2026-07-01",
     "legacyIds": [
       "23-尾張旭市-040",
-      "23-226-a02"
+      "23-226-a02",
+      "23-226-a-02"
     ],
     "facilityUrl": "https://www.city.owariasahi.lg.jp/page/2168.html",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
@@ -36620,7 +36624,7 @@
     "plusCode": "8Q6PWRMH+6F"
   },
   {
-    "id": "28-221-a-02",
+    "id": "28-221-a-01",
     "cardName": "丹波篠山市",
     "prefecture": "兵庫県",
     "municipality": "丹波篠山市",
@@ -36641,7 +36645,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "28-丹波篠山市-030"
+      "28-丹波篠山市-030",
+      "28-221-a-02"
     ],
     "facilityUrl": "https://www.city.tambasasayama.lg.jp/",
     "stockUrl": "https://www.city.tambasasayama.lg.jp/soshikikarasagasu/jogesuidoubu/keieikikakuka/2653.html",
@@ -37136,7 +37141,7 @@
     "plusCode": "8Q6PRHPG+VM"
   },
   {
-    "id": "28-481-a-02",
+    "id": "28-481-a-01",
     "cardName": "上郡町",
     "prefecture": "兵庫県",
     "municipality": "上郡町",
@@ -37191,7 +37196,8 @@
       }
     ],
     "legacyIds": [
-      "28-上郡町-043"
+      "28-上郡町-043",
+      "28-481-a-02"
     ],
     "facilityUrl": "https://www.town.kamigori.hyogo.jp/soshiki/chiiki/shisetsuosagasu/1_1/2344.html",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
@@ -41688,7 +41694,7 @@
       }
     ],
     "legacyIds": [
-      "37-香川県-流域下水道-a001-001"
+      "37-香川県-流域下水道-a002-002"
     ],
     "facilityUrl": "https://kagawa-gesui.or.jp/",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
@@ -41754,7 +41760,7 @@
       }
     ],
     "legacyIds": [
-      "37-香川県-流域下水道-a002-002"
+      "37-香川県-流域下水道-a001-001"
     ],
     "facilityUrl": "https://kagawa-gesui.or.jp/publics/index/28/",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",

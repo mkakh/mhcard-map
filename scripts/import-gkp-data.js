@@ -108,7 +108,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 
     const location = {
       id,
-      cardName: cardCode ? `${municipalityName} ${cardCode}` : municipality,
+      cardName: cardCode && isPlainCardCodeMarker(municipality) ? `${municipalityName} ${cardCode}` : municipality,
       prefecture,
       municipality: municipalityName,
       place: primaryPlace,
@@ -141,12 +141,14 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
   }
 }
 
+const currentIds = new Set(locations.map((location) => location.id));
+
 for (const location of locations) {
   const existing = existingById.get(location.id) ?? existingByImageKey.get(imageKey(location.imageUrl));
   if (!existing) continue;
 
-  const legacyIds = [...new Set(existing.legacyIds ?? [])];
-  if (existing.id && existing.id !== location.id) legacyIds.push(existing.id);
+  const legacyIds = [...new Set(existing.legacyIds ?? [])].filter((id) => id !== location.id && !currentIds.has(id));
+  if (existing.id && existing.id !== location.id && !currentIds.has(existing.id)) legacyIds.push(existing.id);
   const uniqueLegacyIds = [...new Set(legacyIds)];
   if (uniqueLegacyIds.length > 0) location.legacyIds = uniqueLegacyIds;
   if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
@@ -601,11 +603,24 @@ function isDistributionStopped(stock, distributionText) {
 }
 
 function extractCardCode(value) {
+  const text = String(value ?? "");
+  const parentheticalCode = text.match(/[（(][^）)]*?([A-Z][0-9]{3})\s*[）)]/);
+  if (parentheticalCode) return parentheticalCode[1];
   return value.match(/[（(]\s*([A-Z][0-9]{3})\s*[）)]/)?.[1] ?? "";
 }
 
 function removeParentheticalMarker(value) {
+  const normalizedText = String(value ?? "");
+  const withoutAnyParenthetical = normalizedText.replace(/\s*[（(][^）)]*[）)]\s*/g, "").trim();
+  if (withoutAnyParenthetical !== normalizedText.trim()) return withoutAnyParenthetical;
+  const text = String(value ?? "");
+  const withoutCardCode = text.replace(/\s*[（(][^）)]*?[A-Z][0-9]{3}\s*[）)]\s*/g, "").trim();
+  if (withoutCardCode !== text.trim()) return withoutCardCode;
   return String(value ?? "").replace(/\s*[（(][^）)]*[）)]\s*/g, "").trim();
+}
+
+function isPlainCardCodeMarker(value) {
+  return /[（(]\s*[A-Z][0-9]{3}\s*[）)]/.test(String(value ?? ""));
 }
 
 function slugify(value) {
@@ -620,7 +635,7 @@ function stableLocationId(imageUrl, fallback, cardCode = "", municipalityCode = 
   const key = imageKey(imageUrl);
   if (!key) return fallback;
 
-  const suffix = cardCodeIdSuffix(cardCode) || imageCardSuffix(key);
+  const suffix = cardCodeIdSuffix(cardCode) || imageCardFamilySuffix(key);
   const prefix = municipalityCode || key.match(/^(\d{2}-\d{3})/)?.[1] || "";
   if (prefix && suffix) return `${prefix}-${suffix}`;
 
@@ -646,18 +661,13 @@ function cardCodeIdSuffix(cardCode) {
   return `${letter}${number}`;
 }
 
-function imageCardSuffix(key) {
+function imageCardFamilySuffix(key) {
   const normalized = String(key ?? "");
-  const cardCodeMatch = normalized.match(/([a-z])0*(\d{1,3})(?:-\d+)?$/);
-  if (!cardCodeMatch) {
-    const bareSuffixMatch = normalized.match(/(?:^|-)([a-z])$/);
-    return bareSuffixMatch ? `${bareSuffixMatch[1]}-01` : "";
-  }
-  const letter = cardCodeMatch[1].toLowerCase();
-  const number = Number(cardCodeMatch[2]);
-  if (number === 1) return `${letter}-01`;
-  if (number < 100) return `${letter}-${String(number).padStart(2, "0")}`;
-  return `${letter}${number}`;
+  const cardCodeMatch = normalized.match(/([a-z])-?0*(\d{1,3})(?:-\d+)?$/);
+  if (cardCodeMatch) return `${cardCodeMatch[1].toLowerCase()}-01`;
+
+  const bareSuffixMatch = normalized.match(/(?:^|-)([a-z])$/);
+  return bareSuffixMatch ? `${bareSuffixMatch[1]}-01` : "";
 }
 
 function municipalityCodeKey(prefecture, municipality) {
