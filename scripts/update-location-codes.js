@@ -12,6 +12,7 @@ let skipped = 0;
 for (const location of locations) {
   updatePlusCode(location);
   (location.distributionPlaces ?? []).forEach(updatePlusCode);
+  (location.englishVersionDistributionPlaces ?? []).forEach(updatePlusCode);
 }
 
 await writeFile(dataPath, `${JSON.stringify(locations, null, 2)}\n`, "utf8");

@@ -290,6 +290,11 @@ Important fields:
 | `facilityUrl` | Distribution place URL |
 | `stockUrl` | Stock confirmation URL |
 | `conditionUrl` | Distribution condition URL |
+| `hasEnglishVersion` | Whether the GKP source indicates an English version is available |
+| `englishVersionStatus` | English version status: `available`, `out_of_stock`, `event_only`, or `unknown` |
+| `englishVersionNote` | Source note for the English version, when available |
+| `englishVersionUrl` | English version confirmation URL, when available |
+| `englishVersionDistributionPlaces` | English-version-only distribution places, when they differ from the regular card distribution places |
 | `imageUrl` | Card image URL |
 | `series` | Card series |
 | `issuedOn` | Issue date |

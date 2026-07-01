@@ -87,6 +87,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
     const municipalityName = municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim();
     const address = findAddress(distributionText, prefecture, municipalityName);
+    const englishVersion = extractEnglishVersion({ distributionHtml, hoursHtml, stockHtml });
     const distributionPlaces = extractDistributionPlaces({
       distributionHtml,
       hoursHtml,
@@ -124,6 +125,12 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       coordinateAccuracy: "prefecture_approx",
       updatedAt: today
     };
+    if (englishVersion.available) {
+      location.hasEnglishVersion = true;
+      location.englishVersionStatus = englishVersion.status;
+      if (englishVersion.note) location.englishVersionNote = englishVersion.note;
+      if (englishVersion.url) location.englishVersionUrl = englishVersion.url;
+    }
     if (distributionPlaces.length > 1) location.distributionPlaces = distributionPlaces;
     locations.push(location);
 
@@ -172,6 +179,38 @@ function decodeEntities(value) {
 
 function firstMatch(value, pattern) {
   return value.match(pattern)?.[1] ?? "";
+}
+
+function extractEnglishVersion({ distributionHtml, hoursHtml, stockHtml }) {
+  const htmlParts = [distributionHtml, hoursHtml, stockHtml];
+  const note = htmlParts
+    .flatMap((html) => cleanupText(html).split("\n"))
+    .map((line) => line.trim())
+    .find((line) => hasEnglishVersionText(line)) ?? "";
+
+  return {
+    available: Boolean(note),
+    note,
+    status: englishVersionStatus(note),
+    url: htmlParts.map(englishVersionUrlFromHtml).find(Boolean) ?? ""
+  };
+}
+
+function englishVersionStatus(value) {
+  const text = String(value ?? "");
+  if (/在庫なし|配布.*終了|配布休止|一時中止|中止/.test(text)) return "out_of_stock";
+  if (/イベント|event/i.test(text)) return "event_only";
+  return text ? "available" : "unknown";
+}
+
+function hasEnglishVersionText(value) {
+  return /英語版|English\s+version/i.test(String(value ?? ""));
+}
+
+function englishVersionUrlFromHtml(html) {
+  const chunks = String(html ?? "").split(/<br\s*\/?>|<\/p>|<\/div>|<\/li>|\r?\n/gi);
+  const chunk = chunks.find((part) => hasEnglishVersionText(decodeEntities(part)));
+  return chunk ? absolutizeUrl(firstMatch(chunk, /href=["']([^"']+)["']/i)) : "";
 }
 
 function firstMeaningfulLine(html) {
@@ -595,6 +634,10 @@ function hasSameImportedContent(existing, next) {
     "imageUrl",
     "series",
     "issuedOn",
+    "hasEnglishVersion",
+    "englishVersionStatus",
+    "englishVersionNote",
+    "englishVersionUrl",
     "sourceType",
     "distributionPlaces"
   ];
