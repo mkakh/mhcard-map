@@ -35,6 +35,41 @@ const verifiedEnglishVersionDistributionPlaces = new Map([
   ]
 ]);
 
+const verifiedEnglishVersions = new Map([
+  [
+    "01-214-b01",
+    {
+      status: "event_only",
+      note: "GUNDAM公式: 稚内・豊富・天塩のガンダムマンホールカード英語版がイベント配布",
+      url: "https://gundam-official.com/news/i/news/hot-topics/01_12135"
+    }
+  ],
+  [
+    "01-516-d01",
+    {
+      status: "event_only",
+      note: "・英語版については、イベント配布としています",
+      url: "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html"
+    }
+  ],
+  [
+    "01-487-b01",
+    {
+      status: "event_only",
+      note: "GUNDAM公式: 稚内・豊富・天塩のガンダムマンホールカード英語版がイベント配布",
+      url: "https://gundam-official.com/news/i/news/hot-topics/01_12135"
+    }
+  ],
+  [
+    "34-100-c-01",
+    {
+      status: "out_of_stock",
+      note: "広島サミット県民会議 英語版：在庫なし",
+      url: "https://www.city.hiroshima.lg.jp/living/suido-gesuido/1005966/1026325/1026326/1010193.html"
+    }
+  ]
+]);
+
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
 const gkpRowsByImageUrl = await loadGkpRowsByImageUrl();
 
@@ -110,6 +145,7 @@ const sourcePages = await loadEnglishVersionSourcePages(locations);
 for (const location of locations) {
   const before = JSON.stringify(linkSnapshot(location));
   applyEnglishVersionFromSourcePages(location, sourcePages);
+  applyVerifiedEnglishVersion(location);
   applyVerifiedEnglishVersionDistributionPlaces(location);
   const after = JSON.stringify(linkSnapshot(location));
   if (before !== after) updated += 1;
@@ -262,6 +298,15 @@ function applyVerifiedEnglishVersionDistributionPlaces(location) {
   location.englishVersionDistributionPlaces = places;
 }
 
+function applyVerifiedEnglishVersion(location) {
+  const verified = verifiedEnglishVersions.get(location.id);
+  if (!verified) return;
+  location.hasEnglishVersion = true;
+  location.englishVersionStatus = verified.status;
+  location.englishVersionNote = verified.note;
+  location.englishVersionUrl = verified.url;
+}
+
 function englishVersionMatchForLocation(location, page) {
   const distributionPlaces = englishVersionDistributionPlacesForLocation(location, page.lines);
   const directNote = directEnglishVersionNoteForLocation(location, page.lines);
@@ -403,18 +448,48 @@ function cardSuffix(location) {
 
 function sourcePageSegmentForLocation(location, lines) {
   const series = String(location.series ?? "").trim();
-  if (!series) return [];
+  if (!series) return sourcePageSegmentByPlace(location, lines);
 
   const seriesValues = seriesCandidates(series);
   const includesCurrentSeries = (line) => seriesValues.some((value) => line.includes(value));
   const start = lines.findIndex(includesCurrentSeries);
-  if (start === -1) return [];
+  if (start === -1) return sourcePageSegmentByPlace(location, lines);
 
   const endOffset = lines
     .slice(start + 1)
     .findIndex((line) => (!includesCurrentSeries(line) && /第[0-9０-９]+弾/.test(line)) || isSourcePageSectionBoundary(line));
   const end = endOffset === -1 ? Math.min(lines.length, start + 50) : start + 1 + endOffset;
   return lines.slice(start, end);
+}
+
+function sourcePageSegmentByPlace(location, lines) {
+  const placeKey = normalizePlaceKey(location.place);
+  const addressKey = normalizePlaceKey(location.address);
+  if (!placeKey && !addressKey) return [];
+
+  const placeIndex = lines.findIndex((line) => {
+    const lineKey = normalizePlaceKey(line);
+    return (placeKey && lineKey.includes(placeKey)) || (addressKey && lineKey.includes(addressKey));
+  });
+  if (placeIndex === -1) return [];
+
+  const start = Math.max(0, findPreviousCardHeading(lines, placeIndex));
+  const endOffset = lines
+    .slice(placeIndex + 1)
+    .findIndex((line) => isLocalCardHeading(line) || isSourcePageSectionBoundary(line));
+  const end = endOffset === -1 ? Math.min(lines.length, placeIndex + 20) : placeIndex + 1 + endOffset;
+  return lines.slice(start, end);
+}
+
+function findPreviousCardHeading(lines, fromIndex) {
+  for (let index = fromIndex; index >= 0; index -= 1) {
+    if (isLocalCardHeading(lines[index])) return index;
+  }
+  return fromIndex;
+}
+
+function isLocalCardHeading(line) {
+  return /^第[0-9０-９一二三四五六七八九十]+弾/.test(String(line ?? ""));
 }
 
 function seriesCandidates(series) {
@@ -443,6 +518,7 @@ function bestEnglishVersionNote(location, lines) {
 
   return lines.find((line) => /マンホールカード.*英語版ができました|English\s+version/i.test(line))
     ?? lines.find((line) => /日本語版の他に.*英語版/.test(line))
+    ?? lines.find((line) => /英語版.*(配布は終了|配布終了|配布.*終了|在庫なし)/.test(line))
     ?? lines.find((line) => /英語版.*配布/.test(line) && !/配布.*終了/.test(line) && !/パンフレット/.test(line))
     ?? lines.find((line) => /日本語版または英語版/.test(line))
     ?? lines.find((line) => /英語版\s*[：:]/.test(line) && !/パンフレット/.test(line))
