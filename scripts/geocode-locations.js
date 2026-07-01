@@ -16,36 +16,12 @@ let cached = 0;
 let failed = 0;
 
 for (const location of locations) {
-  const query = normalizeAddress(location.address);
-  if (!query) continue;
-  if (location.coordinateAccuracy === "address" && location.geocodeQuery === query) continue;
-  if (!retryFailed && location.geocodeError && location.geocodeQuery === query) continue;
   if (limit > 0 && attempted >= limit) break;
+  await geocodeTarget(location, location.address);
 
-  attempted += 1;
-
-  const result = cache[query] ?? (await geocode(query));
-  if (!cache[query]) {
-    cache[query] = result;
-    await writeJson(cachePath, cache);
-    await sleep(delayMs);
-  } else {
-    cached += 1;
-  }
-
-  if (result?.lat && result?.lng) {
-    location.lat = result.lat;
-    location.lng = result.lng;
-    location.coordinateAccuracy = "address";
-    location.geocodeQuery = query;
-    location.geocodeTitle = result.title;
-    location.geocodedAt = new Date().toISOString().slice(0, 10);
-    updated += 1;
-  } else {
-    location.coordinateAccuracy = location.coordinateAccuracy || "prefecture_approx";
-    location.geocodeQuery = query;
-    location.geocodeError = result?.error ?? "not_found";
-    failed += 1;
+  for (const place of location.distributionPlaces ?? []) {
+    if (limit > 0 && attempted >= limit) break;
+    await geocodeTarget(place, place.address);
   }
 }
 
@@ -65,6 +41,40 @@ console.log(
     2
   )
 );
+
+async function geocodeTarget(target, address) {
+  const query = normalizeAddress(address);
+  if (!query) return;
+  if (target.coordinateAccuracy === "address" && target.geocodeQuery === query) return;
+  if (!retryFailed && target.geocodeError && target.geocodeQuery === query) return;
+
+  attempted += 1;
+
+  const result = cache[query] ?? (await geocode(query));
+  if (!cache[query]) {
+    cache[query] = result;
+    await writeJson(cachePath, cache);
+    await sleep(delayMs);
+  } else {
+    cached += 1;
+  }
+
+  if (result?.lat && result?.lng) {
+    target.lat = result.lat;
+    target.lng = result.lng;
+    target.coordinateAccuracy = "address";
+    target.geocodeQuery = query;
+    target.geocodeTitle = result.title;
+    target.geocodedAt = new Date().toISOString().slice(0, 10);
+    delete target.geocodeError;
+    updated += 1;
+  } else {
+    target.coordinateAccuracy = target.coordinateAccuracy || "prefecture_approx";
+    target.geocodeQuery = query;
+    target.geocodeError = result?.error ?? "not_found";
+    failed += 1;
+  }
+}
 
 async function geocode(query) {
   const url = `https://msearch.gsi.go.jp/address-search/AddressSearch?q=${encodeURIComponent(query)}`;

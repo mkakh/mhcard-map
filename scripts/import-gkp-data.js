@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 const prefectures = [
@@ -86,12 +87,20 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
     const municipalityName = municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim();
     const address = findAddress(distributionText, prefecture, municipalityName);
+    const distributionPlaces = extractDistributionPlaces({
+      distributionHtml,
+      hoursHtml,
+      fallbackPlace: place,
+      fallbackAddress: address,
+      municipalityName,
+      prefecture
+    });
     const [lat, lng] = approximateCoordinate(baseLat, baseLng, prefectureIndex);
     const legacyId = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
     const id = stableLocationId(imageUrl, legacyId);
     const stock = cleanupText(stockHtml) || "不明";
 
-    locations.push({
+    const location = {
       id,
       cardName: cardCode ? `${municipality.replace(/\s*[（(][^）)]+[）)]\s*/g, "").trim()} ${cardCode}` : municipality,
       prefecture,
@@ -112,7 +121,9 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       sourceType: "gkp_prefecture_page",
       coordinateAccuracy: "prefecture_approx",
       updatedAt: today
-    });
+    };
+    if (distributionPlaces.length > 1) location.distributionPlaces = distributionPlaces;
+    locations.push(location);
 
     prefectureIndex += 1;
   }
@@ -124,6 +135,7 @@ for (const location of locations) {
 
   const legacyIds = [...new Set(existing.legacyIds ?? [])];
   if (legacyIds.length > 0) location.legacyIds = legacyIds;
+  mergeGeneratedDistributionPlaces(location, existing);
   if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
 }
 
@@ -162,6 +174,315 @@ function firstMatch(value, pattern) {
 
 function firstMeaningfulLine(html) {
   return cleanupText(html).split("\n").find((line) => !line.startsWith("電話")) ?? "配布場所要確認";
+}
+
+function extractDistributionPlaces({ distributionHtml, hoursHtml, fallbackPlace, fallbackAddress, municipalityName, prefecture }) {
+  const placeLines = parseLinkedLines(distributionHtml).filter((line) => !isDistributionNoise(line.text));
+  const hourGroups = parseHourGroups(cleanupText(hoursHtml));
+  const places = [];
+  let currentUrl = "";
+  let currentDays = "";
+  let pending = null;
+
+  for (const line of placeLines) {
+    if (line.url) currentUrl = line.url;
+    const pureDays = pureDaysMarker(line.text);
+    if (pureDays) {
+      currentDays = pureDays;
+      continue;
+    }
+
+    if (pending && !hasPlaceMarker(line.text) && isAddressOnlyLine(line.text, municipalityName, prefecture)) {
+      places.push(placeFromParsed({
+        parsed: { ...pending, address: line.text },
+        hourGroups,
+        index: places.length,
+        url: currentUrl,
+        fallbackAddress
+      }));
+      pending = null;
+      continue;
+    }
+
+    const parsed = parsePlaceLine(line.text, municipalityName, prefecture, currentDays);
+    if (!parsed) continue;
+    if (parsed.address) {
+      places.push(placeFromParsed({ parsed, hourGroups, index: places.length, url: line.url || currentUrl, fallbackAddress }));
+      pending = null;
+    } else if (line.url || parsed.marker || parsed.days) {
+      pending = { ...parsed, url: line.url || currentUrl };
+    }
+  }
+
+  if (places.length === 0 && fallbackPlace) {
+    const schedule = hourGroups[0] ?? {};
+    places.push({
+      id: distributionPlaceId(fallbackPlace, fallbackAddress),
+      name: fallbackPlace,
+      address: fallbackAddress,
+      days: schedule.days || "",
+      hours: schedule.hours || cleanupText(hoursHtml),
+      closed: schedule.closed || "",
+      url: absolutizeUrl(firstMatch(distributionHtml, /<a[^>]+href=["']([^"']+)["']/i))
+    });
+  }
+
+  return dedupeDistributionPlaces(places);
+}
+
+function placeFromParsed({ parsed, hourGroups, index, url, fallbackAddress }) {
+  const schedule = scheduleForPlace(parsed.marker, parsed.days, hourGroups, index);
+  const address = parsed.address || fallbackAddress;
+  return {
+    id: distributionPlaceId(parsed.name, address),
+    name: parsed.name,
+    address,
+    days: parsed.days || schedule.days,
+    hours: schedule.hours,
+    closed: schedule.closed,
+    url: absolutizeUrl(parsed.url || url)
+  };
+}
+
+function parseLinkedLines(html) {
+  return String(html ?? "")
+    .replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (_, attrs, label) => {
+      const url = firstMatch(attrs, /href=["']([^"']+)["']/i);
+      return `\n[[LINK:${url}|${cleanupText(label)}]]\n`;
+    })
+    .replace(/<br\s*\/?>|<\/p>|<\/div>|<\/li>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\r/g, "")
+    .split("\n")
+    .map((raw) => decodeEntities(raw).replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .map((text) => {
+      const linked = text.match(/^\[\[LINK:(.*?)\|(.*?)\]\]$/);
+      return linked ? { text: linked[2].trim(), url: absolutizeUrl(linked[1]) } : { text, url: "" };
+    });
+}
+
+function parsePlaceLine(line, municipalityName, prefecture, currentDays = "") {
+  const markerMatch = line.match(/^(?:([①-⑳])|([0-9]+)[.)）]|【([^】]+)】)\s*(.+)$/);
+  const marker = markerMatch?.[1] || markerMatch?.[2] || "";
+  const days = markerMatch?.[3] || currentDays;
+  const body = markerMatch ? markerMatch[4].trim() : line.trim();
+  if (!body || isDistributionNoise(body)) return null;
+  if (!hasAddressPattern(body, municipalityName, prefecture)) {
+    return {
+      marker,
+      days: normalizeDays(days),
+      name: body,
+      address: ""
+    };
+  }
+
+  const split = splitNameAndAddress(body, municipalityName, prefecture);
+  return {
+    marker,
+    days: normalizeDays(days),
+    name: split.name,
+    address: split.address
+  };
+}
+
+function splitNameAndAddress(value, municipalityName, prefecture) {
+  const text = value.replace(/^[:：\s]+/, "").trim();
+  const addressIndex = firstAddressIndex(text, municipalityName, prefecture);
+  if (addressIndex > 0) {
+    return {
+      name: text.slice(0, addressIndex).trim(),
+      address: normalizeAddress(text.slice(addressIndex).trim())
+    };
+  }
+  return { name: text, address: "" };
+}
+
+function firstAddressIndex(text, municipalityName, prefecture) {
+  const candidates = [
+    ...allIndexes(text, prefecture),
+    ...allIndexes(text, municipalityName),
+    ...municipalityName.split(/\s+/).filter(Boolean).flatMap((token) => allIndexes(text, token))
+  ]
+    .filter(Boolean)
+    .filter((index) => index > 0);
+  return candidates.length > 0 ? Math.min(...candidates) : -1;
+}
+
+function allIndexes(text, token) {
+  if (!token) return [];
+  const indexes = [];
+  let index = text.indexOf(token);
+  while (index !== -1) {
+    indexes.push(index);
+    index = text.indexOf(token, index + token.length);
+  }
+  return indexes;
+}
+
+function pureDaysMarker(line) {
+  const match = line.match(/^【([^】]+)】$/);
+  return match ? normalizeDays(match[1]) : "";
+}
+
+function hasPlaceMarker(line) {
+  return /^(?:[①-⑳]|[0-9]+[.)）]|【[^】]+】)/.test(line);
+}
+
+function isAddressOnlyLine(line, municipalityName, prefecture) {
+  if (isDistributionNoise(line)) return false;
+  if (line.includes("電話")) return false;
+  if (line.length > 80) return false;
+  return hasAddressPattern(line, municipalityName, prefecture);
+}
+
+function hasAddressPattern(line, municipalityName, prefecture) {
+  const text = normalizeAddress(line);
+  if (!/[0-9０-９一二三四五六七八九十]/.test(text)) return false;
+  return firstAddressIndex(` ${text}`, municipalityName, prefecture) > 0 || text.includes(prefecture);
+}
+
+function parseHourGroups(text) {
+  const groups = [];
+  let currentDays = "";
+  let current = null;
+
+  for (const rawLine of text.split("\n").map((line) => line.trim()).filter(Boolean)) {
+    const markerMatch = rawLine.match(/^(?:([①-⑳])|([0-9]+)[.)）]|【([^】]+)】)\s*(.*)$/);
+    if (markerMatch) {
+      const marker = markerMatch[1] || markerMatch[2] || "";
+      const days = normalizeDays(markerMatch[3] || currentDays);
+      if (markerMatch[3]) currentDays = days;
+      current = {
+        marker,
+        days,
+        hours: markerMatch[4].trim(),
+        closed: ""
+      };
+      groups.push(current);
+      continue;
+    }
+
+    if (!current) {
+      current = { marker: "", days: "", hours: rawLine, closed: "" };
+      groups.push(current);
+    } else if (isClosedLine(rawLine)) {
+      current.closed = appendText(current.closed, cleanupClosedLine(rawLine));
+    } else {
+      current.hours = appendText(current.hours, rawLine);
+    }
+  }
+
+  return groups;
+}
+
+function scheduleForPlace(marker, days, groups, index) {
+  const byMarker = marker ? groups.find((group) => group.marker === marker) : null;
+  const byDays = days ? groups.find((group) => group.days === days && !group.marker) : null;
+  const fallback = groups[index] ?? groups.find((group) => !group.marker) ?? {};
+  return byMarker ?? byDays ?? fallback;
+}
+
+function mergeGeneratedDistributionPlaces(location, existing) {
+  if (!Array.isArray(location.distributionPlaces) || !Array.isArray(existing.distributionPlaces)) return;
+  const existingById = new Map(existing.distributionPlaces.map((place) => [place.id, place]));
+  location.distributionPlaces = location.distributionPlaces.map((place) => {
+    const previous = existingById.get(place.id);
+    if (!previous) return place;
+    if (normalizePlaceKey(previous.address) !== normalizePlaceKey(place.address)) return place;
+    return {
+      ...place,
+      ...pickComputedPlaceFields(previous)
+    };
+  });
+}
+
+function pickComputedPlaceFields(place) {
+  return Object.fromEntries(
+    ["lat", "lng", "plusCode", "coordinateAccuracy", "geocodeQuery", "geocodeTitle", "geocodedAt", "geocodeError"]
+      .filter((field) => place[field] !== undefined)
+      .map((field) => [field, place[field]])
+  );
+}
+
+function dedupeDistributionPlaces(places) {
+  const seenKeys = new Set();
+  const seenIds = new Set();
+  return places
+    .filter((place) => place.name && place.address)
+    .map((place) => ({
+      ...place,
+      address: normalizeAddress(place.address),
+      hours: normalizeTimeText(place.hours),
+      closed: normalizeClosedText(place.closed)
+    }))
+    .filter((place) => {
+      const key = `${place.name}\n${place.address}`;
+      if (seenKeys.has(key)) return false;
+      seenKeys.add(key);
+      if (seenIds.has(place.id)) place.id = distributionPlaceId(`${place.name}\n${place.days}`, place.address, true);
+      seenIds.add(place.id);
+      return true;
+    });
+}
+
+function distributionPlaceId(name, address, includeName = false) {
+  const source = includeName
+    ? `${normalizePlaceKey(address)}\n${normalizePlaceKey(name)}`
+    : normalizePlaceKey(address || name);
+  return `place-${createHash("sha1").update(source).digest("hex").slice(0, 10)}`;
+}
+
+function normalizePlaceKey(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .replace(/[‐‑‒–—―ー−]/g, "-")
+    .toLowerCase();
+}
+
+function normalizeAddress(value) {
+  let normalized = String(value ?? "")
+    .replace(/^<\w+/i, "")
+    .replace(/^[:：\s]+/, "")
+    .replace(/[‐‑‒–—―ー−]/g, "-")
+    .trim();
+  if (/^[（(].*[）)]$/.test(normalized)) {
+    normalized = normalized.replace(/^[（(]\s*/, "").replace(/\s*[）)]$/, "");
+  }
+  return normalized;
+}
+
+function normalizeDays(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, "")
+    .replace(/休日/g, "土日祝日")
+    .replace(/祝祭日/g, "祝日")
+    .trim();
+}
+
+function normalizeTimeText(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function normalizeClosedText(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function appendText(previous, next) {
+  return [previous, next].filter(Boolean).join(" ");
+}
+
+function isClosedLine(line) {
+  return /(ただし|休み|お休み|休館|休業|定休|年末年始|閉庁)/.test(line);
+}
+
+function cleanupClosedLine(line) {
+  return line.replace(/^ただし、?/, "").trim();
+}
+
+function isDistributionNoise(line) {
+  return /^(電話|TEL|FAX|問合せ|問い合わせ|お問い合わせ|詳細|こちらから|※|ただし|配布時間|配布条件)/i.test(line);
 }
 
 function findAddress(text, prefecture, municipality) {
@@ -250,7 +571,8 @@ function hasSameImportedContent(existing, next) {
     "imageUrl",
     "series",
     "issuedOn",
-    "sourceType"
+    "sourceType",
+    "distributionPlaces"
   ];
   return keys.every((key) => String(existing[key] ?? "") === String(next[key] ?? ""));
 }

@@ -5,6 +5,7 @@ const dataPath = join(process.cwd(), "data", "locations.json");
 const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
 const allowedStatuses = new Set(["配布中", "休止中", "要確認"]);
 const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "imageUrl"];
+const placeUrlFields = ["url", "facilityUrl", "stockUrl", "conditionUrl"];
 const requiredStringFields = ["id", "cardName", "prefecture", "municipality", "status", "updatedAt", "plusCode"];
 
 const errors = [];
@@ -63,9 +64,47 @@ function validateLocations(items) {
       else if (new Set(location.legacyIds).size !== location.legacyIds.length) fail(`${label}: duplicate legacyIds`);
     }
 
+    validateDistributionPlaces(label, location.distributionPlaces);
+
     if (!String(location.place ?? "").trim() && !String(location.address ?? "").trim()) {
       warnings.push(`${label}: both place and address are empty`);
     }
+  });
+}
+
+function validateDistributionPlaces(label, distributionPlaces) {
+  if (distributionPlaces === undefined) return;
+  if (!Array.isArray(distributionPlaces)) {
+    fail(`${label}: distributionPlaces must be an array`);
+    return;
+  }
+
+  const ids = new Set();
+  distributionPlaces.forEach((place, index) => {
+    const placeLabel = `${label}: distributionPlaces[${index}]`;
+    if (!place || typeof place !== "object") {
+      fail(`${placeLabel}: must be an object`);
+      return;
+    }
+
+    if (!/^[a-z0-9-]+$/.test(String(place.id ?? ""))) {
+      fail(`${placeLabel}: id must be lowercase alphanumeric with hyphens`);
+    }
+    if (ids.has(place.id)) fail(`${placeLabel}: duplicate id`);
+    ids.add(place.id);
+
+    ["name", "address", "plusCode"].forEach((field) => {
+      if (!String(place[field] ?? "").trim()) fail(`${placeLabel}: missing required field ${field}`);
+    });
+
+    validateCoordinate(placeLabel, "lat", place.lat, 20, 46);
+    validateCoordinate(placeLabel, "lng", place.lng, 122, 154);
+
+    if (place.coordinateAccuracy !== undefined && !allowedCoordinateAccuracy.has(place.coordinateAccuracy)) {
+      fail(`${placeLabel}: unknown coordinateAccuracy ${place.coordinateAccuracy}`);
+    }
+
+    placeUrlFields.forEach((field) => validateUrl(placeLabel, field, place[field]));
   });
 }
 
