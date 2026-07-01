@@ -481,7 +481,7 @@
     "plusCode": "8RP643CF+58"
   },
   {
-    "id": "01-212-a01",
+    "id": "01-212-a-01",
     "cardName": "留萌市",
     "prefecture": "北海道",
     "municipality": "留萌市",
@@ -536,7 +536,8 @@
       }
     ],
     "legacyIds": [
-      "01-留萌市-015"
+      "01-留萌市-015",
+      "01-212-a01"
     ],
     "facilityUrl": "https://rumoi.main.jp/shoplist/%e3%82%8b%e3%82%82%e3%81%84%e3%83%97%e3%83%a9%e3%82%b6/",
     "stockUrl": "https://www.e-rumoi.jp/suidou/page26_00039.html",
@@ -645,7 +646,7 @@
     "plusCode": "8RQ3CM8F+V8"
   },
   {
-    "id": "01-214-b01",
+    "id": "01-214-b-01",
     "cardName": "稚内市 B001",
     "prefecture": "北海道",
     "municipality": "稚内市",
@@ -666,7 +667,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-稚内市-b001-018"
+      "01-稚内市-b001-018",
+      "01-214-b01"
     ],
     "stockUrl": "https://www.city.wakkanai.hokkaido.jp/kurashi/sumaisuido/gesui/mhcard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
@@ -776,7 +778,7 @@
     "plusCode": "8RM33GRH+GV"
   },
   {
-    "id": "01-218-a01",
+    "id": "01-218-a-01",
     "cardName": "赤平市",
     "prefecture": "北海道",
     "municipality": "赤平市",
@@ -797,7 +799,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-赤平市-022"
+      "01-赤平市-022",
+      "01-218-a01"
     ],
     "facilityUrl": "https://akabirabase.com/",
     "stockUrl": "https://www.city.akabira.hokkaido.jp/docs/2019080200024.html?cat=/kurashi/suido/",
@@ -1065,7 +1068,7 @@
     "plusCode": "8RM3FWV4+6X"
   },
   {
-    "id": "01-228-a01",
+    "id": "01-228-a-01",
     "cardName": "深川市",
     "prefecture": "北海道",
     "municipality": "深川市",
@@ -1086,7 +1089,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-深川市-030"
+      "01-深川市-030",
+      "01-228-a01"
     ],
     "facilityUrl": "https://mypage.fukanavi.com/riceland/",
     "stockUrl": "https://www.city.fukagawa.lg.jp/cms/section/jogesuid/qnv6ca0000000fkv.html",
@@ -1569,7 +1573,7 @@
     "plusCode": "8RM25HG6+3F"
   },
   {
-    "id": "01-424-a-01-jpg",
+    "id": "01-424-a-01",
     "cardName": "奈井江町",
     "prefecture": "北海道",
     "municipality": "奈井江町",
@@ -1590,7 +1594,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-奈井江町-046"
+      "01-奈井江町-046",
+      "01-424-a-01-jpg"
     ],
     "stockUrl": "https://www.town.naie.hokkaido.jp/kurashi/suidou/startmanhole/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
@@ -1960,7 +1965,7 @@
     "plusCode": "8RP3WQF5+J3"
   },
   {
-    "id": "01-487-b01",
+    "id": "01-487-b-01",
     "cardName": "天塩町 B001",
     "prefecture": "北海道",
     "municipality": "天塩町",
@@ -1981,7 +1986,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-天塩町-b001-054"
+      "01-天塩町-b001-054",
+      "01-487-b01"
     ],
     "facilityUrl": "http://www.teshiotown.hokkaido.jp/",
     "stockUrl": "http://www.teshiotown.hokkaido.jp/?p=20872",
@@ -2122,7 +2128,7 @@
     "plusCode": "8RQ34Q3H+5F"
   },
   {
-    "id": "01-516-d01",
+    "id": "01-516-d-01",
     "cardName": "豊富町 D001",
     "prefecture": "北海道",
     "municipality": "豊富町",
@@ -2143,7 +2149,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-豊富町-d001-059"
+      "01-豊富町-d001-059",
+      "01-516-d01"
     ],
     "facilityUrl": "http://toyotomi-kanko.net/",
     "stockUrl": "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html",
@@ -2256,7 +2263,7 @@
     "plusCode": "8RQ32R8W+72"
   },
   {
-    "id": "01-545-a01",
+    "id": "01-545-a-01",
     "cardName": "斜里町",
     "prefecture": "北海道",
     "municipality": "斜里町",
@@ -2277,7 +2284,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "01-斜里町-062"
+      "01-斜里町-062",
+      "01-545-a01"
     ],
     "facilityUrl": "https://hokkaido-michinoeki.jp/michinoeki/2884/",
     "stockUrl": "https://www.town.shari.hokkaido.jp/soshikikarasagasu/suidoka/3457.html",
@@ -2928,7 +2936,7 @@
     "plusCode": "8RH3744Q+JQ"
   },
   {
-    "id": "02-441-a01",
+    "id": "02-441-a-01",
     "cardName": "三戸町",
     "prefecture": "青森県",
     "municipality": "三戸町",
@@ -2983,7 +2991,8 @@
       }
     ],
     "legacyIds": [
-      "02-三戸町-007"
+      "02-三戸町-007",
+      "02-441-a01"
     ],
     "facilityUrl": "https://www.town.sannohe.aomori.jp/index.html",
     "stockUrl": "https://www.town.sannohe.aomori.jp/kanko_miryoku/11pikinoneko/3713.html",
@@ -3731,7 +3740,7 @@
     "plusCode": "8RF38VHQ+44"
   },
   {
-    "id": "03-213-a01",
+    "id": "03-213-a-01",
     "cardName": "二戸市",
     "prefecture": "岩手県",
     "municipality": "二戸市",
@@ -3752,7 +3761,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "03-二戸市-020"
+      "03-二戸市-020",
+      "03-213-a01"
     ],
     "facilityUrl": "https://www.nanyato-bussan.jp/",
     "stockUrl": "https://www.city.ninohe.lg.jp/info/3066",
@@ -3763,7 +3773,7 @@
     "plusCode": "8RG3776P+MH"
   },
   {
-    "id": "03-216-a01",
+    "id": "03-216-a-01",
     "cardName": "滝沢市 A001",
     "prefecture": "岩手県",
     "municipality": "滝沢市",
@@ -3784,7 +3794,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "03-滝沢市-a001-021"
+      "03-滝沢市-a001-021",
+      "03-216-a01"
     ],
     "facilityUrl": "https://bigroof.jp/",
     "stockUrl": "https://www.city.takizawa.iwate.jp/suido/kouhou-event/event-jouhou/p20250715105520",
@@ -3925,7 +3936,7 @@
     "plusCode": "8RG37C4R+RP"
   },
   {
-    "id": "04-000-a01",
+    "id": "04-000-a-01",
     "cardName": "宮城県 A001",
     "prefecture": "宮城県",
     "municipality": "宮城県",
@@ -3980,7 +3991,8 @@
       }
     ],
     "legacyIds": [
-      "04-宮城県-流域下水道-a001-001"
+      "04-宮城県-流域下水道-a001-001",
+      "04-000-a01"
     ],
     "stockUrl": "https://www.pref.miyagi.jp/soshiki/ktkm-wwt/mhcard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
@@ -4596,7 +4608,7 @@
     "plusCode": "8RC22PXJ+M8"
   },
   {
-    "id": "04-361-a01",
+    "id": "04-361-a-01",
     "cardName": "亘理町",
     "prefecture": "宮城県",
     "municipality": "亘理町",
@@ -4617,7 +4629,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "04-亘理町-020"
+      "04-亘理町-020",
+      "04-361-a01"
     ],
     "facilityUrl": "http://www.town.watari.miyagi.jp/",
     "stockUrl": "http://www.town.watari.miyagi.jp/",
@@ -5107,7 +5120,7 @@
     "plusCode": "8RF28H78+CC"
   },
   {
-    "id": "05-206-a01",
+    "id": "05-206-a-01",
     "cardName": "男鹿市",
     "prefecture": "秋田県",
     "municipality": "男鹿市",
@@ -5128,7 +5141,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "05-男鹿市-005"
+      "05-男鹿市-005",
+      "05-206-a01"
     ],
     "stockUrl": "https://www.city.oga.akita.jp/soshik/kigyokyoku/moreabout/gesuidou/6032.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=05#mhcard_result",
@@ -5394,7 +5408,7 @@
     "plusCode": "8QCXPRQP+MC"
   },
   {
-    "id": "06-204-a01",
+    "id": "06-204-a-01",
     "cardName": "酒田市",
     "prefecture": "山形県",
     "municipality": "酒田市",
@@ -5415,7 +5429,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "06-酒田市-007"
+      "06-酒田市-007",
+      "06-204-a01"
     ],
     "facilityUrl": "https://miraini-sakata.jp/",
     "stockUrl": "https://www.city.sakata.lg.jp/smph/kurashi/jogesuido/oshirase/mhc01.html",
@@ -6073,7 +6088,7 @@
     "plusCode": "8R82WWW3+6G"
   },
   {
-    "id": "07-204-a01",
+    "id": "07-204-b-01",
     "cardName": "いわき市 B001",
     "prefecture": "福島県",
     "municipality": "いわき市",
@@ -6094,7 +6109,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "07-いわき市-b001-009"
+      "07-いわき市-b001-009",
+      "07-204-a01"
     ],
     "facilityUrl": "https://www.gurutto-iwaki.com/detail/2322/index.html",
     "stockUrl": "https://www.city.iwaki.lg.jp/www/contents/1681438660994/index.html",
@@ -6935,7 +6951,7 @@
     "plusCode": "8R92CFVR+7C"
   },
   {
-    "id": "07-542-a01",
+    "id": "07-542-a-01",
     "cardName": "楢葉町",
     "prefecture": "福島県",
     "municipality": "楢葉町",
@@ -6956,7 +6972,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "07-楢葉町-035"
+      "07-楢葉町-035",
+      "07-542-a01"
     ],
     "facilityUrl": "http://naraha-tenjin.net/enjoy/rental",
     "stockUrl": "https://www.town.naraha.lg.jp/life/009648.html",
@@ -6967,7 +6984,7 @@
     "plusCode": "8R937297+V2"
   },
   {
-    "id": "07-543-a01",
+    "id": "07-543-a-01",
     "cardName": "富岡町",
     "prefecture": "福島県",
     "municipality": "富岡町",
@@ -6988,7 +7005,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "07-富岡町-036"
+      "07-富岡町-036",
+      "07-543-a01"
     ],
     "facilityUrl": "https://www.facebook.com/TheHistoricalArchiveMuseumOfTomioka/",
     "stockUrl": "https://www.tomioka-town.jp/soshiki/toshiseibi/1623.html",
@@ -6999,7 +7017,7 @@
     "plusCode": "8R929X4Q+HH"
   },
   {
-    "id": "07-544-a01",
+    "id": "07-544-a-01",
     "cardName": "川内村",
     "prefecture": "福島県",
     "municipality": "川内村",
@@ -7020,7 +7038,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "07-川内村-037"
+      "07-川内村-037",
+      "07-544-a01"
     ],
     "facilityUrl": "https://www.kawauchimura.jp/kanko/shisetsu/page000185.html",
     "stockUrl": "http://www.kawauchimura.jp/page/page001068.html",
@@ -9771,7 +9790,7 @@
     "plusCode": "8Q8XC86Q+89"
   },
   {
-    "id": "10-203-b01",
+    "id": "10-203-b-01",
     "cardName": "桐生市 B001",
     "prefecture": "群馬県",
     "municipality": "桐生市",
@@ -9826,7 +9845,8 @@
       }
     ],
     "legacyIds": [
-      "10-桐生市-b001-004"
+      "10-桐生市-b001-004",
+      "10-203-b01"
     ],
     "facilityUrl": "https://www.city.kiryu.lg.jp/kurashi/suido/gesui/1013174.html",
     "stockUrl": "https://www.city.kiryu.lg.jp/kurashi/suido/gesui/1013174.html",
@@ -10582,7 +10602,7 @@
     "plusCode": "8Q8X7F36+3V"
   },
   {
-    "id": "00-101-a01",
+    "id": "00-101-a-01",
     "cardName": "日本下水道事業団",
     "prefecture": "埼玉県",
     "municipality": "日本下水道事業団",
@@ -10603,7 +10623,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-日本下水道事業団-001"
+      "11-日本下水道事業団-001",
+      "00-101-a01"
     ],
     "facilityUrl": "https://www.jswa.go.jp/",
     "stockUrl": "https://www.jswa.go.jp/company/50th-anniversary/manhole-card.html",
@@ -10899,7 +10920,7 @@
     "plusCode": "8Q8X66H9+C3"
   },
   {
-    "id": "11-000-i001",
+    "id": "11-000-i-01",
     "cardName": "埼玉県 （流域下水道・I001）",
     "prefecture": "埼玉県",
     "municipality": "埼玉県",
@@ -10920,7 +10941,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-埼玉県-流域下水道-i001-011"
+      "11-埼玉県-流域下水道-i001-011",
+      "11-000-i001"
     ],
     "facilityUrl": "https://www.aeon.jp/sc/kitatoda/",
     "stockUrl": "https://www.pref.saitama.lg.jp/d1501/manho-ruka-do-tsujo.html",
@@ -11025,7 +11047,7 @@
     "plusCode": "8Q7XWF7J+VM"
   },
   {
-    "id": "11-201-b01",
+    "id": "11-201-b-01",
     "cardName": "川越市 B001",
     "prefecture": "埼玉県",
     "municipality": "川越市",
@@ -11046,7 +11068,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-川越市-b001-015"
+      "11-川越市-b001-015",
+      "11-201-b01"
     ],
     "stockUrl": "https://www.city.kawagoe.saitama.jp/kurashi/jogesuidobu/1002861/1002862/1002917/1002920.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
@@ -11348,7 +11371,7 @@
     "plusCode": "8Q7XQFX9+J5"
   },
   {
-    "id": "11-208-c01",
+    "id": "11-208-c-01",
     "cardName": "所沢市 C001",
     "prefecture": "埼玉県",
     "municipality": "所沢市",
@@ -11369,7 +11392,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-所沢市-c001-022"
+      "11-所沢市-c001-022",
+      "11-208-c01"
     ],
     "facilityUrl": "http://www.machizou.jp/",
     "stockUrl": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
@@ -11384,7 +11408,7 @@
     "plusCode": "8Q7XQFR8+H3"
   },
   {
-    "id": "11-208-d01",
+    "id": "11-208-d-01",
     "cardName": "所沢市 D001",
     "prefecture": "埼玉県",
     "municipality": "所沢市",
@@ -11405,7 +11429,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-所沢市-d001-023"
+      "11-所沢市-d001-023",
+      "11-208-d01"
     ],
     "facilityUrl": "https://yot-toko.jp/",
     "stockUrl": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
@@ -12515,7 +12540,7 @@
     "plusCode": "8Q8X4M28+6W"
   },
   {
-    "id": "11-232-b01",
+    "id": "11-232-b-01",
     "cardName": "久喜市 B001",
     "prefecture": "埼玉県",
     "municipality": "久喜市",
@@ -12536,7 +12561,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "11-久喜市-b001-051"
+      "11-久喜市-b001-051",
+      "11-232-b01"
     ],
     "facilityUrl": "https://www.city.kuki.lg.jp/shisei/shisetsu/shiyakusho/1006529.html",
     "stockUrl": "https://www.city.kuki.lg.jp/kurashi/jogesuido/gesuido/1002179/1002833.html",
@@ -13743,7 +13769,7 @@
     "plusCode": "8Q6XXVW6+GW"
   },
   {
-    "id": "12-205-b01",
+    "id": "12-205-b-01",
     "cardName": "館山市 B001",
     "prefecture": "千葉県",
     "municipality": "館山市",
@@ -13764,7 +13790,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "12-館山市-b001-011"
+      "12-館山市-b001-011",
+      "12-205-b01"
     ],
     "facilityUrl": "https://www.city.tateyama.chiba.jp/minato/page100034.html",
     "stockUrl": "https://www.city.tateyama.chiba.jp/gesui/page100037.html",
@@ -13839,7 +13866,7 @@
     "plusCode": "8Q7XQVMX+V7"
   },
   {
-    "id": "12-207-b01",
+    "id": "12-207-b-01",
     "cardName": "松戸市 B001",
     "prefecture": "千葉県",
     "municipality": "松戸市",
@@ -13860,7 +13887,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "12-松戸市-b001-014"
+      "12-松戸市-b001-014",
+      "12-207-b01"
     ],
     "facilityUrl": "https://www.city.matsudo.chiba.jp/shisetsu-guide/kaikan_hole/bunka-hole/index.html",
     "stockUrl": "http://www.city.matsudo.chiba.jp/kurashi/jyougesuidou/gesuidou/atarasiimanhorukado.html",
@@ -13967,7 +13995,7 @@
     "plusCode": "8Q8X2RGC+F5"
   },
   {
-    "id": "12-212-a01",
+    "id": "12-212-a-01",
     "cardName": "佐倉市 A001",
     "prefecture": "千葉県",
     "municipality": "佐倉市",
@@ -13988,7 +14016,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "12-佐倉市-a001-018"
+      "12-佐倉市-a001-018",
+      "12-212-a01"
     ],
     "facilityUrl": "http://www.city.sakura.lg.jp/sakura/museum/",
     "stockUrl": "http://www.city.sakura.lg.jp/0000029624.html",
@@ -14906,7 +14935,7 @@
     "plusCode": "8Q7XQPG8+Q7"
   },
   {
-    "id": "13-000-a01-3",
+    "id": "13-000-a-01",
     "cardName": "流域下水道",
     "prefecture": "東京都",
     "municipality": "流域下水道",
@@ -14927,7 +14956,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-流域下水道-002"
+      "13-流域下水道-002",
+      "13-000-a01-3"
     ],
     "facilityUrl": "https://www.gotokyo.org/jp/plan/tourist-info-center/index.html",
     "stockUrl": "https://www.gesui.metro.tokyo.lg.jp/about/gaiyou/ryuiki50",
@@ -15189,7 +15219,7 @@
     "plusCode": "8Q7XQH6P+9Q"
   },
   {
-    "id": "13-100-d01",
+    "id": "13-100-d101",
     "cardName": "東京23区 D101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15210,7 +15240,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-d101-011"
+      "13-東京23区-d101-011",
+      "13-100-d01"
     ],
     "facilityUrl": "https://www.gesui.metro.tokyo.lg.jp/business/b4/guide/s-mikawa/index.html",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
@@ -15221,7 +15252,7 @@
     "plusCode": "8Q7XPQRQ+JH"
   },
   {
-    "id": "13-100-e1-01",
+    "id": "13-100-e101",
     "cardName": "東京23区 E101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15242,7 +15273,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-e101-012"
+      "13-東京23区-e101-012",
+      "13-100-e1-01"
     ],
     "facilityUrl": "https://museum.toei-anim.co.jp/",
     "stockUrl": "https://www.city.nerima.tokyo.jp/kankomoyoshi/kankojoho/designmanhole.html",
@@ -15253,7 +15285,7 @@
     "plusCode": "8Q7XQH2V+VP"
   },
   {
-    "id": "13-100-f1-01",
+    "id": "13-100-f101",
     "cardName": "東京23区 F101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15274,7 +15306,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-f101-013"
+      "13-東京23区-f101-013",
+      "13-100-f1-01"
     ],
     "facilityUrl": "https://shibusawakitaku.tokyo/omiyage/",
     "stockUrl": "https://www.city.kita.lg.jp/culture-tourism-sports/tourism/1018318/1020188/1020208.html",
@@ -15285,7 +15318,7 @@
     "plusCode": "8Q7XPPXQ+WW"
   },
   {
-    "id": "13-100-g1-01",
+    "id": "13-100-g101",
     "cardName": "東京23区 G101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15306,7 +15339,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-g101-014"
+      "13-東京23区-g101-014",
+      "13-100-g1-01"
     ],
     "facilityUrl": "https://visit-minato-city.tokyo/ja-jp/places/2774",
     "stockUrl": "https://www.city.minato.tokyo.jp/citypromotion/manhole.html",
@@ -15317,7 +15351,7 @@
     "plusCode": "8Q7XJPVV+WX"
   },
   {
-    "id": "13-100-i1-01",
+    "id": "13-100-i101",
     "cardName": "東京23区 I101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15372,7 +15406,8 @@
       }
     ],
     "legacyIds": [
-      "13-東京23区-i101-015"
+      "13-東京23区-i101-015",
+      "13-100-i1-01"
     ],
     "facilityUrl": "https://www.city.itabashi.tokyo.jp/bunka/kanko/1006728.html",
     "stockUrl": "https://www.city.itabashi.tokyo.jp/bunka/kanko/1050986.html",
@@ -15383,7 +15418,7 @@
     "plusCode": "8Q7XQP26+CW"
   },
   {
-    "id": "13-100-h1-01",
+    "id": "13-100-h101",
     "cardName": "東京23区 H101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15404,7 +15439,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-h101-016"
+      "13-東京23区-h101-016",
+      "13-100-h1-01"
     ],
     "facilityUrl": "https://akabane-sports.com/facilities/forest-park",
     "stockUrl": "https://www.city.kita.lg.jp/culture-tourism-sports/tourism/1018318/1020188/1020208.html",
@@ -15415,7 +15451,7 @@
     "plusCode": "8Q7XQPF6+43"
   },
   {
-    "id": "13-100-j1-01",
+    "id": "13-100-j101",
     "cardName": "東京23区 J101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15436,7 +15472,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-j101-017"
+      "13-東京23区-j101-017",
+      "13-100-j1-01"
     ],
     "facilityUrl": "https://www.ara-amoa.com/",
     "stockUrl": "https://www.city.kita.lg.jp/culture-tourism-sports/tourism/1018318/1020188/1020208.html",
@@ -15447,7 +15484,7 @@
     "plusCode": "8Q7XQPMM+MH"
   },
   {
-    "id": "13-100-k1-01",
+    "id": "13-100-k101",
     "cardName": "東京23区 K101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15468,7 +15505,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-k101-018"
+      "13-東京23区-k101-018",
+      "13-100-k1-01"
     ],
     "facilityUrl": "https://www.city.suginami.tokyo.jp/shisetsu/kouen/02/ogikubo/1054100.html",
     "stockUrl": "https://www.city.suginami.tokyo.jp/guide/shigoto/kankou/1057047.html",
@@ -15479,7 +15517,7 @@
     "plusCode": "8Q7XMJXF+M5"
   },
   {
-    "id": "13-100-l1-01",
+    "id": "13-100-l101",
     "cardName": "東京23区 L101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15500,7 +15538,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-l101-019"
+      "13-東京23区-l101-019",
+      "13-100-l1-01"
     ],
     "facilityUrl": "https://visit-sumida.jp/connect/",
     "stockUrl": "https://www.city.sumida.lg.jp/bunka_kanko/annnai/kankou/designmanhole-sumida.html",
@@ -15511,7 +15550,7 @@
     "plusCode": "8Q7XPR64+58"
   },
   {
-    "id": "13-100-m1-01",
+    "id": "13-100-m101",
     "cardName": "東京23区 M101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15532,7 +15571,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-m101-020"
+      "13-東京23区-m101-020",
+      "13-100-m1-01"
     ],
     "facilityUrl": "https://www.tokyo-park.or.jp/park/ukima/index.html",
     "stockUrl": "https://www.city.kita.lg.jp/culture-tourism-sports/tourism/1018318/1020188/1020208.html",
@@ -15543,7 +15583,7 @@
     "plusCode": "8Q7XQMVV+XC"
   },
   {
-    "id": "13-100-n1-01",
+    "id": "13-100-n101",
     "cardName": "東京23区 N101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15564,7 +15604,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-n101-021"
+      "13-東京23区-n101-021",
+      "13-100-n1-01"
     ],
     "facilityUrl": "https://www.ur-net.go.jp/east/action/akabanedai/index.html?channel=main&msockid=2d65f8d82fc266cd3f5ded012eec6723",
     "stockUrl": "https://www.city.kita.lg.jp/culture-tourism-sports/tourism/1018318/1020188/1020208.html",
@@ -15575,7 +15616,7 @@
     "plusCode": "8Q7XQPF7+VW"
   },
   {
-    "id": "13-100-o1-01",
+    "id": "13-100-o101",
     "cardName": "東京23区 O101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15596,7 +15637,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-o101-022"
+      "13-東京23区-o101-022",
+      "13-100-o1-01"
     ],
     "facilityUrl": "https://visit-chiyoda.tokyo/",
     "stockUrl": "https://www.city.chiyoda.lg.jp/koho/shigoto/sangyo/sonota/manhole.html",
@@ -15639,7 +15681,7 @@
     "plusCode": "8Q7XPQQ5+4Q"
   },
   {
-    "id": "13-100-a1-01",
+    "id": "13-100-a101",
     "cardName": "東京23区 A101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15660,7 +15702,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-a101-024"
+      "13-東京23区-a101-024",
+      "13-100-a1-01"
     ],
     "facilityUrl": "https://www.nerimakanko.jp/news/detail.php?notice_id=N000000021",
     "stockUrl": "https://www.city.nerima.tokyo.jp/kankomoyoshi/kankojoho/designmanhole.html",
@@ -15671,7 +15714,7 @@
     "plusCode": "8Q7XPMQ3+55"
   },
   {
-    "id": "13-100-b1-01",
+    "id": "13-100-b101",
     "cardName": "東京23区 B101",
     "prefecture": "東京都",
     "municipality": "東京23区",
@@ -15692,7 +15735,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京23区-b101-025"
+      "13-東京23区-b101-025",
+      "13-100-b1-01"
     ],
     "facilityUrl": "http://techno-plaza.jp/",
     "stockUrl": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1026016.html",
@@ -15734,7 +15778,7 @@
     "plusCode": "8Q7XMQXC+VR"
   },
   {
-    "id": "13-100-o01",
+    "id": "13-100-o-01",
     "cardName": "東京都 新宿区 O001",
     "prefecture": "東京都",
     "municipality": "東京都 新宿区",
@@ -15755,7 +15799,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-新宿区-o001-027"
+      "13-東京都-新宿区-o001-027",
+      "13-100-o01"
     ],
     "facilityUrl": "https://www.kanko-shinjuku.jp/office/-/index.html",
     "stockUrl": "https://www.city.shinjuku.lg.jp/kanko/bunka02_000001_00015.html",
@@ -15766,7 +15811,7 @@
     "plusCode": "8Q7XMPQ2+VH"
   },
   {
-    "id": "13-100tairoku-q001-omote",
+    "id": "13-100-q-01",
     "cardName": "東京都 台東区 Q001",
     "prefecture": "東京都",
     "municipality": "東京都 台東区",
@@ -15787,7 +15832,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-台東区-q001-028"
+      "13-東京都-台東区-q001-028",
+      "13-100tairoku-q001-omote"
     ],
     "stockUrl": "https://t-navi.city.taito.lg.jp/news/?itemid=253&dispmid=459",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
@@ -15797,7 +15843,7 @@
     "plusCode": "8Q7XPQ9Q+2P"
   },
   {
-    "id": "13-100-r01",
+    "id": "13-100-r-01",
     "cardName": "東京都 墨田区 R001",
     "prefecture": "東京都",
     "municipality": "東京都 墨田区",
@@ -15818,7 +15864,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-墨田区-r001-029"
+      "13-東京都-墨田区-r001-029",
+      "13-100-r01"
     ],
     "facilityUrl": "https://visit-sumida.jp/spot/6196",
     "stockUrl": "https://www.city.sumida.lg.jp/bunka_kanko/annnai/kankou/designmanhole-sumida.html",
@@ -15829,7 +15876,7 @@
     "plusCode": "8Q7XMQWR+FR"
   },
   {
-    "id": "13-100-s01-2",
+    "id": "13-100-s-01",
     "cardName": "東京都 品川区 S001",
     "prefecture": "東京都",
     "municipality": "東京都 品川区",
@@ -15850,7 +15897,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-品川区-s001-030"
+      "13-東京都-品川区-s001-030",
+      "13-100-s01-2"
     ],
     "facilityUrl": "https://isleshinagawa.com/",
     "stockUrl": "https://isleshinagawa.com/",
@@ -15861,7 +15909,7 @@
     "plusCode": "8Q7XJQC2+RG"
   },
   {
-    "id": "13-100-t01",
+    "id": "13-100-t-01",
     "cardName": "東京都 大田区 T001",
     "prefecture": "東京都",
     "municipality": "東京都 大田区",
@@ -15916,7 +15964,8 @@
       }
     ],
     "legacyIds": [
-      "13-東京都-大田区-t001-031"
+      "13-東京都-大田区-t001-031",
+      "13-100-t01"
     ],
     "stockUrl": "https://www.city.ota.tokyo.jp/kanko/topics/hanepyon_manhole.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
@@ -16021,7 +16070,7 @@
     "plusCode": "8Q7XPJ2P+Q3"
   },
   {
-    "id": "13-100-u01",
+    "id": "13-100-u-01",
     "cardName": "東京都 杉並区 U001",
     "prefecture": "東京都",
     "municipality": "東京都 杉並区",
@@ -16042,7 +16091,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-杉並区-u001-035"
+      "13-東京都-杉並区-u001-035",
+      "13-100-u01"
     ],
     "facilityUrl": "https://sam.or.jp/",
     "stockUrl": "https://www.city.suginami.tokyo.jp/suginamishoukai/shirumanabu/namisuke/1057047.html",
@@ -16117,7 +16167,7 @@
     "plusCode": "8Q7XQPG9+XV"
   },
   {
-    "id": "13-100-v01-2",
+    "id": "13-100-v-01",
     "cardName": "東京都 練馬区 V001",
     "prefecture": "東京都",
     "municipality": "東京都 練馬区",
@@ -16138,7 +16188,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-練馬区-v001-038"
+      "13-東京都-練馬区-v001-038",
+      "13-100-v01-2"
     ],
     "facilityUrl": "https://www.nerimakanko.jp/news/detail.php?notice_id=N000000021",
     "stockUrl": "https://www.city.nerima.tokyo.jp/kankomoyoshi/kankojoho/designmanhole.html",
@@ -16180,7 +16231,7 @@
     "plusCode": "8Q7XPRW2+W5"
   },
   {
-    "id": "13-100-w01",
+    "id": "13-100-w-01",
     "cardName": "東京都 足立区 W001",
     "prefecture": "東京都",
     "municipality": "東京都 足立区",
@@ -16251,7 +16302,8 @@
       }
     ],
     "legacyIds": [
-      "13-東京都-足立区-w001-040"
+      "13-東京都-足立区-w001-040",
+      "13-100-w01"
     ],
     "facilityUrl": "https://tokyotouristinfo.com/detail/M0319",
     "stockUrl": "https://www.city.adachi.tokyo.jp/s-shinko/designmanhole.html",
@@ -16262,7 +16314,7 @@
     "plusCode": "8Q7XQR23+CC"
   },
   {
-    "id": "13-100-x01",
+    "id": "13-100-x-01",
     "cardName": "東京都 葛飾区 X001",
     "prefecture": "東京都",
     "municipality": "東京都 葛飾区",
@@ -16317,7 +16369,8 @@
       }
     ],
     "legacyIds": [
-      "13-東京都-葛飾区-x001-041"
+      "13-東京都-葛飾区-x001-041",
+      "13-100-x01"
     ],
     "facilityUrl": "http://www.youroad.com/index.html",
     "stockUrl": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1026544.html",
@@ -16328,7 +16381,7 @@
     "plusCode": "8Q7XQR8X+59"
   },
   {
-    "id": "13-100-y01-2",
+    "id": "13-100-y-01",
     "cardName": "東京都 江戸川区 Y001",
     "prefecture": "東京都",
     "municipality": "東京都 江戸川区",
@@ -16349,7 +16402,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東京都-江戸川区-y001-042"
+      "13-東京都-江戸川区-y001-042",
+      "13-100-y01-2"
     ],
     "facilityUrl": "https://www.city.edogawa.tokyo.jp/e066/kuseijoho/gaiyo/shisetsuguide/bunya/koendobutsuen/c_recreation/index.html",
     "stockUrl": "https://www.city.edogawa.tokyo.jp/e026/sports/kankomidokoro/bungakukan/manhole.html",
@@ -16521,7 +16575,7 @@
     "plusCode": "8Q7XPC84+4G"
   },
   {
-    "id": "13-202-c01",
+    "id": "13-202-c-01",
     "cardName": "立川市 C001",
     "prefecture": "東京都",
     "municipality": "立川市",
@@ -16542,7 +16596,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-立川市-c001-047"
+      "13-立川市-c001-047",
+      "13-202-c01"
     ],
     "facilityUrl": "https://www.city.tachikawa.lg.jp/kurashi/suido/gesuido/index.html",
     "stockUrl": "https://www.city.tachikawa.lg.jp/kurashi/suido/1002266/1020609/1025815.html",
@@ -16682,7 +16737,7 @@
     "plusCode": "8Q7XPH3H+HX"
   },
   {
-    "id": "13-204-a01",
+    "id": "13-204-a-01",
     "cardName": "三鷹市",
     "prefecture": "東京都",
     "municipality": "三鷹市",
@@ -16703,7 +16758,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-三鷹市-051"
+      "13-三鷹市-051",
+      "13-204-a01"
     ],
     "facilityUrl": "http://kanko.mitaka.ne.jp/",
     "stockUrl": "http://kanko.mitaka.ne.jp/docs/2021092900021/",
@@ -16878,7 +16934,7 @@
     "plusCode": "8Q7XMFC9+7R"
   },
   {
-    "id": "13-206-b01",
+    "id": "13-206-b-01",
     "cardName": "府中市 B001",
     "prefecture": "東京都",
     "municipality": "府中市",
@@ -16899,7 +16955,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-府中市-b001-055"
+      "13-府中市-b001-055",
+      "13-206-b01"
     ],
     "facilityUrl": "http://www.kankou-fuchu.com/",
     "stockUrl": "https://www.city.fuchu.tokyo.jp/kanko/manga_anime/manhole.html",
@@ -17168,7 +17225,7 @@
     "plusCode": "8Q7XMGX3+GX"
   },
   {
-    "id": "13-210-b-02",
+    "id": "13-210-b-01",
     "cardName": "小金井市 B001",
     "prefecture": "東京都",
     "municipality": "小金井市",
@@ -17223,7 +17280,8 @@
       }
     ],
     "legacyIds": [
-      "13-小金井市-b001-063"
+      "13-小金井市-b001-063",
+      "13-210-b-02"
     ],
     "facilityUrl": "https://www.city.koganei.lg.jp/",
     "stockUrl": "https://www.city.koganei.lg.jp/smph/kurashi/478/keihatuzigyou/mannho-ruka-dotokube.html",
@@ -17834,7 +17892,7 @@
     "plusCode": "8Q7XJHMH+Q5"
   },
   {
-    "id": "13-219-b02",
+    "id": "13-219-b-01",
     "cardName": "狛江市 B001",
     "prefecture": "東京都",
     "municipality": "狛江市",
@@ -17855,7 +17913,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-狛江市-b001-077"
+      "13-狛江市-b001-077",
+      "13-219-b02"
     ],
     "facilityUrl": "https://ecorma-hall.jp/",
     "stockUrl": "http://www.city.komae.tokyo.jp/index.cfm/41,90728,313,2003,html",
@@ -17866,7 +17925,7 @@
     "plusCode": "8Q7XJHMH+75"
   },
   {
-    "id": "13-220-a01",
+    "id": "13-220-a-01",
     "cardName": "東大和市",
     "prefecture": "東京都",
     "municipality": "東大和市",
@@ -17887,7 +17946,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東大和市-078"
+      "13-東大和市-078",
+      "13-220-a01"
     ],
     "facilityUrl": "https://www.city.higashiyamato.lg.jp/index.cfm/35,0,366,html",
     "stockUrl": "http://www.city.higashiyamato.lg.jp/index.cfm/34,100936,350,html",
@@ -17898,7 +17958,7 @@
     "plusCode": "8Q7XQC4C+HV"
   },
   {
-    "id": "13-221-a01",
+    "id": "13-221-a-01",
     "cardName": "清瀬市",
     "prefecture": "東京都",
     "municipality": "清瀬市",
@@ -17919,7 +17979,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-清瀬市-079"
+      "13-清瀬市-079",
+      "13-221-a01"
     ],
     "facilityUrl": "https://www.city.kiyose.lg.jp/siseijouhou/sosikisigoto/kakukagoannai/1005112.html",
     "stockUrl": "https://www.city.kiyose.lg.jp/kurashi/suidougesuidou/gesuidou/1015242/1015263/1009709.html",
@@ -17930,7 +17991,7 @@
     "plusCode": "8Q7XQGCC+V9"
   },
   {
-    "id": "13-222-a-02",
+    "id": "13-222-a-01",
     "cardName": "東久留米市 A001",
     "prefecture": "東京都",
     "municipality": "東久留米市",
@@ -17951,7 +18012,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東久留米市-a001-080"
+      "13-東久留米市-a001-080",
+      "13-222-a-02"
     ],
     "facilityUrl": "https://www.s-seiun.co.jp/shisetsu/higashikurume/shisetsu/plaza.html",
     "stockUrl": "https://www.city.higashikurume.lg.jp/1007337/1026011.html",
@@ -17962,7 +18024,7 @@
     "plusCode": "8Q7XQG5H+FV"
   },
   {
-    "id": "13-222-b01",
+    "id": "13-222-b-01",
     "cardName": "東久留米市 B001",
     "prefecture": "東京都",
     "municipality": "東久留米市",
@@ -17983,7 +18045,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東久留米市-b001-081"
+      "13-東久留米市-b001-081",
+      "13-222-b01"
     ],
     "facilityUrl": "https://www.city.higashikurume.lg.jp/shisetsu/sports/1002049.html",
     "stockUrl": "https://www.city.higashikurume.lg.jp/1007337/1026011.html",
@@ -18026,7 +18089,7 @@
     "plusCode": "8Q7XPGV4+PG"
   },
   {
-    "id": "13-222-d01",
+    "id": "13-222-d-01",
     "cardName": "東久留米市 D001",
     "prefecture": "東京都",
     "municipality": "東久留米市",
@@ -18047,7 +18110,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-東久留米市-d001-083"
+      "13-東久留米市-d001-083",
+      "13-222-d01"
     ],
     "facilityUrl": "https://www.higashikurume-lll.jp/",
     "stockUrl": "https://www.city.higashikurume.lg.jp/1007337/1026011.html",
@@ -18220,7 +18284,7 @@
     "plusCode": "8Q7XJCCG+G8"
   },
   {
-    "id": "13-225-a01",
+    "id": "13-225-a-01",
     "cardName": "稲城市",
     "prefecture": "東京都",
     "municipality": "稲城市",
@@ -18241,7 +18305,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-稲城市-088"
+      "13-稲城市-088",
+      "13-225-a01"
     ],
     "facilityUrl": "https://inagi-kanko.jp/",
     "stockUrl": "https://www.city.inagi.tokyo.jp/kanko/miryoku/1010492/1013753/1010317.html",
@@ -18315,7 +18380,7 @@
     "plusCode": "8Q7XQ75X+8H"
   },
   {
-    "id": "13-228-a01-2",
+    "id": "13-228-a-01",
     "cardName": "あきる野市 A001",
     "prefecture": "東京都",
     "municipality": "あきる野市",
@@ -18370,7 +18435,8 @@
       }
     ],
     "legacyIds": [
-      "13-あきる野市-a001-091"
+      "13-あきる野市-a001-091",
+      "13-228-a01-2"
     ],
     "stockUrl": "https://www.city.akiruno.tokyo.jp/kanko/0000013916.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
@@ -18380,7 +18446,7 @@
     "plusCode": "8Q7XP7HV+JR"
   },
   {
-    "id": "13-228-b01",
+    "id": "13-228-b-01",
     "cardName": "あきる野市 B001",
     "prefecture": "東京都",
     "municipality": "あきる野市",
@@ -18401,7 +18467,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "13-あきる野市-b001-092"
+      "13-あきる野市-b001-092",
+      "13-228-b01"
     ],
     "facilityUrl": "http://www.seotonoyu.jp/",
     "stockUrl": "https://www.city.akiruno.tokyo.jp/kanko/0000013916.html",
@@ -18809,7 +18876,7 @@
     "plusCode": "8Q7XGMJX+25"
   },
   {
-    "id": "14-130-b01",
+    "id": "14-130-b-01",
     "cardName": "川崎市 B001",
     "prefecture": "神奈川県",
     "municipality": "川崎市",
@@ -18864,7 +18931,8 @@
       }
     ],
     "legacyIds": [
-      "14-川崎市-b001-006"
+      "14-川崎市-b001-006",
+      "14-130-b01"
     ],
     "facilityUrl": "https://www.city.kawasaki.jp/800/page/0000105394.html",
     "stockUrl": "https://www.city.kawasaki.jp/800/page/0000088344.html",
@@ -19003,7 +19071,7 @@
     "plusCode": "8Q7XH95V+G8"
   },
   {
-    "id": "14-150-d01",
+    "id": "14-150-d-01",
     "cardName": "相模原市 D001",
     "prefecture": "神奈川県",
     "municipality": "相模原市",
@@ -19024,7 +19092,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "14-相模原市-d001-011"
+      "14-相模原市-d001-011",
+      "14-150-d01"
     ],
     "facilityUrl": "https://www.e-sagamihara.com/topics/topics-971/",
     "stockUrl": "https://www.city.sagamihara.kanagawa.jp/shisei/1026823/gesuido/1004546/1014470.html",
@@ -19390,7 +19459,7 @@
     "plusCode": "8Q7X65X5+J3"
   },
   {
-    "id": "14-206-c01",
+    "id": "14-206-c-01",
     "cardName": "小田原市 C001",
     "prefecture": "神奈川県",
     "municipality": "小田原市",
@@ -19411,7 +19480,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "14-小田原市-c001-021"
+      "14-小田原市-c001-021",
+      "14-206-c01"
     ],
     "facilityUrl": "https://www.city.odawara.kanagawa.jp/municipality/industry/urban/nariwai.html",
     "stockUrl": "https://www.city.odawara.kanagawa.jp/field/water/sewer/topics/p24794.html",
@@ -19581,7 +19651,7 @@
     "plusCode": "8Q7X89CH+54"
   },
   {
-    "id": "14-208-a01",
+    "id": "14-208-a-01",
     "cardName": "逗子市",
     "prefecture": "神奈川県",
     "municipality": "逗子市",
@@ -19602,7 +19672,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "14-逗子市-027"
+      "14-逗子市-027",
+      "14-208-a01"
     ],
     "facilityUrl": "https://www.city.zushi.kanagawa.jp/index.html",
     "stockUrl": "https://www.city.zushi.kanagawa.jp/kurashi/suido/1001970/1001982/1010948.html",
@@ -19870,7 +19941,7 @@
     "plusCode": "8Q7X97PW+M7"
   },
   {
-    "id": "14-215-a01",
+    "id": "14-215-a-01",
     "cardName": "海老名市",
     "prefecture": "神奈川県",
     "municipality": "海老名市",
@@ -19891,7 +19962,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "14-海老名市-035"
+      "14-海老名市-035",
+      "14-215-a01"
     ],
     "facilityUrl": "https://www.city.ebina.kanagawa.jp/shisei/profile/tankyusha/onko/1000654.html",
     "stockUrl": "https://www.city.ebina.kanagawa.jp/guide/sumai/gesui/1017802/1013343.html",
@@ -20750,7 +20822,7 @@
     "plusCode": "8Q9XW8WH+8P"
   },
   {
-    "id": "15-206-c01",
+    "id": "15-206-c-01",
     "cardName": "新発田市 C001",
     "prefecture": "新潟県",
     "municipality": "新発田市",
@@ -20771,7 +20843,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-新発田市-c001-015"
+      "15-新発田市-c001-015",
+      "15-206-c01"
     ],
     "facilityUrl": "http://www.tsukiokaonsen.gr.jp/",
     "stockUrl": "https://www.city.shibata.lg.jp/kurashi/suido/gesuido/1012307/1017916.html",
@@ -20782,7 +20855,7 @@
     "plusCode": "8Q9XV8H5+QG"
   },
   {
-    "id": "15-208-d-01",
+    "id": "15-206-d-01",
     "cardName": "新発田市 D001",
     "prefecture": "新潟県",
     "municipality": "新発田市",
@@ -20803,7 +20876,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-新発田市-d001-016"
+      "15-新発田市-d001-016",
+      "15-208-d-01"
     ],
     "facilityUrl": "https://www.city.shibata.lg.jp/shisetsu/kanko/kanko/1022382.html",
     "stockUrl": "https://www.city.shibata.lg.jp/kurashi/suido/gesuido/1012307/1031179.html",
@@ -20846,7 +20920,7 @@
     "plusCode": "8Q9W8Q6W+HH"
   },
   {
-    "id": "15-208-b01",
+    "id": "15-208-b-01",
     "cardName": "小千谷市 B001",
     "prefecture": "新潟県",
     "municipality": "小千谷市",
@@ -20867,7 +20941,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-小千谷市-b001-018"
+      "15-小千谷市-b001-018",
+      "15-208-b01"
     ],
     "facilityUrl": "https://www.ojiyasunplaza.jp/",
     "stockUrl": "https://www.city.ojiya.niigata.jp/soshiki/suido/manhoru-card.html",
@@ -21040,7 +21115,7 @@
     "plusCode": "8Q9W4QR4+99"
   },
   {
-    "id": "15-211-a01",
+    "id": "15-211-a-01",
     "cardName": "見附市",
     "prefecture": "新潟県",
     "municipality": "見附市",
@@ -21061,7 +21136,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-見附市-023"
+      "15-見附市-023",
+      "15-211-a01"
     ],
     "facilityUrl": "https://r.goope.jp/miraiichiba",
     "stockUrl": "https://www.city.mitsuke.niigata.jp/soshiki/18/1979.html",
@@ -21232,7 +21308,7 @@
     "plusCode": "8QCX5FF6+46"
   },
   {
-    "id": "15-213-a-02",
+    "id": "15-213-a-01",
     "cardName": "燕市 A001",
     "prefecture": "新潟県",
     "municipality": "燕市",
@@ -21253,7 +21329,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-燕市-a001-029"
+      "15-燕市-a001-029",
+      "15-213-a-02"
     ],
     "facilityUrl": "https://www.city.tsubame.niigata.jp/soshiki/kyoiku/3/12/10278/683.html",
     "stockUrl": "https://www.city.tsubame.niigata.jp/kurashi/joge/1/3772.html",
@@ -21296,7 +21373,7 @@
     "plusCode": "8Q9WMW29+XV"
   },
   {
-    "id": "15-213-c01",
+    "id": "15-213-c-01",
     "cardName": "燕市 C001",
     "prefecture": "新潟県",
     "municipality": "燕市",
@@ -21317,7 +21394,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-燕市-c001-031"
+      "15-燕市-c001-031",
+      "15-213-c01"
     ],
     "facilityUrl": "https://www.city.tsubame.niigata.jp/soshiki/kyoiku/3/12/tyouzennkann/836.html",
     "stockUrl": "https://www.city.tsubame.niigata.jp/kurashi/joge/1/3772.html",
@@ -21328,7 +21406,7 @@
     "plusCode": "8Q9WMV29+JP"
   },
   {
-    "id": "15-213-d01",
+    "id": "15-213-d-01",
     "cardName": "燕市 D001",
     "prefecture": "新潟県",
     "municipality": "燕市",
@@ -21349,7 +21427,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "15-燕市-d001-032"
+      "15-燕市-d001-032",
+      "15-213-d01"
     ],
     "facilityUrl": "https://www.michinoeki-kugami.jp/",
     "stockUrl": "https://www.city.tsubame.niigata.jp/kurashi/joge/1/3772.html",
@@ -21743,7 +21822,7 @@
     "plusCode": "8QCX2FJW+PC"
   },
   {
-    "id": "15-405-a01",
+    "id": "15-405-a-01",
     "cardName": "出雲崎町",
     "prefecture": "新潟県",
     "municipality": "出雲崎町",
@@ -21798,7 +21877,8 @@
       }
     ],
     "legacyIds": [
-      "15-出雲崎町-045"
+      "15-出雲崎町-045",
+      "15-405-a01"
     ],
     "facilityUrl": "https://tenryonosato.jp/",
     "stockUrl": "http://www.town.izumozaki.niigata.jp/kurashi/suido/colormanhole.html",
@@ -22029,7 +22109,7 @@
     "plusCode": "8Q8VQ65M+QQ"
   },
   {
-    "id": "16-201-f01",
+    "id": "16-201-f-01",
     "cardName": "富山市 F001",
     "prefecture": "富山県",
     "municipality": "富山市",
@@ -22050,14 +22130,15 @@
     "coordinateAccuracy": "prefecture_approx",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "16-富山市-f001-006"
+      "16-富山市-f001-006",
+      "16-201-f01"
     ],
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
     "plusCode": "8Q8VP55Q+4V"
   },
   {
-    "id": "16-201-g01",
+    "id": "16-201-g-01",
     "cardName": "富山市 G001",
     "prefecture": "富山県",
     "municipality": "富山市",
@@ -22078,7 +22159,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "16-富山市-g001-007"
+      "16-富山市-g001-007",
+      "16-201-g01"
     ],
     "facilityUrl": "https://www.yatsuo.net/",
     "stockUrl": "https://www.city.toyama.lg.jp/kurashi/suido/1010356/1010360/1011634.html",
@@ -22382,7 +22464,7 @@
     "plusCode": "8Q8RMVQG+PJ"
   },
   {
-    "id": "16-209-b01",
+    "id": "16-209-b-01",
     "cardName": "小矢部市 B001",
     "prefecture": "富山県",
     "municipality": "小矢部市",
@@ -22403,7 +22485,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "16-小矢部市-b001-016"
+      "16-小矢部市-b001-016",
+      "16-209-b01"
     ],
     "facilityUrl": "http://www.oyabe.info/",
     "stockUrl": "https://www.city.oyabe.toyama.jp/kurashi/1002194/1002217/1002218.html",
@@ -22535,12 +22618,12 @@
     "legacyIds": [
       "17-金沢市-001"
     ],
-    "facilityUrl": "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html",
-    "stockUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
-    "conditionUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
     "officialDesignNames": [
       "加賀水引"
     ],
+    "facilityUrl": "https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50571.html",
+    "stockUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
+    "conditionUrl": "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
     "geocodeQuery": "石川県金沢市南町4-1金沢ニュ-グランドビル1階",
     "geocodeTitle": "石川県金沢市南町４番１号",
     "geocodedAt": "2026-07-01",
@@ -22727,12 +22810,12 @@
     "legacyIds": [
       "17-穴水町-a001-007"
     ],
-    "facilityUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
-    "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
     "officialDesignNames": [
       "林業集落排水専用マンホール蓋"
     ],
+    "facilityUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
+    "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
     "geocodeQuery": "石川県鳳珠郡穴水町字大町チの41番地6",
     "geocodeTitle": "石川県穴水町字大町チ",
     "geocodedAt": "2026-07-01",
@@ -22762,19 +22845,19 @@
     "legacyIds": [
       "17-穴水町-b001-008"
     ],
-    "facilityUrl": "https://www.town.anamizu.lg.jp/",
-    "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
     "officialDesignNames": [
       "ぼらまちやぐら"
     ],
+    "facilityUrl": "https://www.town.anamizu.lg.jp/",
+    "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
     "geocodeQuery": "石川県鳳珠郡穴水町字川島ラの174番地",
     "geocodeTitle": "石川県穴水町字川島ラ",
     "geocodedAt": "2026-07-01",
     "plusCode": "8Q9R6WH7+HG"
   },
   {
-    "id": "17-463-a01",
+    "id": "17-463-a-01",
     "cardName": "能登町 A001",
     "prefecture": "石川県",
     "municipality": "能登町",
@@ -22795,7 +22878,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "17-能登町-a001-009"
+      "17-能登町-a001-009",
+      "17-463-a01"
     ],
     "facilityUrl": "https://ikanoeki.com/",
     "stockUrl": "http://www.town.noto.lg.jp/www/info/detail.jsp?common_id=17774",
@@ -22966,7 +23050,7 @@
     "plusCode": "8Q7RM36F+75"
   },
   {
-    "id": "18-202-b01",
+    "id": "18-202-b-01",
     "cardName": "敦賀市 B001",
     "prefecture": "福井県",
     "municipality": "敦賀市",
@@ -22987,7 +23071,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "18-敦賀市-b001-004"
+      "18-敦賀市-b001-004",
+      "18-202-b01"
     ],
     "facilityUrl": "https://tsuruga-museum.jp/",
     "stockUrl": "https://www.city.tsuruga.lg.jp/page/1452.html",
@@ -23744,7 +23829,7 @@
     "plusCode": "8Q7WHGX8+XV"
   },
   {
-    "id": "19-430-a01",
+    "id": "19-430-a-01",
     "cardName": "富士河口湖町 A001",
     "prefecture": "山梨県",
     "municipality": "富士河口湖町",
@@ -23799,7 +23884,8 @@
       }
     ],
     "legacyIds": [
-      "19-富士河口湖町-a001-013"
+      "19-富士河口湖町-a001-013",
+      "19-430-a01"
     ],
     "facilityUrl": "https://www.town.fujikawaguchiko.lg.jp/",
     "stockUrl": "https://www.town.fujikawaguchiko.lg.jp/ka/info.php?if_id=6160&ka_id=15",
@@ -23973,7 +24059,7 @@
     "id": "20-000-d-01",
     "cardName": "長野県 （流域下水道・D001)",
     "prefecture": "長野県",
-    "municipality": "長野県 （流域下水道・D001)",
+    "municipality": "長野県",
     "place": "安曇野市観光情報センター",
     "address": "長野県安曇野市穂高5952-3",
     "lat": 36.340176,
@@ -24698,7 +24784,7 @@
     "plusCode": "8Q7WR473+HP"
   },
   {
-    "id": "20-210-a01",
+    "id": "20-210-a-01",
     "cardName": "駒ヶ根市",
     "prefecture": "長野県",
     "municipality": "駒ヶ根市",
@@ -24719,7 +24805,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "20-駒ヶ根市-022"
+      "20-駒ヶ根市-022",
+      "20-210-a01"
     ],
     "facilityUrl": "https://www.city.komagane.nagano.jp/soshikiichiran/shiminka/shiminkakari/4/1/3156.html",
     "stockUrl": "https://www.city.komagane.nagano.jp/gyosei/kurashi_tetsuzuki/jogesuido/gesuido/8559.html",
@@ -25203,6 +25290,10 @@
     ],
     "stockUrl": "https://www.town.karuizawa.lg.jp/page/14115.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "available",
+    "englishVersionNote": "日本語版または英語版どちらか1枚の配布となります。",
+    "englishVersionUrl": "https://www.town.karuizawa.lg.jp/page/14115.html",
     "geocodeQuery": "長野県北佐久郡軽井沢町大字軽井沢1178番地1186",
     "geocodeTitle": "長野県軽井沢町軽井沢１１７８番地",
     "geocodedAt": "2026-07-01",
@@ -25336,7 +25427,7 @@
     "plusCode": "8Q7VVXFG+52"
   },
   {
-    "id": "20-403-a01",
+    "id": "20-403-a-01",
     "cardName": "高森町 A001",
     "prefecture": "長野県",
     "municipality": "高森町",
@@ -25357,7 +25448,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "20-高森町-a001-041"
+      "20-高森町-a001-041",
+      "20-403-a01"
     ],
     "facilityUrl": "https://www.town.nagano-takamori.lg.jp/index.html",
     "stockUrl": "https://www.town.nagano-takamori.lg.jp/docs/12584.html",
@@ -25530,7 +25622,7 @@
     "plusCode": "8Q8V4R23+X9"
   },
   {
-    "id": "20-452-a",
+    "id": "20-452-a-01",
     "cardName": "筑北村",
     "prefecture": "長野県",
     "municipality": "筑北村",
@@ -25585,7 +25677,8 @@
       }
     ],
     "legacyIds": [
-      "20-筑北村-046"
+      "20-筑北村-046",
+      "20-452-a"
     ],
     "facilityUrl": "https://hpdsp.jp/tokura1000yu/",
     "stockUrl": "https://www.vill.chikuhoku.lg.jp/docs/334.html",
@@ -25920,7 +26013,7 @@
     "plusCode": "8Q8V3622+XG"
   },
   {
-    "id": "21-203-f01",
+    "id": "21-203-f-01",
     "cardName": "高山市 F001",
     "prefecture": "岐阜県",
     "municipality": "高山市",
@@ -25941,7 +26034,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "21-高山市-f001-007"
+      "21-高山市-f001-007",
+      "21-203-f01"
     ],
     "facilityUrl": "https://www.city.takayama.lg.jp/shisetsu/1004139/1000027/1001410.html",
     "stockUrl": "https://www.city.takayama.lg.jp/kurashi/1000022/1000122/1001131/1022809.html",
@@ -26725,7 +26819,7 @@
     "plusCode": "8Q7RCHRF+RG"
   },
   {
-    "id": "22-100-a02",
+    "id": "22-100-a-01",
     "cardName": "静岡市 A001",
     "prefecture": "静岡県",
     "municipality": "静岡市",
@@ -26746,7 +26840,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "22-静岡市-a001-001"
+      "22-静岡市-a001-001",
+      "22-100-a02"
     ],
     "facilityUrl": "https://www.city.shizuoka.lg.jp/556_000024.html#h2_5",
     "stockUrl": "https://www.city.shizuoka.lg.jp/268_000150.html",
@@ -27240,7 +27335,7 @@
     "plusCode": "8Q7W5M46+MP"
   },
   {
-    "id": "22-210-b-02",
+    "id": "22-210-b-01",
     "cardName": "富士市岳南排水路管理組合 B001",
     "prefecture": "静岡県",
     "municipality": "富士市岳南排水路管理組合",
@@ -27295,7 +27390,8 @@
       }
     ],
     "legacyIds": [
-      "22-富士市-b001-岳南排水路管理組合-015"
+      "22-富士市-b001-岳南排水路管理組合-015",
+      "22-210-b-02"
     ],
     "facilityUrl": "http://gakunan-haisuiro.jp/link(html)/manhole/manhole.html",
     "stockUrl": "http://gakunan-haisuiro.jp/link(html)/manhole/manhole.html",
@@ -28169,7 +28265,7 @@
     "plusCode": "8Q7V25HV+QR"
   },
   {
-    "id": "23-202-f01",
+    "id": "23-202-f-01",
     "cardName": "岡崎市 F001",
     "prefecture": "愛知県",
     "municipality": "岡崎市",
@@ -28190,7 +28286,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "23-岡崎市-f001-012"
+      "23-岡崎市-f001-012",
+      "23-202-f01"
     ],
     "facilityUrl": "https://www.8miso.co.jp/",
     "stockUrl": "https://okazaki-kanko.jp/feature/manhole/tokai-on-air",
@@ -28393,7 +28490,7 @@
     "plusCode": "8Q6RWW2H+MC"
   },
   {
-    "id": "23-205-c01",
+    "id": "23-205-c-01",
     "cardName": "半田市 C001",
     "prefecture": "愛知県",
     "municipality": "半田市",
@@ -28414,7 +28511,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "23-半田市-c001-019"
+      "23-半田市-c001-019",
+      "23-205-c01"
     ],
     "facilityUrl": "https://www.clacity.jp/",
     "stockUrl": "https://www.city.handa.lg.jp/machi/gesuido/1003527/1003532.html",
@@ -28457,7 +28555,7 @@
     "plusCode": "8Q6VR9FV+JR"
   },
   {
-    "id": "23-208-a01",
+    "id": "23-208-a-01",
     "cardName": "津島市",
     "prefecture": "愛知県",
     "municipality": "津島市",
@@ -28512,7 +28610,8 @@
       }
     ],
     "legacyIds": [
-      "23-津島市-021"
+      "23-津島市-021",
+      "23-208-a01"
     ],
     "stockUrl": "https://www.city.tsushima.lg.jp/kurashi/suidougesuidou/suidouryoukin/tsushimamanholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
@@ -29198,7 +29297,7 @@
     "plusCode": "8Q7V2322+H7"
   },
   {
-    "id": "23-226-a02",
+    "id": "23-226-a-02",
     "cardName": "尾張旭市",
     "prefecture": "愛知県",
     "municipality": "尾張旭市",
@@ -29219,7 +29318,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "23-尾張旭市-040"
+      "23-尾張旭市-040",
+      "23-226-a02"
     ],
     "facilityUrl": "https://www.city.owariasahi.lg.jp/page/2168.html",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
@@ -29422,7 +29522,7 @@
     "plusCode": "8Q7R4MVV+PH"
   },
   {
-    "id": "23-234a",
+    "id": "23-234-a-01",
     "cardName": "北名古屋市",
     "prefecture": "愛知県",
     "municipality": "北名古屋市",
@@ -29477,7 +29577,8 @@
       }
     ],
     "legacyIds": [
-      "23-北名古屋市-046"
+      "23-北名古屋市-046",
+      "23-234a"
     ],
     "facilityUrl": "http://www.city.kitanagoya.lg.jp/",
     "stockUrl": "http://www.city.kitanagoya.lg.jp/gesui/1600053.php",
@@ -30639,7 +30740,7 @@
     "plusCode": "8Q7R3M9M+2W"
   },
   {
-    "id": "24-205-b01",
+    "id": "24-205-b-01",
     "cardName": "桑名市 B001",
     "prefecture": "三重県",
     "municipality": "桑名市",
@@ -30660,7 +30761,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "24-桑名市-b001-013"
+      "24-桑名市-b001-013",
+      "24-205-b01"
     ],
     "stockUrl": "https://www.city.kuwana.lg.jp/kikakusoumu/kurashi/kankyou/20240614.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=24#mhcard_result",
@@ -32726,7 +32828,7 @@
     "plusCode": "8Q6QMGM4+9R"
   },
   {
-    "id": "27-100-c01",
+    "id": "27-100-c-01",
     "cardName": "大阪市 C001",
     "prefecture": "大阪府",
     "municipality": "大阪市",
@@ -32747,7 +32849,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "27-大阪市-c001-005"
+      "27-大阪市-c001-005",
+      "27-100-c01"
     ],
     "facilityUrl": "https://www.osaka-ssm.jp/information",
     "stockUrl": "https://www.city.osaka.lg.jp/kensetsu/page/0000431121.html",
@@ -32822,7 +32925,7 @@
     "plusCode": "8Q6QHFGC+F8"
   },
   {
-    "id": "27-140-b01",
+    "id": "27-140-b-01",
     "cardName": "堺市 B001",
     "prefecture": "大阪府",
     "municipality": "堺市",
@@ -32843,7 +32946,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "27-堺市-b001-008"
+      "27-堺市-b001-008",
+      "27-140-b01"
     ],
     "facilityUrl": "https://www.sakai-tcb.or.jp/spot/detail/1164",
     "stockUrl": "https://water.city.sakai.lg.jp/",
@@ -32885,7 +32989,7 @@
     "plusCode": "8Q6QF96H+67"
   },
   {
-    "id": "27-202-b01",
+    "id": "27-202-b-01",
     "cardName": "岸和田市 B001",
     "prefecture": "大阪府",
     "municipality": "岸和田市",
@@ -32906,7 +33010,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "27-岸和田市-b001-010"
+      "27-岸和田市-b001-010",
+      "27-202-b01"
     ],
     "facilityUrl": "https://www.ja-izumino.or.jp/farmstand/",
     "stockUrl": "https://www.city.kishiwada.lg.jp/page/56-manholecard.html",
@@ -34538,7 +34643,7 @@
     "plusCode": "8Q6QHHFW+XV"
   },
   {
-    "id": "27-226-b01",
+    "id": "27-226-b-01",
     "cardName": "藤井寺市 B001",
     "prefecture": "大阪府",
     "municipality": "藤井寺市",
@@ -34559,7 +34664,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "27-藤井寺市-b001-048"
+      "27-藤井寺市-b001-048",
+      "27-226-b01"
     ],
     "facilityUrl": "https://www.city-fujiidera-kosha.or.jp/",
     "stockUrl": "https://www.city.fujiidera.lg.jp/soshiki/toshiseibi/gesuidosoumu/11043.html",
@@ -34763,7 +34869,7 @@
     "plusCode": "8Q6QQMFM+G5"
   },
   {
-    "id": "27-230-b01",
+    "id": "27-230-b-01",
     "cardName": "交野市 B001",
     "prefecture": "大阪府",
     "municipality": "交野市",
@@ -34784,7 +34890,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "27-交野市-b001-054"
+      "27-交野市-b001-054",
+      "27-230-b01"
     ],
     "stockUrl": "https://www.city.katano.osaka.jp/docs/2018053100033/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
@@ -34891,7 +34998,7 @@
     "plusCode": "8Q6QGH34+F8"
   },
   {
-    "id": "27-232-a01",
+    "id": "27-232-a-01",
     "cardName": "阪南市",
     "prefecture": "大阪府",
     "municipality": "阪南市",
@@ -34946,7 +35053,8 @@
       }
     ],
     "legacyIds": [
-      "27-阪南市-057"
+      "27-阪南市-057",
+      "27-232-a01"
     ],
     "facilityUrl": "http://www.city.hannan.lg.jp/",
     "stockUrl": "https://www.city.hannan.lg.jp/kakuka/toshi/gesuido/6682.html",
@@ -35861,7 +35969,7 @@
     "plusCode": "8Q6QQ9MX+9X"
   },
   {
-    "id": "28-207-c01",
+    "id": "28-207-c-01",
     "cardName": "伊丹市 C001",
     "prefecture": "兵庫県",
     "municipality": "伊丹市",
@@ -35882,7 +35990,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "28-伊丹市-c001-015"
+      "28-伊丹市-c001-015",
+      "28-207-c01"
     ],
     "facilityUrl": "http://itami-kankou.com/",
     "stockUrl": "https://www.water.itami.hyogo.jp/tetsuzuki/manholecard/manholecard.html",
@@ -36380,7 +36489,7 @@
     "plusCode": "8Q6QRCM9+MH"
   },
   {
-    "id": "28-217-c001",
+    "id": "28-217-c-01",
     "cardName": "川西市 C001",
     "prefecture": "兵庫県",
     "municipality": "川西市",
@@ -36401,7 +36510,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "28-川西市-c001-027"
+      "28-川西市-c001-027",
+      "28-217-c001"
     ],
     "facilityUrl": "https://www.city.kawanishi.hyogo.jp/shisetsu/1002871/1002872.html",
     "stockUrl": "https://www.city.kawanishi.hyogo.jp/water-toppage/about/1016931/1017158/1016952.html",
@@ -38578,7 +38688,7 @@
     "plusCode": "8Q6MGPHR+P6"
   },
   {
-    "id": "33-202-e01",
+    "id": "33-202-e-01",
     "cardName": "倉敷市 E001",
     "prefecture": "岡山県",
     "municipality": "倉敷市",
@@ -38599,7 +38709,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "33-倉敷市-e001-006"
+      "33-倉敷市-e001-006",
+      "33-202-e01"
     ],
     "facilityUrl": "https://www.grand-cocoe.com/",
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
@@ -38968,7 +39079,7 @@
     "plusCode": "8Q7M8J5G+XP"
   },
   {
-    "id": "33-215-a01",
+    "id": "33-215-a-01",
     "cardName": "美作市 A001",
     "prefecture": "岡山県",
     "municipality": "美作市",
@@ -38989,7 +39100,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "33-美作市-a001-015"
+      "33-美作市-a001-015",
+      "33-215-a01"
     ],
     "facilityUrl": "https://spa-yunogo.or.jp/",
     "stockUrl": "https://www.city.mimasaka.lg.jp/soshiki/toshiseibi/jogesuido/gesui/7116.html",
@@ -39320,7 +39432,7 @@
     "plusCode": "8Q7P24RJ+JJ"
   },
   {
-    "id": "33-623-a01",
+    "id": "33-623-a-01",
     "cardName": "奈義町",
     "prefecture": "岡山県",
     "municipality": "奈義町",
@@ -39341,7 +39453,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "33-奈義町-025"
+      "33-奈義町-025",
+      "33-623-a01"
     ],
     "facilityUrl": "https://www.town.nagi.okayama.jp/gyousei/koukyou_shisetsu/nagiterrace.html",
     "stockUrl": "https://www.town.nagi.okayama.jp/gyousei/manhorukado.html",
@@ -39535,9 +39648,16 @@
     "legacyIds": [
       "34-広島市-b001-003"
     ],
+    "officialDesignNames": [
+      "折り鶴"
+    ],
     "facilityUrl": "https://dive-hiroshima.com/explore/3636/",
     "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+    "hasEnglishVersion": true,
+    "englishVersionStatus": "out_of_stock",
+    "englishVersionNote": "折り鶴 英語版：在庫なし",
+    "englishVersionUrl": "https://www.city.hiroshima.lg.jp/living/suido-gesuido/1005966/1026325/1026326/1010193.html",
     "geocodeQuery": "広島県広島市南区松原町2-37",
     "geocodeTitle": "広島県広島市南区松原町２番３７号",
     "geocodedAt": "2026-07-01",
@@ -39567,12 +39687,12 @@
     "legacyIds": [
       "34-広島市-c001-004"
     ],
-    "facilityUrl": "https://hiroshima-resthouse.jp/",
-    "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
     "officialDesignNames": [
       "広島サミット県民会議"
     ],
+    "facilityUrl": "https://hiroshima-resthouse.jp/",
+    "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "out_of_stock",
     "englishVersionNote": "広島サミット県民会議 英語版：在庫なし",
@@ -39702,16 +39822,12 @@
     "legacyIds": [
       "34-広島市-g001-008"
     ],
+    "officialDesignNames": [
+      "かよこバス"
+    ],
     "facilityUrl": "http://www.cf.city.hiroshima.jp/misasa-k/",
     "stockUrl": "https://www.city.hiroshima.lg.jp/site/gesuido/304786.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
-    "officialDesignNames": [
-      "折り鶴"
-    ],
-    "hasEnglishVersion": true,
-    "englishVersionStatus": "out_of_stock",
-    "englishVersionNote": "英語版 ：在庫なし",
-    "englishVersionUrl": "https://www.city.hiroshima.lg.jp/living/suido-gesuido/1005966/1026325/1026326/1010193.html",
     "geocodeQuery": "広島市西区打越町10番23号",
     "geocodeTitle": "広島県広島市西区打越町１０番２３号",
     "geocodedAt": "2026-07-01",
@@ -39908,7 +40024,7 @@
     "plusCode": "8Q6M94W3+RP"
   },
   {
-    "id": "34-207-a01",
+    "id": "34-207-a-01",
     "cardName": "福山市",
     "prefecture": "広島県",
     "municipality": "福山市",
@@ -39929,7 +40045,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "34-福山市-015"
+      "34-福山市-015",
+      "34-207-a01"
     ],
     "facilityUrl": "https://www.fukuyama-kanko.com/",
     "stockUrl": "https://www.city.fukuyama.hiroshima.jp/soshiki/suido-soumu/314881.html",
@@ -40388,7 +40505,7 @@
     "plusCode": "8Q5HW7XQ+76"
   },
   {
-    "id": "35-202-b01",
+    "id": "35-202-b-01",
     "cardName": "宇部市 B001",
     "prefecture": "山口県",
     "municipality": "宇部市",
@@ -40409,7 +40526,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "35-宇部市-b001-004"
+      "35-宇部市-b001-004",
+      "35-202-b01"
     ],
     "stockUrl": "https://www.city.ube.yamaguchi.jp/kurashi/gasgesui/1015032/1015277/1015113.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
@@ -41678,7 +41796,7 @@
     "plusCode": "8Q6P83Q3+F2"
   },
   {
-    "id": "37-201-b01",
+    "id": "37-201-b-01",
     "cardName": "高松市 B001",
     "prefecture": "香川県",
     "municipality": "高松市",
@@ -41699,7 +41817,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "37-高松市-b001-004"
+      "37-高松市-b001-004",
+      "37-201-b01"
     ],
     "facilityUrl": "https://takamatsu-bonsai.com/",
     "stockUrl": "https://www.city.takamatsu.kagawa.jp/kurashi/kurashi/jogesuido/oshirase/manhole_haifu.html",
@@ -42668,7 +42787,7 @@
     "plusCode": "8Q5JGG4W+JQ"
   },
   {
-    "id": "38-210-a01",
+    "id": "38-210-a-01",
     "cardName": "伊予市",
     "prefecture": "愛媛県",
     "municipality": "伊予市",
@@ -42689,7 +42808,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "38-伊予市-013"
+      "38-伊予市-013",
+      "38-210-a01"
     ],
     "facilityUrl": "https://welpiaiyo.jp/",
     "stockUrl": "https://www.city.iyo.lg.jp/gesuidou/mannho-ruka-do.html",
@@ -42764,7 +42884,7 @@
     "plusCode": "8Q6M2H7F+FV"
   },
   {
-    "id": "38-214-a01",
+    "id": "38-214-a-01",
     "cardName": "西予市 A001",
     "prefecture": "愛媛県",
     "municipality": "西予市",
@@ -42785,7 +42905,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "38-西予市-a001-016"
+      "38-西予市-a001-016",
+      "38-214-a01"
     ],
     "facilityUrl": "https://seiyojikan.jp/spot/%E5%AE%87%E5%92%8C%E6%96%87%E5%8C%96%E3%81%AE%E9%87%8C%E4%BC%91%E6%86%A9%E6%89%80/",
     "stockUrl": "https://www.city.seiyo.ehime.jp/kakuka/kensetsu/jougesuidou/gesuidou/10057.html",
@@ -42891,7 +43012,7 @@
     "plusCode": "8Q5JQVRJ+93"
   },
   {
-    "id": "38-402-a01",
+    "id": "38-402-a-01",
     "cardName": "砥部町",
     "prefecture": "愛媛県",
     "municipality": "砥部町",
@@ -42946,7 +43067,8 @@
       }
     ],
     "legacyIds": [
-      "38-砥部町-020"
+      "38-砥部町-020",
+      "38-402-a01"
     ],
     "facilityUrl": "https://www.town.tobe.ehime.jp/soshikikarasagasu/shoukoukannkouka/kankou/9/552.html",
     "stockUrl": "https://www.town.tobe.ehime.jp/soshikikarasagasu/jougesuidouka/gesuido/503.html",
@@ -43152,7 +43274,7 @@
     "plusCode": "8Q5MMH8F+7R"
   },
   {
-    "id": "39-206-a-01-1",
+    "id": "39-206-a-01",
     "cardName": "須崎市 A001",
     "prefecture": "高知県",
     "municipality": "須崎市",
@@ -43173,7 +43295,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "39-須崎市-a001-004"
+      "39-須崎市-a001-004",
+      "39-206-a-01-1"
     ],
     "facilityUrl": "https://sta2020.com/",
     "stockUrl": "https://www.city.susaki.lg.jp/life/detail.php?hdnKey=3990",
@@ -43760,12 +43883,12 @@
     "legacyIds": [
       "40-北九州市-a001-003"
     ],
-    "facilityUrl": "https://www.kitakyushuspacelabo.jp/",
-    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "officialDesignNames": [
       "官営八幡製鐵所旧本事務所"
     ],
+    "facilityUrl": "https://www.kitakyushuspacelabo.jp/",
+    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
     "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
@@ -43833,12 +43956,12 @@
     "legacyIds": [
       "40-北九州市-b001-004"
     ],
-    "facilityUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01300023.html",
-    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "officialDesignNames": [
       "ギラヴァンツ北九州 ギラン"
     ],
+    "facilityUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01300023.html",
+    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
     "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
@@ -43872,12 +43995,12 @@
     "legacyIds": [
       "40-北九州市-c001-005"
     ],
-    "facilityUrl": "https://www.ktqmm.jp/",
-    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "officialDesignNames": [
       "銀河鉄道999 メーテル"
     ],
+    "facilityUrl": "https://www.ktqmm.jp/",
+    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
     "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
@@ -43911,12 +44034,12 @@
     "legacyIds": [
       "40-北九州市-d001-006"
     ],
-    "facilityUrl": "https://seven-eleven.areamarker.com/711map/info/547276?shopid=547276",
-    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
-    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "officialDesignNames": [
       "若松区"
     ],
+    "facilityUrl": "https://seven-eleven.areamarker.com/711map/info/547276?shopid=547276",
+    "stockUrl": "http://www.city.kitakyushu.lg.jp/suidou/s01101006.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "hasEnglishVersion": true,
     "englishVersionStatus": "available",
     "englishVersionNote": "日本語版の他に、ご希望の方には英語版もお渡し致します。",
@@ -43987,7 +44110,7 @@
     "plusCode": "8Q5GH9VW+HH"
   },
   {
-    "id": "40-130-c02",
+    "id": "40-130-c-01",
     "cardName": "福岡市 C001",
     "prefecture": "福岡県",
     "municipality": "福岡市",
@@ -44008,7 +44131,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "40-福岡市-c001-009"
+      "40-福岡市-c001-009",
+      "40-130-c02"
     ],
     "facilityUrl": "https://www.city.fukuoka.lg.jp/shisei/kouhou-hodo/johoplaza/index.html",
     "stockUrl": "https://www.city.fukuoka.lg.jp/doro-gesuido/somu/hp/manhole_card.html",
@@ -44377,7 +44501,7 @@
     "plusCode": "8Q5GRH3Q+XR"
   },
   {
-    "id": "40-221-a01",
+    "id": "40-221-a-01",
     "cardName": "太宰府市 A001",
     "prefecture": "福岡県",
     "municipality": "太宰府市",
@@ -44398,7 +44522,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "40-太宰府市-a001-018"
+      "40-太宰府市-a001-018",
+      "40-221-a01"
     ],
     "facilityUrl": "https://www.kotodazaifu.net/pavilion",
     "stockUrl": "https://www.city.dazaifu.lg.jp/soshiki/22/22649.html",
@@ -44929,7 +45054,7 @@
     "plusCode": "8Q5G9FCQ+82"
   },
   {
-    "id": "41-206-a01",
+    "id": "41-206-a-01",
     "cardName": "武雄市",
     "prefecture": "佐賀県",
     "municipality": "武雄市",
@@ -44950,7 +45075,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "41-武雄市-004"
+      "41-武雄市-004",
+      "41-206-a01"
     ],
     "facilityUrl": "https://www.city.takeo.lg.jp/",
     "stockUrl": "https://www.city.takeo.lg.jp/home.html",
@@ -45249,7 +45375,7 @@
     "plusCode": "8Q4FPVP9+3P"
   },
   {
-    "id": "42-201-b01",
+    "id": "42-201-b-01",
     "cardName": "長崎市 B001",
     "prefecture": "長崎県",
     "municipality": "長崎市",
@@ -45270,7 +45396,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "42-長崎市-b001-003"
+      "42-長崎市-b001-003",
+      "42-201-b01"
     ],
     "facilityUrl": "https://www.nmhc.jp/museum_hsb/",
     "stockUrl": "https://www.city.nagasaki.lg.jp/page/54935.html",
@@ -45443,7 +45570,7 @@
     "plusCode": "8Q5FPMXR+GW"
   },
   {
-    "id": "42-214-a01",
+    "id": "42-214-a-01",
     "cardName": "南島原市",
     "prefecture": "長崎県",
     "municipality": "南島原市",
@@ -45464,7 +45591,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "42-南島原市-008"
+      "42-南島原市-008",
+      "42-214-a01"
     ],
     "facilityUrl": "https://www.city.minamishimabara.lg.jp/sekaiisan/page7165.html",
     "stockUrl": "https://www.city.minamishimabara.lg.jp/page9601.html",
@@ -46677,7 +46805,7 @@
     "plusCode": "8Q5H7GH2+Q9"
   },
   {
-    "id": "44-203-a01",
+    "id": "44-203-a-01",
     "cardName": "中津市",
     "prefecture": "大分県",
     "municipality": "中津市",
@@ -46698,7 +46826,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "44-中津市-006"
+      "44-中津市-006",
+      "44-203-a01"
     ],
     "facilityUrl": "https://fukuzawakyukyo.com/",
     "stockUrl": "https://www.city-nakatsu.jp/doc/2024010900080/",
@@ -47164,7 +47293,7 @@
     "plusCode": "8Q3GHGMW+HR"
   },
   {
-    "id": "46-201-c01",
+    "id": "46-201-c-01",
     "cardName": "鹿児島市 C001",
     "prefecture": "鹿児島県",
     "municipality": "鹿児島市",
@@ -47185,7 +47314,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "46-鹿児島市-c001-003"
+      "46-鹿児島市-c001-003",
+      "46-201-c01"
     ],
     "stockUrl": "https://www.city.kagoshima.lg.jp/suido/gesuido/geken/manholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=46#mhcard_result",
@@ -47578,7 +47708,7 @@
     "plusCode": "7QWF9FWV+GC"
   },
   {
-    "id": "46-530-a01",
+    "id": "46-530-a-01",
     "cardName": "徳之島町",
     "prefecture": "鹿児島県",
     "municipality": "徳之島町",
@@ -47599,7 +47729,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "46-徳之島町-016"
+      "46-徳之島町-016",
+      "46-530-a01"
     ],
     "facilityUrl": "https://www.tokunoshima-town.org/",
     "stockUrl": "https://www.tokunoshima-town.org/kensetsuka/mannhorukado.html",
@@ -47674,7 +47805,7 @@
     "plusCode": "7QR96M6H+QF"
   },
   {
-    "id": "47-000-b01",
+    "id": "47-000-b-01",
     "cardName": "沖縄県 (流域下水道 ・B001)",
     "prefecture": "沖縄県",
     "municipality": "沖縄県",
@@ -47695,7 +47826,8 @@
     "coordinateAccuracy": "address",
     "updatedAt": "2026-07-01",
     "legacyIds": [
-      "47-沖縄県-流域下水道-b001-002"
+      "47-沖縄県-流域下水道-b001-002",
+      "47-000-b01"
     ],
     "facilityUrl": "https://oki-park.jp/shurijo/guide/1316",
     "stockUrl": "https://www.pref.okinawa.jp/site/doboku/gesui/kokyo/manho-ruka-do/20211220_syurijo.html",
@@ -47903,7 +48035,7 @@
     "id": "47-209-a-01",
     "cardName": "名護市 A001",
     "prefecture": "沖縄県",
-    "municipality": "名護市 （A001)",
+    "municipality": "名護市",
     "place": "名護市営市場",
     "address": "沖縄県名護市城1-4-11",
     "lat": 26.589357,
@@ -47935,7 +48067,7 @@
     "id": "47-209-b-01",
     "cardName": "名護市 B001",
     "prefecture": "沖縄県",
-    "municipality": "名護市 （B001)",
+    "municipality": "名護市",
     "place": "公益財団法人 名護市観光協会",
     "address": "沖縄県名護市大中1-19-24 名護市産業支援センタ-1階",
     "lat": 26.59046,
@@ -48223,7 +48355,7 @@
     "plusCode": "7QR98Q85+77"
   },
   {
-    "id": "47-326-b01",
+    "id": "47-326-b-01",
     "cardName": "北谷町 B001",
     "prefecture": "沖縄県",
     "municipality": "北谷町",
@@ -48294,7 +48426,8 @@
       }
     ],
     "legacyIds": [
-      "47-北谷町-b001-015"
+      "47-北谷町-b001-015",
+      "47-326-b01"
     ],
     "facilityUrl": "http://www.chatan.jp/seikatsuguide/jogesuido/gesuido/gesui50thanniv/manholecard2021.html",
     "stockUrl": "http://www.chatan.jp/seikatsuguide/jogesuido/gesuido/gesui50thanniv/manholecard2021.html",

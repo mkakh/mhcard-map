@@ -54,8 +54,10 @@ const prefectures = [
 
 const htmlDir = join(process.cwd(), ".tmp", "gkp");
 const outputPath = join(process.cwd(), "data", "locations.json");
+const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
 const today = new Date().toISOString().slice(0, 10);
 const existingLocations = await readExistingLocations();
+const municipalityCodes = await readMunicipalityCodes();
 const existingById = new Map(existingLocations.map((location) => [location.id, location]));
 const existingByImageKey = new Map(
   existingLocations
@@ -85,7 +87,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const imageUrl = absolutizeUrl(firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i));
     const sourceUrl = firstMatch(distributionHtml, /<a[^>]+href=["']([^"']+)["']/i);
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
-    const municipalityName = municipality.replace(/\s*（[^）]+）\s*/g, "").replace(/\s*\([^)]*\)\s*/g, "").trim();
+    const municipalityName = removeParentheticalMarker(municipality);
     const address = findAddress(distributionText, prefecture, municipalityName);
     const englishVersion = extractEnglishVersion({ distributionHtml, hoursHtml, stockHtml });
     const distributionPlaces = extractDistributionPlaces({
@@ -100,12 +102,13 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const primaryAddress = distributionPlaces[0]?.address || address;
     const [lat, lng] = approximateCoordinate(baseLat, baseLng, prefectureIndex);
     const legacyId = `${code}-${slugify(municipality)}-${String(prefectureIndex + 1).padStart(3, "0")}`;
-    const id = stableLocationId(imageUrl, legacyId);
+    const municipalityCode = municipalityCodes[municipalityCodeKey(prefecture, municipalityName)] ?? "";
+    const id = stableLocationId(imageUrl, legacyId, cardCode, municipalityCode);
     const stock = cleanupText(stockHtml) || "不明";
 
     const location = {
       id,
-      cardName: cardCode ? `${municipality.replace(/\s*[（(][^）)]+[）)]\s*/g, "").trim()} ${cardCode}` : municipality,
+      cardName: cardCode ? `${municipalityName} ${cardCode}` : municipality,
       prefecture,
       municipality: municipalityName,
       place: primaryPlace,
@@ -143,7 +146,9 @@ for (const location of locations) {
   if (!existing) continue;
 
   const legacyIds = [...new Set(existing.legacyIds ?? [])];
-  if (legacyIds.length > 0) location.legacyIds = legacyIds;
+  if (existing.id && existing.id !== location.id) legacyIds.push(existing.id);
+  const uniqueLegacyIds = [...new Set(legacyIds)];
+  if (uniqueLegacyIds.length > 0) location.legacyIds = uniqueLegacyIds;
   if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
     location.officialDesignNames = existing.officialDesignNames;
   }
@@ -596,7 +601,11 @@ function isDistributionStopped(stock, distributionText) {
 }
 
 function extractCardCode(value) {
-  return value.match(/[（(]([A-Z0-9-]+)[）)]/)?.[1] ?? "";
+  return value.match(/[（(]\s*([A-Z][0-9]{3})\s*[）)]/)?.[1] ?? "";
+}
+
+function removeParentheticalMarker(value) {
+  return String(value ?? "").replace(/\s*[（(][^）)]*[）)]\s*/g, "").trim();
 }
 
 function slugify(value) {
@@ -607,12 +616,56 @@ function slugify(value) {
     .toLowerCase();
 }
 
-function stableLocationId(imageUrl, fallback) {
-  return imageKey(imageUrl) || fallback;
+function stableLocationId(imageUrl, fallback, cardCode = "", municipalityCode = "") {
+  const key = imageKey(imageUrl);
+  if (!key) return fallback;
+
+  const suffix = cardCodeIdSuffix(cardCode) || imageCardSuffix(key);
+  const prefix = municipalityCode || key.match(/^(\d{2}-\d{3})/)?.[1] || "";
+  if (prefix && suffix) return `${prefix}-${suffix}`;
+
+  const imagePrefix = key.match(/^(\d{2}-\d{3})/)?.[1] ?? "";
+  const keySuffix = prefix && key.startsWith(`${prefix}-`) ? key.slice(prefix.length + 1) : "";
+  if (suffix && imagePrefix && keySuffix !== suffix) return `${imagePrefix}-${suffix}`;
+  const compactMatch = key.match(/^(\d{2}-\d{3})([a-z])$/);
+  if (compactMatch) return `${compactMatch[1]}-${compactMatch[2]}-01`;
+  const bareSuffixMatch = key.match(/^(\d{2}-\d{3})-([a-z])$/);
+  if (bareSuffixMatch) return `${bareSuffixMatch[1]}-${bareSuffixMatch[2]}-01`;
+  const numberedVariantMatch = key.match(/^(\d{2}-\d{3})-([a-z])0*1-\d+$/);
+  if (numberedVariantMatch) return `${numberedVariantMatch[1]}-${numberedVariantMatch[2]}-01`;
+  return key;
+}
+
+function cardCodeIdSuffix(cardCode) {
+  const match = String(cardCode ?? "").match(/^([A-Z])([0-9]{3})$/);
+  if (!match) return "";
+  const letter = match[1].toLowerCase();
+  const number = Number(match[2]);
+  if (number === 1) return `${letter}-01`;
+  if (number < 100) return `${letter}-${String(number).padStart(2, "0")}`;
+  return `${letter}${number}`;
+}
+
+function imageCardSuffix(key) {
+  const normalized = String(key ?? "");
+  const cardCodeMatch = normalized.match(/([a-z])0*(\d{1,3})(?:-\d+)?$/);
+  if (!cardCodeMatch) {
+    const bareSuffixMatch = normalized.match(/(?:^|-)([a-z])$/);
+    return bareSuffixMatch ? `${bareSuffixMatch[1]}-01` : "";
+  }
+  const letter = cardCodeMatch[1].toLowerCase();
+  const number = Number(cardCodeMatch[2]);
+  if (number === 1) return `${letter}-01`;
+  if (number < 100) return `${letter}-${String(number).padStart(2, "0")}`;
+  return `${letter}${number}`;
+}
+
+function municipalityCodeKey(prefecture, municipality) {
+  return `${String(prefecture ?? "").trim()}|${String(municipality ?? "").trim()}`;
 }
 
 function imageKey(imageUrl) {
-  const fileName = String(imageUrl ?? "").split("/").pop() ?? "";
+  const fileName = (String(imageUrl ?? "").split("/").pop() ?? "").replace(/[.。]+$/g, "");
   return fileName
     .replace(/\.[^.]+$/, "")
     .normalize("NFKC")
@@ -697,5 +750,13 @@ async function readExistingLocations() {
     return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
+  }
+}
+
+async function readMunicipalityCodes() {
+  try {
+    return JSON.parse(await readFile(municipalityCodesPath, "utf8"));
+  } catch {
+    return {};
   }
 }

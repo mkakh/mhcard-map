@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
+const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
 const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
 const allowedStatuses = new Set(["配布中", "休止中", "要確認"]);
 const allowedEnglishVersionStatuses = new Set(["available", "out_of_stock", "event_only", "unknown"]);
@@ -13,6 +14,7 @@ const errors = [];
 const warnings = [];
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
+const municipalityCodes = JSON.parse(await readFile(municipalityCodesPath, "utf8"));
 
 if (!Array.isArray(locations) || locations.length === 0) {
   fail("data/locations.json must be a non-empty array");
@@ -35,6 +37,7 @@ console.log(`Data validation passed: ${locations.length} locations`);
 
 function validateLocations(items) {
   const ids = new Set();
+  const officialDesignNameOwners = new Map();
 
   items.forEach((location, index) => {
     const label = location?.id || `index ${index}`;
@@ -51,6 +54,14 @@ function validateLocations(items) {
     ids.add(location.id);
 
     if (!/^[a-z0-9-]+$/.test(String(location.id ?? ""))) fail(`${label}: id must be lowercase alphanumeric with hyphens`);
+    if (/^\d{2}-\d{3}/.test(String(location.id ?? "")) && !/^\d{2}-\d{3}-[a-z]-?\d+$/.test(String(location.id ?? ""))) {
+      fail(`${label}: id must use normalized card id format NN-NNN-xNN`);
+    }
+    validateCardCodeConsistency(label, location);
+    validateMunicipalityCodeConsistency(label, location);
+    if (/[（(]\s*[A-Z][0-9]{3}\s*[）)]/.test(String(location.municipality ?? ""))) {
+      fail(`${label}: municipality must not include card code ${location.municipality}`);
+    }
     if (!allowedStatuses.has(location.status)) fail(`${label}: unknown status ${location.status}`);
     if (!allowedCoordinateAccuracy.has(location.coordinateAccuracy)) fail(`${label}: unknown coordinateAccuracy ${location.coordinateAccuracy}`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(location.updatedAt ?? ""))) fail(`${label}: updatedAt must be YYYY-MM-DD`);
@@ -64,6 +75,15 @@ function validateLocations(items) {
       fail(`${label}: englishVersionStatus is required when hasEnglishVersion is true`);
     }
     validateStringList(label, "officialDesignNames", location.officialDesignNames);
+    (location.officialDesignNames ?? []).forEach((name) => {
+      const key = String(name).trim();
+      if (!key) return;
+      if (!officialDesignNameOwners.has(key)) officialDesignNameOwners.set(key, []);
+      officialDesignNameOwners.get(key).push(label);
+      if (key === location.municipality || key === location.prefecture) {
+        fail(`${label}: officialDesignNames must not be only municipality/prefecture name ${key}`);
+      }
+    });
 
     validateCoordinate(label, "lat", location.lat, 20, 46);
     validateCoordinate(label, "lng", location.lng, 122, 154);
@@ -82,6 +102,47 @@ function validateLocations(items) {
       warnings.push(`${label}: both place and address are empty`);
     }
   });
+
+  officialDesignNameOwners.forEach((owners, name) => {
+    if (owners.length > 1) fail(`officialDesignNames ${name}: assigned to multiple locations (${owners.join(", ")})`);
+  });
+}
+
+function validateCardCodeConsistency(label, location) {
+  const idCode = cardCodeFromId(location.id);
+  const cardNameCode = cardCodeFromName(location.cardName);
+  if (idCode && cardNameCode && idCode !== cardNameCode) {
+    fail(`${label}: id card code ${idCode} does not match cardName code ${cardNameCode}`);
+  }
+}
+
+function validateMunicipalityCodeConsistency(label, location) {
+  const idMunicipalityCode = String(location.id ?? "").match(/^(\d{2}-\d{3})-/)?.[1] ?? "";
+  if (!idMunicipalityCode) return;
+
+  const key = municipalityCodeKey(location.prefecture, location.municipality);
+  const expected = municipalityCodes[key];
+  if (!expected) {
+    fail(`${label}: municipality code mapping is missing for ${key}`);
+    return;
+  }
+  if (idMunicipalityCode !== expected) {
+    fail(`${label}: id municipality code ${idMunicipalityCode} does not match ${key} expected ${expected}`);
+  }
+}
+
+function cardCodeFromId(id) {
+  const match = String(id ?? "").match(/^\d{2}-\d{3}-([a-z])-?(\d+)$/);
+  if (!match) return "";
+  return `${match[1].toUpperCase()}${String(Number(match[2])).padStart(3, "0")}`;
+}
+
+function cardCodeFromName(cardName) {
+  return String(cardName ?? "").match(/\s([A-Z][0-9]{3})\)?$/)?.[1] ?? "";
+}
+
+function municipalityCodeKey(prefecture, municipality) {
+  return `${String(prefecture ?? "").trim()}|${String(municipality ?? "").trim()}`;
 }
 
 function validateStringList(label, field, values) {
