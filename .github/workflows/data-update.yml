@@ -31,13 +31,13 @@ jobs:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
       - name: Validate generated data
         run: npm run validate:data
+      - name: Summarize location changes
+        run: node scripts/summarize-location-diff.js
       - name: Create update pull request
         uses: peter-evans/create-pull-request@v6
         with:
           branch: automation/location-data-update
           title: "chore: update location data"
           commit-message: "chore: update location data"
-          body: |
-            Automated location data update.
-
-            Review generated changes before merging.
+          body-path: .tmp/location-update-summary.md
+          reviewers: mkakh
