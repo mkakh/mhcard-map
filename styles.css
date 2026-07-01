@@ -670,6 +670,61 @@ label {
   gap: 8px;
 }
 
+.distribution-places {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.distribution-places h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.distribution-place {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+.distribution-place:hover,
+.distribution-place:focus-visible {
+  border-color: rgba(47, 117, 181, 0.72);
+  box-shadow: 0 0 0 2px rgba(47, 117, 181, 0.1);
+  outline: 0;
+}
+
+.distribution-place.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(47, 117, 181, 0.12);
+}
+
+.distribution-place-head {
+  display: grid;
+  gap: 8px;
+}
+
+.distribution-place-head strong,
+.distribution-place-head span {
+  display: block;
+}
+
+.distribution-place-head span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.distribution-place textarea {
+  width: 100%;
+  resize: vertical;
+  cursor: text;
+}
+
 .modal {
   width: min(440px, calc(100vw - 28px));
   border: 0;

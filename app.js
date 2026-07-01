@@ -158,6 +158,7 @@ const storageKeys = {
 };
 
 let selectedId = locations[0].id;
+let selectedPlaceId = "";
 let hoveredId = "";
 let listHoverSuspended = false;
 let collections = loadJson(storageKeys.collections, {});
@@ -321,6 +322,11 @@ function renderAll() {
   currentFilteredLocations = filtered;
   if (!filtered.some((location) => location.id === selectedId)) {
     selectedId = filtered[0]?.id ?? "";
+    selectedPlaceId = "";
+  }
+  const selectedLocation = locations.find((location) => location.id === selectedId);
+  if (selectedLocation && !distributionPlaces(selectedLocation).some((place) => place.id === selectedPlaceId)) {
+    selectedPlaceId = primaryDistributionPlace(selectedLocation).id;
   }
 
   renderList(filtered);
@@ -349,9 +355,10 @@ function getFilteredLocations() {
         displayPlace(location),
         location.place,
         location.address,
+        distributionPlaces(location).map((place) => [place.name, place.address, place.days, place.hours].join(" ")).join(" "),
         location.plusCode,
         cardNumber(location),
-        collection?.memo
+        Object.values(placeMemos(collection)).join(" ")
       ].join(" ").toLowerCase();
       const collected = Boolean(collection?.collected);
       return (
@@ -384,7 +391,7 @@ function clearFilters() {
 
 function isInsideActiveViewport(location) {
   if (!elements.viewportFilterToggle.checked || !mapReady || !map) return true;
-  return map.getBounds().contains([location.lng, location.lat]);
+  return distributionPlaces(location).some((place) => map.getBounds().contains([place.lng, place.lat]));
 }
 
 function sortLocations(a, b) {
@@ -460,8 +467,8 @@ function renderList(filtered) {
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
-        ${collections[location.id]?.memo ? '<span class="badge memo">メモあり</span>' : ""}
-        ${renderCoordinateBadge(location)}
+        ${Object.keys(placeMemos(collections[location.id])).length > 0 ? '<span class="badge memo">メモあり</span>' : ""}
+        ${renderCoordinateBadge(location, primaryDistributionPlace(location))}
       </div>
     `;
     elements.locationList.append(button);
@@ -479,9 +486,10 @@ function renderMap(filtered) {
   if (shouldFocusSelected) {
     const selected = locations.find((location) => location.id === selectedId);
     if (selected) {
+      const place = selectedDistributionPlace(selected);
       map.easeTo({
-        center: [selected.lng, selected.lat],
-        zoom: selectedFocusZoom(selected),
+        center: [place.lng, place.lat],
+        zoom: selectedFocusZoom(selected, place),
         duration: 450
       });
     }
@@ -489,8 +497,8 @@ function renderMap(filtered) {
   }
 }
 
-function selectedFocusZoom(location) {
-  if (isApproximateLocation(location)) return Math.min(Math.max(map.getZoom(), 6), 7);
+function selectedFocusZoom(location, place = selectedDistributionPlace(location)) {
+  if (isApproximatePlace(location, place)) return Math.min(Math.max(map.getZoom(), 6), 7);
   return Math.max(map.getZoom(), 13);
 }
 
@@ -500,6 +508,7 @@ function selectListLocation(locationId, options = {}) {
 
   if (options.clearFilters) clearFilters();
   selectedId = location.id;
+  selectedPlaceId = primaryDistributionPlace(location).id;
   clearHoveredLocation();
   listHoverSuspended = true;
   shouldFocusSelected = true;
@@ -541,13 +550,16 @@ function renderDetail() {
   }
 
   const collection = collections[location.id] ?? {};
-  const plusCode = location.plusCode || "未生成";
-  const coordinatesText = `${location.lat}, ${location.lng}`;
+  const places = distributionPlaces(location);
+  const selectedPlace = selectedDistributionPlace(location);
+  const plusCode = selectedPlace.plusCode || "未生成";
+  const selectedAddress = selectedPlace.address || location.address || "未登録";
+  const coordinatesText = `${selectedPlace.lat}, ${selectedPlace.lng}`;
   const locationIds = new Set([location.id, ...(location.legacyIds ?? [])]);
   const requestsForLocation = updateRequests.filter((request) => locationIds.has(request.locationId));
-  const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.lat},${location.lng}`)}`;
+  const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${selectedPlace.lat},${selectedPlace.lng}`)}`;
   const sourceUrl = location.sourceUrl || "";
-  const facilityUrl = location.facilityUrl || "";
+  const facilityUrl = selectedPlace.url || location.facilityUrl || "";
   const conditionUrl = location.conditionUrl || sourceUrl;
   const stockUrl = location.stockUrl || facilityUrl || sourceUrl;
   const safeSourceUrl = safeExternalUrl(sourceUrl);
@@ -558,10 +570,10 @@ function renderDetail() {
       <div class="badge-row">
         ${renderStatusBadge(location)}
         ${collection.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
-        ${renderCoordinateBadge(location)}
+        ${renderCoordinateBadge(location, selectedPlace)}
       </div>
       <h2>${escapeHtml(location.cardName)}</h2>
-      <p>${escapeHtml(displayPlace(location))}</p>
+      <p>${escapeHtml(selectedPlace.name)}</p>
       <div class="detail-actions">
         <button id="toggleCollected" class="primary-button" type="button">${collection.collected ? "未取得に戻す" : "取得済みにする"}</button>
         <button id="openRequest" class="ghost-button" type="button">更新要求</button>
@@ -576,8 +588,8 @@ function renderDetail() {
       <tr><th>配布場所</th><td>${renderExternalLinkedValue(displayPlace(location), facilityUrl)}</td></tr>
       ${renderInfoCodeRow("Plus Code", plusCode, plusCode !== "未生成", "copyPlusCode", "Google Maps")}
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
-      ${renderInfoCodeRow("住所", location.address || "未登録", Boolean(location.address), "copyAddress")}
-      ${renderMapPositionRows(location)}
+      ${renderInfoCodeRow("住所", selectedAddress, selectedAddress !== "未登録", "copyAddress")}
+      ${renderMapPositionRows(location, selectedPlace)}
       <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
       <tr><th>配布時間</th><td>${escapeHtml(location.hours)}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(location.closed)}</td></tr>
@@ -586,6 +598,8 @@ function renderDetail() {
       <tr><th>最終更新</th><td>${escapeHtml(location.updatedAt)}</td></tr>
       <tr><th>更新要求</th><td>${requestsForLocation.length}件</td></tr>
     </table>
+
+    ${renderDistributionPlaces(location, places, collection)}
 
     <div class="memo-box">
       <label>
@@ -600,12 +614,60 @@ function renderDetail() {
     </div>
   `;
 
+  document.querySelector("#memoInput")?.closest("label")?.remove();
   document.querySelector("#toggleCollected").addEventListener("click", () => toggleCollected(location.id));
   document.querySelector("#openRequest").addEventListener("click", () => openRequestDialog(location.id));
-  bindCopyButton("copyPlusCode", location.plusCode, "Plus Codeをコピーしました");
+  bindCopyButton("copyPlusCode", selectedPlace.plusCode, "Plus Codeをコピーしました");
   bindCopyButton("copyCoordinates", coordinatesText, "緯度経度をコピーしました");
-  bindCopyButton("copyAddress", location.address, "住所をコピーしました");
+  bindCopyButton("copyAddress", selectedAddress !== "未登録" ? selectedAddress : "", "住所をコピーしました");
+  elements.detailContent.querySelectorAll("[data-place-select]").forEach((placeElement) => {
+    placeElement.addEventListener("click", () => {
+      selectedPlaceId = placeElement.dataset.placeSelect;
+      shouldFocusSelected = true;
+      renderAll();
+      showLocationPopup(location);
+    });
+    placeElement.addEventListener("keydown", (event) => {
+      if (event.target !== placeElement) return;
+      if (!["Enter", " "].includes(event.key)) return;
+      event.preventDefault();
+      placeElement.click();
+    });
+  });
+  elements.detailContent.querySelectorAll("[data-place-action]").forEach((element) => {
+    element.addEventListener("click", (event) => event.stopPropagation());
+  });
   document.querySelector("#saveMemo").addEventListener("click", () => saveMemo(location.id));
+}
+
+function renderDistributionPlaces(location, places, collection) {
+  const memos = placeMemos(collection);
+  return `
+    <section class="distribution-places">
+      <h3>配布場所</h3>
+      ${places
+        .map((place) => {
+          return `
+            <article class="distribution-place ${place.id === selectedPlaceId ? "active" : ""}" data-place-select="${escapeAttribute(place.id)}" tabindex="0" role="button">
+              <div class="distribution-place-head">
+                <div>
+                  <strong>${escapeHtml(place.name)}</strong>
+                  <span>${escapeHtml([place.days, place.hours].filter(Boolean).join(" "))}</span>
+                  ${place.closed ? `<span>${escapeHtml(place.closed)}</span>` : ""}
+                  ${place.address ? `<span>${escapeHtml(place.address)}</span>` : ""}
+                  ${place.plusCode ? `<span>${escapeHtml(place.plusCode)}</span>` : ""}
+                </div>
+              </div>
+              <label data-place-action>
+                場所メモ
+                <textarea data-place-action data-place-memo="${escapeAttribute(place.id)}" rows="3" placeholder="駐車場、入口、訪問時の注意">${escapeHtml(memos[place.id] ?? "")}</textarea>
+              </label>
+            </article>
+          `;
+        })
+        .join("")}
+    </section>
+  `;
 }
 
 function renderInfoCodeRow(label, value, copyable, copyId, hint = "") {
@@ -632,6 +694,77 @@ function displayPlace(location) {
   return location.place || location.address || `${location.prefecture} ${location.municipality}（配布場所未確認）`;
 }
 
+function distributionPlaces(location) {
+  const sourcePlaces = Array.isArray(location.distributionPlaces) && location.distributionPlaces.length > 0
+    ? location.distributionPlaces
+    : [
+        {
+          id: "primary",
+          name: displayPlace(location),
+          address: location.address || "",
+          lat: location.lat,
+          lng: location.lng,
+          plusCode: location.plusCode || "",
+          days: "",
+          hours: location.hours || "",
+          closed: location.closed || "",
+          url: location.facilityUrl || "",
+          coordinateAccuracy: location.coordinateAccuracy,
+          geocodeQuery: location.geocodeQuery,
+          geocodeTitle: location.geocodeTitle,
+          geocodeError: location.geocodeError
+        }
+      ];
+
+  return sourcePlaces
+    .map((place, index) => ({
+      id: String(place.id || `place-${index + 1}`),
+      name: place.name || place.place || location.place || displayPlace(location),
+      address: place.address || "",
+      lat: Number(place.lat),
+      lng: Number(place.lng),
+      plusCode: place.plusCode || "",
+      days: place.days || "",
+      hours: place.hours || "",
+      closed: place.closed || "",
+      url: place.url || place.facilityUrl || location.facilityUrl || "",
+      coordinateAccuracy: place.coordinateAccuracy || location.coordinateAccuracy,
+      geocodeQuery: place.geocodeQuery || "",
+      geocodeTitle: place.geocodeTitle || "",
+      geocodeError: place.geocodeError || ""
+    }))
+    .filter((place) => Number.isFinite(place.lat) && Number.isFinite(place.lng));
+}
+
+function primaryDistributionPlace(location) {
+  return distributionPlaces(location)[0] ?? {
+    id: "primary",
+    name: displayPlace(location),
+    address: location.address || "",
+    lat: location.lat,
+    lng: location.lng,
+    plusCode: location.plusCode || "",
+    days: "",
+    hours: location.hours || "",
+    closed: location.closed || "",
+    url: location.facilityUrl || "",
+    coordinateAccuracy: location.coordinateAccuracy
+  };
+}
+
+function selectedDistributionPlace(location) {
+  const places = distributionPlaces(location);
+  return places.find((place) => place.id === selectedPlaceId) ?? places[0] ?? primaryDistributionPlace(location);
+}
+
+function placeFeatureId(cardId, placeId) {
+  return `${cardId}::${placeId}`;
+}
+
+function placeMemos(collection) {
+  return collection?.placeMemos && typeof collection.placeMemos === "object" ? collection.placeMemos : {};
+}
+
 function bindCopyButton(id, value, message) {
   const button = document.querySelector(`#${id}`);
   if (!button || !value) return;
@@ -656,8 +789,8 @@ function renderStatusBadge(location) {
   return '<span class="badge">配布中</span>';
 }
 
-function pinClass(location) {
-  const coordinateClass = coordinateCategory(location);
+function pinClass(location, place = primaryDistributionPlace(location)) {
+  const coordinateClass = placeCoordinateCategory(location, place);
   if (coordinateClass !== "address") return coordinateClass;
   if (location.status === "休止中") return "paused";
   if (location.status === "要確認") return "review";
@@ -669,6 +802,10 @@ function isApproximateLocation(location) {
   return location.coordinateAccuracy !== "address";
 }
 
+function isApproximatePlace(location, place) {
+  return placeCoordinateCategory(location, place) !== "address";
+}
+
 function coordinateCategory(location) {
   if (location.status === "休止中" && location.address) return "stopped-known";
   if (location.status === "休止中" && !location.address) return "stopped-unknown";
@@ -677,8 +814,16 @@ function coordinateCategory(location) {
   return "address";
 }
 
-function renderCoordinateBadge(location) {
-  const category = coordinateCategory(location);
+function placeCoordinateCategory(location, place) {
+  if (location.status === "莨第ｭ｢荳ｭ" && place.address) return "stopped-known";
+  if (location.status === "莨第ｭ｢荳ｭ" && !place.address) return "stopped-unknown";
+  if (place.geocodeError) return "geocode-failed";
+  if (place.coordinateAccuracy !== "address") return "approximate";
+  return "address";
+}
+
+function renderCoordinateBadge(location, place = primaryDistributionPlace(location)) {
+  const category = placeCoordinateCategory(location, place);
   if (category === "address") return "";
 
   const labels = {
@@ -691,41 +836,41 @@ function renderCoordinateBadge(location) {
   return `<span class="badge ${category}">${labels[category]}</span>`;
 }
 
-function renderMapPositionRows(location) {
-  return mapPositionRows(location)
+function renderMapPositionRows(location, place = primaryDistributionPlace(location)) {
+  return mapPositionRows(location, place)
     .map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`)
     .join("");
 }
 
-function mapPositionRows(location) {
-  if (location.coordinateAccuracy === "address") {
+function mapPositionRows(location, place = primaryDistributionPlace(location)) {
+  if (place.coordinateAccuracy === "address") {
     const position = location.status === "休止中" ? "住所から推定（配布中止）" : "住所から推定";
     return [
       ["地図位置", position],
-      ["検索結果住所", location.geocodeTitle || location.geocodeQuery || "住所検索結果あり"]
+      ["検索結果住所", place.geocodeTitle || place.geocodeQuery || "住所検索結果あり"]
     ];
   }
 
-  if (location.status === "休止中" && !location.address) {
+  if (location.status === "休止中" && !place.address) {
     return [
       ["地図位置", "都道府県内の仮位置"],
       ["理由", "配布中止・住所不明"]
     ];
   }
 
-  if (location.status === "休止中" && location.address) {
+  if (location.status === "休止中" && place.address) {
     return [
       ["地図位置", "都道府県内の仮位置"],
-      ["理由", `配布中止・住所検索失敗 (${location.geocodeError || "未検索"})`],
-      ["抽出住所", location.address]
+      ["理由", `配布中止・住所検索失敗 (${place.geocodeError || "未検索"})`],
+      ["抽出住所", place.address]
     ];
   }
 
-  if (location.geocodeError) {
+  if (place.geocodeError) {
     return [
       ["地図位置", "都道府県内の仮位置"],
-      ["理由", `住所検索に失敗 (${location.geocodeError})`],
-      ["抽出住所", location.address]
+      ["理由", `住所検索に失敗 (${place.geocodeError})`],
+      ["抽出住所", place.address]
     ];
   }
 
@@ -965,7 +1110,8 @@ function markerShapeStates() {
 }
 
 function selectMapFeature(feature) {
-  selectedId = feature.properties.id;
+  selectedId = feature.properties.cardId || feature.properties.id;
+  selectedPlaceId = feature.properties.placeId || "";
   shouldFocusSelected = false;
   renderAll();
   showMapPopup(feature);
@@ -1004,30 +1150,40 @@ function addCurrentLocationLayer(targetMap = map) {
 function toLocationFeatureCollection(items) {
   return {
     type: "FeatureCollection",
-    features: items.map((location) => ({
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [location.lng, location.lat]
-      },
-      properties: {
-        id: location.id,
-        cardName: location.cardName,
-        place: displayPlace(location),
-        imageUrl: location.imageUrl || "",
-        municipality: `${location.prefecture} ${location.municipality}`,
-        status: location.status,
-        coordinateAccuracy: location.coordinateAccuracy || "prefecture_approx",
-        collected: Boolean(collections[location.id]?.collected),
-        selected: location.id === selectedId,
-        highlighted: location.id === hoveredId,
-        visualState: pinClass(location),
-        hasApproximate: isApproximateLocation(location),
-        hasStoppedUnknown: coordinateCategory(location) === "stopped-unknown",
-        hasStoppedKnown: coordinateCategory(location) === "stopped-known",
-        hasGeocodeFailed: coordinateCategory(location) === "geocode-failed"
-      }
-    }))
+    features: items.flatMap((location) =>
+      distributionPlaces(location).map((place) => {
+        const category = placeCoordinateCategory(location, place);
+        return {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: [place.lng, place.lat]
+          },
+          properties: {
+            id: location.id,
+            cardId: location.id,
+            placeId: place.id,
+            featureId: placeFeatureId(location.id, place.id),
+            cardName: location.cardName,
+            place: place.name,
+            days: place.days || "",
+            hours: place.hours || "",
+            imageUrl: location.imageUrl || "",
+            municipality: `${location.prefecture} ${location.municipality}`,
+            status: location.status,
+            coordinateAccuracy: place.coordinateAccuracy || location.coordinateAccuracy || "prefecture_approx",
+            collected: Boolean(collections[location.id]?.collected),
+            selected: location.id === selectedId && place.id === selectedPlaceId,
+            highlighted: location.id === hoveredId,
+            visualState: pinClass(location, place),
+            hasApproximate: isApproximatePlace(location, place),
+            hasStoppedUnknown: category === "stopped-unknown",
+            hasStoppedKnown: category === "stopped-known",
+            hasGeocodeFailed: category === "geocode-failed"
+          }
+        };
+      })
+    )
   };
 }
 
@@ -1051,27 +1207,34 @@ function toCurrentLocationFeatureCollection() {
 
 function showMapPopup(feature) {
   showManagedPopup({
-    locationId: feature.properties.id,
+    locationId: feature.properties.cardId || feature.properties.id,
+    placeId: feature.properties.placeId || "",
     coordinates: feature.geometry.coordinates,
     imageUrl: feature.properties.imageUrl,
     cardName: feature.properties.cardName,
-    place: feature.properties.place
+    place: feature.properties.place,
+    days: feature.properties.days,
+    hours: feature.properties.hours
   });
 }
 
 function showLocationPopup(location) {
   if (!mapReady) return;
+  const place = selectedDistributionPlace(location);
 
   showManagedPopup({
     locationId: location.id,
-    coordinates: [location.lng, location.lat],
+    placeId: place.id,
+    coordinates: [place.lng, place.lat],
     imageUrl: location.imageUrl || "",
     cardName: location.cardName,
-    place: displayPlace(location)
+    place: place.name,
+    days: place.days,
+    hours: place.hours
   });
 }
 
-function showManagedPopup({ locationId, coordinates, imageUrl, cardName, place }) {
+function showManagedPopup({ locationId, placeId, coordinates, imageUrl, cardName, place, days, hours }) {
   if (!mapReady) return;
 
   activePopup?.remove();
@@ -1082,12 +1245,14 @@ function showManagedPopup({ locationId, coordinates, imageUrl, cardName, place }
         ${renderPopupImage(imageUrl || "", cardName)}
         <span class="map-popup-title">${escapeHtml(cardName)}</span>
         <span class="map-popup-subtitle">${escapeHtml(place)}</span>
+        ${days || hours ? `<span class="map-popup-subtitle">${escapeHtml([days, hours].filter(Boolean).join(" "))}</span>` : ""}
       </button>
     `)
     .addTo(map);
   activePopup = popup;
   popup.getElement().querySelector("[data-popup-location]")?.addEventListener("click", () => {
     selectedId = locationId;
+    selectedPlaceId = placeId || "";
     renderAll();
     switchMobilePanel("detail");
   });
@@ -1134,12 +1299,19 @@ function toggleCollected(locationId) {
 }
 
 function saveMemo(locationId) {
+  const placeMemosValue = {};
+  document.querySelectorAll("[data-place-memo]").forEach((textarea) => {
+    const value = textarea.value.trim();
+    if (value) placeMemosValue[textarea.dataset.placeMemo] = value;
+  });
+
   collections[locationId] = {
     ...(collections[locationId] ?? {}),
     collected: Boolean(collections[locationId]?.collected),
     collectedOn: document.querySelector("#collectedOn").value,
-    memo: document.querySelector("#memoInput").value.trim()
+    placeMemos: placeMemosValue
   };
+  delete collections[locationId].memo;
   saveJson(storageKeys.collections, collections);
   showToast("メモを保存しました");
   renderAll();
@@ -1183,7 +1355,7 @@ function buildUpdateRequestUrl(location) {
 
 function openMyPage() {
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
-  const memoLocations = locations.filter((location) => collections[location.id]?.memo);
+  const memoLocations = locations.filter((location) => Object.keys(placeMemos(collections[location.id])).length > 0);
   const progressPercent = locations.length ? Math.round((collectedLocations.length / locations.length) * 100) : 0;
   const byPrefecture = locations.reduce((acc, location) => {
     acc[location.prefecture] ??= { total: 0, collected: 0 };
@@ -1204,7 +1376,7 @@ function openMyPage() {
         .join("")}
     </table>
     <table class="info-table">
-      <tr><th>保存済みメモ</th><td>${Object.values(collections).filter((item) => item.memo).length}件</td></tr>
+      <tr><th>保存済みメモ</th><td>${Object.values(collections).filter((item) => Object.keys(placeMemos(item)).length > 0).length}件</td></tr>
       <tr><th>保存先</th><td>この端末のブラウザ</td></tr>
     </table>
     <section class="memo-list">
@@ -1217,7 +1389,7 @@ function openMyPage() {
                   <button class="memo-list-item" type="button" data-memo-location="${escapeAttribute(location.id)}">
                     <strong>${escapeHtml(location.cardName)}</strong>
                     <span>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)} / ${escapeHtml(displayPlace(location))}</span>
-                    <small>${escapeHtml(collections[location.id].memo)}</small>
+                    <small>${escapeHtml(Object.values(placeMemos(collections[location.id])).join(" / "))}</small>
                   </button>
                 `
               )
@@ -1356,17 +1528,18 @@ function renderPrintMapPopup(targetMap) {
   }
 
   const location = locations.find((item) => item.id === selectedId);
-  if (!location || !Number.isFinite(location.lng) || !Number.isFinite(location.lat)) {
+  const place = location ? selectedDistributionPlace(location) : null;
+  if (!location || !place || !Number.isFinite(place.lng) || !Number.isFinite(place.lat)) {
     clearPrintMapPopup();
     return;
   }
 
-  if (!targetMap.getBounds().contains([location.lng, location.lat])) {
+  if (!targetMap.getBounds().contains([place.lng, place.lat])) {
     clearPrintMapPopup();
     return;
   }
 
-  const point = targetMap.project([location.lng, location.lat]);
+  const point = targetMap.project([place.lng, place.lat]);
   const mapWidth = targetMap.getContainer().clientWidth;
   const mapHeight = targetMap.getContainer().clientHeight;
   const popupWidth = 220;
@@ -1383,7 +1556,7 @@ function renderPrintMapPopup(targetMap) {
     <div class="print-popup-card">
       ${renderPrintPopupImage(location.imageUrl || "", location.cardName)}
       <span class="map-popup-title">${escapeHtml(location.cardName)}</span>
-      <span class="map-popup-subtitle">${escapeHtml(displayPlace(location))}</span>
+      <span class="map-popup-subtitle">${escapeHtml(place.name)}</span>
     </div>
   `;
 }
@@ -1633,10 +1806,14 @@ function applyUserPosition(position, options = {}) {
 
 function distanceFromUser(location) {
   if (!userPosition) return Number.POSITIVE_INFINITY;
-  const latDiff = location.lat - userPosition.lat;
-  const averageLat = ((location.lat + userPosition.lat) / 2) * (Math.PI / 180);
-  const lngDiff = (location.lng - userPosition.lng) * Math.cos(averageLat);
-  return Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
+  return Math.min(
+    ...distributionPlaces(location).map((place) => {
+      const latDiff = place.lat - userPosition.lat;
+      const averageLat = ((place.lat + userPosition.lat) / 2) * (Math.PI / 180);
+      const lngDiff = (place.lng - userPosition.lng) * Math.cos(averageLat);
+      return Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
+    })
+  );
 }
 
 async function copyText(text, message) {
@@ -1687,6 +1864,17 @@ function migrateCollectionKeys() {
       delete collections[legacyId];
       changed = true;
     });
+
+    const collection = collections[location.id];
+    if (collection?.memo) {
+      const primaryPlaceId = primaryDistributionPlace(location).id;
+      collection.placeMemos = {
+        [primaryPlaceId]: collection.memo,
+        ...placeMemos(collection)
+      };
+      delete collection.memo;
+      changed = true;
+    }
   });
 
   if (changed) saveJson(storageKeys.collections, collections);

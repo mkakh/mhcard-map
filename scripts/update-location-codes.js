@@ -10,19 +10,8 @@ let plusCodesUpdated = 0;
 let skipped = 0;
 
 for (const location of locations) {
-  const lat = Number(location.lat);
-  const lng = Number(location.lng);
-
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-    skipped += 1;
-    continue;
-  }
-
-  const plusCode = encodePlusCode(lat, lng);
-  if (location.plusCode !== plusCode) {
-    location.plusCode = plusCode;
-    plusCodesUpdated += 1;
-  }
+  updatePlusCode(location);
+  (location.distributionPlaces ?? []).forEach(updatePlusCode);
 }
 
 await writeFile(dataPath, `${JSON.stringify(locations, null, 2)}\n`, "utf8");
@@ -38,6 +27,22 @@ console.log(
     2
   )
 );
+
+function updatePlusCode(target) {
+  const lat = Number(target.lat);
+  const lng = Number(target.lng);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+    skipped += 1;
+    return;
+  }
+
+  const plusCode = encodePlusCode(lat, lng);
+  if (target.plusCode !== plusCode) {
+    target.plusCode = plusCode;
+    plusCodesUpdated += 1;
+  }
+}
 
 function encodePlusCode(lat, lng) {
   let adjustedLat = clipLatitude(lat);

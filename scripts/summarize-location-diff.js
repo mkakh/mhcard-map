@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 const dataPath = join(process.cwd(), "data", "locations.json");
 const outputPath = join(process.cwd(), ".tmp", "location-update-summary.md");
 const dateOnlyFields = new Set(["updatedAt", "geocodedAt"]);
+const placeDateOnlyFields = new Set(["geocodedAt"]);
 const maxRows = 30;
 const maxValueLength = 160;
 
@@ -103,11 +104,13 @@ function contentChangeLines() {
     "",
     `Changed fields: ${location.meaningfulFields.join(", ")}`,
     "",
-    ...location.meaningfulFields.flatMap((field) => [
-      `- ${field}`,
-      `  - before: ${formatValue(location.before[field])}`,
-      `  - after: ${formatValue(location.after[field])}`
-    ]),
+    ...location.meaningfulFields.flatMap((field) => field === "distributionPlaces"
+      ? distributionPlaceChangeLines(location.before[field], location.after[field])
+      : [
+          `- ${field}`,
+          `  - before: ${formatValue(location.before[field])}`,
+          `  - after: ${formatValue(location.after[field])}`
+        ]),
     ""
   ]);
 
@@ -124,7 +127,60 @@ function locationLabel(location) {
 
 function formatValue(value) {
   if (value === undefined) return "(missing)";
+  if (value && typeof value === "object") return formatObject(value);
   const text = String(value).replace(/\s+/g, " ").trim();
   if (!text) return "(empty)";
+  return text.length > maxValueLength ? `${text.slice(0, maxValueLength)}...` : text;
+}
+
+function distributionPlaceChangeLines(before, after) {
+  const previous = Array.isArray(before) ? before : [];
+  const next = Array.isArray(after) ? after : [];
+  const beforeById = new Map(previous.map((place) => [place.id, place]));
+  const afterById = new Map(next.map((place) => [place.id, place]));
+  const added = next.filter((place) => !beforeById.has(place.id));
+  const removed = previous.filter((place) => !afterById.has(place.id));
+  const changed = next
+    .map((place) => ({ before: beforeById.get(place.id), after: place }))
+    .filter(({ before }) => before)
+    .map(({ before, after }) => ({
+      before,
+      after,
+      fields: [...new Set([...Object.keys(before), ...Object.keys(after)])]
+        .filter((field) => !placeDateOnlyFields.has(field))
+        .filter((field) => JSON.stringify(before[field]) !== JSON.stringify(after[field]))
+    }))
+    .filter((entry) => entry.fields.length > 0);
+
+  const lines = ["- distributionPlaces"];
+  if (added.length === 0 && removed.length === 0 && changed.length === 0) {
+    lines.push("  - only place timestamp fields changed");
+    return lines;
+  }
+
+  for (const place of added) {
+    lines.push(`  - added: ${placeLabel(place)}`);
+  }
+  for (const place of removed) {
+    lines.push(`  - removed: ${placeLabel(place)}`);
+  }
+  for (const entry of changed) {
+    lines.push(`  - changed: ${placeLabel(entry.after)}`);
+    for (const field of entry.fields) {
+      lines.push(`    - ${field}: ${formatValue(entry.before[field])} -> ${formatValue(entry.after[field])}`);
+    }
+  }
+  return lines;
+}
+
+function placeLabel(place) {
+  return `${place.id ?? "(no id)"} ${place.name ?? ""}${place.address ? ` / ${place.address}` : ""}`.trim();
+}
+
+function formatObject(value) {
+  const text = JSON.stringify(value)
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text || text === "{}") return "(empty)";
   return text.length > maxValueLength ? `${text.slice(0, maxValueLength)}...` : text;
 }
