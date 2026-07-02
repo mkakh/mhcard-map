@@ -80,11 +80,13 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 
     const [municipalityHtml, imageHtml, seriesHtml, issuedHtml, distributionHtml, hoursHtml, stockHtml] = cells.slice(-7);
     const municipality = cleanupText(municipalityHtml).replace(/\n+/g, " ");
-    const cardCode = extractCardCode(municipality);
+    const rawCardCode = extractCardCode(municipality);
     const series = cleanupText(seriesHtml);
     const issuedOn = cleanupText(issuedHtml);
     const distributionText = cleanupText(distributionHtml);
     const imageUrl = absolutizeUrl(firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i));
+    const cardCodeOverride = manualCardCodeOverride(imageUrl);
+    const cardCode = cardCodeOverride || rawCardCode;
     const sourceUrl = firstMatch(distributionHtml, /<a[^>]+href=["']([^"']+)["']/i);
     const place = cleanupText(firstMatch(distributionHtml, /<a[^>]*>([\s\S]*?)<\/a>/i)) || firstMeaningfulLine(distributionHtml);
     const municipalityName = removeParentheticalMarker(municipality);
@@ -108,7 +110,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 
     const location = {
       id,
-      cardName: cardCode && isPlainCardCodeMarker(municipality) ? `${municipalityName} ${cardCode}` : municipality,
+      cardName: cardCode && (cardCodeOverride || isPlainCardCodeMarker(municipality)) ? `${municipalityName} ${cardCode}` : municipality,
       prefecture,
       municipality: municipalityName,
       place: primaryPlace,
@@ -621,6 +623,15 @@ function removeParentheticalMarker(value) {
 
 function isPlainCardCodeMarker(value) {
   return /[（(]\s*[A-Z][0-9]{3}\s*[）)]/.test(String(value ?? ""));
+}
+
+function manualCardCodeOverride(imageUrl) {
+  const overrides = {
+    "01-203-a-02": "A002",
+    "01-303-a-01": "A002",
+    "23-226-a02": "A002"
+  };
+  return overrides[imageKey(imageUrl)] ?? "";
 }
 
 function slugify(value) {

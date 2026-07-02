@@ -52,7 +52,7 @@ for (const [index, location] of candidates.entries()) {
       continue;
     }
 
-    if (detectedCode === currentCode) continue;
+    if (cardCodeSuffix(detectedCode) === cardCodeSuffix(currentCode)) continue;
 
     const nextId = idFromPrintedCode(detectedCode);
     if (!nextId) {
