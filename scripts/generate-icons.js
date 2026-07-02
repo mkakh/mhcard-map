@@ -9,6 +9,7 @@ const svgPath = resolve(root, "icons", "mhcard-icon.svg");
 const tempDir = resolve(root, ".tmp", "icon-render");
 const tempHtmlPath = join(tempDir, "render.html");
 const targets = [
+  { path: resolve(root, "icons", "icon-48.png"), size: 48 },
   { path: resolve(root, "icons", "apple-touch-icon.png"), size: 180 },
   { path: resolve(root, "icons", "icon-192.png"), size: 192 },
   { path: resolve(root, "icons", "icon-512.png"), size: 512 }
@@ -59,6 +60,10 @@ for (const target of targets) {
   console.log(`Generated ${target.path} (${target.size}x${target.size})`);
 }
 
+const faviconPng = await readFile(resolve(root, "icons", "icon-48.png"));
+await writeFile(resolve(root, "favicon.ico"), createPngIco(faviconPng));
+console.log(`Generated ${resolve(root, "favicon.ico")} (48x48)`);
+
 await rm(tempDir, { recursive: true, force: true });
 
 function findBrowser() {
@@ -101,4 +106,20 @@ function renderPng(outputPath, size) {
       else rejectProcess(new Error(`Browser exited with code ${code}`));
     });
   });
+}
+
+function createPngIco(pngBuffer) {
+  const header = Buffer.alloc(22);
+  header.writeUInt16LE(0, 0);
+  header.writeUInt16LE(1, 2);
+  header.writeUInt16LE(1, 4);
+  header.writeUInt8(48, 6);
+  header.writeUInt8(48, 7);
+  header.writeUInt8(0, 8);
+  header.writeUInt8(0, 9);
+  header.writeUInt16LE(1, 10);
+  header.writeUInt16LE(32, 12);
+  header.writeUInt32LE(pngBuffer.length, 14);
+  header.writeUInt32LE(header.length, 18);
+  return Buffer.concat([header, pngBuffer]);
 }

@@ -12,6 +12,7 @@ const contentTypes = {
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".ico": "image/x-icon",
   ".png": "image/png",
   ".webmanifest": "application/manifest+json; charset=utf-8",
   ".svg": "image/svg+xml"
