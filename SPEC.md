@@ -428,6 +428,8 @@ Published files:
 - `app.js`
 - `styles.css`
 - `manifest.webmanifest`
+- `robots.txt`
+- `sitemap.xml`
 - `icons/`
 - `LICENSE`
 - `NOTICE.md`
