@@ -39,8 +39,9 @@ const verifiedOfficialDesignNames = new Map([
   ["17-201-a-01", ["加賀水引"]],
   ["17-461-a-01", ["林業集落排水専用マンホール蓋"]],
   ["17-461-b-01", ["ぼらまちやぐら"]],
+  ["34-100-b-01", ["折り鶴"]],
   ["34-100-c-01", ["広島サミット県民会議"]],
-  ["34-100-g-01", ["折り鶴"]],
+  ["34-100-g-01", ["かよこバス"]],
   ["40-100-a-01", ["官営八幡製鐵所旧本事務所"]],
   ["40-100-b-01", ["ギラヴァンツ北九州 ギラン"]],
   ["40-100-c-01", ["銀河鉄道999 メーテル"]],
@@ -49,7 +50,7 @@ const verifiedOfficialDesignNames = new Map([
 
 const verifiedEnglishVersions = new Map([
   [
-    "01-214-b01",
+    "01-214-b-01",
     {
       status: "event_only",
       note: "GUNDAM公式: 稚内・豊富・天塩のガンダムマンホールカード英語版がイベント配布",
@@ -57,7 +58,7 @@ const verifiedEnglishVersions = new Map([
     }
   ],
   [
-    "01-516-d01",
+    "01-516-d-01",
     {
       status: "event_only",
       note: "・英語版については、イベント配布としています",
@@ -65,11 +66,27 @@ const verifiedEnglishVersions = new Map([
     }
   ],
   [
-    "01-487-b01",
+    "01-487-b-01",
     {
       status: "event_only",
       note: "GUNDAM公式: 稚内・豊富・天塩のガンダムマンホールカード英語版がイベント配布",
       url: "https://gundam-official.com/news/i/news/hot-topics/01_12135"
+    }
+  ],
+  [
+    "20-321-a-01",
+    {
+      status: "available",
+      note: "日本語版または英語版どちらか1枚の配布となります。",
+      url: "https://www.town.karuizawa.lg.jp/page/14115.html"
+    }
+  ],
+  [
+    "34-100-b-01",
+    {
+      status: "out_of_stock",
+      note: "折り鶴 英語版：在庫なし",
+      url: "https://www.city.hiroshima.lg.jp/living/suido-gesuido/1005966/1026325/1026326/1010193.html"
     }
   ],
   [
@@ -80,6 +97,10 @@ const verifiedEnglishVersions = new Map([
       url: "https://www.city.hiroshima.lg.jp/living/suido-gesuido/1005966/1026325/1026326/1010193.html"
     }
   ]
+]);
+
+const verifiedNoEnglishVersions = new Set([
+  "34-100-g-01"
 ]);
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
@@ -157,9 +178,11 @@ const sourcePages = await loadEnglishVersionSourcePages(locations);
 for (const location of locations) {
   const before = JSON.stringify(linkSnapshot(location));
   applyVerifiedOfficialDesignNames(location);
+  applyVerifiedNoEnglishVersion(location);
   applyEnglishVersionFromSourcePages(location, sourcePages);
   applyVerifiedEnglishVersion(location);
   applyVerifiedEnglishVersionDistributionPlaces(location);
+  applyVerifiedNoEnglishVersion(location);
   const after = JSON.stringify(linkSnapshot(location));
   if (before !== after) updated += 1;
 }
@@ -325,6 +348,15 @@ function applyVerifiedEnglishVersion(location) {
   location.englishVersionStatus = verified.status;
   location.englishVersionNote = verified.note;
   location.englishVersionUrl = verified.url;
+}
+
+function applyVerifiedNoEnglishVersion(location) {
+  if (!verifiedNoEnglishVersions.has(location.id)) return;
+  delete location.hasEnglishVersion;
+  delete location.englishVersionStatus;
+  delete location.englishVersionNote;
+  delete location.englishVersionUrl;
+  delete location.englishVersionDistributionPlaces;
 }
 
 function englishVersionMatchForLocation(location, page) {
