@@ -21,6 +21,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y tesseract-ocr imagemagick
+
+          if command -v magick >/dev/null 2>&1; then
+            echo "MAGICK_COMMAND=$(command -v magick)" >> "$GITHUB_ENV"
+          elif command -v convert >/dev/null 2>&1; then
+            echo "MAGICK_COMMAND=$(command -v convert)" >> "$GITHUB_ENV"
+          else
+            echo "::error::ImageMagick command not found"
+            exit 1
+          fi
       - name: Import GKP data
         run: npm run import:gkp
       - name: Verify card image codes
