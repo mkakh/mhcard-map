@@ -7,6 +7,16 @@ const htmlDir = join(process.cwd(), ".tmp", "gkp");
 
 const verifiedDistributionSources = new Map([
   [
+    "27-202-c-01",
+    {
+      sourceUrl: "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+      facilityUrl: "https://www.city.kishiwada.lg.jp/site/kishiwada-side/matizukurinoyakata.html",
+      stockUrl: "https://www.city.kishiwada.lg.jp/page/56-manholecard.html",
+      conditionUrl: "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+      condition: "公式情報を確認"
+    }
+  ],
+  [
     "17-201-a-01",
     {
       sourceUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
@@ -15,6 +25,55 @@ const verifiedDistributionSources = new Map([
       conditionUrl: "https://www2.city.kanazawa.ishikawa.jp/about_us/library/manhole_card/",
       condition: "在庫状況を確認のうえ、1人1枚まで配布"
     }
+  ]
+]);
+
+const verifiedDistributionPlaces = new Map([
+  [
+    "22-205-a-01",
+    [
+      {
+        id: "place-atami-weekday-waterworks-center",
+        name: "熱海市役所 第二庁舎1階 上下水道・温泉料金お客様センター",
+        address: "静岡県熱海市中央町1-1",
+        days: "平日",
+        hours: "8:30～17:15",
+        closed: "土日祝日、年末年始はお休みです",
+        url: "https://www.city.atami.lg.jp/kurashi/suido/1000884/1016443.html"
+      },
+      {
+        id: "place-atami-holiday-guard-room",
+        name: "熱海市役所 第一庁舎1階 警備員室",
+        address: "静岡県熱海市中央町1-1",
+        days: "土日祝日",
+        hours: "8:30～17:15",
+        closed: "年末年始はお休みです",
+        url: "https://www.city.atami.lg.jp/kurashi/suido/1000884/1016443.html"
+      }
+    ]
+  ],
+  [
+    "27-218-a-01",
+    [
+      {
+        id: "place-daito-waterworks-general-affairs",
+        name: "大東市上下水道局庁舎2階 総務課",
+        address: "大阪府大東市灰塚四丁目1番1号",
+        days: "平日",
+        hours: "9:00～17:30",
+        closed: "土日祝日、年末年始はお休みです",
+        url: "https://www.city.daito.lg.jp/soshiki/39/40329.html"
+      },
+      {
+        id: "place-daito-waterworks-night-duty-room",
+        name: "大東市上下水道局 宿直室",
+        address: "大阪府大東市灰塚四丁目1番1号",
+        days: "土日祝日、年末年始",
+        hours: "9:00～17:30",
+        closed: "",
+        url: "https://www.city.daito.lg.jp/soshiki/39/40329.html"
+      }
+    ]
   ]
 ]);
 
@@ -178,6 +237,7 @@ const sourcePages = await loadEnglishVersionSourcePages(locations);
 for (const location of locations) {
   const before = JSON.stringify(linkSnapshot(location));
   applyVerifiedOfficialDesignNames(location);
+  applyVerifiedDistributionPlaces(location);
   applyVerifiedNoEnglishVersion(location);
   applyEnglishVersionFromSourcePages(location, sourcePages);
   applyVerifiedEnglishVersion(location);
@@ -218,6 +278,9 @@ function linkSnapshot(location) {
     conditionUrl: location.conditionUrl,
     condition: location.condition,
     stock: location.stock,
+    place: location.place,
+    address: location.address,
+    distributionPlaces: location.distributionPlaces,
     hasEnglishVersion: location.hasEnglishVersion,
     englishVersionStatus: location.englishVersionStatus,
     englishVersionNote: location.englishVersionNote,
@@ -305,6 +368,7 @@ function normalizeCharset(value) {
 }
 
 function applyEnglishVersionFromSourcePages(location, pages) {
+  const previousPlaces = location.englishVersionDistributionPlaces;
   const urls = [location.englishVersionUrl, location.stockUrl, location.facilityUrl].map(normalizeUrl).filter(Boolean);
   for (const url of urls) {
     const page = pages.get(url);
@@ -316,7 +380,9 @@ function applyEnglishVersionFromSourcePages(location, pages) {
     location.englishVersionStatus = englishVersionStatus(match.note);
     location.englishVersionNote = match.note;
     location.englishVersionUrl = match.url || page.url || location.stockUrl || location.facilityUrl;
-    if (match.distributionPlaces?.length) location.englishVersionDistributionPlaces = match.distributionPlaces;
+    if (match.distributionPlaces?.length) {
+      location.englishVersionDistributionPlaces = mergeComputedPlaceFields(match.distributionPlaces, previousPlaces);
+    }
     englishVersionDetected += 1;
     return;
   }
@@ -332,7 +398,49 @@ function applyVerifiedEnglishVersionDistributionPlaces(location) {
   if (!places) return;
   location.hasEnglishVersion = true;
   location.englishVersionStatus = englishVersionStatus(location.englishVersionNote);
-  location.englishVersionDistributionPlaces = places;
+  location.englishVersionDistributionPlaces = mergeComputedPlaceFields(places, location.englishVersionDistributionPlaces);
+}
+
+function applyVerifiedDistributionPlaces(location) {
+  const places = verifiedDistributionPlaces.get(location.id);
+  if (!places) return;
+  location.distributionPlaces = mergeComputedPlaceFields(places, location.distributionPlaces);
+  const primary = location.distributionPlaces[0];
+  if (primary) {
+    location.place = primary.name;
+    location.address = primary.address;
+  }
+}
+
+function mergeComputedPlaceFields(nextPlaces, previousPlaces) {
+  if (!Array.isArray(nextPlaces)) return nextPlaces;
+  if (!Array.isArray(previousPlaces) || previousPlaces.length === 0) {
+    return nextPlaces.map((place) => ({ ...place }));
+  }
+
+  const previousById = new Map(previousPlaces.map((place) => [place.id, place]));
+  const previousByKey = new Map(previousPlaces.map((place) => [placeKey(place), place]));
+
+  return nextPlaces.map((place) => {
+    const previous = previousById.get(place.id) ?? previousByKey.get(placeKey(place));
+    if (!previous) return { ...place };
+    return {
+      ...place,
+      ...pickComputedPlaceFields(previous)
+    };
+  });
+}
+
+function pickComputedPlaceFields(place) {
+  return Object.fromEntries(
+    ["lat", "lng", "plusCode", "coordinateAccuracy", "geocodeQuery", "geocodeTitle", "geocodedAt", "geocodeError"]
+      .filter((field) => place[field] !== undefined)
+      .map((field) => [field, place[field]])
+  );
+}
+
+function placeKey(place) {
+  return `${normalizePlaceKey(place?.name)}\n${normalizePlaceKey(place?.address)}`;
 }
 
 function applyVerifiedOfficialDesignNames(location) {

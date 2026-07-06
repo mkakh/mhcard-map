@@ -35,7 +35,7 @@ for (const location of after) {
     prefecture: location.prefecture,
     municipality: location.municipality,
     fields: changedFields,
-    meaningfulFields: changedFields.filter((field) => !dateOnlyFields.has(field)),
+    meaningfulFields: changedFields.filter((field) => isMeaningfulFieldChange(previous, location, field)),
     before: previous,
     after: location
   });
@@ -62,6 +62,10 @@ const lines = [
   "## Manual Codex Review",
   "",
   ...manualCodexReviewLines(),
+  "",
+  "## Review Warnings",
+  "",
+  ...reviewWarningLines(),
   "",
   "## Added",
   "",
@@ -119,6 +123,60 @@ function manualCodexReviewLines() {
   }
 
   return lines;
+}
+
+function reviewWarningLines() {
+  const warnings = [];
+
+  for (const location of meaningfulChanged) {
+    const before = location.before;
+    const after = location.after;
+    const label = locationLabel(after);
+
+    if (before.facilityUrl && !after.facilityUrl) {
+      warnings.push(`- ${label}: facilityUrl was removed (${before.facilityUrl}). Verify the new distribution facility URL or add a verified source override.`);
+    } else if ((location.fields.includes("place") || location.fields.includes("address")) && !after.facilityUrl) {
+      warnings.push(`- ${label}: place/address changed but facilityUrl is missing. Verify whether the new distribution place has an official facility page.`);
+    }
+
+    if (location.meaningfulFields.some((field) => ["hours", "place", "address"].includes(field)) && hasSinglePlaceScheduleRisk(before, after)) {
+      warnings.push(`- ${label}: hours mention weekday/holiday distribution but distributionPlaces is missing. Verify that separate distribution windows were not collapsed into one place.`);
+    }
+
+    if (location.meaningfulFields.includes("hours") && hasClosureTextRemoved(before, after)) {
+      warnings.push(`- ${label}: closure text was removed from hours. Verify weekend/holiday or year-end distribution handling before merging.`);
+    }
+
+    if (location.meaningfulFields.some((field) => ["geocodeQuery", "geocodeTitle"].includes(field)) && hasGeocodePrecisionWarning(before, after)) {
+      warnings.push(`- ${label}: geocodeTitle is less specific than geocodeQuery (${formatValue(after.geocodeQuery)} -> ${formatValue(after.geocodeTitle)}). Verify coordinates before merging.`);
+    }
+
+    for (const place of location.meaningfulFields.includes("distributionPlaces") ? suspiciousDistributionPlaces(after.distributionPlaces) : []) {
+      warnings.push(`- ${label}: distribution place ${placeLabel(place)} has schedule notes mixed into hours (${formatValue(place.hours)}). Verify place-specific days/hours display.`);
+    }
+  }
+
+  return warnings.length > 0 ? warnings : ["No review warnings detected."];
+}
+
+function isMeaningfulFieldChange(before, after, field) {
+  if (dateOnlyFields.has(field)) return false;
+  if (field === "distributionPlaces" || field === "englishVersionDistributionPlaces") {
+    return JSON.stringify(stripPlaceDateOnlyFields(before[field])) !== JSON.stringify(stripPlaceDateOnlyFields(after[field]));
+  }
+  return JSON.stringify(before[field]) !== JSON.stringify(after[field]);
+}
+
+function stripPlaceDateOnlyFields(value) {
+  if (Array.isArray(value)) return value.map(stripPlaceDateOnlyFields);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([field]) => !placeDateOnlyFields.has(field))
+        .map(([field, fieldValue]) => [field, stripPlaceDateOnlyFields(fieldValue)])
+    );
+  }
+  return value;
 }
 
 function isGkpOnlyLocation(location) {
@@ -230,4 +288,61 @@ function formatObject(value) {
     .trim();
   if (!text || text === "{}") return "(empty)";
   return text.length > maxValueLength ? `${text.slice(0, maxValueLength)}...` : text;
+}
+
+function hasSinglePlaceScheduleRisk(before, after) {
+  if (Array.isArray(after.distributionPlaces) && after.distributionPlaces.length > 0) return false;
+  if (!after.hours || after.hours === before.hours) return false;
+  return /(宿直室|警備員室|配布場所|窓口)/.test(after.hours);
+}
+
+function hasClosureTextRemoved(before, after) {
+  if (!before.hours || !after.hours || before.hours === after.hours) return false;
+  const beforeText = String(before.hours);
+  const afterText = String(after.hours);
+  const removedClosure = /(土日|土曜日|日曜日|祝日|年末年始|休み|お休み|休館|休業|定休)/.test(beforeText)
+    && !/(土日|土曜日|日曜日|祝日|年末年始|休み|お休み|休館|休業|定休)/.test(afterText);
+  if (!removedClosure) return false;
+  return !Array.isArray(after.distributionPlaces) || after.distributionPlaces.length === 0;
+}
+
+function hasGeocodePrecisionWarning(before, after) {
+  if (!after.geocodeQuery || !after.geocodeTitle) return false;
+  if (before.geocodeQuery === after.geocodeQuery && before.geocodeTitle === after.geocodeTitle) return false;
+  if (hasAzaPrecisionLoss(after.geocodeQuery, after.geocodeTitle)) return true;
+  if (!hasAddressNumber(after.geocodeQuery)) return false;
+  if (!hasAddressNumber(after.geocodeTitle)) return true;
+  return addressNumberCount(after.geocodeTitle) < addressNumberCount(after.geocodeQuery);
+}
+
+function suspiciousDistributionPlaces(places) {
+  if (!Array.isArray(places)) return [];
+  return places.filter((place) => {
+    const hours = String(place.hours ?? "");
+    return /令和[0-9０-９]+年[0-9０-９]+月[0-9０-９]+日より|下記の通り変更/.test(hours);
+  });
+}
+
+function hasAddressNumber(value) {
+  return /[0-9０-９一二三四五六七八九十]+(?:丁目|番地|番|号|条|線|[-－‐‑‒–—―ー−])/.test(String(value ?? ""));
+}
+
+function addressNumberCount(value) {
+  return (String(value ?? "").match(/[0-9０-９一二三四五六七八九十]+(?:丁目|番地|番|号|条|線|[-－‐‑‒–—―ー−])/g) ?? []).length;
+}
+
+function hasAzaPrecisionLoss(query, title) {
+  const normalizedQuery = normalizeAddressText(query);
+  const normalizedTitle = normalizeAddressText(title);
+  const match = normalizedQuery.match(/字([^0-9０-９\s]+)$/);
+  if (!match) return false;
+  const azaName = match[1];
+  return Boolean(azaName) && !normalizedTitle.includes(azaName);
+}
+
+function normalizeAddressText(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .replace(/[‐‑‒–—―ー−]/g, "-");
 }
