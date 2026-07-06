@@ -99,11 +99,17 @@ Example: Hiroshima prefecture-level cards must not receive Hiroshima City page c
    - `data/locations.json` as generated/current data
    - `SPEC.md` when schema semantics change
    - `scripts/validate-data.js` when validation rules change
-8. Run checks:
+8. After location-data updates, run:
+   `node scripts/summarize-location-diff.js`
+9. Confirm the generated summary's `Review Warnings` section says:
+   `No review warnings detected.`
+   If warnings remain, resolve or explicitly report them before merge.
+10. Run checks:
    - `npm run validate:data`
    - `node --check app.js`
    - `node --check scripts/import-gkp-data.js`
    - `node --check scripts/normalize-source-links.js`
+   - `node --check scripts/summarize-location-diff.js`
    - `node --check scripts/validate-data.js`
 
 ## GitHub Action Policy
