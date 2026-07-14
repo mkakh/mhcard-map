@@ -32,7 +32,18 @@ export function filterChangedLocationsAgainstBase(baseLocations, locations) {
   });
 }
 
-const geocodeReviewFields = ["address", "lat", "lng", "geocodeQuery", "geocodeTitle", "coordinateAccuracy", "geocodeError"];
+const geocodeReviewFields = [
+  "status",
+  "place",
+  "name",
+  "address",
+  "lat",
+  "lng",
+  "geocodeQuery",
+  "geocodeTitle",
+  "coordinateAccuracy",
+  "geocodeError"
+];
 
 export function geocodeFieldsChanged(previous, current) {
   return geocodeReviewFields.some((field) => JSON.stringify(previous?.[field]) !== JSON.stringify(current?.[field]));

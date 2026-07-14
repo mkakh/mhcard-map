@@ -3,14 +3,13 @@ import assert from "node:assert/strict";
 import {
   addressInputIssues,
   collectGeocodePrecisionCandidates,
-  collectGeocodeReviewBacklog,
+  collectGeocodeReviewIssues,
   distanceMeters,
   geocodeSnapshotHash,
   isAddressFormatOnlyShortening,
   isCoordinateWithinPrefecture,
   isManuallyReviewedGeocodeTitle,
-  selectCandidateShard,
-  selectGeocodeReviewBatch
+  isSuspendedWithoutDistributionLocation
 } from "../scripts/geocode-precision-utils.js";
 import { encodePlusCode } from "../scripts/plus-code-utils.js";
 
@@ -37,35 +36,29 @@ test("manual review suppresses address-title precision warnings but not prefectu
   assert.deepEqual(candidates[0].reasons, ["coordinate is outside prefecture bounds"]);
 });
 
-test("review backlog includes every unreviewed coordinate regardless of address filter", () => {
+test("ordinary unreviewed coordinates are not treated as objective issues", () => {
   const formatOnly = location({
     geocodeQuery: "茨城県守谷市百合ケ丘二丁目2734番地の1",
     geocodeTitle: "守谷市百合ケ丘2-2734-1"
   });
   assert.equal(collectGeocodePrecisionCandidates([formatOnly]).length, 0);
-
-  const backlog = collectGeocodeReviewBacklog([formatOnly]);
-  assert.equal(backlog.length, 1);
-  assert.equal(backlog[0].severity, "review");
-  assert.deepEqual(backlog[0].riskReasons, []);
-  assert.match(backlog[0].reasons.join(" "), /not been independently reviewed/);
-  assert.match(backlog[0].reasons.join(" "), /legacy heuristic:.*formatting\/shortening/);
+  assert.equal(collectGeocodeReviewIssues([formatOnly]).length, 0);
 });
 
-test("reviewed coordinates leave backlog unless an objective error remains", () => {
-  assert.equal(collectGeocodeReviewBacklog([
+test("manual review status does not suppress an objective coordinate error", () => {
+  assert.equal(collectGeocodeReviewIssues([
     location({ geocodeTitle: "施設（手動補正）" })
   ]).length, 0);
 
-  const backlog = collectGeocodeReviewBacklog([
+  const issues = collectGeocodeReviewIssues([
     location({ geocodeTitle: "施設（手動補正）", lat: 40.745602, lng: 140.466461 })
   ]);
-  assert.equal(backlog.length, 1);
-  assert.equal(backlog[0].severity, "high");
+  assert.equal(issues.length, 1);
+  assert.equal(issues[0].severity, "high");
 });
 
-test("known address corruption stays in the backlog after coordinate review", () => {
-  const [candidate] = collectGeocodeReviewBacklog([
+test("known address corruption remains an issue after coordinate review", () => {
+  const [candidate] = collectGeocodeReviewIssues([
     location({
       address: "住所：加古川市加古川町篠原町503-2",
       geocodeQuery: "住所：加古川市加古川町篠原町503-2",
@@ -75,6 +68,24 @@ test("known address corruption stays in the backlog after coordinate review", ()
 
   assert.equal(candidate.severity, "medium");
   assert.match(candidate.riskReasons.join(" "), /address input issue/);
+});
+
+test("missing geocode inputs are exempt only for suspended cards without a published location", () => {
+  const suspended = location({
+    status: "休止中",
+    place: "※現在、配布を一時中止しています",
+    address: "",
+    geocodeQuery: "",
+    geocodeTitle: "",
+    coordinateAccuracy: "prefecture_approx"
+  });
+  assert.equal(isSuspendedWithoutDistributionLocation(suspended), true);
+  assert.equal(collectGeocodeReviewIssues([suspended]).length, 0);
+
+  const [activeIssue] = collectGeocodeReviewIssues([{ ...suspended, status: "配布中" }]);
+  assert.equal(activeIssue.severity, "medium");
+  assert.match(activeIssue.reasons.join(" "), /geocodeQuery is missing/);
+  assert.match(activeIssue.reasons.join(" "), /geocodeTitle is missing/);
 });
 
 test("legacy address format heuristic remains informational", () => {
@@ -115,34 +126,6 @@ test("prefecture bounds catch obvious cross-prefecture coordinates", () => {
     })
   ]);
   assert.equal(crossPrefecture.some((candidate) => candidate.reasons.includes("coordinate is outside prefecture bounds")), false);
-});
-
-test("weekly shards are stable, disjoint, and exhaustive", () => {
-  const candidates = Array.from({ length: 100 }, (_, index) => ({
-    id: `id-${index}`,
-    kind: "location",
-    targetId: `id-${index}`
-  }));
-  const shards = Array.from({ length: 7 }, (_, index) => selectCandidateShard(candidates, 7, index));
-  const keys = shards.flat().map((candidate) => candidate.id);
-  assert.equal(keys.length, candidates.length);
-  assert.equal(new Set(keys).size, candidates.length);
-  assert.deepEqual(selectCandidateShard(candidates, 7, 3), shards[3]);
-});
-
-test("objective backlog errors appear every week while routine reviews are sharded", () => {
-  const priority = { id: "priority", kind: "location", targetId: "priority", severity: "high" };
-  const routine = Array.from({ length: 20 }, (_, index) => ({
-    id: `routine-${index}`,
-    kind: "location",
-    targetId: `routine-${index}`,
-    severity: "review"
-  }));
-  const batches = Array.from({ length: 7 }, (_, index) => selectGeocodeReviewBatch([priority, ...routine], 7, index));
-  assert.ok(batches.every((batch) => batch.includes(priority)));
-  const routineIds = batches.flat().filter((candidate) => candidate.severity === "review").map((candidate) => candidate.id);
-  assert.equal(routineIds.length, routine.length);
-  assert.equal(new Set(routineIds).size, routine.length);
 });
 
 test("distance, snapshot hashes, and Plus Codes are deterministic", () => {

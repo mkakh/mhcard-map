@@ -19,47 +19,24 @@ export function collectGeocodeTargets(locations) {
   return targets;
 }
 
-export function collectGeocodeReviewBacklog(locations, options = {}) {
+export function collectGeocodeReviewIssues(locations, options = {}) {
   const candidates = [];
 
   for (const candidate of collectGeocodeTargets(locations)) {
     const objectiveReasons = objectiveGeocodeReasons(candidate);
-    const reviewed = isManuallyReviewedGeocodeTitle(candidate.geocodeTitle);
-    if (reviewed && objectiveReasons.length === 0 && !options.includeReviewed) continue;
+    if (objectiveReasons.length === 0) continue;
 
-    const heuristicReasons = precisionLossReasons(
-      normalize(candidate.geocodeQuery),
-      normalize(candidate.geocodeTitle)
-    ).map((reason) => ({ ...reason, label: `legacy heuristic: ${reason.label}` }));
-    if (isAddressFormatOnlyShortening(candidate.geocodeQuery, candidate.geocodeTitle)) {
-      heuristicReasons.push({
-        severity: "review",
-        score: 0,
-        label: "legacy heuristic: address text differs only by a known formatting/shortening rule"
-      });
-    }
-
-    const reasons = [
-      ...objectiveReasons,
-      ...(!reviewed
-        ? [{ severity: "review", score: 1, label: "coordinate has not been independently reviewed" }]
-        : []),
-      ...heuristicReasons
-    ];
-    const riskReasons = objectiveReasons;
     const severity = objectiveReasons.some((reason) => reason.severity === "high")
       ? "high"
-      : objectiveReasons.length > 0
-        ? "medium"
-        : "review";
+      : "medium";
 
     candidates.push({
       ...candidate,
-      reviewed,
+      reviewed: isManuallyReviewedGeocodeTitle(candidate.geocodeTitle),
       severity,
       score: objectiveReasons.reduce((total, reason) => total + reason.score, 0),
-      reasons: reasons.map((reason) => reason.label),
-      riskReasons: riskReasons.map((reason) => reason.label),
+      reasons: objectiveReasons.map((reason) => reason.label),
+      riskReasons: objectiveReasons.map((reason) => reason.label),
       ...(options.includeUrls ? { urls: candidate.urls } : {})
     });
   }
@@ -231,10 +208,6 @@ export function googleMapsCoordinateUrl(value) {
   return `https://www.google.com/maps?q=${lat},${lng}`;
 }
 
-export function geocodeCandidateKey(candidate) {
-  return `${candidate.id}:${candidate.kind}:${candidate.targetId || candidate.place || "location"}`;
-}
-
 export function geocodeSnapshotHash(target) {
   const snapshot = {
     id: target?.id ?? "",
@@ -248,29 +221,6 @@ export function geocodeSnapshotHash(target) {
     geocodeError: target?.geocodeError ?? ""
   };
   return createHash("sha256").update(JSON.stringify(snapshot)).digest("hex");
-}
-
-export function backlogShardIndex(shardCount, date = new Date()) {
-  if (!Number.isInteger(shardCount) || shardCount < 1) throw new Error("shardCount must be a positive integer");
-  return Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) / (7 * 86400000)) % shardCount;
-}
-
-export function selectCandidateShard(candidates, shardCount, shardIndex) {
-  if (!Number.isInteger(shardCount) || shardCount < 1) throw new Error("shardCount must be a positive integer");
-  if (!Number.isInteger(shardIndex) || shardIndex < 0 || shardIndex >= shardCount) {
-    throw new Error("shardIndex must be within shardCount");
-  }
-  return candidates.filter((candidate) => stableHash(geocodeCandidateKey(candidate)) % shardCount === shardIndex);
-}
-
-export function selectGeocodeReviewBatch(candidates, shardCount, shardIndex) {
-  const priority = candidates.filter((candidate) => candidate.severity !== "review");
-  const routineShard = selectCandidateShard(
-    candidates.filter((candidate) => candidate.severity === "review"),
-    shardCount,
-    shardIndex
-  );
-  return [...priority, ...routineShard];
 }
 
 function inspectTarget(candidates, location, target, kind, options) {
@@ -334,6 +284,7 @@ function geocodeTarget(location, target, kind) {
     geocodeError: target.geocodeError,
     geocodeQuery: target.geocodeQuery || "",
     geocodeTitle: target.geocodeTitle || "",
+    status: target.status || location.status || "",
     urls: officialUrls(location, target)
   };
 }
@@ -348,11 +299,13 @@ function objectiveGeocodeReasons(candidate) {
   if (candidate.geocodeError) {
     reasons.push({ severity: "high", score: 8, label: `geocoder error: ${candidate.geocodeError}` });
   }
-  if (!normalize(candidate.geocodeQuery)) {
-    reasons.push({ severity: "medium", score: 3, label: "geocodeQuery is missing" });
-  }
-  if (!normalize(candidate.geocodeTitle)) {
-    reasons.push({ severity: "medium", score: 3, label: "geocodeTitle is missing" });
+  if (!isSuspendedWithoutDistributionLocation(candidate)) {
+    if (!normalize(candidate.geocodeQuery)) {
+      reasons.push({ severity: "medium", score: 3, label: "geocodeQuery is missing" });
+    }
+    if (!normalize(candidate.geocodeTitle)) {
+      reasons.push({ severity: "medium", score: 3, label: "geocodeTitle is missing" });
+    }
   }
   const inputIssues = new Set([
     ...addressInputIssues(candidate.address),
@@ -362,6 +315,12 @@ function objectiveGeocodeReasons(candidate) {
     reasons.push({ severity: "medium", score: 4, label: `address input issue: ${issue}` });
   }
   return reasons;
+}
+
+export function isSuspendedWithoutDistributionLocation(target) {
+  if (target?.status !== "休止中" || normalize(target?.address)) return false;
+  const place = normalize(target?.place ?? target?.name);
+  return !place || /配布.*(?:中止|休止)|(?:中止|休止).*配布/.test(place);
 }
 
 export function precisionLossReasons(query, title) {
@@ -491,13 +450,4 @@ function numberTokens(value) {
 
 function toRadians(value) {
   return (value * Math.PI) / 180;
-}
-
-function stableHash(value) {
-  let hash = 2166136261;
-  for (const character of String(value)) {
-    hash ^= character.codePointAt(0);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
 }

@@ -2,16 +2,14 @@ import { spawnSync } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import {
-  backlogShardIndex,
+  collectGeocodeTargets,
   collectGeocodePrecisionCandidates,
-  collectGeocodeReviewBacklog,
+  collectGeocodeReviewIssues,
   distanceMeters,
   geocodeSnapshotHash,
   isCoordinateWithinPrefecture,
   normalize,
-  normalizeSearchQuery,
-  selectCandidateShard,
-  selectGeocodeReviewBatch
+  normalizeSearchQuery
 } from "./geocode-precision-utils.js";
 import { filterChangedLocations } from "./location-change-utils.js";
 
@@ -28,10 +26,6 @@ const fetchNominatim = process.env.FETCH_NOMINATIM === "1";
 const maxCandidates = Number(process.env.MAX_CANDIDATES || 0);
 const maxNominatimRequests = Number(process.env.MAX_NOMINATIM_REQUESTS || 0);
 const changedOnly = process.env.CHANGED_ONLY === "1";
-const shardCount = Number(process.env.BACKLOG_SHARD_COUNT || 0);
-const shardIndex = shardCount > 0
-  ? Number(process.env.BACKLOG_SHARD_INDEX || backlogShardIndex(shardCount))
-  : null;
 const delayMs = Math.max(0, Number(process.env.GEOCODE_CANDIDATE_DELAY_MS || 200));
 const nominatimDelayMs = Math.max(1100, Number(process.env.NOMINATIM_DELAY_MS || 1100));
 const timeoutMs = Number(process.env.GEOCODE_CANDIDATE_TIMEOUT_MS || 15000);
@@ -48,11 +42,6 @@ cache.places ??= {};
 cache.webSearch ??= {};
 
 let candidates = collectCandidates(locations);
-if (shardCount > 0) {
-  candidates = auditScope === "review-backlog"
-    ? selectGeocodeReviewBatch(candidates, shardCount, shardIndex)
-    : selectCandidateShard(candidates, shardCount, shardIndex);
-}
 if (maxCandidates > 0) candidates = candidates.slice(0, maxCandidates);
 
 const rows = [];
@@ -114,8 +103,6 @@ console.log(JSON.stringify({
   auditScope,
   candidates: candidates.length,
   changedOnly,
-  shardCount,
-  shardIndex,
   fetchOfficialMaps,
   fetchPlaces,
   fetchWebSearch,
@@ -127,7 +114,8 @@ console.log(JSON.stringify({
 
 function collectCandidates(items) {
   if (auditScope === "precision") return collectGeocodePrecisionCandidates(items, { includeUrls: true });
-  if (auditScope === "review-backlog") return collectGeocodeReviewBacklog(items, { includeUrls: true });
+  if (auditScope === "review-issues") return collectGeocodeReviewIssues(items, { includeUrls: true });
+  if (auditScope === "changed-targets") return collectGeocodeTargets(items);
   throw new Error(`Unknown GEOCODE_AUDIT_SCOPE: ${auditScope}`);
 }
 
