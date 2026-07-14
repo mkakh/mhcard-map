@@ -371,10 +371,10 @@ npm run sync:geocode-review-cache
 npm run import:forms
 npm run validate:data
 npm run audit:geocode-precision:changed
-npm run audit:geocode-review:backlog
+npm run audit:geocode-review:issues
 npm run audit:geocode-candidates
 npm run audit:geocode-candidates:changed
-npm run audit:geocode-candidates:weekly
+npm run audit:geocode-candidates:issues
 npm run report:geocode-candidates
 npm run audit:geocode-official-evidence
 npm run prepare:geocode-approvals
@@ -409,31 +409,32 @@ Pipeline steps:
 6. Generate Plus Codes
 7. Import Google Form responses
 8. Validate generated data, including prefecture/coordinate consistency and known address-corruption warnings
-9. Run the old address-shortening heuristic as informational output only
-10. Select one stable seventh of all unreviewed geocode targets
-11. Create or update a pull request
-12. Synchronize full changed-target and weekly-backlog rows to PR comments
+9. Audit objective geocode errors
+10. Create or update a pull request
+11. Synchronize full changed-target and objective-issue rows to PR comments
 
-### 12.1 Geocode Review Backlog
+### 12.1 Geocode Review Scope
 
-The existing geocode backlog means every top-level or nested distribution target
-whose coordinate has not received an independent manual review. It does not mean
-that every listed pin is wrong. It means the current coordinate is still based
-only on the ordinary geocoder or an approximate fallback.
+An ordinary geocoder result is not treated as a defect merely because it lacks an
+independent manual review. The scheduled workflow has no recurring all-unreviewed
+backlog and no seven-way review shard. This avoids hiding actionable errors in a
+large list of coordinates with no specific failure signal.
 
-The backlog deliberately includes every unreviewed target. Address differences,
-prefecture omission, county omission, `字`/`大字`, kanji numerals, and block-number
-formatting never remove a target from review. The historical address-shortening
-logic remains only as a diagnostic note. It cannot exclude a target, approve a
-coordinate, or raise its priority. Objective conditions such as a missing
-coordinate, a geocoder error, an out-of-prefecture coordinate, or a known
-address-input corruption determine `high`/`medium` priority.
+Changed or newly imported top-level and nested geocode targets are shown
+immediately in the update PR. Independently, the workflow reports objective
+conditions such as a missing or invalid coordinate, a geocoder error, an
+out-of-prefecture coordinate, missing geocode input, or a known address-input
+corruption. These conditions are reported regardless of prior manual review.
 
-Changed or newly imported geocode targets are shown immediately in the update PR.
-Unchanged routine targets are assigned to one of seven stable shards; seven
-consecutive weekly runs cover the complete current backlog. Objective errors are
-included every week instead of waiting for their shard. Reviewed targets leave
-the backlog, unless an objective coordinate error remains.
+A suspended card whose distribution place is unpublished is exempt from missing
+query/title warnings while its address is empty and its place is empty or only a
+suspension notice. Its retained coordinate is approximate, not an asserted
+distribution pin. A later status, place, address, or coordinate change is still
+shown by the changed-target review.
+
+The historical address-shortening logic remains only as manually invoked
+diagnostic output. It cannot exclude or approve a target and is not part of the
+scheduled workflow.
 
 ### 12.2 Manual Candidate Review
 
@@ -443,7 +444,7 @@ official URLs in PR comments. Candidate enrichment is run manually:
 
 ```bash
 npm run audit:geocode-candidates:changed
-npm run audit:geocode-candidates:weekly
+npm run audit:geocode-candidates:issues
 npm run report:geocode-candidates
 npm run audit:geocode-official-evidence
 ```

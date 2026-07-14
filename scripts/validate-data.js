@@ -1,6 +1,11 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { addressInputIssues, isCoordinateWithinPrefecture, prefectureMention } from "./geocode-precision-utils.js";
+import {
+  addressInputIssues,
+  isCoordinateWithinPrefecture,
+  isSuspendedWithoutDistributionLocation,
+  prefectureMention
+} from "./geocode-precision-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
@@ -101,7 +106,11 @@ function validateLocations(items) {
     validateDistributionPlaces(label, location.distributionPlaces, "distributionPlaces", location.prefecture);
     validateDistributionPlaces(label, location.englishVersionDistributionPlaces, "englishVersionDistributionPlaces", location.prefecture);
 
-    if (!String(location.place ?? "").trim() && !String(location.address ?? "").trim()) {
+    if (
+      !String(location.place ?? "").trim() &&
+      !String(location.address ?? "").trim() &&
+      !isSuspendedWithoutDistributionLocation(location)
+    ) {
       warnings.push(`${label}: both place and address are empty`);
     }
   });

@@ -3,14 +3,11 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import {
   addressInputIssues,
-  backlogShardIndex,
   collectGeocodePrecisionCandidates,
-  collectGeocodeReviewBacklog,
+  collectGeocodeReviewIssues,
   distanceMeters,
-  geocodeCandidateKey,
   googleMapsCoordinateUrl,
-  isManuallyReviewedGeocodeTitle,
-  selectGeocodeReviewBatch
+  isManuallyReviewedGeocodeTitle
 } from "./geocode-precision-utils.js";
 import { collectGeocodeReviewEntries, filterChangedLocations } from "./location-change-utils.js";
 
@@ -71,15 +68,7 @@ const meaningfulChanged = changed.filter((location) => location.meaningfulFields
 const changedGeocodeAuditLocations = filterChangedLocations(after);
 const geocodePrecisionCandidates = collectGeocodePrecisionCandidates(changedGeocodeAuditLocations);
 const geocodeReviewChanges = collectGeocodeReviewEntries(before, after);
-const backlogShardCount = Number(process.env.BACKLOG_SHARD_COUNT || 7);
-const currentBacklogShardIndex = Number(process.env.BACKLOG_SHARD_INDEX || backlogShardIndex(backlogShardCount));
-const changedCandidateKeys = new Set(geocodeReviewChanges.map((entry) =>
-  `${entry.locationAfter?.id ?? entry.locationBefore?.id}:${entry.target}:${entry.targetId}`
-));
-const fullBacklogCandidates = collectGeocodeReviewBacklog(after);
-const allBacklogCandidates = fullBacklogCandidates
-  .filter((candidate) => !changedCandidateKeys.has(geocodeCandidateKey(candidate)));
-const backlogCandidates = selectGeocodeReviewBatch(allBacklogCandidates, backlogShardCount, currentBacklogShardIndex);
+const geocodeReviewIssues = collectGeocodeReviewIssues(after);
 const lines = [
   "Automated location data update.",
   "",
@@ -109,9 +98,9 @@ const lines = [
   "",
   ...changedGeocodePrecisionAuditLines(),
   "",
-  "## Weekly Unreviewed Geocode Coverage",
+  "## Objective Geocode Review Issues",
   "",
-  ...weeklyGeocodeBacklogLines(false),
+  ...objectiveGeocodeIssueLines(false),
   "",
   "## Changed Geocode Review Details",
   "",
@@ -133,7 +122,7 @@ const lines = [
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, `${lines.join("\n")}\n`, "utf8");
 const reviewComments = reviewCommentBodies([
-  ["Weekly Unreviewed Geocode Coverage", weeklyGeocodeBacklogLines(true)],
+  ["Objective Geocode Review Issues", objectiveGeocodeIssueLines(true)],
   ["Changed Geocode Review Details", changedGeocodeReviewDetailLines(true)],
   ["Applied Geocode Review Evidence", appliedGeocodeReviewEvidenceLines()]
 ]);
@@ -218,20 +207,17 @@ function changedGeocodePrecisionAuditLines() {
   return lines;
 }
 
-function weeklyGeocodeBacklogLines(includeDetails = true) {
+function objectiveGeocodeIssueLines(includeDetails = true) {
   const lines = [
-    `- Total unreviewed targets: ${fullBacklogCandidates.length}`,
-    `- Already shown in changed-target details: ${fullBacklogCandidates.length - allBacklogCandidates.length}`,
-    `- Unchanged backlog targets: ${allBacklogCandidates.length}`,
-    `- Weekly shard: ${currentBacklogShardIndex + 1}/${backlogShardCount}`,
-    `- Targets in this PR review shard: ${backlogCandidates.length}`,
-    "- Objective errors are shown every week; only routine unreviewed targets are sharded.",
-    "- Every unreviewed target is covered even when the old address-shortening heuristic considers it harmless.",
+    `- Current objective issues: ${geocodeReviewIssues.length}`,
+    "- Ordinary geocoder results are not treated as issues merely because they lack independent manual review.",
+    "- Changed and newly added geocode targets are shown separately in this PR.",
+    "- Suspended cards without a published distribution location are exempt until their distribution data changes.",
     "- This section requests review only. No search or external geocoder result is applied automatically."
   ];
 
-  if (backlogCandidates.length === 0) {
-    lines.push("- No candidates in this week's shard.");
+  if (geocodeReviewIssues.length === 0) {
+    lines.push("- No objective geocode review issues detected.");
     return lines;
   }
 
@@ -244,7 +230,7 @@ function weeklyGeocodeBacklogLines(includeDetails = true) {
     "",
     "| severity | target | place / address | coordinates | map | reason |",
     "| --- | --- | --- | --- | --- | --- |",
-    ...backlogCandidates.map((candidate) => [
+    ...geocodeReviewIssues.map((candidate) => [
       candidate.severity,
       `${candidate.id} ${candidate.kind}/${candidate.targetId}`,
       `${candidate.place} / ${candidate.address}`,
@@ -258,10 +244,10 @@ function weeklyGeocodeBacklogLines(includeDetails = true) {
 
 function changedGeocodeReviewDetailLines(includeDetails = true) {
   const entries = geocodeReviewChanges;
-  if (entries.length === 0) return ["No address or coordinate changes detected."];
+  if (entries.length === 0) return ["No geocode review triggers detected."];
 
   const summary = [
-    `- Address/coordinate/geocode changes: ${entries.length}`,
+    `- Changed/new geocode review targets: ${entries.length}`,
     "- Address text is shown once when unchanged and as before -> after when changed."
   ];
   if (!includeDetails) {
@@ -272,10 +258,11 @@ function changedGeocodeReviewDetailLines(includeDetails = true) {
   return [
     ...summary,
     "",
-    "| target | address before -> after | coordinates before -> after | movement | maps | official sources | review |",
-    "| --- | --- | --- | --- | --- | --- | --- |",
+    "| target | review trigger | address before -> after | coordinates before -> after | movement | maps | official sources | review |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ...entries.map((entry) => [
       geocodeEntryLabel(entry),
+      geocodeReviewTrigger(entry),
       beforeAfterValue(entry.before?.address, entry.after?.address),
       `${coordinateValue(entry.before)} -> ${coordinateValue(entry.after)}`,
       movementValue(entry.before, entry.after),
@@ -284,6 +271,20 @@ function changedGeocodeReviewDetailLines(includeDetails = true) {
       `${geocodeReviewSource(entry.after?.geocodeTitle ?? entry.before?.geocodeTitle)} ${formatValue(entry.after?.geocodedAt ?? entry.after?.updatedAt ?? entry.locationAfter?.updatedAt)}`
     ].map(markdownCell).join(" | ").replace(/^/, "| ").replace(/$/, " |"))
   ];
+}
+
+function geocodeReviewTrigger(entry) {
+  const fields = [
+    "status", "place", "name", "address", "lat", "lng", "geocodeQuery",
+    "geocodeTitle", "coordinateAccuracy", "geocodeError"
+  ].filter((field) => JSON.stringify(entry.before?.[field]) !== JSON.stringify(entry.after?.[field]));
+
+  return fields.map((field) => {
+    if (["status", "place", "name"].includes(field)) {
+      return `${field}: ${beforeAfterValue(entry.before?.[field], entry.after?.[field])}`;
+    }
+    return field;
+  }).join("; ");
 }
 
 function appliedGeocodeReviewEvidenceLines() {

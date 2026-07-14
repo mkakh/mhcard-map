@@ -4,7 +4,7 @@ import {
   collectGeocodeReviewEntries,
   filterChangedLocationsAgainstBase
 } from "../scripts/location-change-utils.js";
-import { collectGeocodeReviewBacklog } from "../scripts/geocode-precision-utils.js";
+import { collectGeocodeTargets } from "../scripts/geocode-precision-utils.js";
 
 test("geocode review entries include changed, added, removed, and English targets", () => {
   const before = [baseLocation()];
@@ -43,6 +43,18 @@ test("changed-only filtering ignores timestamp-only changes", () => {
   assert.deepEqual(filterChangedLocationsAgainstBase(before, after), []);
 });
 
+test("status and facility-name changes trigger immediate geocode review", () => {
+  const before = [baseLocation({ status: "休止中" })];
+  const after = [baseLocation({
+    status: "配布中",
+    distributionPlaces: [place("regular", { name: "新しい配布施設" }), place("removed")]
+  })];
+
+  const filtered = filterChangedLocationsAgainstBase(before, after);
+  assert.equal(filtered[0].__skipTopLevelGeocodeTarget, undefined);
+  assert.deepEqual(filtered[0].distributionPlaces.map((item) => item.id), ["regular"]);
+});
+
 test("changed-only filtering keeps only changed geocode targets", () => {
   const before = [baseLocation()];
   const after = [baseLocation({
@@ -54,7 +66,7 @@ test("changed-only filtering keeps only changed geocode targets", () => {
   assert.equal(filtered[0].geocodeQuery, after[0].geocodeQuery);
   assert.deepEqual(filtered[0].distributionPlaces.map((item) => item.id), ["regular"]);
   assert.deepEqual(
-    collectGeocodeReviewBacklog(filtered).map((candidate) => candidate.targetId),
+    collectGeocodeTargets(filtered).map((candidate) => candidate.targetId),
     ["regular"]
   );
 });

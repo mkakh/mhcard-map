@@ -19,10 +19,10 @@ After changing repository data, run the existing relevant validation commands, i
 
 ## Geocode review
 
-- Treat every unreviewed top-level and nested distribution target as backlog. Never use address-shortening or formatting heuristics to exclude a target from manual review.
-- Treat the legacy precision filter as informational only. Coordinate movement can be wrong even when the before/after address is identical or differs only in formatting.
-- Review changed/new targets immediately and use the stable seven-way shard for unchanged legacy targets. PR comments must expose the rows; do not leave the reviewer to discover them only inside CSV or JSON artifacts.
-- Show objective coordinate, geocoder, missing-query/title, and known address-input errors every week even when a target was previously reviewed; shard only ordinary unreviewed targets.
+- Do not treat an ordinary geocoder result as a defect merely because it lacks independent manual review. There is no recurring all-unreviewed backlog or seven-way review shard.
+- Review every changed or newly added top-level and nested geocode target immediately. PR comments must expose the rows; do not leave the reviewer to discover them only inside CSV or JSON artifacts.
+- Report objective coordinate, geocoder, missing-query/title, and known address-input errors regardless of prior review status. A suspended card with no published distribution location is exempt from missing-query/title warnings until its distribution data changes.
+- Treat the legacy precision filter as manual diagnostic output only. Coordinate movement can be wrong even when the before/after address is identical or differs only in formatting.
 - Keep candidate sources separate. Nominatim is reference-only and cannot be applied. A Places coordinate can be adopted only after the exact facility is matched to a card-level official source. An embedded map coordinate must be bound by page context to the exact facility.
 - Require explicit target ID, approved coordinates, official URL, coordinate source/evidence, review date, notes, and a current snapshot hash before applying a coordinate.
 - Record the current address, before/after coordinates, movement, map links, official source, and decision evidence in the generated PR review output.

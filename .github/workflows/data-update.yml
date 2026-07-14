@@ -48,10 +48,8 @@ jobs:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
       - name: Validate generated data
         run: npm run validate:data
-      - name: Run legacy changed-geocode heuristic (informational)
-        run: npm run audit:geocode-precision:changed
-      - name: Audit weekly unreviewed geocode shard
-        run: npm run audit:geocode-review:backlog
+      - name: Audit objective geocode issues
+        run: npm run audit:geocode-review:issues
       - name: Summarize location changes
         run: node scripts/summarize-location-diff.js
       - name: Create update pull request
