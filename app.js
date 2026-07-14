@@ -181,7 +181,29 @@ const fallbackMapView = {
   zoom: 10
 };
 
-const mapStyleUrl = "https://api.maptiler.com/maps/jp-gsi-standard/style.json?key=7NtXoZQuzmH1mXvStgFj";
+const mapStyle = {
+  version: 8,
+  glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+  sources: {
+    "gsi-standard": {
+      type: "raster",
+      tiles: ["https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png"],
+      tileSize: 256,
+      minzoom: 2,
+      maxzoom: 18,
+      attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noreferrer">国土地理院</a>'
+    }
+  },
+  layers: [
+    {
+      id: "gsi-standard",
+      type: "raster",
+      source: "gsi-standard",
+      minzoom: 2,
+      maxzoom: 19
+    }
+  ]
+};
 
 const elements = {
   searchInput: document.querySelector("#searchInput"),
@@ -956,7 +978,7 @@ function initMap() {
 
   map = new maplibregl.Map({
     container: "mapCanvas",
-    style: mapStyleUrl,
+    style: mapStyle,
     center: fallbackMapView.center,
     zoom: fallbackMapView.zoom,
     minZoom: 3.4,
@@ -1556,7 +1578,7 @@ async function preparePrintMapImage() {
 
   const printMap = new maplibregl.Map({
     container: renderer,
-    style: mapStyleUrl,
+    style: mapStyle,
     center: map.getCenter().toArray(),
     zoom: map.getZoom(),
     bearing: map.getBearing(),
