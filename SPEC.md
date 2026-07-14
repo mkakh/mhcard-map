@@ -113,7 +113,9 @@ Mobile interactions:
 
 ## 6. Map Specification
 
-Map rendering uses MapLibre GL JS with the MapTiler `jp-gsi-standard` style.
+Map rendering uses MapLibre GL JS with the Geospatial Information Authority of
+Japan standard raster tiles. The style includes the required GSI attribution;
+OpenFreeMap serves only the Noto Sans glyphs used by the app's cluster labels.
 
 Features:
 
