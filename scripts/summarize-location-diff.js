@@ -11,6 +11,10 @@ import {
 } from "./geocode-precision-utils.js";
 import { collectGeocodeReviewEntries, filterChangedLocations } from "./location-change-utils.js";
 import { isOfficialPublicBodyLocation } from "./source-policy-utils.js";
+import {
+  formatGkpReviewCandidates,
+  readGkpReviewCandidates
+} from "./gkp-review-candidate-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const outputPath = join(process.cwd(), ".tmp", "location-update-summary.md");
@@ -35,6 +39,7 @@ const maxValueLength = 160;
 const before = await readBaseLocations();
 const after = JSON.parse(await readFile(dataPath, "utf8"));
 const appliedGeocodeReviews = await readOptionalJson(appliedGeocodeReviewPath, []);
+const gkpReviewCandidates = await readGkpReviewCandidates();
 const beforeById = new Map(before.map((location) => [location.id, location]));
 const afterById = new Map(after.map((location) => [location.id, location]));
 
@@ -91,6 +96,10 @@ const lines = [
   "",
   ...manualCodexReviewLines(),
   "",
+  "## GKP Review Candidates",
+  "",
+  ...gkpReviewCandidateSummaryLines(),
+  "",
   "## Review Warnings",
   "",
   ...reviewWarningLines(),
@@ -123,6 +132,7 @@ const lines = [
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, `${lines.join("\n")}\n`, "utf8");
 const reviewComments = reviewCommentBodies([
+  ["GKP Review Candidates", formatGkpReviewCandidates(gkpReviewCandidates, { headingLevel: 3 })],
   ["Objective Geocode Review Issues", objectiveGeocodeIssueLines(true)],
   ["Changed Geocode Review Details", changedGeocodeReviewDetailLines(true)],
   ["Applied Geocode Review Evidence", appliedGeocodeReviewEvidenceLines()]
@@ -175,7 +185,7 @@ function manualCodexReviewLines() {
     "- Government/public-body pages may be the first authoritative card source; GKP listing is not a prerequisite.",
     "- If the counts below look suspicious, run `$manhole-card-official-audit` manually. Search results are discovery hints until the official page is opened and card-level identity is matched.",
     `- GKP-only source records: ${gkpOnly.length}`,
-    `- Official-first public-body records: ${officialFirst.length}`,
+    `- Official public-body source records: ${officialFirst.length}`,
     `- Records without officialDesignNames: ${missingOfficialDesignNames.length}`,
     `- Source/English/official-name records changed in this PR: ${changedSourceFields.length}`
   ];
@@ -187,11 +197,41 @@ function manualCodexReviewLines() {
   }
 
   if (officialFirst.length > 0) {
-    lines.push("", "Official-first records retained independently of GKP:");
+    lines.push("", "Official-source records retained independently of GKP:");
     lines.push(...officialFirst.slice(0, 10).map((location) => `- ${locationLabel(location)}`));
     if (officialFirst.length > 10) lines.push(`- Additional official-first records omitted: ${officialFirst.length - 10}`);
   }
 
+  return lines;
+}
+
+function gkpReviewCandidateSummaryLines() {
+  const lines = [
+    `- Existing records with unapplied GKP differences: ${gkpReviewCandidates.length}`,
+    "- These observations were not applied to reviewed distribution data.",
+    "- Complete before/GKP values are synchronized to PR review-detail comments and the persistent GKP review issue."
+  ];
+
+  if (gkpReviewCandidates.length === 0) {
+    lines.push("- No GKP review candidates detected.");
+    return lines;
+  }
+
+  lines.push("");
+  const maxBytes = 30000;
+  let listed = 0;
+  for (const candidate of gkpReviewCandidates) {
+    const fields = Object.keys(candidate.fields).map((field) => `\`${field}\``).join(", ");
+    const line = `- ${locationLabel(candidate)}: ${fields}${candidate.gkpSourceUrl ? ` / [GKP](${candidate.gkpSourceUrl})` : ""}`;
+    if (Buffer.byteLength(`${lines.join("\n")}\n${line}`, "utf8") > maxBytes) break;
+    lines.push(line);
+    listed += 1;
+  }
+  if (listed < gkpReviewCandidates.length) {
+    lines.push(
+      `- PR本文上限を避けるため残り${gkpReviewCandidates.length - listed}件はレビュー詳細コメントに分割表示しています。`
+    );
+  }
   return lines;
 }
 
@@ -648,6 +688,10 @@ function hasClosureTextRemoved(before, after) {
   if (!before.hours || !after.hours || before.hours === after.hours) return false;
   const beforeText = String(before.hours);
   const afterText = String(after.hours);
+  const afterClosed = String(after.closed ?? "");
+  if (/(土日|土曜日|日曜日|祝日|年末年始|休み|お休み|休館|休業|定休|[0-9]+月[0-9]+日)/.test(afterClosed)) {
+    return false;
+  }
   const removedClosure = /(土日|土曜日|日曜日|祝日|年末年始|休み|お休み|休館|休業|定休)/.test(beforeText)
     && !/(土日|土曜日|日曜日|祝日|年末年始|休み|お休み|休館|休業|定休)/.test(afterText);
   if (!removedClosure) return false;

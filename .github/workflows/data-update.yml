@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
@@ -52,6 +53,10 @@ jobs:
         run: npm run audit:geocode-review:issues
       - name: Summarize location changes
         run: node scripts/summarize-location-diff.js
+      - name: Sync GKP review candidates
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run sync:gkp-review-issue
       - name: Create update pull request
         id: create-pr
         uses: peter-evans/create-pull-request@v6
@@ -61,7 +66,7 @@ jobs:
           commit-message: "chore: update location data"
           body-path: .tmp/location-update-summary.md
           reviewers: mkakh
-      - name: Sync geocode review detail comments
+      - name: Sync review detail comments
         if: steps.create-pr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -352,6 +352,28 @@ missing catalogue metadata; reviewed official distribution facts remain
 authoritative. A conflicting later GKP ID fails import for manual printed-code
 review instead of automatically renaming the official-first record.
 
+For existing `gkp_prefecture_page` records, the importer also preserves reviewed
+distribution, source-link, English-version, and geocode fields. The compact
+fingerprints in `data/gkp-review-baseline.json` represent the last explicitly
+accepted GKP observation. Only fields changed from that baseline are emitted as
+before/GKP review candidates, so historical reviewed differences are not
+reopened every week. If a row disappears, the existing record is retained and a
+`gkpListing` candidate is emitted instead of deleting the card. New GKP cards are
+still imported normally. Catalogue metadata (`imageUrl`, `series`, and
+`issuedOn`) remains automatically reconcilable because it identifies the
+published card rather than asserting a current distribution fact.
+
+The baseline is committed state and is required during ordinary imports. A
+missing file fails the import instead of silently accepting all current GKP
+values. `GKP_REVIEW_BASELINE_BOOTSTRAP=1` permits initialization only for a
+deliberate baseline rebuild, whose generated diff must be reviewed and committed.
+
+After every displayed candidate is explicitly adopted or rejected,
+`npm run acknowledge:gkp-review -- --all-reviewed` advances its fingerprints.
+A partial review passes only reviewed card IDs instead. Records converted to
+`official_public_body_page` are removed from the GKP baseline. Unresolved
+candidates must not be acknowledged.
+
 Older row-position-based IDs are kept in `legacyIds`. On first load, the app
 migrates local collection and memo data from legacy IDs to current stable IDs.
 
@@ -435,8 +457,16 @@ Pipeline steps:
 7. Import Google Form responses
 8. Validate generated data, including prefecture/coordinate consistency and known address-corruption warnings
 9. Audit objective geocode errors
-10. Create or update a pull request
-11. Synchronize full changed-target and objective-issue rows to PR comments
+10. Generate the PR summary, including every GKP candidate ID and changed field
+11. Synchronize complete GKP before/candidate values to the persistent review issue
+12. Create or update a pull request
+13. Synchronize full GKP, changed-target, and objective-issue rows to PR comments
+
+The persistent GKP issue is synchronized even when candidate review produces no
+data change and therefore no update PR. An empty candidate run closes the open
+issue, and a later candidate run reopens the same issue. Candidate details remain
+available in synchronized comments rather than requiring the reviewer to inspect
+`.tmp` JSON files.
 
 ### 12.1 Geocode Review Scope
 
@@ -521,16 +551,19 @@ are reviewed through a pull request.
 
 ## 13. Source Link Normalization
 
-`scripts/normalize-source-links.js` extracts link fields from GKP HTML by row for
-`gkp_prefecture_page` records. It does not replace the source or reviewed facts
-of `official_public_body_page` records.
+`scripts/normalize-source-links.js` extracts link fields from GKP HTML by row.
+It assigns those links directly only to newly imported records. For an existing
+`gkp_prefecture_page` record, changed facility, stock URL, or stock text becomes
+a review candidate. It does not replace the source or reviewed facts of
+`official_public_body_page` records.
 
 Rules:
 
-- Distribution place column link -> `facilityUrl`
-- Stock status column link -> `stockUrl`
-- Stock status column text -> `stock`
-- If no stock link exists, `stockUrl` falls back to the GKP prefecture page
+- New record: distribution place column link -> `facilityUrl`
+- New record: stock status column link -> `stockUrl`
+- New record: stock status column text -> `stock`
+- New record without a stock link: `stockUrl` falls back to the GKP prefecture page
+- Existing record: differences in those fields are reported without being applied
 - `conditionUrl` remains the main source URL unless manually verified
 - Official-first public-body records keep their reviewed `sourceUrl`, place,
   schedule, condition, and stock even before GKP listing
@@ -543,10 +576,14 @@ Known verified override:
 - Kanazawa Central Tourist Information Center has manually verified source,
   facility, stock, and condition URLs.
 
-The normalization command prints current GKP row, stock-link, fallback, and
-preserved official-first counts in the Action log; the generated PR summary also
-reports official-first records. Do not hard-code those moving catalogue counts
-in this specification.
+The normalization command prints current GKP row, stock-link, fallback,
+preserved official-first, and review-candidate counts in the Action log. The PR
+body summarizes candidate IDs and changed fields within GitHub's body limit;
+synchronized PR comments and the open `[自動更新] GKP要確認候補` issue contain
+every candidate and the complete before/GKP values. Any truncated body summary
+states its omitted count. Candidate-only runs therefore remain visible even when
+no data PR is created. Do not hard-code those moving catalogue counts in this
+specification.
 
 ## 14. Deployment
 

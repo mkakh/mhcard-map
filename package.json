@@ -12,6 +12,8 @@
     "apply:image-codes": "node scripts/verify-card-image-codes.js --apply --strict",
     "import:forms": "node scripts/import-form-requests.js",
     "normalize:links": "node scripts/normalize-source-links.js",
+    "sync:gkp-review-issue": "node scripts/sync-gkp-review-issue.js",
+    "acknowledge:gkp-review": "node scripts/acknowledge-gkp-review-candidates.js",
     "audit:geocode-precision": "node scripts/list-geocode-precision-candidates.js",
     "audit:geocode-precision:changed": "CHANGED_ONLY=1 node scripts/list-geocode-precision-candidates.js",
     "audit:geocode-review:issues": "GEOCODE_AUDIT_SCOPE=review-issues node scripts/list-geocode-precision-candidates.js --all",

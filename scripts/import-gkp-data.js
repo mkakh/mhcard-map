@@ -9,8 +9,22 @@ import {
   GKP_SOURCE_TYPE,
   isOfficialPublicBodyLocation,
   reconcileOfficialPublicBodyLocation,
-  retainUnmatchedOfficialPublicBodyLocations
+  reconcileReviewedGkpLocation,
+  retainUnmatchedReviewedLocations
 } from "./source-policy-utils.js";
+import {
+  createMissingGkpReviewCandidate,
+  writeGkpReviewCandidates
+} from "./gkp-review-candidate-utils.js";
+import { isCurrentDistributionStopped } from "./distribution-stock-utils.js";
+import {
+  GKP_CONTENT_REVIEW_FIELDS,
+  createGkpObservation,
+  mergeAcceptedGkpObservation,
+  readGkpReviewBaseline,
+  unlistedGkpReviewBaselineEntry,
+  writeGkpReviewBaseline
+} from "./gkp-review-baseline-utils.js";
 
 const prefectures = [
   ["01", "北海道", 43.0642, 141.3469],
@@ -67,6 +81,9 @@ const outputPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
 const today = new Date().toISOString().slice(0, 10);
 const existingLocations = await readExistingLocations();
+const gkpReviewBaseline = await readGkpReviewBaseline({
+  allowMissing: process.env.GKP_REVIEW_BASELINE_BOOTSTRAP === "1"
+});
 const municipalityCodes = await readMunicipalityCodes();
 const existingById = new Map(existingLocations.map((location) => [location.id, location]));
 const existingByImageKey = new Map(
@@ -119,7 +136,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const id = stableLocationId(imageUrl, legacyId, cardCode, municipalityCode);
     const stock = cleanupText(stockHtml) || "不明";
 
-    const stopped = isDistributionStopped(stock, distributionText);
+    const stopped = isCurrentDistributionStopped(stock, distributionText);
     const status = statusForDistributionStart({ startsOn: distributionStartsOn, today, stopped });
     const location = {
       id,
@@ -132,7 +149,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       lng,
       hours: cleanupText(hoursHtml),
       closed: "要確認",
-      condition: "GKP掲載情報を確認",
+      condition: "公式情報を確認",
       stock,
       status,
       sourceUrl: absolutizeUrl(sourceUrl) || `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`,
@@ -159,14 +176,26 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 
 const currentIds = new Set(locations.map((location) => location.id));
 const matchedExistingIds = new Set();
+const newLocationIds = new Set();
+const reviewCandidates = [];
 
 for (const [index, location] of locations.entries()) {
   const existing = existingById.get(location.id) ?? existingByImageKey.get(imageKey(location.imageUrl));
-  if (!existing) continue;
+  if (!existing) {
+    newLocationIds.add(location.id);
+    gkpReviewBaseline.locations[location.id] = mergeAcceptedGkpObservation(
+      undefined,
+      createGkpObservation(location, GKP_CONTENT_REVIEW_FIELDS),
+      null
+    );
+    continue;
+  }
   matchedExistingIds.add(existing.id);
 
   if (isOfficialPublicBodyLocation(existing)) {
     locations[index] = reconcileOfficialPublicBodyLocation(existing, location, today);
+    delete gkpReviewBaseline.locations[existing.id];
+    delete gkpReviewBaseline.locations[location.id];
     continue;
   }
 
@@ -174,27 +203,56 @@ for (const [index, location] of locations.entries()) {
   if (existing.id && existing.id !== location.id && !currentIds.has(existing.id)) legacyIds.push(existing.id);
   const uniqueLegacyIds = [...new Set(legacyIds)];
   if (uniqueLegacyIds.length > 0) location.legacyIds = uniqueLegacyIds;
+  const baselineEntry = gkpReviewBaseline.locations[existing.id]
+    ?? gkpReviewBaseline.locations[location.id];
+  const reconciled = reconcileReviewedGkpLocation(existing, location, today, baselineEntry);
+  if (uniqueLegacyIds.length > 0) reconciled.location.legacyIds = uniqueLegacyIds;
+  else delete reconciled.location.legacyIds;
   if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
-    location.officialDesignNames = existing.officialDesignNames;
+    reconciled.location.officialDesignNames = existing.officialDesignNames;
   }
-  preserveReviewedDistributionStart(location, existing);
-  mergeGeneratedLocationGeocode(location, existing);
-  mergeGeneratedDistributionPlaces(location, existing);
-  if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
+  locations[index] = reconciled.location;
+  if (existing.id !== location.id) delete gkpReviewBaseline.locations[existing.id];
+  gkpReviewBaseline.locations[location.id] = reconciled.baselineEntry;
+  if (reconciled.reviewCandidate) reviewCandidates.push(reconciled.reviewCandidate);
 }
 
-const retainedOfficialLocations = retainUnmatchedOfficialPublicBodyLocations(
+const retainedLocations = retainUnmatchedReviewedLocations(
   existingLocations,
   matchedExistingIds,
   today
 );
-locations.push(...retainedOfficialLocations);
+const retainedOfficialCount = retainedLocations.filter(isOfficialPublicBodyLocation).length;
+const retainedGkpLocations = retainedLocations.filter(
+  (location) => !isOfficialPublicBodyLocation(location)
+);
+for (const location of retainedLocations.filter(isOfficialPublicBodyLocation)) {
+  delete gkpReviewBaseline.locations[location.id];
+}
+for (const location of retainedGkpLocations) {
+  const baselineEntry = gkpReviewBaseline.locations[location.id];
+  if (baselineEntry?.gkpListing === true) {
+    reviewCandidates.push(createMissingGkpReviewCandidate(location));
+  } else if (!baselineEntry) {
+    gkpReviewBaseline.locations[location.id] = unlistedGkpReviewBaselineEntry();
+  }
+}
+locations.push(...retainedLocations);
+await writeGkpReviewCandidates(reviewCandidates);
+await writeGkpReviewBaseline(gkpReviewBaseline);
+await writeFile(
+  join(process.cwd(), ".tmp", "gkp-import-metadata.json"),
+  `${JSON.stringify({ newLocationIds: [...newLocationIds].sort() }, null, 2)}\n`,
+  "utf8"
+);
 
 await mkdir(join(process.cwd(), "data"), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(locations, null, 2)}\n`, "utf8");
 console.log(
   `Wrote ${locations.length} locations to ${outputPath} ` +
-  `(retained ${retainedOfficialLocations.length} official-first records not yet listed by GKP)`
+  `(retained ${retainedOfficialCount} official-source and ${retainedGkpLocations.length} ` +
+  `existing GKP records not matched by the current catalogue; ` +
+  `${reviewCandidates.length} existing records require GKP review)`
 );
 
 function cleanupText(html) {
@@ -483,44 +541,6 @@ function scheduleForPlace(marker, days, groups, index) {
   return byMarker ?? byDays ?? fallback;
 }
 
-function mergeGeneratedDistributionPlaces(location, existing) {
-  if (!Array.isArray(location.distributionPlaces) || !Array.isArray(existing.distributionPlaces)) return;
-  const existingById = new Map(existing.distributionPlaces.map((place) => [place.id, place]));
-  location.distributionPlaces = location.distributionPlaces.map((place) => {
-    const previous = existingById.get(place.id);
-    if (!previous) return place;
-    if (normalizePlaceKey(previous.address) !== normalizePlaceKey(place.address)) return place;
-    return {
-      ...place,
-      ...pickComputedPlaceFields(previous)
-    };
-  });
-}
-
-function mergeGeneratedLocationGeocode(location, existing) {
-  if (normalizePlaceKey(existing.address) !== normalizePlaceKey(location.address)) return;
-  Object.assign(location, pickComputedPlaceFields(existing));
-}
-
-function preserveReviewedDistributionStart(location, existing) {
-  const startsOn = normalizeDistributionDate(existing.distributionStartsOn);
-  if (!startsOn) return;
-  location.distributionStartsOn = startsOn;
-  location.status = statusForDistributionStart({
-    startsOn,
-    today,
-    stopped: location.status === "休止中"
-  });
-}
-
-function pickComputedPlaceFields(place) {
-  return Object.fromEntries(
-    ["lat", "lng", "plusCode", "coordinateAccuracy", "geocodeQuery", "geocodeTitle", "geocodedAt", "geocodeError"]
-      .filter((field) => place[field] !== undefined)
-      .map((field) => [field, place[field]])
-  );
-}
-
 function dedupeDistributionPlaces(places) {
   const seenKeys = new Set();
   const seenIds = new Set();
@@ -649,10 +669,6 @@ function isNonAddressLine(line) {
   return /^(電話|TEL|FAX|※|ただし|なお|詳しく|詳細|こちら|配布|在庫|休館|開館|営業時間|問い合わせ|お問い合わせ|平日|土日|祝日)/i.test(line);
 }
 
-function isDistributionStopped(stock, distributionText) {
-  return /配布終了|配布を一時中止|配布休止|一時中止|中止しています/.test(`${stock}\n${distributionText}`);
-}
-
 function extractCardCode(value) {
   const text = String(value ?? "");
   const parentheticalCode = text.match(/[（(][^）)]*?([A-Z][0-9]{3})\s*[）)]/);
@@ -742,34 +758,6 @@ function imageKey(imageUrl) {
     .replace(/[^A-Za-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .toLowerCase();
-}
-
-function hasSameImportedContent(existing, next) {
-  const keys = [
-    "cardName",
-    "officialDesignNames",
-    "prefecture",
-    "municipality",
-    "place",
-    "address",
-    "hours",
-    "closed",
-    "condition",
-    "stock",
-    "status",
-    "sourceUrl",
-    "imageUrl",
-    "series",
-    "issuedOn",
-    "distributionStartsOn",
-    "hasEnglishVersion",
-    "englishVersionStatus",
-    "englishVersionNote",
-    "englishVersionUrl",
-    "sourceType",
-    "distributionPlaces"
-  ];
-  return keys.every((key) => String(existing[key] ?? "") === String(next[key] ?? ""));
 }
 
 function absolutizeUrl(url) {
