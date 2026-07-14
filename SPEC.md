@@ -41,7 +41,25 @@ scripts/import-gkp-data.js
 scripts/geocode-locations.js
 scripts/normalize-source-links.js
 scripts/update-location-codes.js
+scripts/sync-reviewed-geocode-cache.js
 scripts/import-form-requests.js
+scripts/validate-data.js
+scripts/summarize-location-diff.js
+scripts/sync-location-review-comments.js
+scripts/list-geocode-precision-candidates.js
+scripts/enrich-geocode-precision-candidates.js
+scripts/summarize-geocode-review-candidates.js
+scripts/audit-geocode-official-evidence.js
+scripts/report-nominatim-geocode-coverage.js
+scripts/apply-geocode-candidate-updates.js
+scripts/prepare-geocode-review-approvals.js
+scripts/geocode-precision-utils.js
+scripts/location-change-utils.js
+scripts/geocode-candidate-approval-utils.js
+scripts/geocode-cache-utils.js
+scripts/plus-code-utils.js
+test/
+tools/web-search.sh
 .github/workflows/pages.yml
 .github/workflows/data-update.yml
 CNAME
@@ -349,8 +367,20 @@ npm run import:gkp
 npm run geocode
 npm run normalize:links
 npm run update:codes
+npm run sync:geocode-review-cache
 npm run import:forms
 npm run validate:data
+npm run audit:geocode-precision:changed
+npm run audit:geocode-review:backlog
+npm run audit:geocode-candidates
+npm run audit:geocode-candidates:changed
+npm run audit:geocode-candidates:weekly
+npm run report:geocode-candidates
+npm run audit:geocode-official-evidence
+npm run prepare:geocode-approvals
+npm run apply:geocode-candidates
+npm run audit:geocode-nominatim-coverage
+npm test
 npm run generate:icons
 ```
 
@@ -372,12 +402,91 @@ This is weekly at 18:00 UTC. The workflow can also be run manually with
 Pipeline steps:
 
 1. Import GKP data
-2. Geocode locations
+2. Verify card image codes
 3. Normalize source links
-4. Generate Plus Codes
-5. Import Google Form responses
-6. Validate generated data
-7. Create a pull request
+4. Geocode locations
+5. Restore target-scoped manually reviewed geocodes from the cache
+6. Generate Plus Codes
+7. Import Google Form responses
+8. Validate generated data, including prefecture/coordinate consistency and known address-corruption warnings
+9. Run the old address-shortening heuristic as informational output only
+10. Select one stable seventh of all unreviewed geocode targets
+11. Create or update a pull request
+12. Synchronize full changed-target and weekly-backlog rows to PR comments
+
+### 12.1 Geocode Review Backlog
+
+The existing geocode backlog means every top-level or nested distribution target
+whose coordinate has not received an independent manual review. It does not mean
+that every listed pin is wrong. It means the current coordinate is still based
+only on the ordinary geocoder or an approximate fallback.
+
+The backlog deliberately includes every unreviewed target. Address differences,
+prefecture omission, county omission, `字`/`大字`, kanji numerals, and block-number
+formatting never remove a target from review. The historical address-shortening
+logic remains only as a diagnostic note. It cannot exclude a target, approve a
+coordinate, or raise its priority. Objective conditions such as a missing
+coordinate, a geocoder error, an out-of-prefecture coordinate, or a known
+address-input corruption determine `high`/`medium` priority.
+
+Changed or newly imported geocode targets are shown immediately in the update PR.
+Unchanged routine targets are assigned to one of seven stable shards; seven
+consecutive weekly runs cover the complete current backlog. Objective errors are
+included every week instead of waiting for their shard. Reviewed targets leave
+the backlog, unless an objective coordinate error remains.
+
+### 12.2 Manual Candidate Review
+
+The scheduled workflow does not call public search APIs or Nominatim. It reports
+the exact target, current address, coordinates, movement, map links, reasons, and
+official URLs in PR comments. Candidate enrichment is run manually:
+
+```bash
+npm run audit:geocode-candidates:changed
+npm run audit:geocode-candidates:weekly
+npm run report:geocode-candidates
+npm run audit:geocode-official-evidence
+```
+
+The enrichment report keeps Places, official-page maps, official search results,
+and Nominatim separate. No script selects the longest address or a highest-scored
+candidate automatically. Search snippets and map listings are discovery or
+coordinate evidence, not proof of card identity. The reviewer must open a
+municipality, water/sewer authority, or responsible facility page and match the
+prefecture, municipality, card code/series, and exact distribution place.
+
+Nominatim is rate-limited to at least 1.1 seconds between requests, has a manual
+request cap, and can never be an apply source. An official embedded coordinate is
+usable only when its page context binds it to the exact distribution facility.
+Places coordinates require the exact facility to be matched to a card-level
+official source.
+
+### 12.3 Approval And Persistence
+
+Adoption decisions are explicit JSON input to `prepare:geocode-approvals`; search
+results are never converted into approvals automatically. Every adopted row must
+include:
+
+- exact card and target ID
+- approved latitude and longitude
+- official card/distribution URL present in the generated candidates
+- coordinate source: `serper-places`, `official-embedded-map`, or `manual-coordinate`
+- human-readable coordinate evidence
+- valid review date and decision notes
+- unchanged target snapshot hash
+
+Run `DRY_RUN=1 npm run apply:geocode-candidates` before the real apply. The apply
+script rejects stale rows, Nominatim, unmatched generated coordinates, missing
+evidence, and coordinates outside the expected prefecture. Applied titles contain
+`手動補正`, and `sync:geocode-review-cache` stores the result under the exact card
+and distribution target. A shared address cache entry cannot leak one facility's
+manual coordinate into another target.
+
+After data edits, run `sync:geocode-review-cache`, `update:codes`,
+`validate:data`, `npm test`, and `scripts/summarize-location-diff.js`. The PR body
+stays compact; full before/after addresses, coordinates, movement, map links,
+official sources, and newly applied review evidence are synchronized as bounded,
+idempotent PR comments.
 
 The workflow does not directly push generated data to `main`. Generated changes
 are reviewed through a pull request.

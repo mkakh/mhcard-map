@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import { cachedGeocodeResult, withCachedGeocodeResult } from "./geocode-cache-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const cachePath = join(process.cwd(), "data", "geocode-cache.json");
@@ -17,16 +18,16 @@ let failed = 0;
 
 for (const location of locations) {
   if (limit > 0 && attempted >= limit) break;
-  await geocodeTarget(location, location.address);
+  await geocodeTarget(location, location.address, `location:${location.id}`);
 
   for (const place of location.distributionPlaces ?? []) {
     if (limit > 0 && attempted >= limit) break;
-    await geocodeTarget(place, place.address);
+    await geocodeTarget(place, place.address, `distributionPlaces:${location.id}:${place.id}`);
   }
 
   for (const place of location.englishVersionDistributionPlaces ?? []) {
     if (limit > 0 && attempted >= limit) break;
-    await geocodeTarget(place, place.address);
+    await geocodeTarget(place, place.address, `englishVersionDistributionPlaces:${location.id}:${place.id}`);
   }
 }
 
@@ -47,17 +48,20 @@ console.log(
   )
 );
 
-async function geocodeTarget(target, address) {
+async function geocodeTarget(target, address, targetKey) {
   const query = normalizeAddress(address);
   if (!query) return;
-  if (target.coordinateAccuracy === "address" && target.geocodeQuery === query) return;
+  if (target.coordinateAccuracy === "address" && target.geocodeQuery === query && !target.geocodeError) return;
   if (!retryFailed && target.geocodeError && target.geocodeQuery === query) return;
 
   attempted += 1;
 
-  const result = cache[query] ?? (await geocode(query));
-  if (!cache[query]) {
-    cache[query] = result;
+  const cachedResult = cache[query];
+  const selectedCachedResult = cachedGeocodeResult(cachedResult, retryFailed, targetKey);
+  const result = selectedCachedResult ?? await geocode(query);
+  const useCachedResult = Boolean(selectedCachedResult);
+  if (!useCachedResult) {
+    cache[query] = withCachedGeocodeResult(cachedResult, result);
     await writeJson(cachePath, cache);
     await sleep(delayMs);
   } else {

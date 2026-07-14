@@ -156,6 +156,7 @@ for (const location of locations) {
   if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
     location.officialDesignNames = existing.officialDesignNames;
   }
+  mergeGeneratedLocationGeocode(location, existing);
   mergeGeneratedDistributionPlaces(location, existing);
   if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
 }
@@ -462,6 +463,11 @@ function mergeGeneratedDistributionPlaces(location, existing) {
       ...pickComputedPlaceFields(previous)
     };
   });
+}
+
+function mergeGeneratedLocationGeocode(location, existing) {
+  if (normalizePlaceKey(existing.address) !== normalizePlaceKey(location.address)) return;
+  Object.assign(location, pickComputedPlaceFields(existing));
 }
 
 function pickComputedPlaceFields(place) {

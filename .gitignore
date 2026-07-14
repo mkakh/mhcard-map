@@ -4,3 +4,6 @@ node_modules/
 Thumbs.db
 .tmp/
 tmp_*.html
+
+# Local web-search API credentials
+secrets/*.env

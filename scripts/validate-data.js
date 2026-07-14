@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { addressInputIssues, isCoordinateWithinPrefecture, prefectureMention } from "./geocode-precision-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
@@ -87,6 +88,8 @@ function validateLocations(items) {
 
     validateCoordinate(label, "lat", location.lat, 20, 46);
     validateCoordinate(label, "lng", location.lng, 122, 154);
+    validatePrefectureCoordinate(label, location.prefecture, location);
+    validateAddressInput(label, location);
 
     urlFields.forEach((field) => validateUrl(label, field, location[field]));
 
@@ -95,8 +98,8 @@ function validateLocations(items) {
       else if (new Set(location.legacyIds).size !== location.legacyIds.length) fail(`${label}: duplicate legacyIds`);
     }
 
-    validateDistributionPlaces(label, location.distributionPlaces);
-    validateDistributionPlaces(label, location.englishVersionDistributionPlaces, "englishVersionDistributionPlaces");
+    validateDistributionPlaces(label, location.distributionPlaces, "distributionPlaces", location.prefecture);
+    validateDistributionPlaces(label, location.englishVersionDistributionPlaces, "englishVersionDistributionPlaces", location.prefecture);
 
     if (!String(location.place ?? "").trim() && !String(location.address ?? "").trim()) {
       warnings.push(`${label}: both place and address are empty`);
@@ -161,7 +164,7 @@ function validateStringList(label, field, values) {
   });
 }
 
-function validateDistributionPlaces(label, distributionPlaces, fieldName = "distributionPlaces") {
+function validateDistributionPlaces(label, distributionPlaces, fieldName = "distributionPlaces", prefecture = "") {
   if (distributionPlaces === undefined) return;
   if (!Array.isArray(distributionPlaces)) {
     fail(`${label}: ${fieldName} must be an array`);
@@ -188,6 +191,8 @@ function validateDistributionPlaces(label, distributionPlaces, fieldName = "dist
 
     validateCoordinate(placeLabel, "lat", place.lat, 20, 46);
     validateCoordinate(placeLabel, "lng", place.lng, 122, 154);
+    validatePrefectureCoordinate(placeLabel, prefecture, place);
+    validateAddressInput(placeLabel, place);
 
     if (place.coordinateAccuracy !== undefined && !allowedCoordinateAccuracy.has(place.coordinateAccuracy)) {
       fail(`${placeLabel}: unknown coordinateAccuracy ${place.coordinateAccuracy}`);
@@ -195,6 +200,24 @@ function validateDistributionPlaces(label, distributionPlaces, fieldName = "dist
 
     placeUrlFields.forEach((field) => validateUrl(placeLabel, field, place[field]));
   });
+}
+
+function validatePrefectureCoordinate(label, prefecture, target) {
+  const expectedPrefecture = prefectureMention(target.address) || prefectureMention(target.geocodeQuery) || prefecture;
+  if (!isCoordinateWithinPrefecture(expectedPrefecture, target.lat, target.lng)) {
+    warnings.push(`${label}: coordinates ${target.lat},${target.lng} are outside ${expectedPrefecture} bounds`);
+  }
+
+  const mentionedPrefecture = prefectureMention(target.geocodeTitle);
+  if (mentionedPrefecture && mentionedPrefecture !== expectedPrefecture) {
+    warnings.push(`${label}: geocodeTitle mentions ${mentionedPrefecture}, expected ${expectedPrefecture}`);
+  }
+}
+
+function validateAddressInput(label, target) {
+  for (const [field, value] of [["address", target.address], ["geocodeQuery", target.geocodeQuery]]) {
+    for (const issue of addressInputIssues(value)) warnings.push(`${label}: ${field} ${issue}`);
+  }
 }
 
 function validateCoordinate(label, field, value, min, max) {
