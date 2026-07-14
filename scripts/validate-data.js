@@ -6,6 +6,9 @@ import {
   isSuspendedWithoutDistributionLocation,
   prefectureMention
 } from "./geocode-precision-utils.js";
+import {
+  sourcePolicyError
+} from "./source-policy-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
@@ -15,7 +18,9 @@ const allowedEnglishVersionStatuses = new Set(["available", "out_of_stock", "eve
 const allowedDistributionModes = new Set(["regular", "launch_event", "limited", "fallback"]);
 const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "englishVersionUrl", "imageUrl"];
 const placeUrlFields = ["url", "facilityUrl", "stockUrl", "conditionUrl"];
-const requiredStringFields = ["id", "cardName", "prefecture", "municipality", "status", "updatedAt", "plusCode"];
+const requiredStringFields = [
+  "id", "cardName", "prefecture", "municipality", "status", "sourceUrl", "sourceType", "updatedAt", "plusCode"
+];
 
 const errors = [];
 const warnings = [];
@@ -70,6 +75,8 @@ function validateLocations(items) {
       fail(`${label}: municipality must not include card code ${location.municipality}`);
     }
     if (!allowedStatuses.has(location.status)) fail(`${label}: unknown status ${location.status}`);
+    const sourceError = sourcePolicyError(location);
+    if (sourceError) fail(`${label}: ${sourceError}`);
     validateIsoDate(label, "distributionStartsOn", location.distributionStartsOn);
     if (location.status === "配布開始前" && !location.distributionStartsOn) {
       fail(`${label}: distributionStartsOn is required for 配布開始前`);

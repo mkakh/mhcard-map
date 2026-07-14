@@ -1,6 +1,6 @@
 interface:
   display_name: "Manhole Card Official Audit"
-  short_description: "Audit official names, English versions, and sources"
-  default_prompt: "Use $manhole-card-official-audit to review official manhole-card source candidates in this repository."
+  short_description: "Discover and audit cards from official sources"
+  default_prompt: "Use $manhole-card-official-audit to discover and review manhole cards from government, distributor, and GKP sources."
 policy:
   allow_implicit_invocation: true

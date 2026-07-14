@@ -310,10 +310,11 @@ Important fields:
 | `status` | Distribution status |
 | `distributionStartsOn` | Confirmed or scheduled distribution start date (`YYYY-MM-DD`), separate from the GKP issue date |
 | `sourceUrl` | Main source URL |
+| `sourceType` | Discovery/ownership policy: `gkp_prefecture_page` or reviewed `official_public_body_page` |
 | `facilityUrl` | Distribution place URL |
 | `stockUrl` | Stock confirmation URL |
 | `conditionUrl` | Distribution condition URL |
-| `hasEnglishVersion` | Whether the GKP source indicates an English version is available |
+| `hasEnglishVersion` | Whether an authoritative source indicates an English version is available |
 | `englishVersionStatus` | English version status: `available`, `out_of_stock`, `event_only`, or `unknown` |
 | `englishVersionNote` | Source note for the English version, when available |
 | `englishVersionUrl` | English version confirmation URL, when available |
@@ -335,11 +336,21 @@ Distribution places may additionally define `startsOn`, `endsOn`,
 `availabilityNote`. These fields keep launch events, lottery-only windows, and
 regular distribution locations separate without hiding the card before launch.
 
-Location IDs are generated from the GKP card image filename.
+When GKP has listed a card, location IDs are generated from its card image filename.
 
 ```text
 16-205-A-01.jpg -> 16-205-a-01
 ```
+
+An official public-body page may establish a card before GKP lists it. Such a
+record uses `sourceType: "official_public_body_page"`, keeps that reviewed page
+in `sourceUrl`, and derives the same ID format from the municipality code and
+the card code printed in official text or on the official card image. Do not
+invent an ID when the exact card cannot be identified. The GKP importer retains
+official-first records and, when a matching GKP row appears later, only fills
+missing catalogue metadata; reviewed official distribution facts remain
+authoritative. A conflicting later GKP ID fails import for manual printed-code
+review instead of automatically renaming the official-first record.
 
 Older row-position-based IDs are kept in `legacyIds`. On first load, the app
 migrates local collection and memo data from legacy IDs to current stable IDs.
@@ -415,7 +426,7 @@ This is weekly at 18:00 UTC. The workflow can also be run manually with
 
 Pipeline steps:
 
-1. Import GKP data
+1. Import GKP catalogue data and retain reviewed official-first records that GKP has not listed yet
 2. Verify card image codes
 3. Normalize source links
 4. Geocode locations
@@ -466,9 +477,11 @@ npm run audit:geocode-official-evidence
 The enrichment report keeps Places, official-page maps, official search results,
 and Nominatim separate. No script selects the longest address or a highest-scored
 candidate automatically. Search snippets and map listings are discovery or
-coordinate evidence, not proof of card identity. The reviewer must open a
-municipality, water/sewer authority, or responsible facility page and match the
-prefecture, municipality, card code/series, and exact distribution place.
+coordinate evidence, not proof of card identity. An opened government or public
+water/sewer authority page is primary evidence and can be the first source for a
+new record without a GKP row. The reviewer must still match the prefecture,
+municipality, card code/series or readable printed code, and exact distribution
+place.
 
 Nominatim is rate-limited to at least 1.1 seconds between requests, has a manual
 request cap, and can never be an apply source. An official embedded coordinate is
@@ -508,7 +521,9 @@ are reviewed through a pull request.
 
 ## 13. Source Link Normalization
 
-`scripts/normalize-source-links.js` extracts link fields from GKP HTML by row.
+`scripts/normalize-source-links.js` extracts link fields from GKP HTML by row for
+`gkp_prefecture_page` records. It does not replace the source or reviewed facts
+of `official_public_body_page` records.
 
 Rules:
 
@@ -517,18 +532,21 @@ Rules:
 - Stock status column text -> `stock`
 - If no stock link exists, `stockUrl` falls back to the GKP prefecture page
 - `conditionUrl` remains the main source URL unless manually verified
+- Official-first public-body records keep their reviewed `sourceUrl`, place,
+  schedule, condition, and stock even before GKP listing
+- A later matching GKP row may fill missing image, series, or issue date, but
+  cannot demote the official source or infer a distribution start from an issue
+  date
 
 Known verified override:
 
 - Kanazawa Central Tourist Information Center has manually verified source,
   facility, stock, and condition URLs.
 
-Current verification result after normalization:
-
-- GKP rows matched: 1265
-- Rows with stock link: 1153
-- `stockUrl` mismatches against GKP stock-link column: 0
-- Rows without stock link: 112
+The normalization command prints current GKP row, stock-link, fallback, and
+preserved official-first counts in the Action log; the generated PR summary also
+reports official-first records. Do not hard-code those moving catalogue counts
+in this specification.
 
 ## 14. Deployment
 

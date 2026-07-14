@@ -30,7 +30,7 @@ jobs:
             echo "::error::ImageMagick command not found"
             exit 1
           fi
-      - name: Import GKP data
+      - name: Import GKP catalogue and retain official-first data
         run: npm run import:gkp
       - name: Verify card image codes
         run: npm run verify:image-codes -- --warn-only

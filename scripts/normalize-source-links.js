@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
+import { shouldApplyGkpSourceNormalization } from "./source-policy-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const htmlDir = join(process.cwd(), ".tmp", "gkp");
@@ -176,12 +177,19 @@ let conditionsUpdated = 0;
 let englishVersionSourcesChecked = 0;
 let englishVersionDetected = 0;
 let rowsMatched = 0;
+let officialFirstPreserved = 0;
 
 for (const location of locations) {
   const before = JSON.stringify(linkSnapshot(location));
   const verified = verifiedDistributionSources.get(location.id);
 
-  if (verified) {
+  if (!shouldApplyGkpSourceNormalization(location)) {
+    officialFirstPreserved += 1;
+    if (location.condition === "GKP掲載情報を確認") {
+      location.condition = "公式情報を確認";
+      conditionsUpdated += 1;
+    }
+  } else if (verified) {
     Object.assign(location, verified);
     verifiedSourcesAssigned += 1;
   } else {
@@ -262,6 +270,7 @@ console.log(
       stockUrlsFallbackAssigned,
       conditionUrlsAssigned,
       conditionsUpdated,
+      officialFirstPreserved,
       englishVersionSourcesChecked,
       englishVersionDetected
     },
