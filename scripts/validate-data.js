@@ -9,6 +9,7 @@ import {
 import {
   sourcePolicyError
 } from "./source-policy-utils.js";
+import { readGkpReviewBaseline } from "./gkp-review-baseline-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
@@ -27,11 +28,13 @@ const warnings = [];
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
 const municipalityCodes = JSON.parse(await readFile(municipalityCodesPath, "utf8"));
+const gkpReviewBaseline = await readGkpReviewBaseline();
 
 if (!Array.isArray(locations) || locations.length === 0) {
   fail("data/locations.json must be a non-empty array");
 } else {
   validateLocations(locations);
+  validateGkpReviewBaseline(locations, gkpReviewBaseline);
 }
 
 if (warnings.length > 0) {
@@ -130,6 +133,31 @@ function validateLocations(items) {
   officialDesignNameOwners.forEach((owners, name) => {
     if (owners.length > 1) fail(`officialDesignNames ${name}: assigned to multiple locations (${owners.join(", ")})`);
   });
+}
+
+function validateGkpReviewBaseline(items, baseline) {
+  const locationsById = new Map(items.map((location) => [location.id, location]));
+  const requiredIds = items
+    .filter((location) => location.sourceType === "gkp_prefecture_page")
+    .map((location) => location.id);
+  const missingIds = requiredIds.filter((id) => !baseline.locations[id]);
+  const unexpectedIds = Object.keys(baseline.locations).filter((id) => {
+    const location = locationsById.get(id);
+    return !location || location.sourceType !== "gkp_prefecture_page";
+  });
+
+  if (missingIds.length > 0) {
+    fail(
+      `GKP review baseline is missing ${missingIds.length} record(s): ` +
+      `${missingIds.slice(0, 10).join(", ")}${missingIds.length > 10 ? ", ..." : ""}`
+    );
+  }
+  if (unexpectedIds.length > 0) {
+    fail(
+      `GKP review baseline has ${unexpectedIds.length} stale or official-source record(s): ` +
+      `${unexpectedIds.slice(0, 10).join(", ")}${unexpectedIds.length > 10 ? ", ..." : ""}`
+    );
+  }
 }
 
 function validateCardCodeConsistency(label, location) {

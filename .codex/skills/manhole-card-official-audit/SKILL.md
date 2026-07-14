@@ -34,6 +34,15 @@ For official-first records:
 - Do not treat a GKP issue date as a missing official distribution start date; keep `issuedOn` and `distributionStartsOn` separate.
 - If the later GKP ID conflicts with the reviewed official-first ID, stop and verify the printed code manually instead of renaming automatically.
 
+For scheduled GKP reconciliation:
+
+- New card rows may be imported as new records.
+- Existing records keep reviewed distribution, source-link, English-version, and geocode fields. GKP differences are review candidates, not updates.
+- A missing current GKP row is also a review candidate; keep the existing record until an official source supports removal or another explicit resolution.
+- Inspect `.tmp/gkp-review-candidates.json` through the generated PR comments or the open `[自動更新] GKP要確認候補` issue. The reviewer should not need to open the JSON file to see any before/GKP value.
+- After official verification, convert an adopted record to `official_public_body_page` with the exact responsible public-body page in `sourceUrl`. Do not add a suppression merely to hide a recurring unsupported GKP difference.
+- After every candidate has been explicitly adopted or rejected, run `npm run acknowledge:gkp-review -- --all-reviewed` so the reviewed observation becomes the next scheduled baseline. For a partial review, pass only reviewed card IDs. Do not acknowledge an unresolved candidate.
+
 Do not use fan sites, map sites, card collection sites, blogs, or aggregator search pages as source authority. They may be used only as hints for finding an official source.
 
 Known non-authoritative examples:
@@ -136,6 +145,7 @@ GitHub Actions may recommend manual Codex review by reporting:
 - official source candidates
 - unreviewed official design-name candidates
 - possible English-version mentions
+- every existing-record GKP difference, including a missing current GKP row, with complete before/GKP values in comments
 
 The Action should not automatically edit card data from search results.
 

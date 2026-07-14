@@ -2,6 +2,21 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { shouldApplyGkpSourceNormalization } from "./source-policy-utils.js";
+import {
+  createGkpReviewCandidate,
+  mergeGkpReviewCandidates,
+  readGkpReviewCandidates,
+  writeGkpReviewCandidates
+} from "./gkp-review-candidate-utils.js";
+import {
+  GKP_LINK_REVIEW_FIELDS,
+  changedGkpObservationFields,
+  createGkpObservation,
+  mergeAcceptedGkpObservation,
+  observationRecord,
+  readGkpReviewBaseline,
+  writeGkpReviewBaseline
+} from "./gkp-review-baseline-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const htmlDir = join(process.cwd(), ".tmp", "gkp");
@@ -165,6 +180,10 @@ const verifiedNoEnglishVersions = new Set([
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
 const gkpRowsByImageUrl = await loadGkpRowsByImageUrl();
+const existingReviewCandidates = await readGkpReviewCandidates();
+const newLocationIds = await readNewLocationIds();
+const gkpReviewBaseline = await readGkpReviewBaseline();
+const linkReviewCandidates = [];
 
 let updated = 0;
 let verifiedSourcesAssigned = 0;
@@ -196,8 +215,9 @@ for (const location of locations) {
     const prefectureCode = getPrefectureCode(location.id);
     const gkpUrl = prefectureCode ? `https://www.gk-p.jp/mhcard/?pref=${prefectureCode}#mhcard_result` : "";
     const gkpRow = gkpRowsByImageUrl.get(normalizeUrl(location.imageUrl));
+    const isNewLocation = newLocationIds.has(location.id);
 
-    if (gkpUrl && location.sourceUrl !== gkpUrl) {
+    if (isNewLocation && gkpUrl && location.sourceUrl !== gkpUrl) {
       location.sourceUrl = gkpUrl;
       sourceUrlsAssigned += 1;
     }
@@ -205,41 +225,82 @@ for (const location of locations) {
     if (gkpRow) {
       rowsMatched += 1;
 
-      if (gkpRow.facilityUrl && location.facilityUrl !== gkpRow.facilityUrl) {
-        location.facilityUrl = gkpRow.facilityUrl;
-        facilityUrlsAssigned += 1;
-      }
-
       const stockUrl = gkpRow.stockUrl || gkpUrl;
-      if (stockUrl && location.stockUrl !== stockUrl) {
-        location.stockUrl = stockUrl;
-        if (gkpRow.stockUrl) stockUrlsAssigned += 1;
-        else stockUrlsFallbackAssigned += 1;
+      if (isNewLocation) {
+        if (gkpRow.facilityUrl && location.facilityUrl !== gkpRow.facilityUrl) {
+          location.facilityUrl = gkpRow.facilityUrl;
+          facilityUrlsAssigned += 1;
+        }
+        if (stockUrl && location.stockUrl !== stockUrl) {
+          location.stockUrl = stockUrl;
+          if (gkpRow.stockUrl) stockUrlsAssigned += 1;
+          else stockUrlsFallbackAssigned += 1;
+        }
+        if (gkpRow.stockText && location.stock !== gkpRow.stockText) {
+          location.stock = gkpRow.stockText;
+        }
+        const observation = createGkpObservation(location, GKP_LINK_REVIEW_FIELDS);
+        gkpReviewBaseline.locations[location.id] = mergeAcceptedGkpObservation(
+          gkpReviewBaseline.locations[location.id],
+          observation,
+          null
+        );
+      } else {
+        const observedLocation = {
+          ...location,
+          facilityUrl: gkpRow.facilityUrl || location.facilityUrl,
+          stockUrl: stockUrl || location.stockUrl,
+          stock: gkpRow.stockText || location.stock,
+          sourceUrl: gkpUrl
+        };
+        const observation = createGkpObservation(observedLocation, GKP_LINK_REVIEW_FIELDS);
+        const baselineEntry = gkpReviewBaseline.locations[location.id];
+        const reviewFields = changedGkpObservationFields(
+          baselineEntry,
+          observation,
+          GKP_LINK_REVIEW_FIELDS
+        );
+        const candidate = createGkpReviewCandidate(
+          observationRecord(location, createGkpObservation(location, reviewFields)),
+          observationRecord(observedLocation, observation),
+          reviewFields
+        );
+        if (candidate) linkReviewCandidates.push(candidate);
+        gkpReviewBaseline.locations[location.id] = mergeAcceptedGkpObservation(
+          baselineEntry,
+          observation,
+          candidate
+        );
       }
-
-      if (gkpRow.stockText && location.stock !== gkpRow.stockText) {
-        location.stock = gkpRow.stockText;
-      }
-    } else if (gkpUrl && location.stockUrl !== gkpUrl) {
+    } else if (isNewLocation && gkpUrl && location.stockUrl !== gkpUrl) {
       location.stockUrl = gkpUrl;
       stockUrlsFallbackAssigned += 1;
     }
 
-    const conditionUrl = cleanUrl(location.sourceUrl);
-    if (conditionUrl && location.conditionUrl !== conditionUrl) {
-      location.conditionUrl = conditionUrl;
-      conditionUrlsAssigned += 1;
-    }
+    if (isNewLocation) {
+      const conditionUrl = cleanUrl(location.sourceUrl);
+      if (conditionUrl && location.conditionUrl !== conditionUrl) {
+        location.conditionUrl = conditionUrl;
+        conditionUrlsAssigned += 1;
+      }
 
-    if (isGenericCondition(location.condition) && location.condition !== "公式情報を確認") {
-      location.condition = "公式情報を確認";
-      conditionsUpdated += 1;
+      if (isGenericCondition(location.condition) && location.condition !== "公式情報を確認") {
+        location.condition = "公式情報を確認";
+        conditionsUpdated += 1;
+      }
     }
   }
 
   const after = JSON.stringify(linkSnapshot(location));
   if (before !== after) updated += 1;
 }
+
+const allReviewCandidates = mergeGkpReviewCandidates(
+  existingReviewCandidates,
+  linkReviewCandidates
+);
+await writeGkpReviewCandidates(allReviewCandidates);
+await writeGkpReviewBaseline(gkpReviewBaseline);
 
 const sourcePages = await loadEnglishVersionSourcePages(locations);
 for (const location of locations) {
@@ -272,7 +333,8 @@ console.log(
       conditionsUpdated,
       officialFirstPreserved,
       englishVersionSourcesChecked,
-      englishVersionDetected
+      englishVersionDetected,
+      gkpReviewCandidates: allReviewCandidates.length
     },
     null,
     2
@@ -433,11 +495,19 @@ function mergeComputedPlaceFields(nextPlaces, previousPlaces) {
   return nextPlaces.map((place) => {
     const previous = previousById.get(place.id) ?? previousByKey.get(placeKey(place));
     if (!previous) return { ...place };
-    return {
+    const merged = {
       ...place,
       ...pickComputedPlaceFields(previous)
     };
+    return sameObjectValues(previous, merged) ? { ...previous } : merged;
   });
+}
+
+function sameObjectValues(left, right) {
+  const keys = new Set([...Object.keys(left), ...Object.keys(right)]);
+  return keys.size === Object.keys(left).length
+    && keys.size === Object.keys(right).length
+    && [...keys].every((key) => JSON.stringify(left[key]) === JSON.stringify(right[key]));
 }
 
 function pickComputedPlaceFields(place) {
@@ -768,6 +838,18 @@ async function loadGkpRowsByImageUrl() {
   }
 
   return rowsByImageUrl;
+}
+
+async function readNewLocationIds() {
+  try {
+    const metadata = JSON.parse(
+      await readFile(join(process.cwd(), ".tmp", "gkp-import-metadata.json"), "utf8")
+    );
+    return new Set(Array.isArray(metadata.newLocationIds) ? metadata.newLocationIds : []);
+  } catch (error) {
+    if (error?.code === "ENOENT") return new Set();
+    throw error;
+  }
 }
 
 async function ensurePrefectureHtmlFiles() {

@@ -51,7 +51,7 @@ http://localhost:4173
 npm run import:gkp
 ```
 
-インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。`sourceType: "official_public_body_page"` のレコードはGKP未掲載でも削除せず、後からGKPに掲載された場合も公式ページの配布情報を優先します。
+インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。`sourceType: "official_public_body_page"` のレコードはGKP未掲載でも削除せず、後からGKPに掲載された場合も公式ページの配布情報を優先します。既存のGKP由来レコードも配布情報を直接上書き・削除せず、コミット済みの `data/gkp-review-baseline.json` から変わったGKP項目だけをPRコメントと継続Issueの要確認候補として表示します。基準ファイルが欠けている通常実行は失敗し、新規カードは従来どおり自動取込の対象です。
 
 住所ジオコーディングは以下で実行します。
 

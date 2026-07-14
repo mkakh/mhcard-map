@@ -4,10 +4,17 @@ import {
   OFFICIAL_PUBLIC_BODY_SOURCE_TYPE,
   isOfficialPublicBodyLocation,
   reconcileOfficialPublicBodyLocation,
+  reconcileReviewedGkpLocation,
   retainUnmatchedOfficialPublicBodyLocations,
+  retainUnmatchedReviewedLocations,
   shouldApplyGkpSourceNormalization,
   sourcePolicyError
 } from "../scripts/source-policy-utils.js";
+import {
+  GKP_CONTENT_REVIEW_FIELDS,
+  createGkpObservation,
+  mergeAcceptedGkpObservation
+} from "../scripts/gkp-review-baseline-utils.js";
 
 test("official public body records are retained when GKP has not listed them", () => {
   const official = officialLocation();
@@ -15,6 +22,18 @@ test("official public body records are retained when GKP has not listed them", (
 
   assert.deepEqual(retained, [official]);
   assert.equal(shouldApplyGkpSourceNormalization(retained[0]), false);
+});
+
+test("unmatched existing GKP records are retained for review instead of deleted", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    sourceUrl: "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result"
+  };
+
+  const retained = retainUnmatchedReviewedLocations([existing], new Set(), "2026-07-14");
+
+  assert.deepEqual(retained, [existing]);
 });
 
 test("later GKP discovery only backfills missing catalogue metadata", () => {
@@ -71,6 +90,159 @@ test("a later GKP identity conflict requires manual review", () => {
 test("ordinary GKP records keep the existing normalization path", () => {
   assert.equal(isOfficialPublicBodyLocation({ sourceType: "gkp_prefecture_page" }), false);
   assert.equal(shouldApplyGkpSourceNormalization({ sourceType: "gkp_prefecture_page" }), true);
+});
+
+test("existing GKP records retain reviewed distribution and geocode fields", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    sourceUrl: "https://www.city.example.jp/reviewed-card.html",
+    facilityUrl: "https://www.city.example.jp/reviewed-facility.html",
+    geocodeTitle: "公式配布先（公式所在地・手動補正）"
+  };
+  const imported = {
+    ...existing,
+    place: "GKP側の変更後配布先",
+    address: "東京都公式市二丁目2番2号",
+    stock: "GKP側の在庫文面",
+    sourceUrl: "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+    imageUrl: "https://www.gk-p.jp/wp-content/uploads/mhc/13-101-A-01-new.jpg",
+    series: "第31弾",
+    issuedOn: "2027/04/01",
+    geocodeTitle: "GKP取り込み後の座標"
+  };
+  const previousObservation = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(
+      {
+        ...imported,
+        place: existing.place,
+        address: existing.address,
+        stock: existing.stock
+      },
+      GKP_CONTENT_REVIEW_FIELDS
+    ),
+    null
+  );
+
+  const { location, reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-14",
+    previousObservation
+  );
+
+  assert.equal(location.place, existing.place);
+  assert.equal(location.address, existing.address);
+  assert.equal(location.stock, existing.stock);
+  assert.equal(location.sourceUrl, existing.sourceUrl);
+  assert.equal(location.facilityUrl, existing.facilityUrl);
+  assert.equal(location.geocodeTitle, existing.geocodeTitle);
+  assert.equal(location.imageUrl, imported.imageUrl);
+  assert.equal(location.series, imported.series);
+  assert.equal(location.issuedOn, imported.issuedOn);
+  assert.deepEqual(reviewCandidate.fields.place, {
+    before: existing.place,
+    gkp: imported.place
+  });
+  assert.deepEqual(reviewCandidate.fields.address, {
+    before: existing.address,
+    gkp: imported.address
+  });
+  assert.equal(reviewCandidate.fields.imageUrl, undefined);
+});
+
+test("computed distribution-place fields and absent optional English data do not create candidates", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    distributionPlaces: [
+      {
+        id: "place-1",
+        name: "配布先",
+        address: "東京都公式市一丁目1番1号",
+        days: "平日",
+        hours: "9:00～17:00",
+        closed: "土日祝日",
+        url: "https://www.example-city.lg.jp/facility.html",
+        lat: 35.6,
+        lng: 139.7,
+        plusCode: "8Q7XJP22+22",
+        distributionMode: "regular"
+      }
+    ],
+    hasEnglishVersion: true,
+    englishVersionStatus: "available",
+    englishVersionUrl: "https://www.example-city.lg.jp/english-card.html"
+  };
+  const imported = {
+    ...existing,
+    distributionPlaces: existing.distributionPlaces.map((place) => ({
+      id: place.id,
+      name: place.name,
+      address: place.address,
+      days: place.days,
+      hours: place.hours,
+      closed: place.closed,
+      url: place.url
+    }))
+  };
+  delete imported.hasEnglishVersion;
+  delete imported.englishVersionStatus;
+  delete imported.englishVersionUrl;
+
+  const baseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(imported, GKP_CONTENT_REVIEW_FIELDS),
+    null
+  );
+  const { reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-14",
+    baseline
+  );
+
+  assert.equal(reviewCandidate, null);
+});
+
+test("reviewed GKP records still transition from pre-release on the start date", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    status: "配布開始前",
+    stock: "配布開始前",
+    distributionStartsOn: "2026-07-31"
+  };
+
+  const { location } = reconcileReviewedGkpLocation(existing, existing, "2026-08-01");
+
+  assert.equal(location.status, "配布中");
+  assert.equal(location.stock, "公式情報を確認");
+  assert.equal(location.updatedAt, "2026-08-01");
+});
+
+test("a GKP row restored after an acknowledged disappearance requires review", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page"
+  };
+  const baseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(existing, GKP_CONTENT_REVIEW_FIELDS),
+    null
+  );
+  baseline.gkpListing = false;
+
+  const { reviewCandidate, baselineEntry } = reconcileReviewedGkpLocation(
+    existing,
+    existing,
+    "2026-07-14",
+    baseline
+  );
+
+  assert.deepEqual(reviewCandidate.fields.gkpListing, { before: false, gkp: true });
+  assert.equal(baselineEntry.gkpListing, false);
 });
 
 test("official-first source policy requires a reviewed non-GKP source", () => {
