@@ -617,6 +617,7 @@ function renderDetail() {
       ${renderInfoCodeRow("住所", selectedAddress, selectedAddress !== "未登録", "copyAddress")}
       ${renderMapPositionRows(location, selectedPlace)}
       <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
+      ${renderDistributionScheduleRows(location, selectedPlace)}
       <tr><th>配布時間</th><td>${escapeHtml(selectedPlace.hours || location.hours || "未登録")}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(selectedPlace.closed || location.closed || "未登録")}</td></tr>
       <tr><th>配布条件</th><td>${renderSourceLinkedValue(location.condition, conditionUrl)}</td></tr>
@@ -673,11 +674,16 @@ function renderDistributionPlaces(location, places, collection) {
       <h3>配布場所</h3>
       ${places
         .map((place) => {
+          const mode = distributionModeLabel(place.distributionMode);
+          const schedule = distributionPlaceScheduleText(place);
           return `
             <article class="distribution-place ${place.id === selectedPlaceId ? "active" : ""}" data-place-select="${escapeAttribute(place.id)}" tabindex="0" role="button">
               <div class="distribution-place-head">
                 <div>
                   <strong>${escapeHtml(place.name)}</strong>
+                  ${mode ? `<span>${escapeHtml(mode)}</span>` : ""}
+                  ${schedule ? `<span>${escapeHtml(schedule)}</span>` : ""}
+                  ${place.availabilityNote ? `<span>${escapeHtml(place.availabilityNote)}</span>` : ""}
                   <span>${escapeHtml([place.days, place.hours].filter(Boolean).join(" "))}</span>
                   ${place.closed ? `<span>${escapeHtml(place.closed)}</span>` : ""}
                   ${place.address ? `<span>${escapeHtml(place.address)}</span>` : ""}
@@ -787,6 +793,10 @@ function distributionPlaces(location) {
       days: place.days || "",
       hours: place.hours || "",
       closed: place.closed || "",
+      startsOn: place.startsOn || "",
+      endsOn: place.endsOn || "",
+      distributionMode: place.distributionMode || "",
+      availabilityNote: place.availabilityNote || "",
       url: place.url || place.facilityUrl || location.facilityUrl || "",
       coordinateAccuracy: place.coordinateAccuracy || location.coordinateAccuracy,
       geocodeQuery: place.geocodeQuery || "",
@@ -837,6 +847,10 @@ function primaryDistributionPlace(location) {
     days: "",
     hours: location.hours || "",
     closed: location.closed || "",
+    startsOn: "",
+    endsOn: "",
+    distributionMode: "",
+    availabilityNote: "",
     url: location.facilityUrl || "",
     coordinateAccuracy: location.coordinateAccuracy
   };
@@ -868,6 +882,11 @@ function renderSummary(filtered) {
 }
 
 function renderStatusBadge(location) {
+  if (location.status === "配布開始前") {
+    const startsOn = formatShortDate(location.distributionStartsOn);
+    return `<span class="badge upcoming">配布開始前${startsOn ? ` ${escapeHtml(startsOn)}` : ""}</span>`;
+  }
+
   if (location.status === "休止中") {
     return '<span class="badge paused">休止中</span>';
   }
@@ -883,6 +902,7 @@ function pinClass(location, place = primaryDistributionPlace(location)) {
   const coordinateClass = placeCoordinateCategory(location, place);
   if (coordinateClass !== "address") return coordinateClass;
   if (location.status === "休止中") return "paused";
+  if (location.status === "配布開始前") return "upcoming";
   if (location.status === "要確認") return "review";
   if (collections[location.id]?.collected) return "collected";
   return "uncollected";
@@ -934,7 +954,11 @@ function renderMapPositionRows(location, place = primaryDistributionPlace(locati
 
 function mapPositionRows(location, place = primaryDistributionPlace(location)) {
   if (place.coordinateAccuracy === "address") {
-    const position = location.status === "休止中" ? "住所から推定（配布中止）" : "住所から推定";
+    const position = location.status === "休止中"
+      ? "住所から推定（配布中止）"
+      : location.status === "配布開始前"
+        ? "住所から推定（配布開始前）"
+        : "住所から推定";
     return [
       ["地図位置", position],
       ["検索結果住所", place.geocodeTitle || place.geocodeQuery || "住所検索結果あり"]
@@ -968,6 +992,57 @@ function mapPositionRows(location, place = primaryDistributionPlace(location)) {
     ["地図位置", "都道府県内の仮位置"],
     ["理由", "住所不明"]
   ];
+}
+
+function renderDistributionScheduleRows(location, place) {
+  const rows = [];
+  if (location.distributionStartsOn) {
+    const suffix = location.status === "配布開始前" ? "（予定）" : "";
+    rows.push(["配布開始", `${formatLongDate(location.distributionStartsOn)}${suffix}`]);
+  }
+  const mode = distributionModeLabel(place.distributionMode);
+  if (mode) rows.push(["窓口区分", mode]);
+  const period = distributionPlaceScheduleText(place);
+  if (period) rows.push(["窓口有効期間", period]);
+  if (place.availabilityNote) rows.push(["窓口注意", place.availabilityNote]);
+  return rows.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("");
+}
+
+function distributionModeLabel(mode) {
+  return {
+    regular: "通常配布",
+    launch_event: "初回イベント",
+    limited: "限定配布",
+    fallback: "代替窓口"
+  }[mode] ?? "";
+}
+
+function distributionPlaceScheduleText(place) {
+  if (!place.startsOn && !place.endsOn) return "";
+  if (place.startsOn && place.endsOn && place.startsOn === place.endsOn) {
+    return formatLongDate(place.startsOn);
+  }
+  if (place.startsOn && place.endsOn) {
+    return `${formatLongDate(place.startsOn)}～${formatLongDate(place.endsOn)}`;
+  }
+  if (place.startsOn) return `${formatLongDate(place.startsOn)}から`;
+  return `${formatLongDate(place.endsOn)}まで`;
+}
+
+function formatLongDate(value) {
+  const parts = isoDateParts(value);
+  return parts ? `${parts.year}年${parts.month}月${parts.day}日` : String(value ?? "");
+}
+
+function formatShortDate(value) {
+  const parts = isoDateParts(value);
+  return parts ? `${parts.month}/${parts.day}` : "";
+}
+
+function isoDateParts(value) {
+  const match = String(value ?? "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  return { year: Number(match[1]), month: Number(match[2]), day: Number(match[3]) };
 }
 
 function initMap() {
@@ -1084,6 +1159,8 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
         "#1f7a4d",
         "paused",
         "#b68421",
+        "upcoming",
+        "#b83272",
         "review",
         "#6f5aa8",
         "stopped-known",
@@ -1258,6 +1335,11 @@ function toLocationFeatureCollection(items) {
             place: place.name,
             days: place.days || "",
             hours: place.hours || "",
+            startsOn: place.startsOn || "",
+            endsOn: place.endsOn || "",
+            distributionMode: place.distributionMode || "",
+            availabilityNote: place.availabilityNote || "",
+            distributionStartsOn: location.distributionStartsOn || "",
             imageUrl: location.imageUrl || "",
             municipality: `${location.prefecture} ${location.municipality}`,
             status: location.status,
@@ -1304,7 +1386,13 @@ function showMapPopup(feature) {
     cardName: feature.properties.cardName,
     place: feature.properties.place,
     days: feature.properties.days,
-    hours: feature.properties.hours
+    hours: feature.properties.hours,
+    status: feature.properties.status,
+    distributionStartsOn: feature.properties.distributionStartsOn,
+    startsOn: feature.properties.startsOn,
+    endsOn: feature.properties.endsOn,
+    distributionMode: feature.properties.distributionMode,
+    availabilityNote: feature.properties.availabilityNote
   });
 }
 
@@ -1320,14 +1408,40 @@ function showLocationPopup(location) {
     cardName: location.cardName,
     place: place.name,
     days: place.days,
-    hours: place.hours
+    hours: place.hours,
+    status: location.status,
+    distributionStartsOn: location.distributionStartsOn,
+    startsOn: place.startsOn,
+    endsOn: place.endsOn,
+    distributionMode: place.distributionMode,
+    availabilityNote: place.availabilityNote
   });
 }
 
-function showManagedPopup({ locationId, placeId, coordinates, imageUrl, cardName, place, days, hours }) {
+function showManagedPopup({
+  locationId,
+  placeId,
+  coordinates,
+  imageUrl,
+  cardName,
+  place,
+  days,
+  hours,
+  status,
+  distributionStartsOn,
+  startsOn,
+  endsOn,
+  distributionMode,
+  availabilityNote
+}) {
   if (!mapReady) return;
 
   activePopup?.remove();
+  const schedule = distributionPlaceScheduleText({ startsOn, endsOn });
+  const statusText = status === "配布開始前"
+    ? `配布開始前 ${formatLongDate(distributionStartsOn)}`
+    : status;
+  const mode = distributionModeLabel(distributionMode);
   const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: true, offset: 12 })
     .setLngLat(coordinates)
     .setHTML(`
@@ -1335,6 +1449,9 @@ function showManagedPopup({ locationId, placeId, coordinates, imageUrl, cardName
         ${renderPopupImage(imageUrl || "", cardName)}
         <span class="map-popup-title">${escapeHtml(cardName)}</span>
         <span class="map-popup-subtitle">${escapeHtml(place)}</span>
+        ${statusText ? `<span class="map-popup-subtitle">${escapeHtml(statusText)}</span>` : ""}
+        ${mode || schedule ? `<span class="map-popup-subtitle">${escapeHtml([mode, schedule].filter(Boolean).join(" "))}</span>` : ""}
+        ${availabilityNote ? `<span class="map-popup-subtitle">${escapeHtml(availabilityNote)}</span>` : ""}
         ${days || hours ? `<span class="map-popup-subtitle">${escapeHtml([days, hours].filter(Boolean).join(" "))}</span>` : ""}
       </button>
     `)

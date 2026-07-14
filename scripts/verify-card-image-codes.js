@@ -10,10 +10,11 @@ const applyChanges = process.argv.includes("--apply");
 const strict = process.argv.includes("--strict");
 const warnOnly = process.argv.includes("--warn-only");
 const allImages = process.argv.includes("--all");
+const changedOnly = process.argv.includes("--changed");
 const limitArg = process.argv.find((arg) => arg.startsWith("--limit="));
 const limit = limitArg ? Number(limitArg.split("=")[1]) : Infinity;
 const tesseractCommand = process.env.TESSERACT_COMMAND || "tesseract";
-const magickCommand = process.env.MAGICK_COMMAND || "magick";
+let magickCommand = process.env.MAGICK_COMMAND || "magick";
 const cropSpecs = [
   "28%x10%+8+10",
   "30%x12%+6+9",
@@ -21,19 +22,26 @@ const cropSpecs = [
 ];
 
 const tesseractCheck = spawnSync(tesseractCommand, ["--version"], { encoding: "utf8" });
-if (tesseractCheck.error || tesseractCheck.status !== 0) {
+if (tesseractCheck.status !== 0) {
   console.error(`Tesseract is required. Install tesseract-ocr or set TESSERACT_COMMAND.`);
   process.exit(1);
 }
 
-const magickCheck = spawnSync(magickCommand, ["-version"], { encoding: "utf8" });
-if (magickCheck.error || magickCheck.status !== 0) {
+let magickCheck = spawnSync(magickCommand, ["-version"], { encoding: "utf8" });
+if (magickCheck.status !== 0 && !process.env.MAGICK_COMMAND) {
+  magickCommand = "convert";
+  magickCheck = spawnSync(magickCommand, ["-version"], { encoding: "utf8" });
+}
+if (magickCheck.status !== 0) {
   console.error(`ImageMagick is required. Install imagemagick or set MAGICK_COMMAND.`);
   process.exit(1);
 }
 
 const locations = JSON.parse(await readFile(locationsPath, "utf8"));
-const candidates = locations.filter(isOcrCandidate).slice(0, limit);
+const changedIds = changedOnly ? readChangedLocationIds(locations) : new Set();
+const candidates = locations
+  .filter((location) => changedOnly ? changedIds.has(location.id) : isOcrCandidate(location))
+  .slice(0, limit);
 const tempDir = join(tmpdir(), "manhole-card-ocr");
 await mkdir(tempDir, { recursive: true });
 
@@ -123,6 +131,26 @@ function isOcrCandidate(location) {
   if (!match) return false;
 
   return Number(match[2]) !== 1;
+}
+
+function readChangedLocationIds(currentLocations) {
+  const baseRef = process.env.IMAGE_CODE_BASE || "origin/main";
+  const result = spawnSync("git", ["show", `${baseRef}:data/locations.json`], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    maxBuffer: 50 * 1024 * 1024
+  });
+  if (result.status !== 0 || !result.stdout) {
+    throw new Error(`Failed to read ${baseRef}:data/locations.json`);
+  }
+
+  const beforeById = new Map(JSON.parse(result.stdout).map((location) => [location.id, location]));
+  return new Set(currentLocations
+    .filter((location) => {
+      const before = beforeById.get(location.id);
+      return !before || before.imageUrl !== location.imageUrl || before.cardName !== location.cardName;
+    })
+    .map((location) => location.id));
 }
 
 async function download(url, outputPath) {

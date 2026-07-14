@@ -10,6 +10,7 @@
   --accent: #c5522f;
   --warning: #b68421;
   --review: #6f5aa8;
+  --upcoming: #b83272;
   --shadow: 0 14px 35px rgba(25, 40, 28, 0.13);
 }
 
@@ -339,6 +340,11 @@ label {
   background: var(--review);
 }
 
+.badge.upcoming {
+  color: #fff;
+  background: var(--upcoming);
+}
+
 .badge.approximate {
   color: #fff;
   background: #737373;
@@ -430,6 +436,10 @@ label {
 
 .pin-dot.collected {
   background: var(--primary);
+}
+
+.pin-dot.upcoming {
+  background: var(--upcoming);
 }
 
 .pin-dot.paused {
