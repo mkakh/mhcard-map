@@ -135,7 +135,10 @@ function validateMunicipalityCodeConsistency(label, location) {
   const key = municipalityCodeKey(location.prefecture, location.municipality);
   const expected = municipalityCodes[key];
   if (!expected) {
-    fail(`${label}: municipality code mapping is missing for ${key}`);
+    fail(
+      `${label}: municipality code mapping is missing for ${key}; verify the official code, then add ` +
+      `${JSON.stringify(key)}: ${JSON.stringify(idMunicipalityCode)} to data/municipality-codes.json`
+    );
     return;
   }
   if (idMunicipalityCode !== expected) {
