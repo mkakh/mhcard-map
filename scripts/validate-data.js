@@ -10,8 +10,9 @@ import {
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
 const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
-const allowedStatuses = new Set(["配布中", "休止中", "要確認"]);
+const allowedStatuses = new Set(["配布中", "配布開始前", "休止中", "要確認"]);
 const allowedEnglishVersionStatuses = new Set(["available", "out_of_stock", "event_only", "unknown"]);
+const allowedDistributionModes = new Set(["regular", "launch_event", "limited", "fallback"]);
 const urlFields = ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "englishVersionUrl", "imageUrl"];
 const placeUrlFields = ["url", "facilityUrl", "stockUrl", "conditionUrl"];
 const requiredStringFields = ["id", "cardName", "prefecture", "municipality", "status", "updatedAt", "plusCode"];
@@ -69,6 +70,10 @@ function validateLocations(items) {
       fail(`${label}: municipality must not include card code ${location.municipality}`);
     }
     if (!allowedStatuses.has(location.status)) fail(`${label}: unknown status ${location.status}`);
+    validateIsoDate(label, "distributionStartsOn", location.distributionStartsOn);
+    if (location.status === "配布開始前" && !location.distributionStartsOn) {
+      fail(`${label}: distributionStartsOn is required for 配布開始前`);
+    }
     if (!allowedCoordinateAccuracy.has(location.coordinateAccuracy)) fail(`${label}: unknown coordinateAccuracy ${location.coordinateAccuracy}`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(location.updatedAt ?? ""))) fail(`${label}: updatedAt must be YYYY-MM-DD`);
     if (location.hasEnglishVersion !== undefined && typeof location.hasEnglishVersion !== "boolean") {
@@ -210,6 +215,15 @@ function validateDistributionPlaces(label, distributionPlaces, fieldName = "dist
       fail(`${placeLabel}: unknown coordinateAccuracy ${place.coordinateAccuracy}`);
     }
 
+    validateIsoDate(placeLabel, "startsOn", place.startsOn);
+    validateIsoDate(placeLabel, "endsOn", place.endsOn);
+    if (place.startsOn && place.endsOn && place.startsOn > place.endsOn) {
+      fail(`${placeLabel}: startsOn must not be after endsOn`);
+    }
+    if (place.distributionMode !== undefined && !allowedDistributionModes.has(place.distributionMode)) {
+      fail(`${placeLabel}: unknown distributionMode ${place.distributionMode}`);
+    }
+
     placeUrlFields.forEach((field) => validateUrl(placeLabel, field, place[field]));
   });
 }
@@ -248,6 +262,11 @@ function validateUrl(label, field, value) {
   } catch {
     fail(`${label}: ${field} must be a valid URL`);
   }
+}
+
+function validateIsoDate(label, field, value) {
+  if (value === undefined) return;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) fail(`${label}: ${field} must be YYYY-MM-DD`);
 }
 
 function fail(message) {

@@ -1,6 +1,10 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
+import {
+  normalizeDistributionDate,
+  statusForDistributionStart
+} from "./distribution-status-utils.js";
 
 const prefectures = [
   ["01", "北海道", 43.0642, 141.3469],
@@ -83,6 +87,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const rawCardCode = extractCardCode(municipality);
     const series = cleanupText(seriesHtml);
     const issuedOn = cleanupText(issuedHtml);
+    const distributionStartsOn = normalizeDistributionDate(issuedOn);
     const distributionText = cleanupText(distributionHtml);
     const imageUrl = absolutizeUrl(firstMatch(imageHtml, /<img[^>]+src=["']([^"']+)["']/i));
     const cardCodeOverride = manualCardCodeOverride(imageUrl);
@@ -108,6 +113,8 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const id = stableLocationId(imageUrl, legacyId, cardCode, municipalityCode);
     const stock = cleanupText(stockHtml) || "不明";
 
+    const stopped = isDistributionStopped(stock, distributionText);
+    const status = statusForDistributionStart({ startsOn: distributionStartsOn, today, stopped });
     const location = {
       id,
       cardName: cardCode && (cardCodeOverride || isPlainCardCodeMarker(municipality)) ? `${municipalityName} ${cardCode}` : municipality,
@@ -121,7 +128,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       closed: "要確認",
       condition: "GKP掲載情報を確認",
       stock,
-      status: isDistributionStopped(stock, distributionText) ? "休止中" : "配布中",
+      status,
       sourceUrl: absolutizeUrl(sourceUrl) || `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`,
       imageUrl: absolutizeUrl(imageUrl),
       series,
@@ -130,6 +137,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       coordinateAccuracy: "prefecture_approx",
       updatedAt: today
     };
+    if (status === "配布開始前" && distributionStartsOn) location.distributionStartsOn = distributionStartsOn;
     if (englishVersion.available) {
       location.hasEnglishVersion = true;
       location.englishVersionStatus = englishVersion.status;
@@ -156,6 +164,7 @@ for (const location of locations) {
   if (Array.isArray(existing.officialDesignNames) && existing.officialDesignNames.length > 0) {
     location.officialDesignNames = existing.officialDesignNames;
   }
+  preserveReviewedDistributionStart(location, existing);
   mergeGeneratedLocationGeocode(location, existing);
   mergeGeneratedDistributionPlaces(location, existing);
   if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
@@ -470,6 +479,17 @@ function mergeGeneratedLocationGeocode(location, existing) {
   Object.assign(location, pickComputedPlaceFields(existing));
 }
 
+function preserveReviewedDistributionStart(location, existing) {
+  const startsOn = normalizeDistributionDate(existing.distributionStartsOn);
+  if (!startsOn) return;
+  location.distributionStartsOn = startsOn;
+  location.status = statusForDistributionStart({
+    startsOn,
+    today,
+    stopped: location.status === "休止中"
+  });
+}
+
 function pickComputedPlaceFields(place) {
   return Object.fromEntries(
     ["lat", "lng", "plusCode", "coordinateAccuracy", "geocodeQuery", "geocodeTitle", "geocodedAt", "geocodeError"]
@@ -718,6 +738,7 @@ function hasSameImportedContent(existing, next) {
     "imageUrl",
     "series",
     "issuedOn",
+    "distributionStartsOn",
     "hasEnglishVersion",
     "englishVersionStatus",
     "englishVersionNote",

@@ -184,6 +184,7 @@ The detail panel shows:
 - Card number
 - Prefecture and municipality
 - Distribution status badge
+- Scheduled distribution start date
 - Collection badge
 - Coordinate accuracy badge when needed
 - Plus Code
@@ -307,6 +308,7 @@ Important fields:
 | `condition` | Distribution condition |
 | `stock` | Stock text |
 | `status` | Distribution status |
+| `distributionStartsOn` | Confirmed or scheduled distribution start date (`YYYY-MM-DD`), separate from the GKP issue date |
 | `sourceUrl` | Main source URL |
 | `facilityUrl` | Distribution place URL |
 | `stockUrl` | Stock confirmation URL |
@@ -322,6 +324,16 @@ Important fields:
 | `coordinateAccuracy` | Coordinate accuracy |
 | `plusCode` | Plus Code |
 | `updatedAt` | Data update date |
+
+Supported distribution statuses are `配布中`, `配布開始前`, `休止中`, and
+`要確認`. A `配布開始前` record must have `distributionStartsOn` and remains
+visible on the map with a distinct marker. Reaching the date only creates an
+imported status-change candidate; publication still requires PR review.
+
+Distribution places may additionally define `startsOn`, `endsOn`,
+`distributionMode` (`regular`, `launch_event`, `limited`, or `fallback`), and
+`availabilityNote`. These fields keep launch events, lottery-only windows, and
+regular distribution locations separate without hiding the card before launch.
 
 Location IDs are generated from the GKP card image filename.
 

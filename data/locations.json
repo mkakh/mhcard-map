@@ -1145,8 +1145,8 @@
     "hours": "【4月1日～10月31日】9:00～17:00\n【11月1日～3月31日】9:00～16:00\nただし、12/31～1/3、1月～2月は毎週月曜日はお休みです。11月は第2週に機械整備で休業予定です。",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/01-229-B-01",
     "series": "第29弾",
@@ -1160,7 +1160,8 @@
     "geocodeQuery": "北海道富良野市中五区",
     "geocodeTitle": "富良野チーズ工房（富良野市公式配布先・施設公式座標・手動補正）",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8RM489CG+7R"
+    "plusCode": "8RM489CG+7R",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "01-230-a-01",
@@ -2583,6 +2584,94 @@
     "geocodeTitle": "北海道上士幌町上士幌東三線",
     "geocodedAt": "2026-07-05",
     "plusCode": "8RM57862+QJ"
+  },
+  {
+    "id": "01-634-a-01",
+    "cardName": "鹿追町 A001",
+    "prefecture": "北海道",
+    "municipality": "鹿追町",
+    "place": "道の駅しかおい 芝生広場（裏庭）",
+    "address": "北海道河東郡鹿追町東町3丁目2-7",
+    "lat": 43.097996,
+    "lng": 142.98846,
+    "hours": "①【4月～10月】9:00～17:00、【11月～3月】10:00～16:00\n②8:30～17:15\n①、②ともに、年末年始はお休みです",
+    "closed": "要確認",
+    "condition": "公式情報を確認",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/01-634-A-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "distributionPlaces": [
+      {
+        "id": "place-3807602b0d",
+        "name": "道の駅しかおい 芝生広場（裏庭）",
+        "address": "北海道河東郡鹿追町東町3丁目2-7",
+        "days": "2026年8月23日",
+        "hours": "11:00～（お披露目式終了後に配布）",
+        "closed": "",
+        "url": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/",
+        "lat": 43.097996,
+        "lng": 142.98846,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "北海道河東郡鹿追町東町3丁目2-7",
+        "geocodeTitle": "道の駅しかおい（鹿追町公式初回会場・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8RM43XXQ+59",
+        "distributionMode": "launch_event",
+        "startsOn": "2026-08-23",
+        "endsOn": "2026-08-23",
+        "availabilityNote": "お披露目式終了後に1人1枚配布"
+      },
+      {
+        "id": "place-60cf51abc8",
+        "name": "鹿追町観光インフォメーションデスク",
+        "address": "北海道河東郡鹿追町東町1丁目9",
+        "days": "日・月・火・金・土・祝祭日",
+        "hours": "【4月～10月】9:00～17:00、【11月～3月】10:00～16:00",
+        "closed": "",
+        "url": "https://www.town.shikaoi.lg.jp/sightseeing/",
+        "lat": 43.098152,
+        "lng": 142.98836,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "北海道河東郡鹿追町東町1丁目9",
+        "geocodeTitle": "鹿追町観光インフォメーションデスク（GKP配布先・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8RM43XXQ+78",
+        "distributionMode": "regular",
+        "availabilityNote": "通常配布開始日はGKP掲載情報を確認（自治体公式カードページ未掲載）"
+      },
+      {
+        "id": "place-2de7f2829c",
+        "name": "鹿追町役場 商工観光課",
+        "address": "北海道河東郡鹿追町東町1丁目15番地1",
+        "days": "水・木",
+        "hours": "8:30～17:15",
+        "closed": "",
+        "url": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/",
+        "lat": 43.099014,
+        "lng": 142.9892,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "北海道河東郡鹿追町東町1丁目15番地1",
+        "geocodeTitle": "鹿追町役場（GKP配布先・町公式所在地・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8RM43XXQ+JM",
+        "distributionMode": "fallback",
+        "availabilityNote": "通常配布開始日はGKP掲載情報を確認（自治体公式カードページ未掲載）"
+      }
+    ],
+    "facilityUrl": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/",
+    "stockUrl": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+    "geocodeQuery": "北海道河東郡鹿追町東町3丁目2-7",
+    "geocodeTitle": "道の駅しかおい（鹿追町公式初回会場・施設検索照合・手動補正）",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8RM43XXQ+59",
+    "distributionStartsOn": "2026-08-23"
   },
   {
     "id": "01-635-a-01",
@@ -7577,8 +7666,8 @@
     "hours": "9:00～18:00\nただし、年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/08-203-J-01.jpg",
     "series": "第29弾",
@@ -7592,7 +7681,8 @@
     "geocodeQuery": "茨城県土浦市川口二丁目13-25",
     "geocodeTitle": "茨城県土浦市川口二丁目１３番２５号",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8R8236M7+82"
+    "plusCode": "8R8236M7+82",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "08-204-a-01",
@@ -8121,8 +8211,8 @@
     "hours": "10:00～18:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/08-219-B-01.jpg",
     "series": "第29弾",
@@ -8136,7 +8226,8 @@
     "geocodeQuery": "茨城県牛久市中央3丁目20-1",
     "geocodeTitle": "茨城県牛久市中央三丁目２０番",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8R72X4HW+7J"
+    "plusCode": "8R72X4HW+7J",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "08-220-a-01",
@@ -9127,8 +9218,8 @@
     "hours": "【月・水・木・土・日】10:00～16:00（土日は18:00まで）\n定休日：火・金\n冬季休業：12月中旬～1月中旬",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/09-204-B-01.jpg",
     "series": "第29弾",
@@ -9158,7 +9249,9 @@
         "geocodeQuery": "栃木県佐野市栃本町300-1",
         "geocodeTitle": "栃木県佐野市栃本町３００番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q8X9H4R+MJ"
+        "plusCode": "8Q8X9H4R+MJ",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-03"
       },
       {
         "id": "place-a250efdb3c",
@@ -9174,9 +9267,13 @@
         "geocodeQuery": "栃木県佐野市栃本町300-1",
         "geocodeTitle": "栃木県佐野市栃本町３００番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q8X9H4R+MJ"
+        "plusCode": "8Q8X9H4R+MJ",
+        "distributionMode": "launch_event",
+        "startsOn": "2026-07-31",
+        "endsOn": "2026-08-02"
       }
-    ]
+    ],
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "09-205-a-01",
@@ -9697,8 +9794,8 @@
     "hours": "9:00～16:00\nただし、毎週火曜日（祝日の場合はその翌日）、年末年始、観光協会が指定する日はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/09-215-C-01.jpg",
     "series": "第29弾",
@@ -9712,7 +9809,8 @@
     "geocodeQuery": "栃木県那須烏山市金井2-5-26",
     "geocodeTitle": "栃木県那須烏山市金井二丁目５番２６号",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8R82M533+PP"
+    "plusCode": "8R82M533+PP",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "09-216-a-01",
@@ -9854,8 +9952,8 @@
     "hours": "9:00～17:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/09-411-A-01.jpg",
     "series": "第29弾",
@@ -9878,7 +9976,9 @@
         "geocodeQuery": "栃木県那須郡那珂川町久那瀬983-3",
         "geocodeTitle": "栃木県那珂川町久那瀬９８３番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8R82P5M2+M4"
+        "plusCode": "8R82P5M2+M4",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31"
       },
       {
         "id": "place-2ed347ca96",
@@ -9894,7 +9994,9 @@
         "geocodeQuery": "栃木県那須郡那珂川町馬頭555",
         "geocodeTitle": "栃木県那珂川町馬頭５５５番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8R82P5PF+86"
+        "plusCode": "8R82P5PF+86",
+        "distributionMode": "fallback",
+        "startsOn": "2026-08-01"
       }
     ],
     "facilityUrl": "https://www.town.tochigi-nakagawa.lg.jp/index.html",
@@ -9903,7 +10005,8 @@
     "geocodeQuery": "栃木県那須郡那珂川町久那瀬983-3",
     "geocodeTitle": "栃木県那珂川町久那瀬９８３番地",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8R82P5M2+M4"
+    "plusCode": "8R82P5M2+M4",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "10-000-a-01",
@@ -12510,8 +12613,8 @@
     "hours": "10:00～19:00\nただし、年末年始（12/31から1/2）はお休みです。店内整理等で臨時休業する場合もあります",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/11-222-D-01.jpg",
     "series": "第29弾",
@@ -12525,7 +12628,8 @@
     "geocodeQuery": "埼玉県越谷市弥生町505-2",
     "geocodeTitle": "観光物産拠点施設「ガーヤちゃんの蔵屋敷」（越谷市公式配布先・公式地図座標・手動補正）",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q7XVQQP+M8"
+    "plusCode": "8Q7XVQQP+M8",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "11-224-a-01",
@@ -13281,8 +13385,8 @@
     "hours": "【平日、土日、祝日】9:00～17:00\nただし、毎月第3月曜日（なお、月曜日が祝日の場合は翌日）はお休みです\n【毎月第3月曜日】9:00～17:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/11-245-B-01.jpg",
     "series": "第29弾",
@@ -13305,7 +13409,9 @@
         "geocodeQuery": "埼玉県ふじみ野市福岡一丁目1番8号",
         "geocodeTitle": "ふじみ野ステラ・イースト（ふじみ野市公式配布先・施設公式地図座標・手動補正）",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q7XVGHC+V4"
+        "plusCode": "8Q7XVGHC+V4",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31"
       },
       {
         "id": "place-722995e82b",
@@ -13321,7 +13427,8 @@
         "geocodeQuery": "埼玉県ふじみ野市福岡一丁目1番1号",
         "geocodeTitle": "埼玉県ふじみ野市福岡一丁目１番１号",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q7XVGH9+WR"
+        "plusCode": "8Q7XVGH9+WR",
+        "distributionMode": "fallback"
       }
     ],
     "facilityUrl": "https://www.f-bunka.jp/stella-east/accessmap/",
@@ -13330,7 +13437,8 @@
     "geocodeQuery": "埼玉県ふじみ野市福岡一丁目1番8号",
     "geocodeTitle": "ふじみ野ステラ・イースト（ふじみ野市公式配布先・施設公式地図座標・手動補正）",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q7XVGHC+V4"
+    "plusCode": "8Q7XVGHC+V4",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "11-246-a-01",
@@ -15276,6 +15384,76 @@
     "plusCode": "8R72C982+45"
   },
   {
+    "id": "12-423-c-01",
+    "cardName": "長生村 C001",
+    "prefecture": "千葉県",
+    "municipality": "長生村",
+    "place": "長生村役場産業課",
+    "address": "千葉県長生郡長生村本郷1番地77",
+    "lat": 35.41216,
+    "lng": 140.35435,
+    "hours": "9:00～16:30\nただし、年末年始（12/28～1/4）はお休みです",
+    "closed": "要確認",
+    "condition": "公式情報を確認",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/12-423-C-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "distributionPlaces": [
+      {
+        "id": "place-b6cf312d01",
+        "name": "長生村役場産業課",
+        "address": "千葉県長生郡長生村本郷1番地77",
+        "days": "平日",
+        "hours": "9:00～16:30",
+        "closed": "年末年始（12/28～1/4）はお休みです",
+        "url": "https://www.vill.chosei.chiba.jp/soshiki/16-7-0-0-0_1.html",
+        "lat": 35.41216,
+        "lng": 140.35435,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "千葉県長生郡長生村本郷1番地77",
+        "geocodeTitle": "長生村役場（GKP配布先・村公式所在地・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8R72C963+VP",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31",
+        "availabilityNote": "GKP掲載。自治体公式カードページはC001未掲載"
+      },
+      {
+        "id": "place-7bc619c90b",
+        "name": "長生村交流センター",
+        "address": "千葉県長生郡長生村岩沼874番地1",
+        "days": "土日、祝日",
+        "hours": "9:00～16:30",
+        "closed": "年末年始（12/28～1/4）はお休みです",
+        "url": "https://chosei-koryu.com/",
+        "lat": 35.4039,
+        "lng": 140.34709,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "千葉県長生郡長生村岩沼874番地1",
+        "geocodeTitle": "長生村交流センター（GKP配布先・施設公式所在地・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8R72C83W+HR",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01",
+        "availabilityNote": "GKP掲載。自治体公式カードページはC001未掲載"
+      }
+    ],
+    "facilityUrl": "https://www.vill.chosei.chiba.jp/soshiki/16-7-0-0-0_1.html",
+    "stockUrl": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+    "geocodeQuery": "千葉県長生郡長生村本郷1番地77",
+    "geocodeTitle": "長生村役場（GKP配布先・村公式所在地・施設検索照合・手動補正）",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8R72C963+VP",
+    "distributionStartsOn": "2026-07-31"
+  },
+  {
     "id": "00-102-b-01",
     "cardName": "UR都市機構 B001",
     "prefecture": "東京都",
@@ -17154,8 +17332,8 @@
     "hours": "9：00～18：00\nただし、火曜日、年末年始及び臨時休業日はお休みです\n詳細はこちらから事前にご確認ください",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/13-204-B-01.jpg",
     "series": "第29弾",
@@ -17169,7 +17347,8 @@
     "geocodeQuery": "東京都三鷹市下連雀3-24-3-105",
     "geocodeTitle": "みたか観光BASE（公式配布先住所・地理院住所座標照合・手動補正）",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q7XPH26+QV"
+    "plusCode": "8Q7XPH26+QV",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "13-205-a-01",
@@ -18910,6 +19089,36 @@
     "geocodeTitle": "東京都あきる野市舘谷台２６番地",
     "geocodedAt": "2026-07-05",
     "plusCode": "8Q7XP6JH+VG"
+  },
+  {
+    "id": "13-229-a-01",
+    "cardName": "西東京市 A001",
+    "prefecture": "東京都",
+    "municipality": "西東京市",
+    "place": "まちテナ西東京",
+    "address": "東京都西東京市田無町4-1-2（田無駅改札横）",
+    "lat": 35.727524,
+    "lng": 139.539459,
+    "hours": "【平日】10:00～20:00\n【土曜】10:00～19:00\n【日曜・祝日】10:00～18:00\nただし、元日はお休みです",
+    "closed": "要確認",
+    "condition": "2026年8月3日10時から。1人1枚、予約・郵送不可",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/13-229-A-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "facilityUrl": "https://machitenna.com/",
+    "stockUrl": "https://www.city.nishitokyo.lg.jp/enjoy/ekimae_hassin/08manhoru.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+    "geocodeQuery": "東京都西東京市田無町4-1-2",
+    "geocodeTitle": "東京都西東京市田無町四丁目１番２号",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8Q7XPGHQ+2Q",
+    "distributionStartsOn": "2026-08-03"
   },
   {
     "id": "13-303-a-01",
@@ -21015,6 +21224,57 @@
     "plusCode": "8Q9WCRXX+9F"
   },
   {
+    "id": "15-202-g-01",
+    "cardName": "長岡市 G001",
+    "prefecture": "新潟県",
+    "municipality": "長岡市",
+    "place": "米百俵プレイス ミライエ長岡",
+    "address": "新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ-",
+    "lat": 37.44849,
+    "lng": 138.848648,
+    "hours": "【平日・土曜日】9:00～21:00\n【日曜日・祝日】9:00～18:00\nただし、休館日：毎月第2木曜日（休日の場合は翌日）、毎月の末日（土日の場合は翌月曜日）、年末年始（12/29～1/3）はお休みです",
+    "closed": "要確認",
+    "condition": "7月31日はイベント会場のみ。イベント詳細は公式発表待ち",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/15-202-G-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "facilityUrl": "https://miraie-nagaoka.jp/",
+    "stockUrl": "https://www.city.nagaoka.niigata.jp/suidou/suidou/manhole.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
+    "geocodeQuery": "新潟県長岡市大手通2丁目3番地10米百俵プレイスミライエ長岡3階インフォメ-ションカウンタ-",
+    "geocodeTitle": "新潟県長岡市大手通二丁目３番地",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8Q9WCRXX+9F",
+    "distributionStartsOn": "2026-07-31",
+    "distributionPlaces": [
+      {
+        "id": "place-cc98dfdbd8",
+        "name": "米百俵プレイス ミライエ長岡 3階インフォメーションカウンター",
+        "address": "新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ-",
+        "days": "",
+        "hours": "【平日・土曜日】9:00～21:00\n【日曜日・祝日】9:00～18:00\nただし、休館日：毎月第2木曜日（休日の場合は翌日）、毎月の末日（土日の場合は翌月曜日）、年末年始（12/29～1/3）はお休みです",
+        "closed": "要確認",
+        "url": "https://www.city.nagaoka.niigata.jp/suidou/suidou/manhole.html",
+        "lat": 37.44849,
+        "lng": 138.848648,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "新潟県長岡市大手通2丁目3番地10米百俵プレイスミライエ長岡3階インフォメ-ションカウンタ-",
+        "geocodeTitle": "新潟県長岡市大手通二丁目３番地",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8Q9WCRXX+9F",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01",
+        "availabilityNote": "7月31日は未公表のイベント会場のみで配布。表示地点では初日に受け取れません"
+      }
+    ]
+  },
+  {
     "id": "15-204-a-01",
     "cardName": "三条市",
     "prefecture": "新潟県",
@@ -21852,8 +22112,8 @@
     "hours": "【平日】9:00～16:30\n【土曜日・日曜日・祝日】9:00～16:30\nただし、12/29～1/3はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/15-213-E-01.jpg",
     "series": "第29弾",
@@ -21883,7 +22143,9 @@
         "geocodeQuery": "新潟県燕市吉田西太田1934番地",
         "geocodeTitle": "新潟県燕市吉田西太田１９３４番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q9WMVFM+34"
+        "plusCode": "8Q9WMVFM+34",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-03"
       },
       {
         "id": "place-fd236e39ac",
@@ -21899,7 +22161,10 @@
         "geocodeQuery": "新潟県燕市吉田西太田1934番地",
         "geocodeTitle": "新潟県燕市吉田西太田１９３４番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q9WMVFM+34"
+        "plusCode": "8Q9WMVFM+34",
+        "distributionMode": "launch_event",
+        "startsOn": "2026-07-31",
+        "endsOn": "2026-07-31"
       },
       {
         "id": "place-98de7d9c8e",
@@ -21915,9 +22180,12 @@
         "geocodeQuery": "新潟県燕市吉田西太田1934番地",
         "geocodeTitle": "新潟県燕市吉田西太田１９３４番地",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q9WMVFM+34"
+        "plusCode": "8Q9WMVFM+34",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01"
       }
-    ]
+    ],
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "15-216-a-01",
@@ -22250,8 +22518,8 @@
     "hours": "8:30～17:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/15-224-I-01.jpg",
     "series": "第29弾",
@@ -22265,7 +22533,8 @@
     "geocodeQuery": "新潟県佐渡市河原田本町394番地",
     "geocodeTitle": "新潟県佐渡市河原田本町３９４番地",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q9WX8XC+7W"
+    "plusCode": "8Q9WX8XC+7W",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "15-227-a-01",
@@ -25722,8 +25991,8 @@
     "hours": "9:00～17:00\nただし、毎週月曜日（祝日を除く）、休日の翌日、12/29から1/3はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/20-218-D-01.jpg",
     "series": "第29弾",
@@ -25737,7 +26006,8 @@
     "geocodeQuery": "長野県千曲市上山田温泉三丁目1番地1",
     "geocodeTitle": "長野県千曲市上山田温泉三丁目１番",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q8WF4HW+77"
+    "plusCode": "8Q8WF4HW+77",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "20-219-a-01",
@@ -26811,6 +27081,76 @@
     "plusCode": "8Q7VGG23+FH"
   },
   {
+    "id": "21-206-b-01",
+    "cardName": "中津川市 B001",
+    "prefecture": "岐阜県",
+    "municipality": "中津川市",
+    "place": "にぎわい特産館（にぎわいプラザ1階）",
+    "address": "岐阜県中津川市栄町1-1",
+    "lat": 35.50122,
+    "lng": 137.50378,
+    "hours": "9:00～21:30\nただし、年末年始（12/29～1/3）、施設点検日（2月第3火曜日）はお休みです",
+    "closed": "要確認",
+    "condition": "配布開始直後は事前抽選当選者限定。一般先着配布は8月下旬予定",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/21-206-B-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "facilityUrl": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+    "stockUrl": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+    "geocodeQuery": "岐阜県中津川市栄町1-1",
+    "geocodeTitle": "にぎわい特産館（中津川市公式初回会場・施設検索照合・手動補正）",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8Q7VGG23+FG",
+    "distributionStartsOn": "2026-07-31",
+    "distributionPlaces": [
+      {
+        "id": "place-4b7e2606fb",
+        "name": "にぎわい特産館（にぎわいプラザ1階）",
+        "address": "岐阜県中津川市栄町1-1",
+        "days": "事前抽選当選者のみ",
+        "hours": "10:00～16:00",
+        "closed": "",
+        "url": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+        "lat": 35.50122,
+        "lng": 137.50378,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "岐阜県中津川市栄町1-1",
+        "geocodeTitle": "にぎわい特産館（中津川市公式初回会場・施設検索照合・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8Q7VGG23+FG",
+        "distributionMode": "limited",
+        "startsOn": "2026-07-31",
+        "endsOn": "2026-08-21",
+        "availabilityNote": "事前抽選当選者のみ。グループにより受取開始日は7月31日・8月1日・8月2日"
+      },
+      {
+        "id": "place-4e93f82792",
+        "name": "中津川市ひと・まちテラス",
+        "address": "岐阜県中津川市新町2-34",
+        "days": "",
+        "hours": "9:00～21:30\nただし、年末年始（12/29～1/3）、施設点検日（2月第3火曜日）はお休みです",
+        "closed": "要確認",
+        "url": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+        "lat": 35.497948,
+        "lng": 137.505371,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "岐阜県中津川市新町2-34",
+        "geocodeTitle": "岐阜県中津川市新町２番３４号",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8Q7VFGX4+54",
+        "distributionMode": "regular",
+        "availabilityNote": "8月下旬から先着配布予定。開始日と詳細は未確定"
+      }
+    ]
+  },
+  {
     "id": "21-210-a-01",
     "cardName": "恵那市 A001",
     "prefecture": "岐阜県",
@@ -27356,6 +27696,77 @@
     "geocodeTitle": "岐阜県池田町六之井１４６８番地",
     "geocodedAt": "2026-07-05",
     "plusCode": "8Q7RCHRF+RG"
+  },
+  {
+    "id": "21-505-a-01",
+    "cardName": "八百津町 A001",
+    "prefecture": "岐阜県",
+    "municipality": "八百津町",
+    "place": "八百津町港町公民館前",
+    "address": "岐阜県加茂郡八百津町八百津4037-1",
+    "lat": 35.472233,
+    "lng": 137.140092,
+    "hours": "8:30～17:15",
+    "closed": "要確認",
+    "condition": "8月1日の記念セレモニー終了後に配布開始。役場は同日10時30分開始",
+    "stock": "配布開始前",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/21-505-A-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "facilityUrl": "https://www.town.yaotsu.lg.jp/7629.htm",
+    "stockUrl": "https://www.town.yaotsu.lg.jp/7629.htm",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+    "geocodeQuery": "岐阜県加茂郡八百津町八百津4037-1",
+    "geocodeTitle": "八百津町港町公民館前（八百津町公式地図座標・手動補正）",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "8Q7VF4CR+V2",
+    "distributionStartsOn": "2026-08-01",
+    "distributionPlaces": [
+      {
+        "id": "place-5877d4707e",
+        "name": "八百津町港町公民館前",
+        "address": "岐阜県加茂郡八百津町八百津4037-1",
+        "days": "2026年8月1日",
+        "hours": "10:00からの記念セレモニー終了後",
+        "closed": "",
+        "url": "https://www.town.yaotsu.lg.jp/7629.htm",
+        "lat": 35.472233,
+        "lng": 137.140092,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "岐阜県加茂郡八百津町八百津4037-1",
+        "geocodeTitle": "八百津町港町公民館前（八百津町公式地図座標・手動補正）",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8Q7VF4CR+V2",
+        "distributionMode": "launch_event",
+        "startsOn": "2026-08-01",
+        "endsOn": "2026-08-01",
+        "availabilityNote": "記念セレモニー終了後に会場で配布開始"
+      },
+      {
+        "id": "place-55daf2e8b7",
+        "name": "八百津町役場本庁舎 水道環境課",
+        "address": "岐阜県加茂郡八百津町八百津3903番地2",
+        "days": "",
+        "hours": "8:30～17:15",
+        "closed": "要確認",
+        "url": "https://www.town.yaotsu.lg.jp/7629.htm",
+        "lat": 35.476372,
+        "lng": 137.141068,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "岐阜県加茂郡八百津町八百津3903番地2",
+        "geocodeTitle": "岐阜県八百津町八百津３９０３番地",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "8Q7VF4GR+GC",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01",
+        "availabilityNote": "初日のみ10:30開始。通常は8:30～17:15"
+      }
+    ]
   },
   {
     "id": "22-100-a-01",
@@ -27986,8 +28397,8 @@
     "hours": "10:00～17:00\nただし、休業日はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/22-210-C-01.jpg",
     "series": "第29弾",
@@ -28001,7 +28412,8 @@
     "geocodeQuery": "静岡県富士市鮫島118-10",
     "geocodeTitle": "静岡県富士市鮫島１１８番地",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q7W4MQG+JV"
+    "plusCode": "8Q7W4MQG+JV",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "22-211-a-01",
@@ -28271,8 +28683,8 @@
     "hours": "8:00～18:00\n年中無休※臨時休業する場合があります。最新情報は道の駅潮見坂ウェブサイトをご確認ください",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/22-221-B-01.jpg",
     "series": "第29弾",
@@ -28286,7 +28698,8 @@
     "geocodeQuery": "静岡県湖西市白須賀1896-2",
     "geocodeTitle": "静岡県湖西市白須賀１８９６番地",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q6VMFGX+X4"
+    "plusCode": "8Q6VMFGX+X4",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "22-225-a-01",
@@ -32212,8 +32625,8 @@
     "hours": "10:00～16:00\nただし、月曜日（祝日の場合は開館）、年末年始（令和8年12月28日～令和9年1月4日）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/25-209-C-01.jpg",
     "series": "第29弾",
@@ -32227,7 +32640,8 @@
     "geocodeQuery": "滋賀県甲賀市甲南町竜法師600番地",
     "geocodeTitle": "滋賀県甲賀市甲南町竜法師６００番地",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q6RW59C+V6"
+    "plusCode": "8Q6RW59C+V6",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "25-210-a-01",
@@ -36286,8 +36700,8 @@
     "hours": "【3月～10月】9:00～18:00\n【11月～2月】9:00～17:00\nただし、年末年始（12/31～1/1）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/28-100-D-01.jpg",
     "series": "第29弾",
@@ -36301,7 +36715,8 @@
     "geocodeQuery": "兵庫県神戸市中央区北野町3-10-20",
     "geocodeTitle": "兵庫県神戸市中央区北野町三丁目１０番２０号",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q6QP52Q+HW"
+    "plusCode": "8Q6QP52Q+HW",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "28-201-a-01",
@@ -40923,8 +41338,8 @@
     "hours": "①10:00～16:00\nただし、第1・3水曜日、年末年始、10月上旬に開催される酒まつり期間中はお休みです\n②8：30～17：15\nただし、土日祝祭日、年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/34-212-C-01.jpg",
     "series": "第29弾",
@@ -40947,7 +41362,9 @@
         "geocodeQuery": "広島県東広島市西条本町17-1",
         "geocodeTitle": "広島県東広島市西条本町１７番１号",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q6JCPHW+VP"
+        "plusCode": "8Q6JCPHW+VP",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31"
       },
       {
         "id": "place-fd93129de5",
@@ -40963,7 +41380,8 @@
         "geocodeQuery": "広島県東広島市西条栄町8-29本館7F",
         "geocodeTitle": "広島県東広島市西条栄町８番",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q6JCPGV+M9"
+        "plusCode": "8Q6JCPGV+M9",
+        "distributionMode": "fallback"
       }
     ],
     "facilityUrl": "https://higashihiroshima-kanko.jp/spot/sakaguradori-tourist-info/",
@@ -40972,7 +41390,8 @@
     "geocodeQuery": "広島県東広島市西条本町17-1",
     "geocodeTitle": "広島県東広島市西条本町１７番１号",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q6JCPHW+VP"
+    "plusCode": "8Q6JCPHW+VP",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "34-213-a-01",
@@ -45007,8 +45426,8 @@
     "hours": "【平日】9:00～16:30\n年末年始はお休みです\n【土日、祝日】10:30～16:30\n水曜日が祝日の場合と年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらをご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/40-204-A-01.jpg",
     "series": "第29弾",
@@ -45031,7 +45450,9 @@
         "geocodeQuery": "福岡県直方市殿町7-1",
         "geocodeTitle": "福岡県直方市殿町７番１号",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q5GPPVH+VQ"
+        "plusCode": "8Q5GPPVH+VQ",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31"
       },
       {
         "id": "place-40cca0bbbb",
@@ -45047,7 +45468,9 @@
         "geocodeQuery": "福岡県直方市古町5-35",
         "geocodeTitle": "福岡県直方市古町５番３５号",
         "geocodedAt": "2026-07-14",
-        "plusCode": "8Q5GPPXH+64"
+        "plusCode": "8Q5GPPXH+64",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01"
       }
     ],
     "facilityUrl": "https://www.city.nogata.fukuoka.jp/",
@@ -45056,7 +45479,8 @@
     "geocodeQuery": "福岡県直方市殿町7-1",
     "geocodeTitle": "福岡県直方市殿町７番１号",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q5GPPVH+VQ"
+    "plusCode": "8Q5GPPVH+VQ",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "40-207-a-01",
@@ -48316,8 +48740,8 @@
     "hours": "8:00～17:30",
     "closed": "要確認",
     "condition": "公式情報を確認",
-    "stock": "こちらからご確認ください",
-    "status": "配布中",
+    "stock": "配布開始前",
+    "status": "配布開始前",
     "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=46#mhcard_result",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/46-215-B-01.jpg",
     "series": "第29弾",
@@ -48331,7 +48755,8 @@
     "geocodeQuery": "鹿児島県薩摩川内市下甑町長浜913番4号",
     "geocodeTitle": "下甑島観光案内所（薩摩川内市公式位置図・施設検索照合・手動補正）",
     "geocodedAt": "2026-07-14",
-    "plusCode": "8Q3FPP2Q+VC"
+    "plusCode": "8Q3FPP2Q+VC",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "46-215-a-01",
@@ -49138,6 +49563,76 @@
     "geocodeTitle": "沖縄県うるま市兼箇段８９６番地",
     "geocodedAt": "2026-07-05",
     "plusCode": "7QR99R9R+M9"
+  },
+  {
+    "id": "47-214-a-01",
+    "cardName": "宮古島市 A001",
+    "prefecture": "沖縄県",
+    "municipality": "宮古島市",
+    "place": "宮古島市 下水道課",
+    "address": "沖縄県宮古島市平良字西仲宗根565-6",
+    "lat": 24.812847,
+    "lng": 125.296478,
+    "hours": "【平日】9:00～17:00\n【土日】10:00～17:30\nただし、祝日、閉館日、年末年始はお休みです",
+    "closed": "要確認",
+    "condition": "GKP掲載の配布予定窓口。自治体公式カードページは未掲載",
+    "stock": "準備中（GKP、2026-07-14確認）",
+    "status": "配布開始前",
+    "sourceUrl": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+    "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/47-214-A-01.jpg",
+    "series": "第29弾",
+    "issuedOn": "2026/07/31",
+    "sourceType": "gkp_prefecture_page",
+    "coordinateAccuracy": "address",
+    "updatedAt": "2026-07-14",
+    "distributionPlaces": [
+      {
+        "id": "place-200cf1c5fa",
+        "name": "宮古島市 下水道課",
+        "address": "沖縄県宮古島市平良字西仲宗根565-6",
+        "days": "平日",
+        "hours": "9:00～17:00",
+        "closed": "",
+        "url": "https://www.city.miyakojima.lg.jp/soshiki/shityo/kankyoueisei/gesuidou/",
+        "lat": 24.812847,
+        "lng": 125.296478,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "沖縄県宮古島市平良字西仲宗根565-6",
+        "geocodeTitle": "沖縄県宮古島市平良西仲宗根５６５番地",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "7QP7R77W+4H",
+        "distributionMode": "regular",
+        "startsOn": "2026-07-31",
+        "availabilityNote": "GKP在庫表示は準備中。配布開始前に公式情報を再確認"
+      },
+      {
+        "id": "place-8ff7e40c9a",
+        "name": "宮古島市未来創造センター",
+        "address": "沖縄県宮古島市平良字東仲宗根807",
+        "days": "土日",
+        "hours": "10:00～17:30",
+        "closed": "祝日、閉館日、年末年始はお休みです",
+        "url": "https://www.city.miyakojima.lg.jp/soshiki/kyouiku/syougaigakusyu/miraisouzou/",
+        "lat": 24.801834,
+        "lng": 125.290588,
+        "coordinateAccuracy": "address",
+        "geocodeQuery": "沖縄県宮古島市平良字東仲宗根807",
+        "geocodeTitle": "沖縄県宮古島市平良東仲宗根８０７番地",
+        "geocodedAt": "2026-07-14",
+        "plusCode": "7QP7R72R+P6",
+        "distributionMode": "regular",
+        "startsOn": "2026-08-01",
+        "availabilityNote": "GKP在庫表示は準備中。配布開始前に公式情報を再確認"
+      }
+    ],
+    "facilityUrl": "https://www.city.miyakojima.lg.jp/soshiki/shityo/kankyoueisei/gesuidou/",
+    "stockUrl": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+    "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+    "geocodeQuery": "沖縄県宮古島市平良字西仲宗根565-6",
+    "geocodeTitle": "沖縄県宮古島市平良西仲宗根５６５番地",
+    "geocodedAt": "2026-07-14",
+    "plusCode": "7QP7R77W+4H",
+    "distributionStartsOn": "2026-07-31"
   },
   {
     "id": "47-308-a-01",
