@@ -2,6 +2,13 @@
 
 Preserve unrelated user changes in this repository. The worktree may contain active data and geocoding work; do not rewrite, stage, discard, or commit those changes unless the user explicitly includes them in the current task.
 
+## Change authorization
+
+- Treat requests framed as investigation, confirmation, explanation, reconsideration, consideration, opinion, or review (`調査`, `確認`, `説明`, `再考`, `検討`, `意見`, `レビュー`) as read-only unless the user also gives an explicit implementation instruction.
+- Finding a root cause or a likely fix does not authorize a repository change. Report the evidence, options, tradeoffs, and affected scope, then wait for an explicit instruction such as `修正`, `実装`, or `採用`.
+- Do not change product features, UI behavior, data policy, external providers, dependencies, deployment configuration, or operational workflows solely because an investigation suggests an improvement.
+- When implementation is explicitly authorized, keep it within the adopted scope. Do not bundle adjacent feature or policy changes without separate approval.
+
 ## Web discovery
 
 - Use `./tools/web-search.sh QUERY` for ordinary public-web discovery. Do not use the platform's built-in web search or scrape Google, Bing, or DuckDuckGo HTML result pages.
