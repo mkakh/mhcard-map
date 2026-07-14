@@ -1,16 +1,42 @@
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import {
+  addressInputIssues,
+  backlogShardIndex,
+  collectGeocodePrecisionCandidates,
+  collectGeocodeReviewBacklog,
+  distanceMeters,
+  geocodeCandidateKey,
+  googleMapsCoordinateUrl,
+  isManuallyReviewedGeocodeTitle,
+  selectGeocodeReviewBatch
+} from "./geocode-precision-utils.js";
+import { collectGeocodeReviewEntries, filterChangedLocations } from "./location-change-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const outputPath = join(process.cwd(), ".tmp", "location-update-summary.md");
+const reviewCommentsPath = join(process.cwd(), ".tmp", "location-update-review-comments.json");
+const appliedGeocodeReviewPath = join(process.cwd(), ".tmp", "geocode-applied-review.json");
 const dateOnlyFields = new Set(["updatedAt", "geocodedAt"]);
 const placeDateOnlyFields = new Set(["geocodedAt"]);
+const geocodeDetailFields = new Set([
+  "address",
+  "lat",
+  "lng",
+  "coordinateAccuracy",
+  "geocodeQuery",
+  "geocodeTitle",
+  "geocodeError",
+  "geocodedAt",
+  "plusCode"
+]);
 const maxRows = 30;
 const maxValueLength = 160;
 
 const before = await readBaseLocations();
 const after = JSON.parse(await readFile(dataPath, "utf8"));
+const appliedGeocodeReviews = await readOptionalJson(appliedGeocodeReviewPath, []);
 const beforeById = new Map(before.map((location) => [location.id, location]));
 const afterById = new Map(after.map((location) => [location.id, location]));
 
@@ -42,6 +68,18 @@ for (const location of after) {
 }
 
 const meaningfulChanged = changed.filter((location) => location.meaningfulFields.length > 0);
+const changedGeocodeAuditLocations = filterChangedLocations(after);
+const geocodePrecisionCandidates = collectGeocodePrecisionCandidates(changedGeocodeAuditLocations);
+const geocodeReviewChanges = collectGeocodeReviewEntries(before, after);
+const backlogShardCount = Number(process.env.BACKLOG_SHARD_COUNT || 7);
+const currentBacklogShardIndex = Number(process.env.BACKLOG_SHARD_INDEX || backlogShardIndex(backlogShardCount));
+const changedCandidateKeys = new Set(geocodeReviewChanges.map((entry) =>
+  `${entry.locationAfter?.id ?? entry.locationBefore?.id}:${entry.target}:${entry.targetId}`
+));
+const fullBacklogCandidates = collectGeocodeReviewBacklog(after);
+const allBacklogCandidates = fullBacklogCandidates
+  .filter((candidate) => !changedCandidateKeys.has(geocodeCandidateKey(candidate)));
+const backlogCandidates = selectGeocodeReviewBatch(allBacklogCandidates, backlogShardCount, currentBacklogShardIndex);
 const lines = [
   "Automated location data update.",
   "",
@@ -67,6 +105,18 @@ const lines = [
   "",
   ...reviewWarningLines(),
   "",
+  "## Changed Geocode Precision Audit",
+  "",
+  ...changedGeocodePrecisionAuditLines(),
+  "",
+  "## Weekly Unreviewed Geocode Coverage",
+  "",
+  ...weeklyGeocodeBacklogLines(false),
+  "",
+  "## Changed Geocode Review Details",
+  "",
+  ...changedGeocodeReviewDetailLines(false),
+  "",
   "## Added",
   "",
   ...locationListLines(added),
@@ -82,15 +132,36 @@ const lines = [
 
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, `${lines.join("\n")}\n`, "utf8");
+const reviewComments = reviewCommentBodies([
+  ["Weekly Unreviewed Geocode Coverage", weeklyGeocodeBacklogLines(true)],
+  ["Changed Geocode Review Details", changedGeocodeReviewDetailLines(true)],
+  ["Applied Geocode Review Evidence", appliedGeocodeReviewEvidenceLines()]
+]);
+await writeFile(reviewCommentsPath, `${JSON.stringify(reviewComments, null, 2)}\n`, "utf8");
 console.log(`Wrote update summary to ${outputPath}`);
+console.log(`Wrote ${reviewComments.length} review comment chunk(s) to ${reviewCommentsPath}`);
 
 async function readBaseLocations() {
-  const content = execFileSync("git", ["show", "HEAD:data/locations.json"], {
+  const baseRef = process.env.GEOCODE_CHANGED_BASE || "HEAD";
+  const result = spawnSync("git", ["show", `${baseRef}:data/locations.json`], {
     cwd: process.cwd(),
     encoding: "utf8",
     maxBuffer: 50 * 1024 * 1024
   });
+  const content = result.stdout;
+  if (!content) {
+    throw new Error(`Failed to read ${baseRef}:data/locations.json`);
+  }
   return JSON.parse(content);
+}
+
+async function readOptionalJson(path, fallback) {
+  try {
+    return JSON.parse(await readFile(path, "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return fallback;
+    throw error;
+  }
 }
 
 function fieldCountLines() {
@@ -125,8 +196,238 @@ function manualCodexReviewLines() {
   return lines;
 }
 
+function changedGeocodePrecisionAuditLines() {
+  const lines = [
+    `- Changed/added records inspected: ${changedGeocodeAuditLocations.length}`,
+    `- Legacy heuristic candidates: ${geocodePrecisionCandidates.length}`,
+    "- This heuristic is informational only; it never excludes, approves, or prioritizes a target."
+  ];
+
+  if (geocodePrecisionCandidates.length === 0) {
+    lines.push("- No changed/added records triggered the legacy address-shortening heuristic.");
+    return lines;
+  }
+
+  lines.push("", "Review these changed/added records before merging:");
+  lines.push(
+    ...geocodePrecisionCandidates.map((candidate) =>
+      `- ${candidate.severity} ${candidate.id} ${candidate.cardName} ${candidate.kind}/${candidate.targetId}: ${candidate.reasons.join("; ")} (${formatValue(candidate.geocodeQuery)} -> ${formatValue(candidate.geocodeTitle)})`
+    )
+  );
+
+  return lines;
+}
+
+function weeklyGeocodeBacklogLines(includeDetails = true) {
+  const lines = [
+    `- Total unreviewed targets: ${fullBacklogCandidates.length}`,
+    `- Already shown in changed-target details: ${fullBacklogCandidates.length - allBacklogCandidates.length}`,
+    `- Unchanged backlog targets: ${allBacklogCandidates.length}`,
+    `- Weekly shard: ${currentBacklogShardIndex + 1}/${backlogShardCount}`,
+    `- Targets in this PR review shard: ${backlogCandidates.length}`,
+    "- Objective errors are shown every week; only routine unreviewed targets are sharded.",
+    "- Every unreviewed target is covered even when the old address-shortening heuristic considers it harmless.",
+    "- This section requests review only. No search or external geocoder result is applied automatically."
+  ];
+
+  if (backlogCandidates.length === 0) {
+    lines.push("- No candidates in this week's shard.");
+    return lines;
+  }
+
+  if (!includeDetails) {
+    lines.push("- Full target rows are synchronized to PR review-detail comments.");
+    return lines;
+  }
+
+  lines.push(
+    "",
+    "| severity | target | place / address | coordinates | map | reason |",
+    "| --- | --- | --- | --- | --- | --- |",
+    ...backlogCandidates.map((candidate) => [
+      candidate.severity,
+      `${candidate.id} ${candidate.kind}/${candidate.targetId}`,
+      `${candidate.place} / ${candidate.address}`,
+      coordinateValue(candidate),
+      mapLink(candidate, "map"),
+      candidate.reasons.join("; ")
+    ].map(markdownCell).join(" | ").replace(/^/, "| ").replace(/$/, " |"))
+  );
+  return lines;
+}
+
+function changedGeocodeReviewDetailLines(includeDetails = true) {
+  const entries = geocodeReviewChanges;
+  if (entries.length === 0) return ["No address or coordinate changes detected."];
+
+  const summary = [
+    `- Address/coordinate/geocode changes: ${entries.length}`,
+    "- Address text is shown once when unchanged and as before -> after when changed."
+  ];
+  if (!includeDetails) {
+    summary.push("- Full before/after rows are synchronized to PR review-detail comments.");
+    return summary;
+  }
+
+  return [
+    ...summary,
+    "",
+    "| target | address before -> after | coordinates before -> after | movement | maps | official sources | review |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+    ...entries.map((entry) => [
+      geocodeEntryLabel(entry),
+      beforeAfterValue(entry.before?.address, entry.after?.address),
+      `${coordinateValue(entry.before)} -> ${coordinateValue(entry.after)}`,
+      movementValue(entry.before, entry.after),
+      `${mapLink(entry.before, "before")} / ${mapLink(entry.after, "after")}`,
+      sourceLinkList(entrySourceUrls(entry)),
+      `${geocodeReviewSource(entry.after?.geocodeTitle ?? entry.before?.geocodeTitle)} ${formatValue(entry.after?.geocodedAt ?? entry.after?.updatedAt ?? entry.locationAfter?.updatedAt)}`
+    ].map(markdownCell).join(" | ").replace(/^/, "| ").replace(/$/, " |"))
+  ];
+}
+
+function appliedGeocodeReviewEvidenceLines() {
+  if (!Array.isArray(appliedGeocodeReviews) || appliedGeocodeReviews.length === 0) {
+    return ["No newly applied manual geocode decisions were recorded."];
+  }
+
+  return [
+    `- Explicitly reviewed and applied targets: ${appliedGeocodeReviews.length}`,
+    "- A row is applied only when the official page, coordinate source, evidence, review date, and notes are explicit.",
+    "",
+    "| target | place / address | official source | coordinate evidence | reviewed | notes |",
+    "| --- | --- | --- | --- | --- | --- |",
+    ...appliedGeocodeReviews.map((entry) => [
+      `${entry.id} ${entry.target}/${entry.targetId || entry.id}`,
+      `${currentReviewTarget(entry)?.place || currentReviewTarget(entry)?.name || entry.place || entry.cardName || ""} / ${currentReviewTarget(entry)?.address || entry.address || ""}`,
+      sourceLink(entry.reviewedOfficialUrl, "official"),
+      `${entry.source || ""}: ${entry.reviewedCoordinateEvidence || ""}`,
+      entry.reviewedAt || "",
+      entry.reviewNotes || ""
+    ].map(markdownCell).join(" | ").replace(/^/, "| ").replace(/$/, " |"))
+  ];
+}
+
+function currentReviewTarget(entry) {
+  const location = afterById.get(entry.id);
+  if (!location) return null;
+  if (entry.target === "location") return location;
+  if (!Array.isArray(location[entry.target])) return null;
+  return location[entry.target].find((target) => target.id === entry.targetId) ?? null;
+}
+
+function reviewCommentBodies(sections, maxBytes = 55000) {
+  const chunks = [];
+  let current = [];
+  let currentBytes = 0;
+
+  for (const [title, sectionLines] of sections) {
+    const lines = [`## ${title}`, "", ...sectionLines, ""];
+    for (const line of lines) {
+      const lineBytes = Buffer.byteLength(`${line}\n`, "utf8");
+      if (current.length > 0 && currentBytes + lineBytes > maxBytes) {
+        chunks.push(current.join("\n"));
+        current = [];
+        currentBytes = 0;
+      }
+      current.push(line);
+      currentBytes += lineBytes;
+    }
+  }
+  if (current.length > 0) chunks.push(current.join("\n"));
+
+  return chunks.map((body, index) =>
+    `<!-- location-review-detail:${index + 1}/${chunks.length} -->\n${body}`
+  );
+}
+
+function beforeAfterValue(beforeValue, afterValue) {
+  const beforeText = formatValue(beforeValue);
+  const afterText = formatValue(afterValue);
+  return beforeText === afterText ? afterText : `${beforeText} -> ${afterText}`;
+}
+
+function markdownCell(value) {
+  return String(value ?? "").replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+}
+
+function geocodeReviewSource(value) {
+  const title = String(value ?? "");
+  if (/手動補正/.test(title)) return "manual review";
+  if (/公式アクセス地図|公式地図/.test(title)) return "official embedded-map review candidate";
+  if (/Nominatim確認/.test(title)) return "Nominatim review candidate";
+  return "geocoder result";
+}
+
+function coordinateValue(value) {
+  if (!Number.isFinite(Number(value?.lat)) || !Number.isFinite(Number(value?.lng))) return "(missing)";
+  return `${value.lat}, ${value.lng}`;
+}
+
+function movementValue(beforeValue, afterValue) {
+  const meters = distanceMeters(beforeValue, afterValue);
+  if (!Number.isFinite(meters)) return "(not comparable)";
+  if (meters < 1000) return `${Math.round(meters)} m`;
+  return `${(meters / 1000).toFixed(2)} km`;
+}
+
+function mapLink(value, label) {
+  const url = googleMapsCoordinateUrl(value);
+  return url ? `[${label}](${url})` : "(missing)";
+}
+
+function geocodeEntryLabel(entry) {
+  const location = entry.locationAfter ?? entry.locationBefore;
+  const locationText = locationLabel(location);
+  if (entry.target === "location") return locationText;
+  return `${locationText} / ${entry.target}/${entry.targetId} ${entry.place}`.trim();
+}
+
+function entrySourceUrls(entry) {
+  const location = entry.locationAfter ?? entry.locationBefore ?? {};
+  const target = entry.after ?? entry.before ?? {};
+  return sourceUrls(location, target);
+}
+
+function sourceUrls(location, place = {}) {
+  return [
+    place.facilityUrl,
+    place.stockUrl,
+    place.conditionUrl,
+    location.facilityUrl,
+    location.stockUrl,
+    location.conditionUrl,
+    location.sourceUrl
+  ]
+    .filter((url) => /^https?:\/\//.test(String(url ?? "")))
+    .filter((url, index, urls) => urls.indexOf(url) === index);
+}
+
+function sourceLinkList(urls) {
+  if (urls.length === 0) return "(missing)";
+  return urls.map((url, index) => sourceLink(url, `source ${index + 1}`)).join(" / ");
+}
+
+function sourceLink(url, label) {
+  return /^https?:\/\//.test(String(url ?? "")) ? `[${label}](${url})` : "(missing)";
+}
+
 function reviewWarningLines() {
   const warnings = [];
+
+  for (const entry of geocodeReviewChanges) {
+    const title = String(entry.after?.geocodeTitle ?? "");
+    for (const [field, value] of [["address", entry.after?.address], ["geocodeQuery", entry.after?.geocodeQuery]]) {
+      for (const issue of addressInputIssues(value)) {
+        warnings.push(`- ${geocodeEntryLabel(entry)}: ${field} ${issue}.`);
+      }
+    }
+    if (/Nominatim確認/.test(title)) {
+      warnings.push(`- ${geocodeEntryLabel(entry)}: Nominatim is a reference candidate, not official proof. Verify the coordinate against an official card-level source.`);
+    } else if (/(?:公式アクセス地図|公式地図)/.test(title) && !isManuallyReviewedGeocodeTitle(title)) {
+      warnings.push(`- ${geocodeEntryLabel(entry)}: an embedded map coordinate still needs card-level manual confirmation.`);
+    }
+  }
 
   for (const location of meaningfulChanged) {
     const before = location.before;
@@ -135,7 +436,7 @@ function reviewWarningLines() {
 
     if (before.facilityUrl && !after.facilityUrl) {
       warnings.push(`- ${label}: facilityUrl was removed (${before.facilityUrl}). Verify the new distribution facility URL or add a verified source override.`);
-    } else if ((location.fields.includes("place") || location.fields.includes("address")) && !after.facilityUrl) {
+    } else if ((location.fields.includes("place") || location.fields.includes("address")) && !after.facilityUrl && !hasOfficialReviewUrl(after)) {
       warnings.push(`- ${label}: place/address changed but facilityUrl is missing. Verify whether the new distribution place has an official facility page.`);
     }
 
@@ -147,7 +448,11 @@ function reviewWarningLines() {
       warnings.push(`- ${label}: closure text was removed from hours. Verify weekend/holiday or year-end distribution handling before merging.`);
     }
 
-    if (location.meaningfulFields.some((field) => ["geocodeQuery", "geocodeTitle"].includes(field)) && hasGeocodePrecisionWarning(before, after)) {
+    if (
+      location.meaningfulFields.some((field) => ["geocodeQuery", "geocodeTitle"].includes(field)) &&
+      !/(?:Nominatim確認|公式アクセス地図|公式地図)/.test(String(after.geocodeTitle ?? "")) &&
+      hasGeocodePrecisionWarning(before, after)
+    ) {
       warnings.push(`- ${label}: geocodeTitle is less specific than geocodeQuery (${formatValue(after.geocodeQuery)} -> ${formatValue(after.geocodeTitle)}). Verify coordinates before merging.`);
     }
 
@@ -186,10 +491,16 @@ function isGkpOnlyLocation(location) {
 
 function isGkpUrl(value) {
   try {
-    return new URL(value).hostname.endsWith("gk-p.jp");
+    const hostname = new URL(value).hostname;
+    return hostname === "gk-p.jp" || hostname.endsWith(".gk-p.jp");
   } catch {
     return false;
   }
+}
+
+function hasOfficialReviewUrl(location) {
+  return [location.facilityUrl, location.stockUrl, location.conditionUrl]
+    .some((url) => /^https?:\/\//.test(String(url ?? "")) && !isGkpUrl(url));
 }
 
 function hasOfficialDesignNames(location) {
@@ -202,14 +513,17 @@ function locationListLines(locations) {
 }
 
 function contentChangeLines() {
-  if (meaningfulChanged.length === 0) return ["Only update timestamp fields changed."];
+  const contentChanges = meaningfulChanged
+    .map((location) => ({ ...location, contentFields: contentFields(location) }))
+    .filter((location) => location.contentFields.length > 0);
+  if (contentChanges.length === 0) return ["All content changes are address/geocode changes listed above."];
 
-  const rows = meaningfulChanged.slice(0, maxRows).flatMap((location) => [
+  const rows = contentChanges.slice(0, maxRows).flatMap((location) => [
     `### ${locationLabel(location)}`,
     "",
-    `Changed fields: ${location.meaningfulFields.join(", ")}`,
+    `Changed fields: ${location.contentFields.join(", ")}`,
     "",
-    ...location.meaningfulFields.flatMap((field) => field === "distributionPlaces"
+    ...location.contentFields.flatMap((field) => field === "distributionPlaces" || field === "englishVersionDistributionPlaces"
       ? distributionPlaceChangeLines(location.before[field], location.after[field])
       : [
           `- ${field}`,
@@ -219,11 +533,33 @@ function contentChangeLines() {
     ""
   ]);
 
-  if (meaningfulChanged.length > maxRows) {
-    rows.push(`Additional content changes omitted: ${meaningfulChanged.length - maxRows}`);
+  if (contentChanges.length > maxRows) {
+    rows.push(`Additional content changes omitted: ${contentChanges.length - maxRows}`);
   }
 
   return rows;
+}
+
+function contentFields(location) {
+  return location.meaningfulFields.filter((field) => {
+    if (geocodeDetailFields.has(field)) return false;
+    if (field === "distributionPlaces" || field === "englishVersionDistributionPlaces") {
+      return JSON.stringify(stripPlaceReviewFields(location.before[field])) !== JSON.stringify(stripPlaceReviewFields(location.after[field]));
+    }
+    return true;
+  });
+}
+
+function stripPlaceReviewFields(value) {
+  if (Array.isArray(value)) return value.map(stripPlaceReviewFields);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([field]) => !geocodeDetailFields.has(field))
+        .map(([field, fieldValue]) => [field, stripPlaceReviewFields(fieldValue)])
+    );
+  }
+  return value;
 }
 
 function locationLabel(location) {
@@ -253,6 +589,7 @@ function distributionPlaceChangeLines(before, after) {
       after,
       fields: [...new Set([...Object.keys(before), ...Object.keys(after)])]
         .filter((field) => !placeDateOnlyFields.has(field))
+        .filter((field) => !geocodeDetailFields.has(field))
         .filter((field) => JSON.stringify(before[field]) !== JSON.stringify(after[field]))
     }))
     .filter((entry) => entry.fields.length > 0);
@@ -309,10 +646,15 @@ function hasClosureTextRemoved(before, after) {
 function hasGeocodePrecisionWarning(before, after) {
   if (!after.geocodeQuery || !after.geocodeTitle) return false;
   if (before.geocodeQuery === after.geocodeQuery && before.geocodeTitle === after.geocodeTitle) return false;
+  if (isReviewedGeocodeTitle(after.geocodeTitle)) return false;
   if (hasAzaPrecisionLoss(after.geocodeQuery, after.geocodeTitle)) return true;
   if (!hasAddressNumber(after.geocodeQuery)) return false;
   if (!hasAddressNumber(after.geocodeTitle)) return true;
   return addressNumberCount(after.geocodeTitle) < addressNumberCount(after.geocodeQuery);
+}
+
+function isReviewedGeocodeTitle(value) {
+  return isManuallyReviewedGeocodeTitle(value);
 }
 
 function suspiciousDistributionPlaces(places) {

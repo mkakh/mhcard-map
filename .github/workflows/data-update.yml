@@ -38,6 +38,8 @@ jobs:
         run: npm run normalize:links
       - name: Geocode locations
         run: npm run geocode
+      - name: Sync reviewed geocode cache
+        run: npm run sync:geocode-review-cache
       - name: Generate Plus Codes
         run: npm run update:codes
       - name: Import Google Form responses
@@ -46,9 +48,14 @@ jobs:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
       - name: Validate generated data
         run: npm run validate:data
+      - name: Run legacy changed-geocode heuristic (informational)
+        run: npm run audit:geocode-precision:changed
+      - name: Audit weekly unreviewed geocode shard
+        run: npm run audit:geocode-review:backlog
       - name: Summarize location changes
         run: node scripts/summarize-location-diff.js
       - name: Create update pull request
+        id: create-pr
         uses: peter-evans/create-pull-request@v6
         with:
           branch: automation/location-data-update
@@ -56,3 +63,8 @@ jobs:
           commit-message: "chore: update location data"
           body-path: .tmp/location-update-summary.md
           reviewers: mkakh
+      - name: Sync geocode review detail comments
+        if: steps.create-pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-location-review-comments.js "${{ steps.create-pr.outputs.pull-request-number }}"
