@@ -1160,7 +1160,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
         "paused",
         "#b68421",
         "upcoming",
-        "#2f75b5",
+        "#b83272",
         "review",
         "#6f5aa8",
         "stopped-known",
