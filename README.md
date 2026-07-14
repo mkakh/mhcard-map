@@ -45,13 +45,13 @@ http://localhost:4173
 
 配布場所データは `data/locations.json` から読み込みます。
 
-現在のJSONはGKPの都道府県別検索ページから生成しています。
+現在のJSONはGKPの都道府県別検索ページをカタログ基盤として生成し、官公庁・公的機関の公式ページから先に確認できた監査済みレコードも保持できます。GKP掲載は新規カード追加の必須条件ではありません。
 
 ```bash
 npm run import:gkp
 ```
 
-インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。
+インポートスクリプトは `.tmp/gkp/pref-XX.html` の取得済みHTMLを読み取り、存在しない場合はGKPの都道府県別検索ページを取得してから `data/locations.json` を生成します。`sourceType: "official_public_body_page"` のレコードはGKP未掲載でも削除せず、後からGKPに掲載された場合も公式ページの配布情報を優先します。
 
 住所ジオコーディングは以下で実行します。
 

@@ -10,6 +10,7 @@ import {
   isManuallyReviewedGeocodeTitle
 } from "./geocode-precision-utils.js";
 import { collectGeocodeReviewEntries, filterChangedLocations } from "./location-change-utils.js";
+import { isOfficialPublicBodyLocation } from "./source-policy-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const outputPath = join(process.cwd(), ".tmp", "location-update-summary.md");
@@ -161,17 +162,20 @@ function fieldCountLines() {
 
 function manualCodexReviewLines() {
   const gkpOnly = after.filter((location) => isGkpOnlyLocation(location));
+  const officialFirst = after.filter((location) => isOfficialPublicBodyLocation(location));
   const missingOfficialDesignNames = after.filter((location) => !hasOfficialDesignNames(location));
   const changedSourceFields = meaningfulChanged.filter((location) =>
     location.meaningfulFields.some((field) =>
-      ["sourceUrl", "facilityUrl", "stockUrl", "conditionUrl", "officialDesignNames", "hasEnglishVersion", "englishVersionStatus", "englishVersionNote", "englishVersionUrl", "englishVersionDistributionPlaces"].includes(field)
+      ["sourceUrl", "sourceType", "facilityUrl", "stockUrl", "conditionUrl", "officialDesignNames", "hasEnglishVersion", "englishVersionStatus", "englishVersionNote", "englishVersionUrl", "englishVersionDistributionPlaces"].includes(field)
     )
   );
 
   const lines = [
     "- Codex/AI search is not run by this workflow.",
-    "- If the counts below look suspicious, run `$manhole-card-official-audit` manually and treat search results as candidates only.",
+    "- Government/public-body pages may be the first authoritative card source; GKP listing is not a prerequisite.",
+    "- If the counts below look suspicious, run `$manhole-card-official-audit` manually. Search results are discovery hints until the official page is opened and card-level identity is matched.",
     `- GKP-only source records: ${gkpOnly.length}`,
+    `- Official-first public-body records: ${officialFirst.length}`,
     `- Records without officialDesignNames: ${missingOfficialDesignNames.length}`,
     `- Source/English/official-name records changed in this PR: ${changedSourceFields.length}`
   ];
@@ -180,6 +184,12 @@ function manualCodexReviewLines() {
     lines.push("", "Top GKP-only records:");
     lines.push(...gkpOnly.slice(0, 10).map((location) => `- ${locationLabel(location)}`));
     if (gkpOnly.length > 10) lines.push(`- Additional GKP-only records omitted: ${gkpOnly.length - 10}`);
+  }
+
+  if (officialFirst.length > 0) {
+    lines.push("", "Official-first records retained independently of GKP:");
+    lines.push(...officialFirst.slice(0, 10).map((location) => `- ${locationLabel(location)}`));
+    if (officialFirst.length > 10) lines.push(`- Additional official-first records omitted: ${officialFirst.length - 10}`);
   }
 
   return lines;

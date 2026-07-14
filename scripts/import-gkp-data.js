@@ -5,6 +5,12 @@ import {
   normalizeDistributionDate,
   statusForDistributionStart
 } from "./distribution-status-utils.js";
+import {
+  GKP_SOURCE_TYPE,
+  isOfficialPublicBodyLocation,
+  reconcileOfficialPublicBodyLocation,
+  retainUnmatchedOfficialPublicBodyLocations
+} from "./source-policy-utils.js";
 
 const prefectures = [
   ["01", "北海道", 43.0642, 141.3469],
@@ -133,7 +139,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
       imageUrl: absolutizeUrl(imageUrl),
       series,
       issuedOn,
-      sourceType: "gkp_prefecture_page",
+      sourceType: GKP_SOURCE_TYPE,
       coordinateAccuracy: "prefecture_approx",
       updatedAt: today
     };
@@ -152,10 +158,17 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 }
 
 const currentIds = new Set(locations.map((location) => location.id));
+const matchedExistingIds = new Set();
 
-for (const location of locations) {
+for (const [index, location] of locations.entries()) {
   const existing = existingById.get(location.id) ?? existingByImageKey.get(imageKey(location.imageUrl));
   if (!existing) continue;
+  matchedExistingIds.add(existing.id);
+
+  if (isOfficialPublicBodyLocation(existing)) {
+    locations[index] = reconcileOfficialPublicBodyLocation(existing, location, today);
+    continue;
+  }
 
   const legacyIds = [...new Set(existing.legacyIds ?? [])].filter((id) => id !== location.id && !currentIds.has(id));
   if (existing.id && existing.id !== location.id && !currentIds.has(existing.id)) legacyIds.push(existing.id);
@@ -170,9 +183,19 @@ for (const location of locations) {
   if (hasSameImportedContent(existing, location)) location.updatedAt = existing.updatedAt || today;
 }
 
+const retainedOfficialLocations = retainUnmatchedOfficialPublicBodyLocations(
+  existingLocations,
+  matchedExistingIds,
+  today
+);
+locations.push(...retainedOfficialLocations);
+
 await mkdir(join(process.cwd(), "data"), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(locations, null, 2)}\n`, "utf8");
-console.log(`Wrote ${locations.length} locations to ${outputPath}`);
+console.log(
+  `Wrote ${locations.length} locations to ${outputPath} ` +
+  `(retained ${retainedOfficialLocations.length} official-first records not yet listed by GKP)`
+);
 
 function cleanupText(html) {
   return decodeEntities(
