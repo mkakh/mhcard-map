@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 import {
+  calendarDateInJapan,
   normalizeDistributionDate,
   statusForDistributionStart
 } from "./distribution-status-utils.js";
@@ -79,7 +80,7 @@ const prefectures = [
 const htmlDir = join(process.cwd(), ".tmp", "gkp");
 const outputPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
-const today = new Date().toISOString().slice(0, 10);
+const today = calendarDateInJapan();
 const existingLocations = await readExistingLocations();
 const gkpReviewBaseline = await readGkpReviewBaseline({
   allowMissing: process.env.GKP_REVIEW_BASELINE_BOOTSTRAP === "1"

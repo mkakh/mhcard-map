@@ -328,8 +328,11 @@ Important fields:
 
 Supported distribution statuses are `配布中`, `配布開始前`, `休止中`, and
 `要確認`. A `配布開始前` record must have `distributionStartsOn` and remains
-visible on the map with a distinct marker. Reaching the date only creates an
-imported status-change candidate; publication still requires PR review.
+visible on the map with a distinct marker. Reaching a reviewed start date
+deterministically updates the generated record, but publication still requires
+PR review. This local transition is not a new GKP observation: `status` is
+derived state, and `distributionStartsOn` remains separate from the GKP issue
+date.
 
 Distribution places may additionally define `startsOn`, `endsOn`,
 `distributionMode` (`regular`, `launch_event`, `limited`, or `fallback`), and

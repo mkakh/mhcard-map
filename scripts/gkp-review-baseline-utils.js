@@ -16,8 +16,6 @@ export const GKP_CONTENT_REVIEW_FIELDS = Object.freeze([
   "closed",
   "condition",
   "stock",
-  "status",
-  "distributionStartsOn",
   "distributionPlaces",
   "hasEnglishVersion",
   "englishVersionStatus",
@@ -31,8 +29,26 @@ export const GKP_LINK_REVIEW_FIELDS = Object.freeze([
   "stock"
 ]);
 
+// Keep the version-3 fingerprint order stable. status is locally derived, and
+// distributionStartsOn is reviewed independently from GKP's issue date, so
+// their legacy slots remain readable but are no longer GKP observations.
 export const GKP_ALL_REVIEW_FIELDS = Object.freeze([
-  ...new Set([...GKP_CONTENT_REVIEW_FIELDS, ...GKP_LINK_REVIEW_FIELDS])
+  "cardName",
+  "place",
+  "address",
+  "hours",
+  "closed",
+  "condition",
+  "stock",
+  "status",
+  "distributionStartsOn",
+  "distributionPlaces",
+  "hasEnglishVersion",
+  "englishVersionStatus",
+  "englishVersionNote",
+  "englishVersionUrl",
+  "facilityUrl",
+  "stockUrl"
 ]);
 const GKP_REVIEW_FIELD_INDEX = new Map(
   GKP_ALL_REVIEW_FIELDS.map((field, index) => [field, index])
