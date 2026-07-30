@@ -5755,7 +5755,24 @@
   "山口県下松市西豊井1247": {
     "lng": 131.873764,
     "lat": 34.014011,
-    "title": "山口県下松市西豊井"
+    "title": "山口県下松市西豊井",
+    "reviewedResults": {
+      "distributionPlaces:35-207-a-01:place-kudamatsu-a-holiday-tourism-office": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      },
+      "location:35-207-b-01": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      },
+      "distributionPlaces:35-207-b-01:place-kudamatsu-b-tourism-office": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      }
+    }
   },
   "山口県下松市大字河内字恋路10140": {
     "lng": 131.88712,
@@ -14265,7 +14282,24 @@
   "下松市西豊井1247": {
     "lng": 131.873764,
     "lat": 34.014011,
-    "title": "山口県下松市西豊井"
+    "title": "山口県下松市西豊井",
+    "reviewedResults": {
+      "distributionPlaces:35-207-a-01:place-kudamatsu-a-holiday-tourism-office": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      },
+      "location:35-207-b-01": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      },
+      "distributionPlaces:35-207-b-01:place-kudamatsu-b-tourism-office": {
+        "lng": 131.86722,
+        "lat": 34.008648,
+        "title": "下松市観光案内所（下松市公式配布先・地図検索照合・手動補正）"
+      }
+    }
   },
   "下松市大字河内字恋路10140": {
     "lng": 131.88712,
@@ -19622,6 +19656,62 @@
         "lng": 140.17308,
         "lat": 36.735786,
         "title": "那珂川町役場 西側日直室（公式配布先・地図検索照合・手動補正）"
+      }
+    }
+  },
+  "山口県宇部市朝日町8番20号": {
+    "reviewedResults": {
+      "location:35-202-b-01": {
+        "lng": 131.24468926891254,
+        "lat": 33.958658879566556,
+        "title": "新川ふれあいセンター（宇部市公式施設地図照合・手動補正）"
+      }
+    }
+  },
+  "宇部市朝日町8番20号": {
+    "reviewedResults": {
+      "location:35-202-b-01": {
+        "lng": 131.24468926891254,
+        "lat": 33.958658879566556,
+        "title": "新川ふれあいセンター（宇部市公式施設地図照合・手動補正）"
+      }
+    }
+  },
+  "山口県下松市大手町3丁目3番2号": {
+    "reviewedResults": {
+      "location:35-207-a-01": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
+      },
+      "distributionPlaces:35-207-a-01:place-kudamatsu-a-weekday-water-bureau": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
+      },
+      "distributionPlaces:35-207-b-01:place-kudamatsu-b-closure-water-bureau": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
+      }
+    }
+  },
+  "下松市大手町3丁目3番2号": {
+    "reviewedResults": {
+      "location:35-207-a-01": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
+      },
+      "distributionPlaces:35-207-a-01:place-kudamatsu-a-weekday-water-bureau": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
+      },
+      "distributionPlaces:35-207-b-01:place-kudamatsu-b-closure-water-bureau": {
+        "lng": 131.870881,
+        "lat": 34.015379,
+        "title": "下松市上下水道局 2階窓口（下松市公式施設地図照合・手動補正）"
       }
     }
   }
