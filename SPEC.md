@@ -547,7 +547,10 @@ After data edits, run `sync:geocode-review-cache`, `update:codes`,
 `validate:data`, `npm test`, and `scripts/summarize-location-diff.js`. The PR body
 stays compact; full before/after addresses, coordinates, movement, map links,
 official sources, and newly applied review evidence are synchronized as bounded,
-idempotent PR comments.
+idempotent PR comments. When a review section exceeds the comment byte budget,
+each continuation repeats the section heading. A table continuation also repeats
+its header and delimiter so every synchronized comment renders as a valid,
+independently readable Markdown table.
 
 The workflow does not directly push generated data to `main`. Generated changes
 are reviewed through a pull request.

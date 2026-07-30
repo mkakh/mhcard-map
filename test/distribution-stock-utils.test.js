@@ -11,6 +11,11 @@ test("detects a current distribution suspension", () => {
     isCurrentDistributionStopped("在庫切れとなりましたので、配布を一時中止させていただきます"),
     true
   );
+  assert.equal(
+    isCurrentDistributionStopped("令和8年熊本地震の影響により、配布を一時休止します"),
+    true
+  );
+  assert.equal(isCurrentDistributionStopped("在庫切れのため配布を停止しております"), true);
 });
 
 test("does not treat a future conditional suspension as current", () => {
