@@ -13,6 +13,7 @@
     "import:forms": "node scripts/import-form-requests.js",
     "normalize:links": "node scripts/normalize-source-links.js",
     "sync:gkp-review-issue": "node scripts/sync-gkp-review-issue.js",
+    "sync:data-validation-issue": "node scripts/sync-data-validation-issue.js",
     "acknowledge:gkp-review": "node scripts/acknowledge-gkp-review-candidates.js",
     "audit:geocode-precision": "node scripts/list-geocode-precision-candidates.js",
     "audit:geocode-precision:changed": "CHANGED_ONLY=1 node scripts/list-geocode-precision-candidates.js",

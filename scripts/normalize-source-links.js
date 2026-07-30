@@ -46,6 +46,56 @@ const verifiedDistributionSources = new Map([
 
 const verifiedDistributionPlaces = new Map([
   [
+    "09-215-a-01",
+    [
+      {
+        id: "place-nasukarasuyama-weekday-machizukuri",
+        name: "那須烏山市役所 烏山庁舎1階 まちづくり課",
+        address: "栃木県那須烏山市中央1-1-1",
+        days: "平日",
+        hours: "8:30～17:00",
+        closed: "土日祝日、年末年始はお休みです",
+        url: "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
+      },
+      {
+        id: "place-nasukarasuyama-holiday-duty",
+        name: "那須烏山市役所 烏山庁舎1階 日直室",
+        address: "栃木県那須烏山市中央1-1-1",
+        days: "土日祝日",
+        hours: "8:30～17:00",
+        closed: "年末年始はお休みです",
+        url: "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
+      }
+    ]
+  ],
+  [
+    "09-411-a-01",
+    [
+      {
+        id: "place-nakagawa-weekday-ogawa",
+        name: "那珂川町役場 小川出張所",
+        address: "栃木県那須郡那珂川町小川1065",
+        days: "平日",
+        hours: "9:00～17:00",
+        closed: "土日祝日は役場西側日直室で配布します",
+        url: "https://www.town.tochigi-nakagawa.lg.jp/0072/info-0000002006-0.html",
+        distributionMode: "regular",
+        startsOn: "2026-07-31"
+      },
+      {
+        id: "place-nakagawa-holiday-duty",
+        name: "那珂川町役場 西側日直室",
+        address: "栃木県那須郡那珂川町馬頭555",
+        days: "土日祝日",
+        hours: "9:00～17:00",
+        closed: "",
+        url: "https://www.town.tochigi-nakagawa.lg.jp/0072/info-0000002006-0.html",
+        distributionMode: "fallback",
+        startsOn: "2026-07-31"
+      }
+    ]
+  ],
+  [
     "22-205-a-01",
     [
       {
@@ -88,6 +138,22 @@ const verifiedDistributionPlaces = new Map([
         hours: "9:00～17:30",
         closed: "",
         url: "https://www.city.daito.lg.jp/soshiki/39/40329.html"
+      }
+    ]
+  ],
+  [
+    "47-213-a-01",
+    [
+      {
+        id: "place-a7408f2f7f",
+        name: "うるま市観光案内所（あまわりパーク観光ターミナル）",
+        address: "沖縄県うるま市勝連南風原3807-2",
+        days: "毎日",
+        hours: "9:00～17:30",
+        closed: "施設の臨時休館日はお休みです",
+        url: "https://www.city.uruma.lg.jp/6001004000/contents/p000076.html",
+        distributionMode: "regular",
+        startsOn: "2026-08-01"
       }
     ]
   ]

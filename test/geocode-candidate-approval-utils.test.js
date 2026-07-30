@@ -21,6 +21,14 @@ test("only explicitly reviewed coordinates with official card evidence can be ap
   assert.equal(candidateApprovalError(approved), "");
   assert.equal(candidateApprovalError({ ...approved, decision: "" }), "not explicitly adopted");
   assert.match(candidateApprovalError({ ...approved, approvedLat: "" }), /approvedLat/);
+  assert.equal(candidateApprovalError({
+    ...approved,
+    approvedTitle: "施設（公式配布先・手動補正）"
+  }), "");
+  assert.match(candidateApprovalError({
+    ...approved,
+    approvedTitle: "施設（公式配布先・既存レビュー済み座標）"
+  }), /approvedTitle must include 手動補正/);
   assert.match(candidateApprovalError({ ...approved, reviewedCoordinateSource: "nominatim" }), /reviewedCoordinateSource/);
   assert.match(candidateApprovalError({ ...approved, reviewedOfficialUrl: "https://" }), /valid HTTP/);
   assert.match(candidateApprovalError({ ...approved, reviewedOfficialUrl: "https://other.example/card" }), /generated official URL/);

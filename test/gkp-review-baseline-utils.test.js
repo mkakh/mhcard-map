@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  GKP_ALL_REVIEW_FIELDS,
+  GKP_CONTENT_REVIEW_FIELDS,
   acknowledgeGkpReviewCandidates,
   changedGkpObservationFields,
   createGkpObservation,
@@ -8,6 +10,30 @@ import {
   gkpReviewBaselineFormatError,
   mergeAcceptedGkpObservation
 } from "../scripts/gkp-review-baseline-utils.js";
+
+test("derived launch fields keep compatibility slots without becoming GKP observations", () => {
+  assert.equal(GKP_CONTENT_REVIEW_FIELDS.includes("status"), false);
+  assert.equal(GKP_CONTENT_REVIEW_FIELDS.includes("distributionStartsOn"), false);
+  assert.deepEqual(GKP_ALL_REVIEW_FIELDS, [
+    "cardName",
+    "place",
+    "address",
+    "hours",
+    "closed",
+    "condition",
+    "stock",
+    "status",
+    "distributionStartsOn",
+    "distributionPlaces",
+    "hasEnglishVersion",
+    "englishVersionStatus",
+    "englishVersionNote",
+    "englishVersionUrl",
+    "facilityUrl",
+    "stockUrl"
+  ]);
+  assert.equal(emptyGkpReviewBaseline().version, 3);
+});
 
 test("the first observation initializes a baseline without creating historical changes", () => {
   const observation = createGkpObservation({ place: "現在のGKP配布先" }, ["place"]);

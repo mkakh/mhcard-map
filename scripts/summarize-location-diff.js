@@ -15,6 +15,7 @@ import {
   formatGkpReviewCandidates,
   readGkpReviewCandidates
 } from "./gkp-review-candidate-utils.js";
+import { reviewCommentBodies } from "./review-comment-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const outputPath = join(process.cwd(), ".tmp", "location-update-summary.md");
@@ -365,31 +366,6 @@ function currentReviewTarget(entry) {
   if (entry.target === "location") return location;
   if (!Array.isArray(location[entry.target])) return null;
   return location[entry.target].find((target) => target.id === entry.targetId) ?? null;
-}
-
-function reviewCommentBodies(sections, maxBytes = 55000) {
-  const chunks = [];
-  let current = [];
-  let currentBytes = 0;
-
-  for (const [title, sectionLines] of sections) {
-    const lines = [`## ${title}`, "", ...sectionLines, ""];
-    for (const line of lines) {
-      const lineBytes = Buffer.byteLength(`${line}\n`, "utf8");
-      if (current.length > 0 && currentBytes + lineBytes > maxBytes) {
-        chunks.push(current.join("\n"));
-        current = [];
-        currentBytes = 0;
-      }
-      current.push(line);
-      currentBytes += lineBytes;
-    }
-  }
-  if (current.length > 0) chunks.push(current.join("\n"));
-
-  return chunks.map((body, index) =>
-    `<!-- location-review-detail:${index + 1}/${chunks.length} -->\n${body}`
-  );
 }
 
 function beforeAfterValue(beforeValue, afterValue) {

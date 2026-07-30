@@ -6,7 +6,7 @@ export function isCurrentDistributionStopped(...values) {
 
   return sentences.some((sentence) => {
     if (isConditionalStopNotice(sentence)) return false;
-    return /配布終了|配布を一時中止|配布休止|一時中止|休止中|中止しています/.test(sentence);
+    return /配布終了|配布を一時(?:中止|休止)|配布(?:休止|を停止)|一時中止|休止中|中止しています/.test(sentence);
   });
 }
 

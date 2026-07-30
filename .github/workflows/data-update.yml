@@ -32,6 +32,7 @@ jobs:
             exit 1
           fi
       - name: Import GKP catalogue and retain official-first data
+        id: import-gkp
         run: npm run import:gkp
       - name: Verify card image codes
         run: npm run verify:image-codes -- --warn-only
@@ -48,15 +49,30 @@ jobs:
         env:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
       - name: Validate generated data
-        run: npm run validate:data
+        id: validate
+        continue-on-error: true
+        run: |
+          mkdir -p .tmp
+          set -o pipefail
+          npm run validate:data 2>&1 | tee .tmp/data-validation.log
+      - name: Sync GKP review candidates
+        if: ${{ !cancelled() && steps.import-gkp.outcome == 'success' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run sync:gkp-review-issue
+      - name: Sync data-validation issue
+        if: ${{ !cancelled() && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
+        run: npm run sync:data-validation-issue
+      - name: Preserve validation failure
+        if: ${{ !cancelled() && steps.validate.outcome == 'failure' }}
+        run: exit 1
       - name: Audit objective geocode issues
         run: npm run audit:geocode-review:issues
       - name: Summarize location changes
         run: node scripts/summarize-location-diff.js
-      - name: Sync GKP review candidates
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run sync:gkp-review-issue
       - name: Create update pull request
         id: create-pr
         uses: peter-evans/create-pull-request@v6

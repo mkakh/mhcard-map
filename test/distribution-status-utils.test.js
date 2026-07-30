@@ -1,9 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  calendarDateInJapan,
   normalizeDistributionDate,
   statusForDistributionStart
 } from "../scripts/distribution-status-utils.js";
+
+test("calendarDateInJapan changes at midnight in Asia/Tokyo", () => {
+  assert.equal(calendarDateInJapan(new Date("2026-07-30T14:59:59Z")), "2026-07-30");
+  assert.equal(calendarDateInJapan(new Date("2026-07-30T15:00:00Z")), "2026-07-31");
+});
 
 test("normalizeDistributionDate accepts GKP and ISO date formats", () => {
   assert.equal(normalizeDistributionDate("2026/7/31"), "2026-07-31");

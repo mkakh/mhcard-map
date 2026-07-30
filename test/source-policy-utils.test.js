@@ -214,12 +214,115 @@ test("reviewed GKP records still transition from pre-release on the start date",
     stock: "配布開始前",
     distributionStartsOn: "2026-07-31"
   };
+  const legacyBaseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(existing, [
+      ...GKP_CONTENT_REVIEW_FIELDS,
+      "status",
+      "distributionStartsOn"
+    ]),
+    null
+  );
+  const imported = { ...existing, status: "配布中" };
+  delete imported.distributionStartsOn;
 
-  const { location } = reconcileReviewedGkpLocation(existing, existing, "2026-08-01");
+  const { location, reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-31",
+    legacyBaseline
+  );
 
   assert.equal(location.status, "配布中");
   assert.equal(location.stock, "公式情報を確認");
-  assert.equal(location.updatedAt, "2026-08-01");
+  assert.equal(location.distributionStartsOn, "2026-07-31");
+  assert.equal(location.updatedAt, "2026-07-31");
+  assert.equal(reviewCandidate, null);
+});
+
+test("GKP issue-date inference cannot override a later reviewed distribution start", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    status: "配布開始前",
+    stock: "配布開始前",
+    distributionStartsOn: "2026-08-03"
+  };
+  const imported = { ...existing, status: "配布中", stock: "配布開始前" };
+  delete imported.distributionStartsOn;
+  const baseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(imported, GKP_CONTENT_REVIEW_FIELDS),
+    null
+  );
+
+  const { location, reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-31",
+    baseline
+  );
+
+  assert.equal(location.status, "配布開始前");
+  assert.equal(location.distributionStartsOn, "2026-08-03");
+  assert.equal(reviewCandidate, null);
+});
+
+test("GKP-derived active status cannot override a reviewed postponement", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    status: "要確認",
+    stock: "配布開始延期（開始日未定）"
+  };
+  const imported = { ...existing, status: "配布中" };
+  const baseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(imported, GKP_CONTENT_REVIEW_FIELDS),
+    null
+  );
+
+  const { location, reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-31",
+    baseline
+  );
+
+  assert.equal(location.status, "要確認");
+  assert.equal(location.stock, existing.stock);
+  assert.equal(reviewCandidate, null);
+});
+
+test("a real GKP stock change remains a review candidate", () => {
+  const existing = {
+    ...officialLocation(),
+    sourceType: "gkp_prefecture_page",
+    stock: "配布中",
+    status: "配布中"
+  };
+  const previousImported = { ...existing, stock: "配布中", status: "配布中" };
+  const imported = { ...existing, stock: "在庫切れ", status: "休止中" };
+  const baseline = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation(previousImported, GKP_CONTENT_REVIEW_FIELDS),
+    null
+  );
+
+  const { location, reviewCandidate } = reconcileReviewedGkpLocation(
+    existing,
+    imported,
+    "2026-07-31",
+    baseline
+  );
+
+  assert.equal(location.status, existing.status);
+  assert.equal(location.stock, existing.stock);
+  assert.deepEqual(Object.keys(reviewCandidate.fields), ["stock"]);
+  assert.deepEqual(reviewCandidate.fields.stock, {
+    before: "配布中",
+    gkp: "在庫切れ"
+  });
 });
 
 test("a GKP row restored after an acknowledged disappearance requires review", () => {

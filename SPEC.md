@@ -328,8 +328,11 @@ Important fields:
 
 Supported distribution statuses are `配布中`, `配布開始前`, `休止中`, and
 `要確認`. A `配布開始前` record must have `distributionStartsOn` and remains
-visible on the map with a distinct marker. Reaching the date only creates an
-imported status-change candidate; publication still requires PR review.
+visible on the map with a distinct marker. Reaching a reviewed start date
+deterministically updates the generated record, but publication still requires
+PR review. This local transition is not a new GKP observation: `status` is
+derived state, and `distributionStartsOn` remains separate from the GKP issue
+date.
 
 Distribution places may additionally define `startsOn`, `endsOn`,
 `distributionMode` (`regular`, `launch_event`, `limited`, or `fallback`), and
@@ -544,7 +547,10 @@ After data edits, run `sync:geocode-review-cache`, `update:codes`,
 `validate:data`, `npm test`, and `scripts/summarize-location-diff.js`. The PR body
 stays compact; full before/after addresses, coordinates, movement, map links,
 official sources, and newly applied review evidence are synchronized as bounded,
-idempotent PR comments.
+idempotent PR comments. When a review section exceeds the comment byte budget,
+each continuation repeats the section heading. A table continuation also repeats
+its header and delimiter so every synchronized comment renders as a valid,
+independently readable Markdown table.
 
 The workflow does not directly push generated data to `main`. Generated changes
 are reviewed through a pull request.

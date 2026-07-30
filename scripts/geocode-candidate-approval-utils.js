@@ -14,6 +14,12 @@ export function candidateApprovalError(row) {
   ) {
     return "approvedLat and approvedLng are required";
   }
+  if (
+    String(row.approvedTitle ?? "").trim()
+    && !/手動補正/.test(String(row.approvedTitle))
+  ) {
+    return "approvedTitle must include 手動補正";
+  }
   if (!isHttpUrl(row.reviewedOfficialUrl)) return "reviewedOfficialUrl must be a valid HTTP(S) URL";
   if (!officialUrlWasDiscovered(row, row.reviewedOfficialUrl)) {
     return "reviewedOfficialUrl must be present in the generated official URL candidates";
