@@ -18,6 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Snapshot current location data
+        run: |
+          mkdir -p .tmp
+          cp data/locations.json .tmp/locations-before-update.json
       - name: Install OCR tools
         run: |
           sudo apt-get update
@@ -48,6 +52,8 @@ jobs:
         run: npm run import:forms
         env:
           GOOGLE_FORM_RESPONSES_CSV_URL: ${{ secrets.GOOGLE_FORM_RESPONSES_CSV_URL }}
+      - name: Update site history
+        run: npm run update:history -- --before .tmp/locations-before-update.json --source "Automated location data update"
       - name: Validate generated data
         id: validate
         continue-on-error: true

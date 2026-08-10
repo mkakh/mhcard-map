@@ -163,6 +163,7 @@ let hoveredId = "";
 let listHoverSuspended = false;
 let collections = loadJson(storageKeys.collections, {});
 let updateRequests = [];
+let updateHistory = { version: 1, updates: [] };
 let updateFormConfig = null;
 let userPosition = null;
 let map = null;
@@ -176,6 +177,7 @@ let myPageTab = "summary";
 let cardCatalogPrefecture = "all";
 let cardCatalogVirtualizer = null;
 let cardCatalogRenderFrame = 0;
+let updateHistoryBatchLimit = 3;
 
 const searchDebounceMs = 150;
 const cardCatalogOverscanRows = 4;
@@ -228,6 +230,10 @@ const elements = {
   myPageDialog: document.querySelector("#myPageDialog"),
   myPageContent: document.querySelector("#myPageContent"),
   closeMyPageDialog: document.querySelector("#closeMyPageDialog"),
+  updateHistoryButton: document.querySelector("#updateHistoryButton"),
+  updateHistoryDialog: document.querySelector("#updateHistoryDialog"),
+  updateHistoryContent: document.querySelector("#updateHistoryContent"),
+  closeUpdateHistoryDialog: document.querySelector("#closeUpdateHistoryDialog"),
   locateButton: document.querySelector("#locateButton"),
   printMapButton: document.querySelector("#printMapButton"),
   printMapImage: document.querySelector("#printMapImage"),
@@ -240,6 +246,7 @@ init();
 async function init() {
   locations = await loadLocations();
   updateRequests = await loadUpdateRequests();
+  updateHistory = await loadUpdateHistory();
   updateFormConfig = await loadUpdateFormConfig();
   selectedId = locations[0]?.id ?? "";
   migrateCollectionKeys();
@@ -267,6 +274,9 @@ function bindEvents() {
   elements.myPageDialog.addEventListener("close", disposeCardCatalogVirtualizer);
   elements.myPageContent.addEventListener("click", handleCardCatalogClick);
   elements.myPageContent.addEventListener("error", handleCardCatalogImageError, true);
+  elements.updateHistoryButton.addEventListener("click", openUpdateHistory);
+  elements.closeUpdateHistoryDialog.addEventListener("click", () => elements.updateHistoryDialog.close());
+  elements.updateHistoryContent.addEventListener("click", handleUpdateHistoryClick);
   elements.locateButton.addEventListener("click", locateUser);
   elements.printMapButton.addEventListener("click", printMap);
   elements.mobileTabButtons.forEach((button) => {
@@ -334,6 +344,18 @@ async function loadUpdateRequests() {
   } catch (error) {
     console.info("Update requests data is not available:", error);
     return [];
+  }
+}
+
+async function loadUpdateHistory() {
+  try {
+    const response = await fetch(versionedAssetUrl("./data/update-history.json"), { cache: "no-store" });
+    if (!response.ok) return { version: 1, updates: [] };
+    const history = await response.json();
+    return Array.isArray(history?.updates) ? history : { version: 1, updates: [] };
+  } catch (error) {
+    console.info("Update history is not available:", error);
+    return { version: 1, updates: [] };
   }
 }
 
@@ -1507,6 +1529,107 @@ function buildUpdateRequestUrl(location) {
   });
 
   return url.toString();
+}
+
+function openUpdateHistory() {
+  updateHistoryBatchLimit = 3;
+  renderUpdateHistory();
+  elements.updateHistoryDialog.showModal();
+}
+
+function renderUpdateHistory() {
+  const updates = updateHistory.updates ?? [];
+  const visibleUpdates = updates.slice(0, updateHistoryBatchLimit);
+  elements.updateHistoryContent.innerHTML = updates.length
+    ? `
+      <p class="update-history-lead">配布状態、在庫、配布場所、時間など、利用者向け情報の変更を新しい順に表示します。</p>
+      <div class="update-history-list">
+        ${visibleUpdates.map(renderUpdateHistoryBatch).join("")}
+      </div>
+      ${visibleUpdates.length < updates.length
+        ? `<button class="ghost-button update-history-more" type="button" data-update-history-more>さらに表示（残り${updates.length - visibleUpdates.length}回）</button>`
+        : ""}
+    `
+    : '<p class="empty-state">表示できる更新履歴はまだありません。</p>';
+}
+
+function renderUpdateHistoryBatch(update) {
+  return `
+    <section class="update-history-batch" aria-labelledby="history-${escapeAttribute(update.id)}">
+      <header>
+        <div>
+          <h3 id="history-${escapeAttribute(update.id)}">${escapeHtml(formatHistoryDate(update.date))}</h3>
+          <p>${escapeHtml(update.source)}</p>
+        </div>
+        <span>${update.totalChanges}件</span>
+      </header>
+      <div class="update-history-changes">
+        ${update.changes.map(renderUpdateHistoryChange).join("")}
+      </div>
+      ${update.omittedChanges > 0 ? `<p class="inline-hint">ほか${update.omittedChanges}件の変更は省略されています。</p>` : ""}
+    </section>
+  `;
+}
+
+function renderUpdateHistoryChange(change) {
+  const locationExists = locations.some((location) => location.id === change.locationId);
+  const headingContent = `
+    <span class="update-history-badge ${escapeAttribute(change.importance)}">${escapeHtml(historyImportanceLabel(change))}</span>
+    <span class="update-history-card-name">${escapeHtml(change.cardName)}</span>
+    <strong>${escapeHtml(change.headline)}</strong>
+    <small>${escapeHtml([change.prefecture, change.municipality].filter(Boolean).join(" "))}</small>
+  `;
+  return `
+    <article class="update-history-change ${escapeAttribute(change.importance)}">
+      ${locationExists
+        ? `<button class="update-history-change-heading" type="button" data-history-location="${escapeAttribute(change.locationId)}" aria-label="${escapeAttribute(`${change.cardName}の詳細を開く`)}">${headingContent}</button>`
+        : `<div class="update-history-change-heading">${headingContent}</div>`}
+      <details>
+        <summary>変更内容（${change.fields.length}項目）</summary>
+        <dl class="update-history-fields">
+          ${change.fields.map(renderUpdateHistoryField).join("")}
+        </dl>
+      </details>
+    </article>
+  `;
+}
+
+function renderUpdateHistoryField(field) {
+  return `
+    <div class="update-history-field">
+      <dt>${escapeHtml(field.label)}</dt>
+      <dd>
+        <span><small>変更前</small>${escapeHtml(field.before ?? "—")}</span>
+        <span><small>変更後</small>${escapeHtml(field.after ?? "—")}</span>
+      </dd>
+    </div>
+  `;
+}
+
+function handleUpdateHistoryClick(event) {
+  if (event.target.closest("[data-update-history-more]")) {
+    updateHistoryBatchLimit += 3;
+    renderUpdateHistory();
+    return;
+  }
+  const locationButton = event.target.closest("[data-history-location]");
+  if (!locationButton) return;
+  elements.updateHistoryDialog.close();
+  selectListLocation(locationButton.dataset.historyLocation, { clearFilters: true });
+  switchMobilePanel("detail");
+}
+
+function formatHistoryDate(value) {
+  const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return match ? `${match[1]}年${Number(match[2])}月${Number(match[3])}日` : String(value);
+}
+
+function historyImportanceLabel(change) {
+  if (change.changeType === "added") return "追加";
+  if (change.changeType === "removed") return "削除";
+  if (change.importance === "critical") return "重要";
+  if (change.importance === "high") return "変更";
+  return "更新";
 }
 
 function openMyPage() {

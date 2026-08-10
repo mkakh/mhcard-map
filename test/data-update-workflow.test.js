@@ -30,3 +30,15 @@ test("does not synchronize or close review issues from skipped work", async () =
     /steps\.validate\.outcome == 'success' \|\| steps\.validate\.outcome == 'failure'/
   );
 });
+
+test("captures history from the pre-import snapshot before validation", async () => {
+  const workflow = await readFile(".github/workflows/data-update.yml", "utf8");
+  const snapshot = workflow.indexOf("name: Snapshot current location data");
+  const importGkp = workflow.indexOf("name: Import GKP catalogue");
+  const history = workflow.indexOf("name: Update site history");
+  const validate = workflow.indexOf("id: validate");
+
+  assert.ok(snapshot >= 0 && snapshot < importGkp);
+  assert.ok(importGkp < history);
+  assert.ok(history < validate);
+});
