@@ -787,7 +787,7 @@ label {
 
 .my-page-tabs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-bottom: 1px solid var(--line);
 }
 
@@ -811,7 +811,9 @@ label {
 }
 
 .my-page-tab:focus-visible,
-.card-catalog-card:focus-visible {
+.card-catalog-card:focus-visible,
+.collection-backup-panel button:focus-visible,
+.collection-backup-panel input:focus-visible {
   outline: 3px solid rgba(31, 122, 77, 0.35);
   outline-offset: 2px;
 }
@@ -829,6 +831,85 @@ label {
 
 #myPageCatalogPanel {
   padding-top: 0;
+}
+
+.collection-backup-panel {
+  gap: 16px;
+}
+
+.collection-backup-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface);
+}
+
+.collection-backup-card h3,
+.collection-backup-card p {
+  margin: 0;
+}
+
+.collection-backup-card .primary-button {
+  justify-self: start;
+}
+
+.collection-backup-file {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.collection-backup-file input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.collection-import-modes {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.collection-import-modes legend {
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.collection-import-modes label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.collection-import-modes input {
+  margin-top: 3px;
+}
+
+.collection-import-modes span,
+.collection-import-modes small {
+  display: block;
+}
+
+.collection-import-modes small,
+.collection-backup-note {
+  color: var(--muted);
+}
+
+.collection-backup-note {
+  margin: 0;
+  font-size: 12px;
 }
 
 .card-catalog-toolbar {

@@ -1517,6 +1517,8 @@ function openMyPage() {
 function renderMyPage({ focusTab = false } = {}) {
   disposeCardCatalogVirtualizer();
   const summarySelected = myPageTab === "summary";
+  const catalogSelected = myPageTab === "catalog";
+  const backupSelected = myPageTab === "backup";
   elements.myPageContent.innerHTML = `
     <div class="my-page-tabs" role="tablist" aria-label="取得状況メニュー">
       <button
@@ -1531,32 +1533,42 @@ function renderMyPage({ focusTab = false } = {}) {
       >概要・メモ</button>
       <button
         id="myPageCatalogTab"
-        class="my-page-tab${summarySelected ? "" : " active"}"
+        class="my-page-tab${catalogSelected ? " active" : ""}"
         type="button"
         role="tab"
-        aria-selected="${!summarySelected}"
+        aria-selected="${catalogSelected}"
         aria-controls="myPageCatalogPanel"
-        tabindex="${summarySelected ? "-1" : "0"}"
+        tabindex="${catalogSelected ? "0" : "-1"}"
         data-my-page-tab="catalog"
       >カードリスト</button>
+      <button
+        id="myPageBackupTab"
+        class="my-page-tab${backupSelected ? " active" : ""}"
+        type="button"
+        role="tab"
+        aria-selected="${backupSelected}"
+        aria-controls="myPageBackupPanel"
+        tabindex="${backupSelected ? "0" : "-1"}"
+        data-my-page-tab="backup"
+      >バックアップ</button>
     </div>
-    ${summarySelected ? renderMyPageSummaryPanel() : renderCardCatalogPanel()}
+    ${summarySelected ? renderMyPageSummaryPanel() : catalogSelected ? renderCardCatalogPanel() : renderCollectionBackupPanel()}
   `;
   bindMyPageEvents();
-  if (!summarySelected) startCardCatalogVirtualizer();
+  if (catalogSelected) startCardCatalogVirtualizer();
   if (focusTab) {
     elements.myPageContent.querySelector(`[data-my-page-tab="${myPageTab}"]`)?.focus();
   }
 }
 
 function activateMyPageTab(tab) {
-  if (!['summary', 'catalog'].includes(tab) || tab === myPageTab) return;
+  if (!["summary", "catalog", "backup"].includes(tab) || tab === myPageTab) return;
   myPageTab = tab;
   renderMyPage({ focusTab: true });
 }
 
 function handleMyPageTabKeydown(event) {
-  const tabs = ["summary", "catalog"];
+  const tabs = ["summary", "catalog", "backup"];
   const currentIndex = tabs.indexOf(event.currentTarget.dataset.myPageTab);
   let nextIndex = currentIndex;
 
@@ -1669,6 +1681,41 @@ function renderCardCatalogPanel() {
   `;
 }
 
+function renderCollectionBackupPanel() {
+  const savedCount = Object.keys(collections).length;
+  return `
+    <section id="myPageBackupPanel" class="my-page-panel collection-backup-panel" role="tabpanel" aria-labelledby="myPageBackupTab">
+      <section class="collection-backup-card">
+        <h3>バックアップを保存</h3>
+        <p>取得済み状態、取得日、配布場所ごとのメモをJSONファイルに保存します。</p>
+        <p class="inline-hint">この端末に保存されているデータ: ${savedCount}件</p>
+        <button class="primary-button" type="button" data-export-collections>JSONをダウンロード</button>
+      </section>
+      <section class="collection-backup-card">
+        <h3>バックアップから復元</h3>
+        <label class="collection-backup-file" for="collectionBackupFile">
+          JSONファイル
+          <input id="collectionBackupFile" type="file" accept="application/json,.json">
+        </label>
+        <fieldset class="collection-import-modes">
+          <legend>復元方法</legend>
+          <label>
+            <input type="radio" name="collectionImportMode" value="merge" checked>
+            <span><strong>安全にマージ</strong><small>現在のデータを優先して残し、不足分を追加します</small></span>
+          </label>
+          <label>
+            <input type="radio" name="collectionImportMode" value="replace">
+            <span><strong>完全に置き換え</strong><small>現在の取得状況とメモを削除して、ファイルの内容に置き換えます</small></span>
+          </label>
+        </fieldset>
+        <button class="primary-button" type="button" data-import-collections>内容を確認して復元</button>
+        <p id="collectionImportStatus" class="inline-hint" role="status" aria-live="polite"></p>
+      </section>
+      <p class="collection-backup-note">バックアップはこの端末内で処理され、外部へ送信されません。</p>
+    </section>
+  `;
+}
+
 function renderCardCatalogCard(location, index, total) {
   const collected = Boolean(collections[location.id]?.collected);
   const imageUrl = safeExternalUrl(location.imageUrl);
@@ -1725,6 +1772,73 @@ function bindMyPageEvents() {
     elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
   });
 
+  elements.myPageContent.querySelector("[data-export-collections]")?.addEventListener("click", exportCollections);
+  elements.myPageContent.querySelector("[data-import-collections]")?.addEventListener("click", importCollections);
+
+}
+
+function exportCollections() {
+  try {
+    const backup = globalThis.MhcardCollectionBackup.createBackup(collections);
+    const blob = new Blob([`${JSON.stringify(backup, null, 2)}\n`], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `mhcard-map-collections-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    showToast("バックアップを保存しました");
+  } catch (error) {
+    console.error("Could not export collection backup:", error);
+    showToast("バックアップを保存できませんでした");
+  }
+}
+
+async function importCollections() {
+  const input = elements.myPageContent.querySelector("#collectionBackupFile");
+  const status = elements.myPageContent.querySelector("#collectionImportStatus");
+  const file = input?.files?.[0];
+  if (!file) {
+    if (status) status.textContent = "JSONファイルを選んでください。";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    if (status) status.textContent = "ファイルが大きすぎます（上限5MB）。";
+    return;
+  }
+
+  try {
+    const backup = globalThis.MhcardCollectionBackup.parseBackupText(await file.text());
+    const mode = elements.myPageContent.querySelector('input[name="collectionImportMode"]:checked')?.value ?? "merge";
+    const count = Object.keys(backup.collections).length;
+    const message = mode === "replace"
+      ? `現在の取得状況とメモを削除し、バックアップの${count}件に完全置換します。続けますか？`
+      : `バックアップの${count}件を現在のデータへ安全にマージします。続けますか？`;
+    if (!window.confirm(message)) {
+      if (status) status.textContent = "復元をキャンセルしました。";
+      return;
+    }
+
+    const previousCollections = collections;
+    collections = mode === "replace"
+      ? backup.collections
+      : globalThis.MhcardCollectionBackup.mergeCollections(collections, backup.collections);
+    try {
+      migrateCollectionKeys();
+      saveJson(storageKeys.collections, collections);
+      renderAll();
+      renderMyPage();
+      showToast(`${count}件のバックアップを復元しました`);
+    } catch (error) {
+      collections = previousCollections;
+      throw error;
+    }
+  } catch (error) {
+    console.warn("Could not import collection backup:", error);
+    if (status) status.textContent = `復元できませんでした: ${error.message}`;
+  }
 }
 
 function handleCardCatalogClick(event) {
