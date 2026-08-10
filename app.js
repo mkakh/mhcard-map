@@ -172,6 +172,8 @@ let printMapObjectUrl = "";
 let shouldFocusSelected = false;
 let searchRenderTimer = 0;
 let currentFilteredLocations = [];
+let myPageTab = "summary";
+let cardCatalogPrefecture = "all";
 
 const searchDebounceMs = 150;
 const appVersion = "__APP_VERSION__";
@@ -1502,6 +1504,65 @@ function buildUpdateRequestUrl(location) {
 }
 
 function openMyPage() {
+  renderMyPage();
+  elements.myPageDialog.showModal();
+}
+
+function renderMyPage({ focusTab = false } = {}) {
+  const summarySelected = myPageTab === "summary";
+  elements.myPageContent.innerHTML = `
+    <div class="my-page-tabs" role="tablist" aria-label="取得状況メニュー">
+      <button
+        id="myPageSummaryTab"
+        class="my-page-tab${summarySelected ? " active" : ""}"
+        type="button"
+        role="tab"
+        aria-selected="${summarySelected}"
+        aria-controls="myPageSummaryPanel"
+        tabindex="${summarySelected ? "0" : "-1"}"
+        data-my-page-tab="summary"
+      >概要・メモ</button>
+      <button
+        id="myPageCatalogTab"
+        class="my-page-tab${summarySelected ? "" : " active"}"
+        type="button"
+        role="tab"
+        aria-selected="${!summarySelected}"
+        aria-controls="myPageCatalogPanel"
+        tabindex="${summarySelected ? "-1" : "0"}"
+        data-my-page-tab="catalog"
+      >カードリスト</button>
+    </div>
+    ${summarySelected ? renderMyPageSummaryPanel() : renderCardCatalogPanel()}
+  `;
+  bindMyPageEvents();
+  if (focusTab) {
+    elements.myPageContent.querySelector(`[data-my-page-tab="${myPageTab}"]`)?.focus();
+  }
+}
+
+function activateMyPageTab(tab) {
+  if (!['summary', 'catalog'].includes(tab) || tab === myPageTab) return;
+  myPageTab = tab;
+  renderMyPage({ focusTab: true });
+}
+
+function handleMyPageTabKeydown(event) {
+  const tabs = ["summary", "catalog"];
+  const currentIndex = tabs.indexOf(event.currentTarget.dataset.myPageTab);
+  let nextIndex = currentIndex;
+
+  if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % tabs.length;
+  if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+  if (event.key === "Home") nextIndex = 0;
+  if (event.key === "End") nextIndex = tabs.length - 1;
+  if (nextIndex === currentIndex) return;
+
+  event.preventDefault();
+  activateMyPageTab(tabs[nextIndex]);
+}
+
+function renderMyPageSummaryPanel() {
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
   const memoLocations = locations.filter((location) => Object.keys(placeMemos(collections[location.id])).length > 0);
   const progressPercent = locations.length ? Math.round((collectedLocations.length / locations.length) * 100) : 0;
@@ -1512,7 +1573,8 @@ function openMyPage() {
     return acc;
   }, {});
 
-  elements.myPageContent.innerHTML = `
+  return `
+    <section id="myPageSummaryPanel" class="my-page-panel" role="tabpanel" aria-labelledby="myPageSummaryTab">
     <div class="progress-grid">
       <div class="progress-card"><strong>${collectedLocations.length}</strong><span>取得済み</span></div>
       <div class="progress-card"><strong>${locations.length - collectedLocations.length}</strong><span>未取得</span></div>
@@ -1545,7 +1607,90 @@ function openMyPage() {
           : '<p class="inline-hint">保存済みメモはありません。</p>'
       }
     </section>
+    </section>
   `;
+}
+
+function cardCatalogPrefectures() {
+  return globalThis.MhcardCatalog.orderedPrefectures(locations);
+}
+
+function cardCatalogLocations() {
+  return locations
+    .filter((location) => cardCatalogPrefecture === "all" || location.prefecture === cardCatalogPrefecture)
+    .slice()
+    .sort(globalThis.MhcardCatalog.compareLocations);
+}
+
+function renderCardCatalogPanel() {
+  const cards = cardCatalogLocations();
+  const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
+  const options = cardCatalogPrefectures()
+    .map(
+      (prefecture) =>
+        `<option value="${escapeAttribute(prefecture)}"${prefecture === cardCatalogPrefecture ? " selected" : ""}>${escapeHtml(prefecture)}</option>`
+    )
+    .join("");
+
+  return `
+    <section id="myPageCatalogPanel" class="my-page-panel" role="tabpanel" aria-labelledby="myPageCatalogTab">
+      <div class="card-catalog-toolbar">
+        <label class="card-catalog-filter" for="cardCatalogPrefecture">
+          都道府県
+          <select id="cardCatalogPrefecture">
+            <option value="all"${cardCatalogPrefecture === "all" ? " selected" : ""}>すべて</option>
+            ${options}
+          </select>
+        </label>
+        <p class="card-catalog-counts" aria-live="polite">
+          <span id="cardCatalogVisibleCount">${cards.length}</span>枚中
+          <strong id="cardCatalogCollectedCount">${collectedCount}</strong>枚取得済み
+        </p>
+      </div>
+      ${
+        cards.length
+          ? `<div class="card-catalog-grid">${cards.map(renderCardCatalogCard).join("")}</div>`
+          : '<p class="empty-state">該当するカードはありません。</p>'
+      }
+    </section>
+  `;
+}
+
+function renderCardCatalogCard(location) {
+  const collected = Boolean(collections[location.id]?.collected);
+  const imageUrl = safeExternalUrl(location.imageUrl);
+  const image = imageUrl
+    ? `<img src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(`${location.cardName} カード画像`)}" loading="lazy" decoding="async">`
+    : "";
+
+  return `
+    <button
+      class="card-catalog-card"
+      type="button"
+      aria-pressed="${collected}"
+      aria-label="${escapeAttribute(`${location.cardName}を${collected ? "未取得" : "取得済み"}にする`)}"
+      data-card-catalog-toggle="${escapeAttribute(location.id)}"
+    >
+      <span class="card-catalog-image${imageUrl ? "" : " image-missing"}">
+        ${image}
+        <span class="card-catalog-image-placeholder">画像なし</span>
+      </span>
+      <span class="card-catalog-content">
+        <span class="card-catalog-number">${escapeHtml(cardNumber(location))}</span>
+        <strong class="card-catalog-name">${escapeHtml(location.cardName)}</strong>
+        <span class="card-catalog-location">${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</span>
+        <span class="card-catalog-state">${collected ? "取得済み" : "未取得"}</span>
+      </span>
+    </button>
+  `;
+}
+
+function bindMyPageEvents() {
+  elements.myPageContent.querySelectorAll("[data-my-page-tab]").forEach((button) => {
+    button.addEventListener("click", () => activateMyPageTab(button.dataset.myPageTab));
+    button.addEventListener("keydown", handleMyPageTabKeydown);
+  });
+
   elements.myPageContent.querySelectorAll("[data-memo-location]").forEach((button) => {
     button.addEventListener("click", () => {
       elements.myPageDialog.close();
@@ -1553,7 +1698,45 @@ function openMyPage() {
       switchMobilePanel("detail");
     });
   });
-  elements.myPageDialog.showModal();
+
+  elements.myPageContent.querySelector("#cardCatalogPrefecture")?.addEventListener("change", (event) => {
+    cardCatalogPrefecture = event.currentTarget.value;
+    renderMyPage();
+    elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
+  });
+
+  elements.myPageContent.querySelectorAll("[data-card-catalog-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const location = locations.find((item) => item.id === button.dataset.cardCatalogToggle);
+      if (!location) return;
+      toggleCollected(location.id);
+      updateCardCatalogTile(button, location);
+      updateCardCatalogCounts();
+    });
+  });
+
+  elements.myPageContent.querySelectorAll(".card-catalog-image img").forEach((image) => {
+    image.addEventListener("error", () => {
+      image.closest(".card-catalog-image")?.classList.add("image-missing");
+    });
+  });
+}
+
+function updateCardCatalogTile(button, location) {
+  const collected = Boolean(collections[location.id]?.collected);
+  button.setAttribute("aria-pressed", String(collected));
+  button.setAttribute("aria-label", `${location.cardName}を${collected ? "未取得" : "取得済み"}にする`);
+  const state = button.querySelector(".card-catalog-state");
+  if (state) state.textContent = collected ? "取得済み" : "未取得";
+}
+
+function updateCardCatalogCounts() {
+  const cards = cardCatalogLocations();
+  const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
+  const visibleCount = elements.myPageContent.querySelector("#cardCatalogVisibleCount");
+  const collected = elements.myPageContent.querySelector("#cardCatalogCollectedCount");
+  if (visibleCount) visibleCount.textContent = String(cards.length);
+  if (collected) collected.textContent = String(collectedCount);
 }
 
 function switchMobilePanel(panel) {
