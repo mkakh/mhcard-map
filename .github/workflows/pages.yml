@@ -26,7 +26,7 @@ jobs:
       - name: Prepare static files
         run: |
           mkdir -p dist
-          cp index.html app.js card-catalog.js styles.css dist/
+          cp index.html app.js card-catalog.js collection-backup.js styles.css dist/
           cp robots.txt sitemap.xml dist/
           cp manifest.webmanifest dist/
           cp -R icons dist/icons

@@ -223,7 +223,7 @@ Stored per location:
 
 - `collected`
 - `collectedOn`
-- `memo`
+- `placeMemos` (keyed by distribution-place ID)
 
 Storage rules:
 
@@ -237,6 +237,15 @@ The `取得数・メモ` dialog shows:
 - An `概要・メモ` tab with collected/uncollected counts, completion rate,
   prefecture-level counts, saved memo count, and memo list
 - A `カードリスト` tab with all card images and collection states
+- A `バックアップ` tab for downloading and restoring collection data as JSON
+
+Collection backups use the versioned `mhcard-map-collections` JSON format and
+contain collected state, collected date, and per-place memos. Import validates
+the entire file before changing browser storage. The default safe merge keeps
+existing values when they conflict, treats a card as collected when either copy
+is collected, and adds non-conflicting imported memos. Complete replacement is
+also available and requires an explicit confirmation. Backup files are handled
+locally and are not uploaded.
 
 The card catalogue:
 

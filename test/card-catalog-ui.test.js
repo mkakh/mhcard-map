@@ -11,7 +11,7 @@ test("loads the catalogue comparator before the application", async () => {
   const app = html.indexOf("app.js");
 
   assert.ok(catalogue >= 0 && app > catalogue);
-  assert.match(workflow, /cp index\.html app\.js card-catalog\.js styles\.css dist\//);
+  assert.match(workflow, /cp index\.html app\.js card-catalog\.js .*styles\.css dist\//);
 });
 
 test("renders an accessible, filterable, directly toggleable card catalogue", async () => {
