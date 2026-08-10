@@ -34,14 +34,18 @@ updated by GitHub Actions pull requests.
 index.html
 app.js
 card-catalog.js
+collection-backup.js
 styles.css
 data/locations.json
+data/update-history.json
 data/update-form-config.json
 data/update-requests.json
 scripts/import-gkp-data.js
 scripts/geocode-locations.js
 scripts/normalize-source-links.js
 scripts/update-location-codes.js
+scripts/update-location-history.js
+scripts/update-history-utils.js
 scripts/sync-reviewed-geocode-cache.js
 scripts/import-form-requests.js
 scripts/validate-data.js
@@ -77,6 +81,7 @@ The app runs as static files.
 - `server.js` is only for local development.
 - Map and data are loaded in the browser.
 - `data/locations.json` is the main public dataset.
+- `data/update-history.json` stores bounded, machine-readable user-facing changes.
 - `data/update-form-config.json` configures the Google Form prefill URL.
 - `data/update-requests.json` stores imported update request summaries.
 
@@ -223,7 +228,7 @@ Stored per location:
 
 - `collected`
 - `collectedOn`
-- `memo`
+- `placeMemos` (keyed by distribution-place ID)
 
 Storage rules:
 
@@ -237,6 +242,15 @@ The `取得数・メモ` dialog shows:
 - An `概要・メモ` tab with collected/uncollected counts, completion rate,
   prefecture-level counts, saved memo count, and memo list
 - A `カードリスト` tab with all card images and collection states
+- A `バックアップ` tab for downloading and restoring collection data as JSON
+
+Collection backups use the versioned `mhcard-map-collections` JSON format and
+contain collected state, collected date, and per-place memos. Import validates
+the entire file before changing browser storage. The default safe merge keeps
+existing values when they conflict, treats a card as collected when either copy
+is collected, and adds non-conflicting imported memos. Complete replacement is
+also available and requires an explicit confirmation. Backup files are handled
+locally and are not uploaded.
 
 The card catalogue:
 
@@ -427,6 +441,20 @@ data/update-requests.json
 
 The app uses this file to show update request counts per location.
 
+### 11.4 Update History
+
+`data/update-history.json` stores up to 24 update batches and 200 changed cards
+per batch. Each card entry identifies changed user-facing fields and keeps
+compact before/after values. Timestamp-only and internal geocoding metadata
+changes are excluded. Status, stock, distribution-place, address/coordinate,
+and hours changes are classified so the site can emphasize suspensions,
+resumptions, and other important updates.
+
+The top-bar `更新履歴` button opens the newest three batches. Users can expand
+field-level before/after values, load older batches, and jump from an existing
+card's history entry to its current detail view. Removed cards remain readable
+but do not offer a detail jump.
+
 ## 12. Data Update Pipeline
 
 Manual scripts:
@@ -435,6 +463,7 @@ Manual scripts:
 npm run import:gkp
 npm run geocode
 npm run normalize:links
+npm run update:history -- --before .tmp/locations-before-update.json
 npm run update:codes
 npm run sync:geocode-review-cache
 npm run import:forms
@@ -464,6 +493,9 @@ Schedule:
 ```text
 0 18 * * 0
 ```
+
+The workflow snapshots `data/locations.json` before importing, then generates
+the history batch from the reviewed output before validation and PR creation.
 
 This is weekly at 18:00 UTC. The workflow can also be run manually with
 `workflow_dispatch`.

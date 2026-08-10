@@ -1,0 +1,5112 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-31T11:00:00.000Z",
+  "updates": [
+    {
+      "id": "2026-07-31-d51386230288",
+      "date": "2026-07-31",
+      "generatedAt": "2026-07-31T11:00:00.000Z",
+      "source": "監査済み配布場所の修正（PR #48）",
+      "totalChanges": 26,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-204-a-01",
+          "cardName": "旭川市 A001",
+          "prefecture": "北海道",
+          "municipality": "旭川市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "【5～10月】旭川市下水処理センターバナナ館",
+              "after": "旭川市下水処理センター バナナ館"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "北海道旭川市神居町忠和287（旭川市下水処理センタ-2階）",
+              "after": "北海道旭川市神居町忠和287番地（バナナ館）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.7812334, 142.2954047\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.780354, 142.2940639"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【5～10月】9:00～16:00にバナナ館を見学された方に配布します\nただし、月曜日（月曜日が祝日・振替休日の場合はその翌日）、年末年始（12/30～1/4）はお休みです\n【11～4月】8:45～17:15\nただし、土日、祝日、年末年始（12/30～1/4）はお休みです\nそれぞれ配布窓口が異なるのでご注意ください",
+              "after": "【バナナ館開館期間】火～日曜日 9:00～16:00（見学後に配布）\n【バナナ館休館期間】平日 8:45～17:15（管理本館玄関のインターホンで呼出し）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（祝日・振替休日の場合は翌日）、祝日、年末年始（12/30～1/4）は期間に応じて休館・休配"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "バナナ館開館期間は見学した方に配布。休館期間は管理本館2階事務室で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.783279",
+              "after": "43.7812334"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "142.29689",
+              "after": "142.2954047"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.city.asahikawa.hokkaido.jp/kurashi/440/441/4429/d059082.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM4Q7MW+8Q",
+              "after": "8RM4Q7JW+F5"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.city.asahikawa.hokkaido.jp/kurashi/440/441/4429/d059082.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.asahikawa.hokkaido.jp/kurashi/440/441/4429/d059082.html",
+              "after": "https://www.city.asahikawa.hokkaido.jp/kurashi/440/441/4429/d059082.html"
+            }
+          ]
+        },
+        {
+          "locationId": "01-516-b-01",
+          "cardName": "豊富町 B001",
+          "prefecture": "北海道",
+          "municipality": "豊富町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "湯の杜ぽっけ / 北海道天塩郡豊富町字温泉 / 通常（11～3月の休館日を除く） 9:00～17:00（12:00～13:00を除く） / 年末年始 / 45.07427, 141.83847\n豊富町役場 建設課上下水道係 / 北海道天塩郡豊富町字豊富大通6丁目 / 11～3月の月曜日（祝日の場合は翌日） 9:00～17:00（12:00～13:00を除く） / 年末年始 / 45.102905, 141.77733"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "12:00～13:00、年末年始。11～3月の月曜日（祝日の場合は翌日）は湯の杜ぽっけ休館"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "11～3月の湯の杜ぽっけ休館日は豊富町役場で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html"
+            }
+          ]
+        },
+        {
+          "locationId": "04-207-c-01",
+          "cardName": "名取市 C001",
+          "prefecture": "宮城県",
+          "municipality": "名取市",
+          "changeType": "changed",
+          "headline": "配布場所・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "名取市観光物産協会陣中仙台国際空港店２階",
+              "after": "牛タン陣中 仙台国際空港店2階"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.144398",
+              "after": "38.13793"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.919373",
+              "after": "140.93002"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.natori.miyagi.jp/page/33572.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.kankou.natori.miyagi.jp/gourmet/9619",
+              "after": "https://www.city.natori.miyagi.jp/page/33572.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC24WV9+QP",
+              "after": "8RC24WQJ+52"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.natori.miyagi.jp/page/33572.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.natori.miyagi.jp/page/29364.html",
+              "after": "https://www.city.natori.miyagi.jp/page/33572.html"
+            }
+          ]
+        },
+        {
+          "locationId": "04-209-a-01",
+          "cardName": "多賀城市 A001",
+          "prefecture": "宮城県",
+          "municipality": "多賀城市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "多賀城市埋蔵文化財調査センター展示室（文化センター内） / 宮城県多賀城市中央2-27-1 / 開館日 9:00～16:30 / 月曜日（祝日を除く）、祝日の翌日（土日を除く）、年末年始（12/28～1/4）、臨時休館日 / 38.295666, 141.00574\n史都多賀城観光案内所（JR多賀城駅） / 宮城県多賀城市中央2-1-7 / 埋蔵文化財調査センター休館日 10:00～16:00 / 観光案内所の年末年始（12/28～1/5）・臨時休館日 / 38.291775, 141.00584"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（祝日を除く）、祝日の翌日（土日を除く）、年末年始（12/28～1/4）、臨時休館日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "埋蔵文化財調査センター休館日は史都多賀城観光案内所で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.tagajo.miyagi.jp/ryokin/kurashi/suido/gesuido/card.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.tagajo.miyagi.jp/ryokin/kurashi/suido/gesuido/card.html"
+            }
+          ]
+        },
+        {
+          "locationId": "04-406-b-01",
+          "cardName": "利府町 B001",
+          "prefecture": "宮城県",
+          "municipality": "利府町",
+          "changeType": "changed",
+          "headline": "配布場所・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "利府町上下水道部上下水道課",
+              "after": "利府町役場町民交流館「ペア・パル利府」"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.330311",
+              "after": "38.33034"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.975922",
+              "after": "140.97588"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.town.rifu.miyagi.jp/gyosei/soshikikarasagasu/jougesuidou/keiei/1/3/1/4209.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.town.rifu.miyagi.jp/index.html",
+              "after": "https://www.town.rifu.miyagi.jp/gyosei/soshikikarasagasu/jougesuidou/keiei/1/3/1/4209.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.town.rifu.miyagi.jp/gyosei/soshikikarasagasu/jougesuidou/keiei/1/3/1/4209.html"
+            }
+          ]
+        },
+        {
+          "locationId": "07-301-a-01",
+          "cardName": "桑折町",
+          "prefecture": "福島県",
+          "municipality": "桑折町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "旧伊達郡役所 / 福島県伊達郡桑折町字陣屋12 / 開館日 9:00～17:00（最終入館16:30） / 月曜日（祝祭日の場合は火曜日）、祝祭日の翌日、展示替え期間、年末年始 / 37.8434512, 140.5184994\n桑折町役場2階 建設水道課 / 福島県伊達郡桑折町大字谷地字道下22番地7 / 旧伊達郡役所の休館日 9:00～17:00 / 37.854652, 140.52048"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "旧伊達郡役所の休館日は桑折町役場2階建設水道課で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.town.koori.fukushima.jp/soshiki/6/1477.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.town.koori.fukushima.jp/soshiki/6/1477.html"
+            }
+          ]
+        },
+        {
+          "locationId": "07-461-a-01",
+          "cardName": "西郷村",
+          "prefecture": "福島県",
+          "municipality": "西郷村",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "西郷村農産物産館「まるごと西郷館」 / 福島県西白河郡西郷村大字熊倉字折口原146番地 / 通常（毎月第3火曜日を除く） 9:00～18:00 / 毎月第3火曜日、年末年始等の不定休 / 37.139996, 140.15437\n西郷村総合庁舎1階（上下水道お客様センター／警備室） / 福島県西白河郡西郷村大字熊倉字折口原40番地 / 毎月第3火曜日（祝日を除く）／まるごと西郷館の年末年始休業中 第3火曜日 8:30～17:15／年末年始 9:00～18:00 / 対応期間は毎年要確認 / 37.141846, 140.1563"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "第3火曜日は西郷村総合庁舎の上下水道お客様センター、年末年始休業中は同庁舎警備室で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.vill.nishigo.fukushima.jp/kurashi_tetsuzuki/jogesuido/gesuido/1036.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.vill.nishigo.fukushima.jp/kurashi_tetsuzuki/jogesuido/gesuido/1036.html"
+            }
+          ]
+        },
+        {
+          "locationId": "08-208-b-01",
+          "cardName": "龍ケ崎市 B001",
+          "prefecture": "茨城県",
+          "municipality": "龍ケ崎市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.929466, 140.13837\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（月曜が祝日の場合は翌日）、1/1～1/3"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "観光物産センターの定休日のみ龍ケ崎市役所下水道課で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
+              "after": "https://www.city.ryugasaki.ibaraki.jp/kurashi/seikatsu/suido/oshirase/ryugasaki-mhc.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
+              "after": "https://www.city.ryugasaki.ibaraki.jp/kurashi/seikatsu/suido/oshirase/ryugasaki-mhc.html"
+            }
+          ]
+        },
+        {
+          "locationId": "09-201-a-01",
+          "cardName": "宇都宮市 A001",
+          "prefecture": "栃木県",
+          "municipality": "宇都宮市",
+          "changeType": "changed",
+          "headline": "配布場所・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "1階 警備員室",
+              "after": "宇都宮市上下水道局"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8:30～17:30\nただし、年末年始はお休みです\nそれぞれ配布窓口が異なるのでご注意ください",
+              "after": "8:30～17:15\n【平日】2階経営企画課\n【土日・祝日】1階警備員室"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "曜日により同一庁舎内の配布窓口が異なる"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.550228",
+              "after": "36.550465"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.883057",
+              "after": "139.88326"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.utsunomiya.lg.jp/josuido/user/1018745/1012918.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.utsunomiya.tochigi.jp/josuido/index.html",
+              "after": "https://www.city.utsunomiya.lg.jp/josuido/user/1018745/1012918.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XHV2M+36",
+              "after": "8Q8XHV2M+58"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.utsunomiya.lg.jp/josuido/user/1018745/1012918.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.utsunomiya.lg.jp/josuido/user/1018745/1012918.html"
+            }
+          ]
+        },
+        {
+          "locationId": "10-208-a-01",
+          "cardName": "渋川市 A001",
+          "prefecture": "群馬県",
+          "municipality": "渋川市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "中央公民館（渋川東部公民館） / 群馬県渋川市渋川908番地21 / 通常 8:30～17:00 / 年末年始、定期清掃時 / 36.499863, 139.00562\n渋川市役所第二庁舎 上下水道局下水道課 / 群馬県渋川市石原6番地1 / 中央公民館の定期清掃時 8:30～17:00 / 36.492195, 138.99796"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "中央公民館の定期清掃時は渋川市役所第二庁舎の下水道課で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=10#mhcard_result",
+              "after": "https://www.city.shibukawa.lg.jp/kurashi/000041/000940/p006148.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=10#mhcard_result",
+              "after": "https://www.city.shibukawa.lg.jp/kurashi/000041/000940/p006148.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.shibukawa.lg.jp/kurashi/jyougesuidou/gesuidou/p006148.html",
+              "after": "https://www.city.shibukawa.lg.jp/kurashi/000041/000940/p006148.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-100-n-01",
+          "cardName": "東京23区 N001",
+          "prefecture": "東京都",
+          "municipality": "東京23区",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "丸吉玩具店 / 東京都葛飾区立石1-21-2 / 通常 13:00～18:00 / 臨時休業あり / 35.737564, 139.84958\nテクノプラザかつしか / 東京都葛飾区青戸7-2-1 / 丸吉玩具店の臨時休業時 8:30～18:00 / 年末年始、メンテナンス休館日（年4回） / 35.752323, 139.85255"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "丸吉玩具店の臨時休業時はテクノプラザかつしかで配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1032481.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1032481.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1026016.html",
+              "after": "https://www.city.katsushika.lg.jp/tourism/1000064/1026023/1032481.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-219-b-01",
+          "cardName": "狛江市 B001",
+          "prefecture": "東京都",
+          "municipality": "狛江市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "エコルマホール5階 狛江市文化振興事業団事務所 / 東京都狛江市元和泉1-2-1 / 月・水～日曜日（祝日を含む） 9:00～17:00 / 毎週火曜日、年末年始 / 35.63325, 139.57805\n狛江市役所（5階下水道課／1階宿日直室） / 東京都狛江市和泉本町1-1-5 / 毎週火曜日／年末年始 9:00～17:00 / 35.634903, 139.57877"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "火曜日は狛江市役所5階下水道課、年末年始は同市役所1階宿日直室で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "http://www.city.komae.tokyo.jp/index.cfm/41,90728,313,2003,html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "http://www.city.komae.tokyo.jp/index.cfm/41,90728,313,2003,html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-221-a-01",
+          "cardName": "清瀬市",
+          "prefecture": "東京都",
+          "municipality": "清瀬市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "清瀬市生涯学習センター (アミュー 5階)",
+              "after": "清瀬市役所3階23番窓口 建設課下水道係"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "東京都清瀬市元町1-2-11 アミュ- 5階",
+              "after": "東京都清瀬市中里5丁目842番地"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "清瀬市役所3階23番窓口 建設課下水道係 / 東京都清瀬市中里5丁目842番地 / 平日 8:30～17:00 / 土日祝日、年末年始 / 35.785233, 139.52661\n清瀬市生涯学習センター（アミュー5階） / 東京都清瀬市元町1-2-11 / 土日祝日 9:00～17:00 / 月曜日の祝日、年末年始 / 35.77214121, 139.5210671"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "平日は清瀬市役所、土日祝日は生涯学習センターで配布（月曜日の祝日を除く）"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.772198",
+              "after": "35.785233"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.52116",
+              "after": "139.52661"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.kiyose.lg.jp/kurashi/suidougesuidou/gesuidou/1015242/1015263/1009709.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7XQGCC+VF",
+              "after": "8Q7XQGPG+3J"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.kiyose.lg.jp/kurashi/suidougesuidou/gesuidou/1015242/1015263/1009709.html"
+            }
+          ]
+        },
+        {
+          "locationId": "14-218-a-01",
+          "cardName": "綾瀬市",
+          "prefecture": "神奈川県",
+          "municipality": "綾瀬市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・施設情報を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "綾瀬市立城山公園管理棟",
+              "after": null
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "神奈川県綾瀬市早川城山三丁目４-１",
+              "after": null
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.ayase.kanagawa.jp/soshiki/midorikoenka/koen/7/5858.html",
+              "after": "https://www.city.ayase.kanagawa.jp/soshiki/gesuidoka/shimimmuke/24488.html"
+            }
+          ]
+        },
+        {
+          "locationId": "23-205-a-01",
+          "cardName": "半田市 A001",
+          "prefecture": "愛知県",
+          "municipality": "半田市",
+          "changeType": "changed",
+          "headline": "配布場所・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "半田市役所時間外窓口",
+              "after": "半田市役所 上下水道経営課"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】9:00～16:00（水曜日は19:00）\n休日は時間外窓口にて配布します\nただし、年末年始はお休みです",
+              "after": "【平日】9:00～16:00（水曜日は19:00まで）\n【土日祝日】半田市役所時間外窓口で配布"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "休日は同一庁舎の時間外窓口で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.892094",
+              "after": "34.892086"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "136.937881",
+              "after": "136.93832"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.handa.lg.jp/machi/gesuido/1003527/1003532.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.handa.lg.jp/machi/gesuido/index.html",
+              "after": "https://www.city.handa.lg.jp/machi/gesuido/1003527/1003532.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6RVWRQ+R5",
+              "after": "8Q6RVWRQ+R8"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.handa.lg.jp/machi/gesuido/1003527/1003532.html"
+            }
+          ]
+        },
+        {
+          "locationId": "23-211-a-01",
+          "cardName": "豊田市 A001",
+          "prefecture": "愛知県",
+          "municipality": "豊田市",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：00\nただし、毎週木曜日（祝日の場合はその翌日）、年末年始（12/22～1/2）はお休みです\n※4/29～5/5までの期間及び11月は無休で配布します",
+              "after": "9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "毎週木曜日（祝日の場合は翌日）、年末年始。11月は無休"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "施設の営業日・営業時間は必要に応じて事前確認"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.toyota.aichi.jp/sumaikankyo/jogesuido/1062795/1062800/1062803/1016109.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://asukeyashiki.jp/",
+              "after": "https://asukeyashiki.jp/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.toyota.aichi.jp/sumaikankyo/jogesuido/1062795/1062800/1062803/1016109.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.toyota.aichi.jp/kurashi/jyogesuidou/seibi/1016109.html",
+              "after": "https://www.city.toyota.aichi.jp/sumaikankyo/jogesuido/1062795/1062800/1062803/1016109.html"
+            }
+          ]
+        },
+        {
+          "locationId": "26-303-a-01",
+          "cardName": "大山崎町",
+          "prefecture": "京都府",
+          "municipality": "大山崎町",
+          "changeType": "changed",
+          "headline": "配布場所・配布場所一覧・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "【平日】大山崎町役場 環境事業部 上下水道課窓口",
+              "after": "大山崎町役場2階 上下水道課窓口"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "大山崎町役場2階 上下水道課窓口 / 京都府乙訓郡大山崎町字円明寺小字夏目3 / 平日（役場開庁日） 8:30～17:00 / 土日祝日、年末年始（12/29～1/3） / 34.902767, 135.68832\n大山崎ふるさとセンター2階 大山崎町歴史資料館 / 京都府乙訓郡大山崎町字大山崎小字竜光3 / 土日祝日（役場閉庁日） 9:30～17:00 / 月曜日（祝日の場合は翌日）、年末年始（12/29～1/3） / 34.89263, 135.68289"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）。ふるさとセンターは月曜（祝日の場合は翌日）休館"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "平日は町役場、土日祝日は大山崎ふるさとセンター2階歴史資料館で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.902229",
+              "after": "34.902767"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.688202",
+              "after": "135.68832"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
+              "after": "https://www.town.oyamazaki.kyoto.jp/annai/jyogesuidoka/gesuidokakari/oshirase/4864.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6QWM2Q+V7",
+              "after": "8Q6QWM3Q+48"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
+              "after": "https://www.town.oyamazaki.kyoto.jp/annai/jyogesuidoka/gesuidokakari/oshirase/4864.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.town.oyamazaki.kyoto.jp/annai/jyogesuidoka/gesuidokakari/oshirase/4864.html",
+              "after": "https://www.town.oyamazaki.kyoto.jp/annai/jyogesuidoka/gesuidokakari/oshirase/4864.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-321-a-01",
+          "cardName": "豊能町",
+          "prefecture": "大阪府",
+          "municipality": "豊能町",
+          "changeType": "changed",
+          "headline": "配布場所・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "豊能町役場3階 都市計画課",
+              "after": "豊能町役場3階 建設課（都市計画グループ）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：30\nただし、土日、祝日、年末年始は警備室で配布します",
+              "after": "9:00～17:30\n閉庁日は同一庁舎1階警備室で配布"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": null
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "土日、祝祭日、年末年始は同一庁舎1階警備室で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.918785",
+              "after": "34.91886"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.494659",
+              "after": "135.49406"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.toyono.osaka.jp/kurashi/seikatsu-infura/gesuidou/page002821.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.town.toyono.osaka.jp/kurashi/seikatsu-infura/gesuidou/page002821.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6QWF9V+GV",
+              "after": "8Q6QWF9V+GJ"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.toyono.osaka.jp/kurashi/seikatsu-infura/gesuidou/page002821.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.town.toyono.osaka.jp/page/page002821.html",
+              "after": "https://www.town.toyono.osaka.jp/kurashi/seikatsu-infura/gesuidou/page002821.html"
+            }
+          ]
+        },
+        {
+          "locationId": "29-343-a-01",
+          "cardName": "三郷町",
+          "prefecture": "奈良県",
+          "municipality": "三郷町",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "三郷町下水道課（立野汚水中継ポンプ場2階）",
+              "after": "日本遺産龍田古道ビジターセンター インフォメーションカウンター"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "奈良県生駒郡三郷町立野南3-11-13",
+              "after": "奈良県生駒郡三郷町立野南3-11-35"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "日本遺産龍田古道ビジターセンター インフォメーションカウンター / 奈良県生駒郡三郷町立野南3-11-35 / 開館日 9:30～16:30 / 月曜日（月曜日が祝日の場合は翌火曜日）、年末年始 / 34.5854, 135.68127\n三郷町下水道課（立野汚水中継ポンプ場2階） / 奈良県生駒郡三郷町立野南3-11-13 / ビジターセンター休館日 8:30～17:15 / 年末年始 / 34.58577, 135.68172"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（月曜日が祝日の場合は翌火曜日）、年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "ビジターセンター休館日に限り三郷町下水道課で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.585747",
+              "after": "34.5854"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.681854",
+              "after": "135.68127"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=29#mhcard_result",
+              "after": "https://www.town.sango.nara.jp/soshiki/20/2478.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6QHMPJ+7P",
+              "after": "8Q6QHMPJ+5G"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=29#mhcard_result",
+              "after": "https://www.town.sango.nara.jp/soshiki/20/2478.html"
+            }
+          ]
+        },
+        {
+          "locationId": "33-202-b-01",
+          "cardName": "倉敷市 B001",
+          "prefecture": "岡山県",
+          "municipality": "倉敷市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "児島商工会議所",
+              "after": "児島駅観光案内所"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "岡山県倉敷市児島駅前1-37 2階",
+              "after": "岡山県倉敷市児島駅前1-107"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "児島駅観光案内所 / 岡山県倉敷市児島駅前1-107 / 通常 9:00～17:30（12:00～13:00を除く） / 12/29～1/3 / 34.462833, 133.80788\n児島駅前1-37（2階 児島商工会議所／1階 児島産業振興センター） / 岡山県倉敷市児島駅前1-37 / 観光案内所の営業時間外 商工会議所：平日8:30～17:00／産業振興センター：土日祝日9:00～18:00 / 年末年始（12/29～1/3）、商工会議所はイベント時 / 34.463017, 133.80515"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "観光案内所の営業時間外は児島駅前1-37の児島商工会議所または児島産業振興センターで配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.464207",
+              "after": "34.462833"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.805328",
+              "after": "133.80788"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6MFR74+M4",
+              "after": "8Q6MFR75+45"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            }
+          ]
+        },
+        {
+          "locationId": "37-341-a-01",
+          "cardName": "三木町",
+          "prefecture": "香川県",
+          "municipality": "三木町",
+          "changeType": "changed",
+          "headline": "配布場所・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "三木町役場下水道課",
+              "after": "三木町役場 環境下水道課"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：15\n※土、日、祝日及び年末年始は宿直室で配布します",
+              "after": "8:30～17:15\n【平日】環境下水道課窓口\n【土日祝・年末年始】宿日直窓口"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": null
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "休日は同一庁舎南側の宿日直窓口で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.268349",
+              "after": "34.2685"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "134.135086",
+              "after": "134.13475"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
+              "after": "https://www.town.miki.lg.jp/life/dtl.php?hdnKey=7392"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.town.miki.lg.jp/life/dtl.php?hdnKey=7392"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6P749P+82",
+              "after": "8Q6P749M+CV"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
+              "after": "https://www.town.miki.lg.jp/life/dtl.php?hdnKey=7392"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
+              "after": "https://www.town.miki.lg.jp/life/dtl.php?hdnKey=7392"
+            }
+          ]
+        },
+        {
+          "locationId": "38-204-a-01",
+          "cardName": "八幡浜市 A001",
+          "prefecture": "愛媛県",
+          "municipality": "八幡浜市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "道の駅・みなとオアシス八幡浜みなっと みなと交流館 / 愛媛県八幡浜市沖新田1581-23 / 通常 9:00～18:00 / 年末年始（12/29～1/3） / 33.458294, 132.41826\n八幡浜市役所八幡浜庁舎 地下宿直室 / 愛媛県八幡浜市北浜一丁目1番1号 / 年末年始（12/29～1/3） 要確認 / 33.462807, 132.42342"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "年末年始（12/29～1/3）は八幡浜市役所八幡浜庁舎地下宿直室で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=38#mhcard_result",
+              "after": "https://www.city.yawatahama.ehime.jp/doc/2022032500066/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=38#mhcard_result",
+              "after": "https://www.city.yawatahama.ehime.jp/doc/2022032500066/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.yawatahama.ehime.jp/docs/2016120100016/",
+              "after": "https://www.city.yawatahama.ehime.jp/doc/2022032500066/"
+            }
+          ]
+        },
+        {
+          "locationId": "40-219-a-01",
+          "cardName": "大野城市",
+          "prefecture": "福岡県",
+          "municipality": "大野城市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "大野城心のふるさと館1階総合案内 / 福岡県大野城市曙町3-8-3 / 開館日 9:00～19:00 / 月曜日（祝日の場合は翌平日）、12/28～1/4 / 33.53467, 130.48035\n大野城市役所（新館2階企業総務課／北玄関横警備員室） / 福岡県大野城市曙町2丁目2-1 / 心のふるさと館の閉館日 8:30～17:00 / 33.536293, 130.47884"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "心のふるさと館の閉館日は大野城市役所（企業総務課または警備員室）で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.onojo.fukuoka.jp/kiji0036750/index.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.onojo.fukuoka.jp/kiji0036750/index.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.onojo.fukuoka.jp/s079/010/010/040/20210830115036.html",
+              "after": "https://www.city.onojo.fukuoka.jp/kiji0036750/index.html"
+            }
+          ]
+        },
+        {
+          "locationId": "40-220-a-01",
+          "cardName": "宗像市 A001",
+          "prefecture": "福岡県",
+          "municipality": "宗像市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "観光ステーションむなたびラボ（道の駅むなかた南館） / 福岡県宗像市江口1177-1 / 開館日 9:00～17:00 / 毎月第4月曜日（祝日の場合は翌日）、お盆、年末年始 / 33.848232, 130.50447\n宗像終末処理場内 下水道課 / 福岡県宗像市田熊1373 / むなたびラボ休館日の平日 8:30～17:00 / 土日祝日、年末年始（12/29～1/3） / 33.81, 130.53723"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "むなたびラボ休館日は、平日に限り宗像終末処理場内下水道課で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            }
+          ]
+        },
+        {
+          "locationId": "40-220-b-01",
+          "cardName": "宗像市 B001",
+          "prefecture": "福岡県",
+          "municipality": "宗像市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "街道の駅赤馬館 / 福岡県宗像市赤間4-1-8 / 開館日 10:00～17:00 / 月曜日（祝日の場合は火曜日）、夏季・冬季休館日 / 33.80494, 130.5894077\n宗像終末処理場内 下水道課 / 福岡県宗像市田熊1373 / 赤馬館休館日の平日 8:30～17:00 / 土日祝日、年末年始（12/29～1/3） / 33.81, 130.53723"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "赤馬館休館日は、平日に限り宗像終末処理場内下水道課で配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.munakata.lg.jp/w032/010/030/050/0220/20180806110243.html",
+              "after": "https://www.city.munakata.lg.jp/kiji0032053/index.html"
+            }
+          ]
+        },
+        {
+          "locationId": "44-341-a-01",
+          "cardName": "日出町",
+          "prefecture": "大分県",
+          "municipality": "日出町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "二の丸館（日出町観光案内所） / 大分県速見郡日出町2612番地1 / 通常 8:30～17:00 / 12/29～1/3 / 33.368227, 131.531403\n日出町役場 時間外受付窓口 / 大分県速見郡日出町2974番地1 / 12/29～1/3 要確認 / 33.3692558, 131.5323253"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "12/29～1/3は日出町役場時間外受付窓口で配布（GKP現行カタログによる）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-3088c960f44a",
+      "date": "2026-07-31",
+      "generatedAt": "2026-07-31T10:00:00.000Z",
+      "source": "下松市・宇部市の配布場所修正（PR #47）",
+      "totalChanges": 3,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "35-202-b-01",
+          "cardName": "宇部市 B001",
+          "prefecture": "山口県",
+          "municipality": "宇部市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください。",
+              "after": "在庫は残りわずか（2026-07-31公式確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "宇部市新川ふれあいセンター",
+              "after": "新川ふれあいセンター"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "山口県宇部市朝日町8-20",
+              "after": "山口県宇部市朝日町8番20号"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00~17:00\nただし、年末年始(12/29~ 1/3)はお休みです",
+              "after": "9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）はお休みです"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.957844",
+              "after": "33.958658879566556"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "131.245132",
+              "after": "131.24468926891254"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.ube.yamaguchi.jp/kurashi/gasgesui/1015032/1015277/1015113.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_public/fureai_center/1009885.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5HX65W+43",
+              "after": "8Q5HX65V+FV"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.ube.yamaguchi.jp/kurashi/gasgesui/1015032/1015277/1015113.html"
+            }
+          ]
+        },
+        {
+          "locationId": "35-207-a-01",
+          "cardName": "下松市 A001",
+          "prefecture": "山口県",
+          "municipality": "下松市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（2026-07-31公式確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "下松市上下水道局 窓口",
+              "after": "下松市上下水道局 2階窓口"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "山口県下松市大手町3-3-2（上下水道局２階）",
+              "after": "山口県下松市大手町3丁目3番2号（上下水道局2階）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "下松市上下水道局 2階窓口 / 山口県下松市大手町3丁目3番2号（上下水道局2階） / 平日 8:30～17:15 / 土日祝日・年末年始（12/29～1/3）はお休みです / 34.015379, 131.870881\n下松市観光案内所 / 山口県下松市西豊井1247（下松駅南口） / 土日祝日 9:00～16:30 / 月・木（祝日の場合は休館日を振替）・年末年始（12/29～1/3）はお休みです / 34.008648, 131.86722"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8：30〜17：15\nただし、土日、祝日及び年末年始（１２月２９日～１月３日）はお休みです\n【土日、祝日】9：00〜16：30\nただし、月、木曜日（祝日の場合は振替）及び年末年始（１２月２９日～１月３日）はお休みです",
+              "after": "【平日】8:30～17:15\n【土日祝日】9:00～16:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始。土日祝日は下松市観光案内所の休館日（月・木。祝日の場合は振替）を除き配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.014641",
+              "after": "34.015379"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "131.869873",
+              "after": "131.870881"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
+              "after": "https://www.city.kudamatsu.lg.jp/keitai/shisetsu/shi-shisetsu/suidoukyoku.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6H2V79+VW",
+              "after": "8Q6H2V8C+59"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            }
+          ]
+        },
+        {
+          "locationId": "35-207-b-01",
+          "cardName": "下松市 B001",
+          "prefecture": "山口県",
+          "municipality": "下松市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（2026-07-31公式確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "下松市上下水道局 窓口",
+              "after": "下松市観光案内所"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "山口県下松市大手町3-3-2（上下水道局２階）",
+              "after": "山口県下松市西豊井1247（下松駅南口）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "下松市観光案内所 / 山口県下松市西豊井1247（下松駅南口） / 開館日（月・木以外。祝日の場合は休館日を振替） 9:00～16:30 / 年末年始（12/29～1/3）はお休みです / 34.008648, 131.86722\n下松市上下水道局 2階窓口 / 山口県下松市大手町3丁目3番2号（上下水道局2階） / 観光案内所の休館日（月・木。祝日の場合は振替）のうち平日 8:30～17:15 / 土日祝日・年末年始（12/29～1/3）はお休みです / 34.015379, 131.870881"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【月・木以外】9：00〜16：30\nただし、月、木曜日（祝日の場合は振替）及び年末年始（１２月２９日～１月３日）はお休みです\n【月・木・閉館日】8：30〜17：15\nただし、土日、祝日及び年末年始（１２月２９日～１月３日）はお休みです",
+              "after": "【下松市観光案内所の開館日】9:00～16:30\n【同案内所の休館日（月・木。祝日の場合は振替）のうち平日】8:30～17:15"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始。観光案内所の休館日が土日祝日に当たる場合は配布なし"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.014641",
+              "after": "34.008648"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "131.869873",
+              "after": "131.86722"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://kudamatsu-kanko.jp/info/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6H2V79+VW",
+              "after": "8Q6H2V58+FV"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
+              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-6505398d3c4f",
+      "date": "2026-07-31",
+      "generatedAt": "2026-07-31T09:00:00.000Z",
+      "source": "最新カード追加と更新失敗通知（PR #45）",
+      "totalChanges": 67,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-215-a-01",
+          "cardName": "美唄市 A001",
+          "prefecture": "北海道",
+          "municipality": "美唄市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "美唄市 A001 / 北海道 / 美唄市 / 美唄市役所 / 北海道美唄市西3条南1丁目1番1号"
+            }
+          ]
+        },
+        {
+          "locationId": "01-229-b-01",
+          "cardName": "富良野市 B001",
+          "prefecture": "北海道",
+          "municipality": "富良野市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "01-693-a-01",
+          "cardName": "標津町 A001",
+          "prefecture": "北海道",
+          "municipality": "標津町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "標津町 A001 / 北海道 / 標津町 / 生涯学習センターあすぱる / 北海道標津郡標津町南1条西5丁目5-3"
+            }
+          ]
+        },
+        {
+          "locationId": "02-210-a-01",
+          "cardName": "平川市 A001",
+          "prefecture": "青森県",
+          "municipality": "平川市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "平川市 A001 / 青森県 / 平川市 / 平川市ふるさとセンター / 青森県平川市猿賀石林94"
+            }
+          ]
+        },
+        {
+          "locationId": "03-441-a-01",
+          "cardName": "住田町 A001",
+          "prefecture": "岩手県",
+          "municipality": "住田町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "住田町 A001 / 岩手県 / 住田町 / 道の駅種山ケ原ぽらん / 岩手県気仙郡住田町世田米字子飼沢30-39"
+            }
+          ]
+        },
+        {
+          "locationId": "06-210-b-01",
+          "cardName": "天童市 B001",
+          "prefecture": "山形県",
+          "municipality": "天童市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "天童市 B001 / 山形県 / 天童市 / 天童市将棋資料館 / 山形県天童市本町一丁目1番1号"
+            }
+          ]
+        },
+        {
+          "locationId": "08-203-j-01",
+          "cardName": "土浦市 J001",
+          "prefecture": "茨城県",
+          "municipality": "土浦市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "08-219-b-01",
+          "cardName": "牛久市 B001",
+          "prefecture": "茨城県",
+          "municipality": "牛久市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "09-204-b-01",
+          "cardName": "佐野市 B001",
+          "prefecture": "栃木県",
+          "municipality": "佐野市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "09-210-a-01",
+          "cardName": "大田原市 A001",
+          "prefecture": "栃木県",
+          "municipality": "大田原市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "2026年7月25日から配布を休止しています"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.ohtawara.tochigi.jp/docs/2022111000029/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.ohtawara.tochigi.jp/docs/2022111000029/"
+            }
+          ]
+        },
+        {
+          "locationId": "09-215-a-01",
+          "cardName": "那須烏山市 A001",
+          "prefecture": "栃木県",
+          "municipality": "那須烏山市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "山あげ会館（那須烏山市観光協会）",
+              "after": "那須烏山市役所 烏山庁舎1階 まちづくり課"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "栃木県那須烏山市金井2-5-26",
+              "after": "栃木県那須烏山市中央1-1-1"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "山あげ会館（那須烏山市観光協会） / 栃木県那須烏山市金井2-5-26 / 9:00～16:00 ※令和8年7月1日より下記に変更になります 8:30～17:00 / 毎週火曜日（祝日の場合はその翌日）、年末年始はお休みです。 なお、臨時休館日等の最新情報は、山あげ会館（那須烏山市観光協会）ホームページをご確認ください。 / 36.654316, 140.154251\n那須烏山市役所烏山庁舎（日直室） / 栃木県那須烏山市中央1-1-1 / 土日祝日 9:00～16:00 ※令和8年7月1日より下記に変更になります 8:30～17:00 / 毎週火曜日（祝日の場合はその翌日）、年末年始はお休みです。 なお、臨時休館日等の最新情報は、山あげ会館（那須烏山市観光協会）ホームページをご確認ください。 / 36.657043, 140.151947",
+              "after": "那須烏山市役所 烏山庁舎1階 まちづくり課 / 栃木県那須烏山市中央1-1-1 / 平日 8:30～17:00 / 土日祝日、年末年始はお休みです / 36.657043, 140.151947\n那須烏山市役所 烏山庁舎1階 日直室 / 栃木県那須烏山市中央1-1-1 / 土日祝日 8:30～17:00 / 年末年始はお休みです / 36.657043, 140.151947"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～16:00\nただし、毎週火曜日（祝日の場合はその翌日）、年末年始はお休みです。\nなお、臨時休館日等の最新情報は、山あげ会館（那須烏山市観光協会）ホームページをご確認ください。\n※令和8年7月1日より下記に変更になります\n8:30～17:00",
+              "after": "8:30～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始はお休みです"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.654316",
+              "after": "36.657043"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.154251",
+              "after": "140.151947"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.nasukarasuyama.com/",
+              "after": "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R82M533+PP",
+              "after": "8R82M542+RQ"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
+            }
+          ]
+        },
+        {
+          "locationId": "09-215-c-01",
+          "cardName": "那須烏山市 C001",
+          "prefecture": "栃木県",
+          "municipality": "那須烏山市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "09-216-b-01",
+          "cardName": "下野市 B001",
+          "prefecture": "栃木県",
+          "municipality": "下野市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "下野市 B001 / 栃木県 / 下野市 / 下野薬師寺歴史館 / 栃木県下野市薬師寺1636"
+            }
+          ]
+        },
+        {
+          "locationId": "09-411-a-01",
+          "cardName": "那珂川町 A001",
+          "prefecture": "栃木県",
+          "municipality": "那珂川町",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "那珂川町上下水道庁舎",
+              "after": "那珂川町役場 小川出張所"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "栃木県那須郡那珂川町久那瀬983-3",
+              "after": "栃木県那須郡那珂川町小川1065"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "那珂川町上下水道庁舎 / 栃木県那須郡那珂川町久那瀬983-3 / 平日 9:00～17:00 / 36.734222, 140.150284\n那珂川町役場（西側日直室） / 栃木県那須郡那珂川町馬頭555 / 土日・祝日 9:00～17:00 / 36.735786, 140.17308",
+              "after": "那珂川町役場 小川出張所 / 栃木県那須郡那珂川町小川1065 / 平日 9:00～17:00 / 土日祝日は役場西側日直室で配布します / 36.76426311491867, 140.1353915411983\n那珂川町役場 西側日直室 / 栃木県那須郡那珂川町馬頭555 / 土日祝日 9:00～17:00 / 36.735786, 140.17308"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始はお休みです"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.734222",
+              "after": "36.76426311491867"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.150284",
+              "after": "140.1353915411983"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.tochigi-nakagawa.lg.jp/0072/info-0000002006-0.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.town.tochigi-nakagawa.lg.jp/index.html",
+              "after": "https://www.town.tochigi-nakagawa.lg.jp/0072/info-0000002006-0.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R82P5M2+M4",
+              "after": "8R82Q47P+P5"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.tochigi-nakagawa.lg.jp/0072/info-0000002006-0.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-210-c-01",
+          "cardName": "加須市 C001",
+          "prefecture": "埼玉県",
+          "municipality": "加須市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "加須市 C001 / 埼玉県 / 加須市 / 大利根総合支所地域振興課 / 埼玉県加須市北下新井1679番地1"
+            }
+          ]
+        },
+        {
+          "locationId": "11-222-b-01",
+          "cardName": "越谷市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "越谷市",
+          "changeType": "changed",
+          "headline": "配布時間・配布条件情報・施設情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10：00～19：00\nただし、月2回、年末年始（12/31〜1/2）はお休みです\n※不定休のため電話にて要確認",
+              "after": "10:00～19:00\nただし、年末年始（12/31～1/2）はお休みです。\n※店内整理等により営業日・営業時間は変更になる可能性があります"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.koshigaya-sightseeing.jp/ga-yachan_kurayashiki/",
+              "after": "https://www.koshigaya-sightseeing.jp/information/uncategorized/%E3%82%AC%E3%83%BC%E3%83%A4%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E8%94%B5%E5%B1%8B%E6%95%B7/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.koshigaya.saitama.jp/kurashi_shisei/kurashi/douro/suidogesuido/manholecard.html",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-222-d-01",
+          "cardName": "越谷市 D001",
+          "prefecture": "埼玉県",
+          "municipality": "越谷市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "2026年7月31日から通常配布しています。最新の配布状況は公式ページをご確認ください"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10:00～19:00\nただし、年末年始（12/31から1/2）はお休みです。店内整理等で臨時休業する場合もあります",
+              "after": "10:00～19:00\nただし、年末年始（12/31～1/2）はお休みです。\n※店内整理等により営業日・営業時間は変更になる可能性があります"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.koshigaya-sightseeing.jp/information/uncategorized/%e3%82%ac%e3%83%bc%e3%83%a4%e3%81%a1%e3%82%83%e3%82%93%e3%81%ae%e8%94%b5%e5%b1%8b%e6%95%b7/",
+              "after": "https://www.koshigaya-sightseeing.jp/information/uncategorized/%E3%82%AC%E3%83%BC%E3%83%A4%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E8%94%B5%E5%B1%8B%E6%95%B7/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.koshigaya.saitama.jp/kurashi_shisei/kurashi/douro/suidogesuido/manholecard.html",
+              "after": "https://www.city.koshigaya.saitama.jp/toiawase/sosiki2/kankyokezai/keizaisinkou/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-243-a-01",
+          "cardName": "吉川市",
+          "prefecture": "埼玉県",
+          "municipality": "吉川市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫切れのため配布を終了しています。再開時は公式ページで案内されます"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.yoshikawa.saitama.jp/index.cfm/23,61996,123,html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.yoshikawa.saitama.jp/index.cfm/23,61996,123,html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-245-b-01",
+          "cardName": "ふじみ野市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "ふじみ野市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "12-100-c-01",
+          "cardName": "千葉市 C001",
+          "prefecture": "千葉県",
+          "municipality": "千葉市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "千葉市 C001 / 千葉県 / 千葉市 / BOTANICA MUSEUM / 千葉県千葉市美浜区高浜7-2-4（稲毛海浜公園内）"
+            }
+          ]
+        },
+        {
+          "locationId": "12-205-c-01",
+          "cardName": "館山市 C001",
+          "prefecture": "千葉県",
+          "municipality": "館山市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "館山市 C001 / 千葉県 / 館山市 / 館山駅西口観光案内所 / 千葉県館山市北条1879-2"
+            }
+          ]
+        },
+        {
+          "locationId": "12-423-c-01",
+          "cardName": "長生村 C001",
+          "prefecture": "千葉県",
+          "municipality": "長生村",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "13-100-p101",
+          "cardName": "東京23区 P101",
+          "prefecture": "東京都",
+          "municipality": "東京23区",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "東京23区 P101 / 東京都 / 東京23区 / 全国観光PRコーナー / 東京都新宿区西新宿2-8-1 東京都庁第一本庁舎1階"
+            }
+          ]
+        },
+        {
+          "locationId": "13-100-q101",
+          "cardName": "東京23区 Q101",
+          "prefecture": "東京都",
+          "municipality": "東京23区",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "東京23区 Q101 / 東京都 / 東京23区 / 江戸川区郷土資料室（しのざき文化プラザ内） / 東京都江戸川区篠崎町七丁目20番19号 しのざき文化プラザ3階"
+            }
+          ]
+        },
+        {
+          "locationId": "13-100-r101",
+          "cardName": "東京23区 R101",
+          "prefecture": "東京都",
+          "municipality": "東京23区",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "東京23区 R101 / 東京都 / 東京23区 / 山﨑記念中野区立歴史民俗資料館 / 東京都中野区江古田四丁目3番4号"
+            }
+          ]
+        },
+        {
+          "locationId": "13-203-a-01",
+          "cardName": "武蔵野市 A001",
+          "prefecture": "東京都",
+          "municipality": "武蔵野市",
+          "changeType": "changed",
+          "headline": "配布条件情報・情報元・在庫情報を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1045513.html",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-203-b-01",
+          "cardName": "武蔵野市 B001",
+          "prefecture": "東京都",
+          "municipality": "武蔵野市",
+          "changeType": "changed",
+          "headline": "配布条件情報・情報元・在庫情報を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1045513.html",
+              "after": "https://www.city.musashino.lg.jp/kurashi_tetsuzuki/shigoto_sangyo/shoko/1054612.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-204-b-01",
+          "cardName": "三鷹市 B001",
+          "prefecture": "東京都",
+          "municipality": "三鷹市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "14-218-a-01",
+          "cardName": "綾瀬市",
+          "prefecture": "神奈川県",
+          "municipality": "綾瀬市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "通常配布は休止中です。配布予定イベントの最新情報は公式ページをご確認ください"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：00\nただし、水曜日及び年末年始（12月28日～1月3日）はお休みです",
+              "after": "通常配布は休止中です。2026年9月12日、10月17日（6月27日延期分・予定）、11月7日のオープンファクトリーで配布予定です"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "イベント開催時のみ配布"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "オープンファクトリー来場者へイベント時のみ配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.ayase.kanagawa.jp/soshiki/gesuidoka/shimimmuke/24488.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.ayase.kanagawa.jp/soshiki/gesuidoka/shimimmuke/24488.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.ayase.kanagawa.jp/soshiki/gesuidoka/shimimmuke/18069.html",
+              "after": "https://www.city.ayase.kanagawa.jp/soshiki/gesuidoka/shimimmuke/24488.html"
+            }
+          ]
+        },
+        {
+          "locationId": "14-218-b-01",
+          "cardName": "綾瀬市 B001",
+          "prefecture": "神奈川県",
+          "municipality": "綾瀬市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "綾瀬市 B001 / 神奈川県 / 綾瀬市 / 綾瀬市役所 5階 商工振興課（抽選当選者のみ） / 神奈川県綾瀬市早川550番地"
+            }
+          ]
+        },
+        {
+          "locationId": "15-202-g-01",
+          "cardName": "長岡市 G001",
+          "prefecture": "新潟県",
+          "municipality": "長岡市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            }
+          ]
+        },
+        {
+          "locationId": "15-213-e-01",
+          "cardName": "燕市 E001",
+          "prefecture": "新潟県",
+          "municipality": "燕市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-i-01",
+          "cardName": "佐渡市 I001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "18-206-a-01",
+          "cardName": "勝山市 A001",
+          "prefecture": "福井県",
+          "municipality": "勝山市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "0779-88-8777までお問い合わせください\n※現在、配布を一時中止しています",
+              "after": "2026年4月20日から配布を再開しています"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=18#mhcard_result",
+              "after": "https://www.city.katsuyama.fukui.jp/soshiki/17/324.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://kyoryunomori.net/",
+              "after": "https://kyoryunomori.net/information/4179.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=18#mhcard_result",
+              "after": "https://www.city.katsuyama.fukui.jp/soshiki/17/324.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=18#mhcard_result",
+              "after": "https://www.city.katsuyama.fukui.jp/soshiki/17/324.html"
+            }
+          ]
+        },
+        {
+          "locationId": "20-218-d-01",
+          "cardName": "千曲市 D001",
+          "prefecture": "長野県",
+          "municipality": "千曲市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "20-321-b-01",
+          "cardName": "軽井沢町 B001",
+          "prefecture": "長野県",
+          "municipality": "軽井沢町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "軽井沢町 B001 / 長野県 / 軽井沢町 / 追分宿郷土館 / 長野県軽井沢町追分1155-8"
+            }
+          ]
+        },
+        {
+          "locationId": "21-206-b-01",
+          "cardName": "中津川市 B001",
+          "prefecture": "岐阜県",
+          "municipality": "中津川市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "22-210-c-01",
+          "cardName": "富士市 C001",
+          "prefecture": "静岡県",
+          "municipality": "富士市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "22-221-b-01",
+          "cardName": "湖西市 B001",
+          "prefecture": "静岡県",
+          "municipality": "湖西市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "23-230-a-01",
+          "cardName": "日進市 A001",
+          "prefecture": "愛知県",
+          "municipality": "日進市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "2026年7月17日17時から配布を休止しています"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10:00～17:00\nただし、毎週月曜日、第2火曜日、年末年始はお休みです。\n※「道の駅マチテラス日進」の営業時間とは異なります。\n※状況により変更する場合があります。",
+              "after": "10:00～17:00\nただし、毎週月曜日（月曜日が祝日等の場合はその翌日（祝日等でない日））、第2火曜日、年末年始はお休みです。\n※「道の駅マチテラス日進」の営業時間とは異なります。\n※状況により変更する場合があります。"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.nisshin.lg.jp/department/kensetu/gesuido/6/2/2/18615.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.nisshin.lg.jp/department/kensetu/gesuido/6/2/2/18615.html"
+            }
+          ]
+        },
+        {
+          "locationId": "25-209-c-01",
+          "cardName": "甲賀市 C001",
+          "prefecture": "滋賀県",
+          "municipality": "甲賀市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "26-344-b-01",
+          "cardName": "宇治田原町 B001",
+          "prefecture": "京都府",
+          "municipality": "宇治田原町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "宇治田原町 B001 / 京都府 / 宇治田原町 / 宇治田原町役場上下水道課 / 京都府綴喜郡宇治田原町大字立川小字坂口18番地1（宇治田原町役場2階）"
+            }
+          ]
+        },
+        {
+          "locationId": "27-218-b-01",
+          "cardName": "大東市 B001",
+          "prefecture": "大阪府",
+          "municipality": "大東市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "大東市 B001 / 大阪府 / 大東市 / 大東市上下水道局宿直室 / 大阪府大東市灰塚4-1-1"
+            }
+          ]
+        },
+        {
+          "locationId": "28-100-d-01",
+          "cardName": "神戸市 D001",
+          "prefecture": "兵庫県",
+          "municipality": "神戸市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "33-216-a-01",
+          "cardName": "浅口市 A001",
+          "prefecture": "岡山県",
+          "municipality": "浅口市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "浅口市 A001 / 岡山県 / 浅口市 / 浅口市役所上下水道部下水道課（金光総合支所2階） / 岡山県浅口市金光町占見新田751番地"
+            }
+          ]
+        },
+        {
+          "locationId": "34-212-c-01",
+          "cardName": "東広島市 C001",
+          "prefecture": "広島県",
+          "municipality": "東広島市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "34-368-a-01",
+          "cardName": "安芸太田町 A001",
+          "prefecture": "広島県",
+          "municipality": "安芸太田町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "0826-28-1800までお問い合わせください",
+              "after": "在庫切れのため配布を休止しています。再入荷時期は未定です"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+              "after": "https://www.akiota.jp/soshiki/9/18091.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+              "after": "https://www.akiota.jp/soshiki/9/18091.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+              "after": "https://www.akiota.jp/soshiki/9/18091.html"
+            }
+          ]
+        },
+        {
+          "locationId": "35-211-a-01",
+          "cardName": "長門市 A001",
+          "prefecture": "山口県",
+          "municipality": "長門市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長門市 A001 / 山口県 / 長門市 / 長門市観光案内所 YUKUTE / 山口県長門市仙崎4297-6"
+            }
+          ]
+        },
+        {
+          "locationId": "39-212-e-01",
+          "cardName": "香美市 E001",
+          "prefecture": "高知県",
+          "municipality": "香美市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "香美市 E001 / 高知県 / 香美市 / かみんか（愛と勇気の物語交流館） / 高知県香美市香北町美良布1141-1"
+            }
+          ]
+        },
+        {
+          "locationId": "40-204-a-01",
+          "cardName": "直方市 A001",
+          "prefecture": "福岡県",
+          "municipality": "直方市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "40-215-a-01",
+          "cardName": "中間市 A001",
+          "prefecture": "福岡県",
+          "municipality": "中間市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "中間市 A001 / 福岡県 / 中間市 / 中間市地域交流センター / 福岡県中間市大字垣生660番地1"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-a-01",
+          "cardName": "熊本市 A001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-b-01",
+          "cardName": "熊本市 B001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-c-01",
+          "cardName": "熊本市 C001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-d-01",
+          "cardName": "熊本市 D001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-e-01",
+          "cardName": "熊本市 E001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-f-01",
+          "cardName": "熊本市 F001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-g-01",
+          "cardName": "熊本市 G001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-h-01",
+          "cardName": "熊本市 H001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-i-01",
+          "cardName": "熊本市 I001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-j-01",
+          "cardName": "熊本市 J001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-k-01",
+          "cardName": "熊本市 K001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/waterworks_article/19974/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-l-01",
+          "cardName": "熊本市 L001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.kumamoto-waterworks.jp/",
+              "after": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result"
+            }
+          ]
+        },
+        {
+          "locationId": "43-443-b-01",
+          "cardName": "益城町 B001",
+          "prefecture": "熊本県",
+          "municipality": "益城町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "益城町 B001 / 熊本県 / 益城町 / 益城町交流情報センターミナテラス / 熊本県上益城郡益城町大字木山236"
+            }
+          ]
+        },
+        {
+          "locationId": "46-215-b-01",
+          "cardName": "薩摩川内市 B001",
+          "prefecture": "鹿児島県",
+          "municipality": "薩摩川内市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "公式情報を確認"
+            }
+          ]
+        },
+        {
+          "locationId": "47-213-a-01",
+          "cardName": "うるま市",
+          "prefecture": "沖縄県",
+          "municipality": "うるま市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "うるま市水道部下水道課",
+              "after": "うるま市観光案内所（あまわりパーク観光ターミナル）"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "沖縄県うるま市字兼箇段896番地",
+              "after": "沖縄県うるま市勝連南風原3807-2"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "うるま市水道部下水道課 / 沖縄県うるま市字兼箇段896番地 / 平日 9:00～17:00 / 土日・祝日及び年末年始はお休みです / 26.369179, 127.840881\nあまわりパーク観光ターミナル / 沖縄県うるま市勝連南風原3807-2 / 土日祝日 9:00～17:30 / 臨時休館日はお休みです / 26.332905, 127.881287",
+              "after": "うるま市観光案内所（あまわりパーク観光ターミナル） / 沖縄県うるま市勝連南風原3807-2 / 毎日 9:00～17:30 / 施設の臨時休館日はお休みです / 26.332905, 127.881287"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】9:00～17:00\nただし、土日・祝日及び年末年始はお休みです\n【土日祝日】9:00～17:30\nただし、臨時休館日はお休みです",
+              "after": "9:00～17:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "施設の臨時休館日はお休みです"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "26.369179",
+              "after": "26.332905"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "127.840881",
+              "after": "127.881287"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+              "after": "https://www.city.uruma.lg.jp/6001004000/contents/p000076.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.uruma.lg.jp/kurashitetsuzuki/jougesuidou/gesuidou/index.html",
+              "after": "https://www.city.uruma.lg.jp/6001004000/contents/p000076.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "7QR99R9R+M9",
+              "after": "7QR98VMJ+5G"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+              "after": "https://www.city.uruma.lg.jp/6001004000/contents/p000076.html"
+            }
+          ]
+        },
+        {
+          "locationId": "47-214-a-01",
+          "cardName": "宮古島市 A001",
+          "prefecture": "沖縄県",
+          "municipality": "宮古島市",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2026-07-14-aa9be2e4ded0",
+      "date": "2026-07-14",
+      "generatedAt": "2026-07-14T10:00:00.000Z",
+      "source": "GKP差分の事前レビュー対応（PR #44）",
+      "totalChanges": 15,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-634-a-01",
+          "cardName": "鹿追町 A001",
+          "prefecture": "北海道",
+          "municipality": "鹿追町",
+          "changeType": "changed",
+          "headline": "在庫・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "2026年8月23日のお披露目式で配布開始（通常配布は未確認、2026-07-14公式確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "①【4月～10月】9:00～17:00、【11月～3月】10:00～16:00\n②8:30～17:15\n①、②ともに、年末年始はお休みです",
+              "after": "2026年8月23日 11:00～（お披露目式終了後に配布）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "通常配布は未公表"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "お披露目式終了後、1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.shikaoi.lg.jp/sightseeing/shikaoi_futamasu/"
+            }
+          ]
+        },
+        {
+          "locationId": "02-205-a-01",
+          "cardName": "五所川原市",
+          "prefecture": "青森県",
+          "municipality": "五所川原市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "配布中（2026-07-14公式確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "五所川原市観光案内所（一般社団法人 五所川原市観光協会）",
+              "after": "立佞武多の館"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "青森県五所川原市字大町38番地",
+              "after": "青森県五所川原市字大町506番地10"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8:30～17:00\nただし、12/31、1/1はお休みです",
+              "after": "【4月～9月】9:00～19:00\n【10月～3月】9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "1月1日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚を手渡し。郵送不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "40.809471",
+              "after": "40.81095"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.446991",
+              "after": "140.44333"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
+              "after": "https://www.city.goshogawara.lg.jp/kurashi/machi/gesui/manholecard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.go-kankou.jp/",
+              "after": "https://www.tachineputa.jp/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RG2RC5W+QQ",
+              "after": "8RG2RC6V+98"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
+              "after": "https://www.city.goshogawara.lg.jp/kurashi/machi/gesui/manholecard.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.goshogawara.lg.jp/kurashi/machi/gesui/manholecard.html",
+              "after": "https://www.city.goshogawara.lg.jp/kurashi/machi/gesui/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "08-203-b-01",
+          "cardName": "土浦市 B001",
+          "prefecture": "茨城県",
+          "municipality": "土浦市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "土浦市役所 広報広聴課",
+              "after": "土浦市役所 シティプロモーション課"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "茨城県土浦市大和町9-1 3階",
+              "after": "茨城県土浦市大和町9-1（3階）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "土浦市役所 広報広聴課 / 茨城県土浦市大和町9-1 3階 / 平日 8：30～17：00 / 36.077835, 140.203644\n観光情報物産センターきらら館 / 茨城県土浦市大和町9-1 1階 / 土日祝日 9：00～17：30 / 年末年始（12/29～1/3）はお休みです（12月28日は16：30で終了） / 36.07774, 140.203949",
+              "after": "土浦市役所 シティプロモーション課 / 茨城県土浦市大和町9-1（3階） / 平日 8：30～17：00 / 36.077835, 140.203644\n観光情報物産センターきらら館 / 茨城県土浦市大和町9-1（1階） / 土日祝日 9：00～17：30 / 年末年始（12/29～1/3）はお休みです（12月28日は16：30で終了） / 36.07774, 140.203949"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
+              "after": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/suido-kokyogesuido/kokyogesuido/page019560.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.tsuchiura.lg.jp/sp/",
+              "after": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/suido-kokyogesuido/kokyogesuido/page019560.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
+              "after": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/suido-kokyogesuido/kokyogesuido/page019560.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.tsuchiura.lg.jp/page/page019560.html",
+              "after": "https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/suido-kokyogesuido/kokyogesuido/page019560.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-245-a-01",
+          "cardName": "ふじみ野市",
+          "prefecture": "埼玉県",
+          "municipality": "ふじみ野市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（2026-07-14公式確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "ふじみ野市役所 上下水道課",
+              "after": "水道サービスセンター（ふじみ野市役所第2庁舎内）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "ふじみ野市役所 上下水道課 / 埼玉県ふじみ野市福岡1-1-1（第二庁舎） / 平日 9：00～17：00 / 月曜日が祝日の場合、年末年始（12/28～1/3）はお休みです / 35.879875, 139.519592\nふじみ野ステラ・ウェスト / 埼玉県ふじみ野市大井中央2-1-8 / 土日祝 9：00〜17：00 / 35.858505, 139.507599",
+              "after": "水道サービスセンター（ふじみ野市役所第2庁舎内） / 埼玉県ふじみ野市福岡1-1-1（第二庁舎） / 平日 9：00～17：00 / 35.879875, 139.519592\nふじみ野ステラ・ウェスト / 埼玉県ふじみ野市大井中央2-1-8 / 土日祝 9：00〜17：00 / 35.858505, 139.507599"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】9：00～17：00\nただし、月曜日が祝日の場合、年末年始（12/28～1/3）はお休みです\n【土日祝】9：00〜17：00",
+              "after": "【平日】9:00～17:00\n【土日祝】9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "各配布施設の休館日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。窓口アンケートあり"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/17326.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.fujimino.saitama.jp/",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/17326.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/17326.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/2309.html",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/17326.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-245-b-01",
+          "cardName": "ふじみ野市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "ふじみ野市",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "ふじみ野ステラ・イースト / 埼玉県ふじみ野市福岡一丁目1番8号 / 平日、土日、祝日 9:00～17:00 / 毎月第3月曜日（なお、月曜日が祝日の場合は翌日）はお休みです / 35.879734, 139.520263\nふじみ野市上下水道課（市役所第2庁舎） / 埼玉県ふじみ野市福岡1-1-1 ふじみ野市役所第2庁舎内 / 毎月第3月曜日（ふじみ野ステラ・イースト休館日） 9:00～17:00 / 35.879875, 139.519592",
+              "after": "ふじみ野ステラ・イースト / 埼玉県ふじみ野市福岡一丁目1番8号 / 平日、土日、祝日 9:00～17:00 / 毎月第3月曜日（なお、月曜日が祝日の場合は翌日）はお休みです / 35.879734, 139.520263\nふじみ野市上下水道課（市役所第2庁舎） / 埼玉県ふじみ野市福岡1-1-1（ふじみ野市役所第2庁舎内） / 毎月第3月曜日（ふじみ野ステラ・イースト休館日） 9:00～17:00 / 35.879875, 139.519592"
+            }
+          ]
+        },
+        {
+          "locationId": "12-239-a-01",
+          "cardName": "大網白里市",
+          "prefecture": "千葉県",
+          "municipality": "大網白里市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、在庫切れのため配布を一時中止しています",
+              "after": "2026年7月11日から配布再開（2026-07-14公式確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：15\nただし、国民の祝日、年末年始（12月29日から1月3日）はお休みです",
+              "after": "9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "国民の祝日、年末年始（12月29日～1月3日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.oamishirasato.lg.jp/0000013090.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.oamishirasato.lg.jp/0000013090.html"
+            }
+          ]
+        },
+        {
+          "locationId": "14-206-f-01",
+          "cardName": "小田原市 F001",
+          "prefecture": "神奈川県",
+          "municipality": "小田原市",
+          "changeType": "changed",
+          "headline": "在庫・配布時間・休配日などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "配布中（2026-07-14公式確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10:00～16:00\nただし、月・火・水曜日（祝日だった場合は翌平日）及び年末年始はお休みです",
+              "after": "2026年7月～9月は土日祝の10:00～13:00（最終入館12:30）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "2026年7月～9月は平日。通常は月・火・水曜日、年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.odawara.kanagawa.jp/field/c-planning/sewer/topics/p24794.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.odawara.kanagawa.jp/field/c-planning/sewer/topics/p24794.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.odawara.kanagawa.jp/field/lifelong/culture/historical_structure/p25874.html",
+              "after": "https://www.city.odawara.kanagawa.jp/field/c-planning/sewer/topics/p24794.html"
+            }
+          ]
+        },
+        {
+          "locationId": "15-202-g-01",
+          "cardName": "長岡市 G001",
+          "prefecture": "新潟県",
+          "municipality": "長岡市",
+          "changeType": "changed",
+          "headline": "在庫・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始前",
+              "after": "2026年7月31日から配布開始（初日はイベント会場のみ、2026-07-14公式確認）"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ-",
+              "after": "新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階 インフォメーションカウンター"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "米百俵プレイス ミライエ長岡 3階インフォメーションカウンター / 新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ- / 【平日・土曜日】9:00～21:00\n【日曜日・祝日】9:00～18:00\nただし、休館日：毎月第2木曜日（休日の場合は翌日）、毎月の末日（土日の場合は翌月曜日）、年末年始（12/29～1/3）はお休みです / 要確認 / 37.44849, 138.848648",
+              "after": "米百俵プレイス ミライエ長岡 3階インフォメーションカウンター / 新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階 インフォメーションカウンター / 【平日・土曜日】9:00～21:00\n【日曜日・祝日】9:00～18:00\nただし、休館日：毎月第2木曜日（休日の場合は翌日）、毎月の末日（土日の場合は翌月曜日）、年末年始（12/29～1/3）はお休みです / 毎月第2木曜日（休日の場合は翌日）、毎月末日（土日の場合は翌月曜日）、年末年始（12月29日～1月3日） / 37.44849, 138.848648"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "毎月第2木曜日（休日の場合は翌日）、毎月末日（土日の場合は翌月曜日）、年末年始（12月29日～1月3日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "7月31日はイベント会場のみ。イベント詳細は公式発表待ち",
+              "after": "7月31日はイベント会場のみ。イベント詳細は公式発表待ち。通常配布はミライエ長岡"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
+              "after": "https://www.city.nagaoka.niigata.jp/suidou/suidou/manhole.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
+              "after": "https://www.city.nagaoka.niigata.jp/suidou/suidou/manhole.html"
+            }
+          ]
+        },
+        {
+          "locationId": "21-204-a-01",
+          "cardName": "多治見市 A001",
+          "prefecture": "岐阜県",
+          "municipality": "多治見市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "在庫あり（2026-07-14公式確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（詳細は多治見市PRセンターに確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "原則1人1枚を手渡し。郵送不可。アンケートあり"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.city.tajimi.lg.jp/kurashi_tetsuduzuki/jougesuido/1005578/1009966.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.city.tajimi.lg.jp/kurashi_tetsuduzuki/jougesuido/1005578/1009966.html"
+            }
+          ]
+        },
+        {
+          "locationId": "21-206-b-01",
+          "cardName": "中津川市 B001",
+          "prefecture": "岐阜県",
+          "municipality": "中津川市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布条件情報・施設情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "にぎわい特産館（にぎわいプラザ1階） / 岐阜県中津川市栄町1-1 / 事前抽選当選者のみ 10:00～16:00 / 35.50122, 137.50378\n中津川市ひと・まちテラス / 岐阜県中津川市新町2-34 / 9:00～21:30\nただし、年末年始（12/29～1/3）、施設点検日（2月第3火曜日）はお休みです / 要確認 / 35.497948, 137.505371",
+              "after": "にぎわい特産館（にぎわいプラザ1階） / 岐阜県中津川市栄町1-1 / 事前抽選当選者のみ 10:00～16:00 / 35.50122, 137.50378\n中津川市ひと・まちテラス / 岐阜県中津川市新町2-34 / 9:00～21:30\nただし、年末年始（12/29～1/3）、施設点検日（2月第3火曜日）はお休みです / 要確認 / 35.497948, 137.505371"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.city.nakatsugawa.lg.jp/soshikikarasagasu/kankoka/bunka/7/39772.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+              "after": "https://www.city.nakatsugawa.lg.jp/soshikikarasagasu/kankoka/bunka/7/39772.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.city.nakatsugawa.lg.jp/soshikikarasagasu/kankoka/bunka/7/39772.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.nakatsugawa.lg.jp/kanko/bunka/taishi/39776.html",
+              "after": "https://www.city.nakatsugawa.lg.jp/soshikikarasagasu/kankoka/bunka/7/39772.html"
+            }
+          ]
+        },
+        {
+          "locationId": "22-130-b-01",
+          "cardName": "浜松市 B001",
+          "prefecture": "静岡県",
+          "municipality": "浜松市",
+          "changeType": "changed",
+          "headline": "配布条件情報・情報元を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.hamamatsu.shizuoka.jp/suidow-s/kouhou/manholecard.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.hamamatsu.shizuoka.jp/suidow-s/kouhou/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-230-b-01",
+          "cardName": "交野市 B001",
+          "prefecture": "大阪府",
+          "municipality": "交野市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "第16弾は在庫切れ。配布再開未定（2026-07-14公式確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "先着順で1人1枚。代理受取・予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.katano.osaka.jp/docs/2018053100033/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.katano.osaka.jp/docs/2018053100033/"
+            }
+          ]
+        },
+        {
+          "locationId": "28-210-a-01",
+          "cardName": "加古川市",
+          "prefecture": "兵庫県",
+          "municipality": "加古川市",
+          "changeType": "changed",
+          "headline": "配布条件情報・情報元を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
+              "after": "https://suidou-kakogawa.jp/learn/pr/media/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
+              "after": "https://suidou-kakogawa.jp/learn/pr/media/"
+            }
+          ]
+        },
+        {
+          "locationId": "34-212-c-01",
+          "cardName": "東広島市 C001",
+          "prefecture": "広島県",
+          "municipality": "東広島市",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1 / 通常配布 10:00～16:00 / 第1・3水曜日、年末年始、10月上旬に開催される酒まつり期間中はお休みです / 34.429699, 132.746811\n東広島市下水道管理課 / 広島県東広島市西条栄町8-29（本館7階） / 第1・第3水曜日、観光案内所の臨時休業日（平日のみ） 8：30～17：15 / 土日祝祭日、年末年始はお休みです / 34.426651, 132.743469",
+              "after": "西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1 / 通常配布 10:00～16:00 / 第1・3水曜日、年末年始、10月上旬に開催される酒まつり期間中はお休みです / 34.429699, 132.746811\n東広島市下水道管理課 / 広島県東広島市西条栄町8-29（本館7階） / 第1・第3水曜日、観光案内所の臨時休業日（平日のみ） 8：30～17：15 / 土日祝祭日、年末年始はお休みです / 34.426651, 132.743469"
+            }
+          ]
+        },
+        {
+          "locationId": "47-209-c-01",
+          "cardName": "名護市 C001",
+          "prefecture": "沖縄県",
+          "municipality": "名護市",
+          "changeType": "changed",
+          "headline": "在庫・配布条件情報・施設情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "残り48枚（2026年7月13日時点）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+              "after": "https://www.city.nago.okinawa.jp/articles/2026062900018/"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.nago.okinawa.jp/soshiki/kankyousuidou/keiei/",
+              "after": "https://www.city.nago.okinawa.jp/soshiki/kankyousuidou/keiei/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=47#mhcard_result",
+              "after": "https://www.city.nago.okinawa.jp/articles/2026062900018/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.nago.okinawa.jp/soshiki/kankyousuidou/keiei/",
+              "after": "https://www.city.nago.okinawa.jp/articles/2026062900018/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2026-07-14-2483cddd34b8",
+      "date": "2026-07-14",
+      "generatedAt": "2026-07-14T09:00:00.000Z",
+      "source": "第29弾26件と配布開始前表示を追加（PR #41）",
+      "totalChanges": 26,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-229-b-01",
+          "cardName": "富良野市 B001",
+          "prefecture": "北海道",
+          "municipality": "富良野市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "富良野市 B001 / 北海道 / 富良野市 / 富良野チーズ工房 2階直販コーナー / 北海道富良野市中五区"
+            }
+          ]
+        },
+        {
+          "locationId": "01-634-a-01",
+          "cardName": "鹿追町 A001",
+          "prefecture": "北海道",
+          "municipality": "鹿追町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "鹿追町 A001 / 北海道 / 鹿追町 / 道の駅しかおい 芝生広場（裏庭） / 北海道河東郡鹿追町東町3丁目2-7"
+            }
+          ]
+        },
+        {
+          "locationId": "08-203-j-01",
+          "cardName": "土浦市 J001",
+          "prefecture": "茨城県",
+          "municipality": "土浦市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "土浦市 J001 / 茨城県 / 土浦市 / りんりんポート土浦 / 茨城県土浦市川口二丁目13-25"
+            }
+          ]
+        },
+        {
+          "locationId": "08-219-b-01",
+          "cardName": "牛久市 B001",
+          "prefecture": "茨城県",
+          "municipality": "牛久市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "牛久市 B001 / 茨城県 / 牛久市 / 牛久シャトーショップ / 茨城県牛久市中央3丁目20-1"
+            }
+          ]
+        },
+        {
+          "locationId": "09-204-b-01",
+          "cardName": "佐野市 B001",
+          "prefecture": "栃木県",
+          "municipality": "佐野市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "佐野市 B001 / 栃木県 / 佐野市 / 佐野市国際クリケット場TeaRoom / 栃木県佐野市栃本町300-1"
+            }
+          ]
+        },
+        {
+          "locationId": "09-215-c-01",
+          "cardName": "那須烏山市 C001",
+          "prefecture": "栃木県",
+          "municipality": "那須烏山市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "那須烏山市 C001 / 栃木県 / 那須烏山市 / 山あげ会館（那須烏山市観光協会） / 栃木県那須烏山市金井2-5-26"
+            }
+          ]
+        },
+        {
+          "locationId": "09-411-a-01",
+          "cardName": "那珂川町 A001",
+          "prefecture": "栃木県",
+          "municipality": "那珂川町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "那珂川町 A001 / 栃木県 / 那珂川町 / 那珂川町上下水道庁舎 / 栃木県那須郡那珂川町久那瀬983-3"
+            }
+          ]
+        },
+        {
+          "locationId": "11-222-d-01",
+          "cardName": "越谷市 D001",
+          "prefecture": "埼玉県",
+          "municipality": "越谷市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "越谷市 D001 / 埼玉県 / 越谷市 / ガーヤちゃんの蔵屋敷 / 埼玉県越谷市弥生町505-2"
+            }
+          ]
+        },
+        {
+          "locationId": "11-245-b-01",
+          "cardName": "ふじみ野市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "ふじみ野市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "ふじみ野市 B001 / 埼玉県 / ふじみ野市 / ふじみ野ステラ・イースト / 埼玉県ふじみ野市福岡一丁目1番8号"
+            }
+          ]
+        },
+        {
+          "locationId": "12-423-c-01",
+          "cardName": "長生村 C001",
+          "prefecture": "千葉県",
+          "municipality": "長生村",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長生村 C001 / 千葉県 / 長生村 / 長生村役場産業課 / 千葉県長生郡長生村本郷1番地77"
+            }
+          ]
+        },
+        {
+          "locationId": "13-204-b-01",
+          "cardName": "三鷹市 B001",
+          "prefecture": "東京都",
+          "municipality": "三鷹市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "三鷹市 B001 / 東京都 / 三鷹市 / みたか観光BASE / 東京都三鷹市下連雀3-24-3-105"
+            }
+          ]
+        },
+        {
+          "locationId": "13-229-a-01",
+          "cardName": "西東京市 A001",
+          "prefecture": "東京都",
+          "municipality": "西東京市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "西東京市 A001 / 東京都 / 西東京市 / まちテナ西東京 / 東京都西東京市田無町4-1-2（田無駅改札横）"
+            }
+          ]
+        },
+        {
+          "locationId": "15-202-g-01",
+          "cardName": "長岡市 G001",
+          "prefecture": "新潟県",
+          "municipality": "長岡市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長岡市 G001 / 新潟県 / 長岡市 / 米百俵プレイス ミライエ長岡 / 新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ-"
+            }
+          ]
+        },
+        {
+          "locationId": "15-213-e-01",
+          "cardName": "燕市 E001",
+          "prefecture": "新潟県",
+          "municipality": "燕市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "燕市 E001 / 新潟県 / 燕市 / 燕市役所 2階 下水道課（20番窓口） / 新潟県燕市吉田西太田1934番地"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-i-01",
+          "cardName": "佐渡市 I001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "佐渡市 I001 / 新潟県 / 佐渡市 / 佐和田市民センター / 新潟県佐渡市河原田本町394番地"
+            }
+          ]
+        },
+        {
+          "locationId": "20-218-d-01",
+          "cardName": "千曲市 D001",
+          "prefecture": "長野県",
+          "municipality": "千曲市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "千曲市 D001 / 長野県 / 千曲市 / 千曲市上山田文化会館 / 長野県千曲市上山田温泉三丁目1番地1"
+            }
+          ]
+        },
+        {
+          "locationId": "21-206-b-01",
+          "cardName": "中津川市 B001",
+          "prefecture": "岐阜県",
+          "municipality": "中津川市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "中津川市 B001 / 岐阜県 / 中津川市 / にぎわい特産館（にぎわいプラザ1階） / 岐阜県中津川市栄町1-1"
+            }
+          ]
+        },
+        {
+          "locationId": "21-505-a-01",
+          "cardName": "八百津町 A001",
+          "prefecture": "岐阜県",
+          "municipality": "八百津町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "八百津町 A001 / 岐阜県 / 八百津町 / 八百津町港町公民館前 / 岐阜県加茂郡八百津町八百津4037-1"
+            }
+          ]
+        },
+        {
+          "locationId": "22-210-c-01",
+          "cardName": "富士市 C001",
+          "prefecture": "静岡県",
+          "municipality": "富士市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "富士市 C001 / 静岡県 / 富士市 / イオンタウン富士南 2階モールインフォメーション / 静岡県富士市鮫島118-10"
+            }
+          ]
+        },
+        {
+          "locationId": "22-221-b-01",
+          "cardName": "湖西市 B001",
+          "prefecture": "静岡県",
+          "municipality": "湖西市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "湖西市 B001 / 静岡県 / 湖西市 / 道の駅 潮見坂 / 静岡県湖西市白須賀1896-2"
+            }
+          ]
+        },
+        {
+          "locationId": "25-209-c-01",
+          "cardName": "甲賀市 C001",
+          "prefecture": "滋賀県",
+          "municipality": "甲賀市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "甲賀市 C001 / 滋賀県 / 甲賀市 / 観光インフォメーションセンター甲賀流リアル忍者館 / 滋賀県甲賀市甲南町竜法師600番地"
+            }
+          ]
+        },
+        {
+          "locationId": "28-100-d-01",
+          "cardName": "神戸市 D001",
+          "prefecture": "兵庫県",
+          "municipality": "神戸市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "神戸市 D001 / 兵庫県 / 神戸市 / 北野観光案内所 / 兵庫県神戸市中央区北野町3-10-20"
+            }
+          ]
+        },
+        {
+          "locationId": "34-212-c-01",
+          "cardName": "東広島市 C001",
+          "prefecture": "広島県",
+          "municipality": "東広島市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "東広島市 C001 / 広島県 / 東広島市 / 西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1"
+            }
+          ]
+        },
+        {
+          "locationId": "40-204-a-01",
+          "cardName": "直方市 A001",
+          "prefecture": "福岡県",
+          "municipality": "直方市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "直方市 A001 / 福岡県 / 直方市 / 直方市役所 2階 下水道課 / 福岡県直方市殿町7-1"
+            }
+          ]
+        },
+        {
+          "locationId": "46-215-b-01",
+          "cardName": "薩摩川内市 B001",
+          "prefecture": "鹿児島県",
+          "municipality": "薩摩川内市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "薩摩川内市 B001 / 鹿児島県 / 薩摩川内市 / 下甑島観光案内所 / 鹿児島県薩摩川内市下甑町長浜913番4号"
+            }
+          ]
+        },
+        {
+          "locationId": "47-214-a-01",
+          "cardName": "宮古島市 A001",
+          "prefecture": "沖縄県",
+          "municipality": "宮古島市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "宮古島市 A001 / 沖縄県 / 宮古島市 / 宮古島市 下水道課 / 沖縄県宮古島市平良字西仲宗根565-6"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

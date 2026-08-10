@@ -10,9 +10,11 @@ import {
   sourcePolicyError
 } from "./source-policy-utils.js";
 import { readGkpReviewBaseline } from "./gkp-review-baseline-utils.js";
+import { validateUpdateHistory } from "./update-history-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
+const updateHistoryPath = join(process.cwd(), "data", "update-history.json");
 const allowedCoordinateAccuracy = new Set(["address", "prefecture_approx"]);
 const allowedStatuses = new Set(["配布中", "配布開始前", "休止中", "要確認"]);
 const allowedEnglishVersionStatuses = new Set(["available", "out_of_stock", "event_only", "unknown"]);
@@ -28,7 +30,10 @@ const warnings = [];
 
 const locations = JSON.parse(await readFile(dataPath, "utf8"));
 const municipalityCodes = JSON.parse(await readFile(municipalityCodesPath, "utf8"));
+const updateHistory = JSON.parse(await readFile(updateHistoryPath, "utf8"));
 const gkpReviewBaseline = await readGkpReviewBaseline();
+
+validateUpdateHistory(updateHistory).forEach((error) => fail(error));
 
 if (!Array.isArray(locations) || locations.length === 0) {
   fail("data/locations.json must be a non-empty array");

@@ -42,6 +42,7 @@
           </div>
         </div>
         <div class="top-actions">
+          <button id="updateHistoryButton" class="ghost-button" type="button">更新履歴</button>
           <button id="myPageButton" class="ghost-button" type="button">取得数・メモ</button>
         </div>
       </header>
@@ -158,8 +159,19 @@
       </form>
     </dialog>
 
+    <dialog id="updateHistoryDialog" class="modal wide update-history-dialog" aria-labelledby="updateHistoryTitle">
+      <form method="dialog">
+        <header>
+          <h2 id="updateHistoryTitle">更新履歴</h2>
+          <button id="closeUpdateHistoryDialog" class="icon-button" aria-label="閉じる" type="button">×</button>
+        </header>
+        <div id="updateHistoryContent" class="update-history-content"></div>
+      </form>
+    </dialog>
+
     <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
     <script src="./card-catalog.js?v=__APP_VERSION__"></script>
+    <script src="./collection-backup.js?v=__APP_VERSION__"></script>
     <script src="./app.js?v=__APP_VERSION__"></script>
   </body>
 </html>

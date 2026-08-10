@@ -163,6 +163,7 @@ let hoveredId = "";
 let listHoverSuspended = false;
 let collections = loadJson(storageKeys.collections, {});
 let updateRequests = [];
+let updateHistory = { version: 1, updates: [] };
 let updateFormConfig = null;
 let userPosition = null;
 let map = null;
@@ -176,6 +177,7 @@ let myPageTab = "summary";
 let cardCatalogPrefecture = "all";
 let cardCatalogVirtualizer = null;
 let cardCatalogRenderFrame = 0;
+let updateHistoryBatchLimit = 3;
 
 const searchDebounceMs = 150;
 const cardCatalogOverscanRows = 4;
@@ -228,6 +230,10 @@ const elements = {
   myPageDialog: document.querySelector("#myPageDialog"),
   myPageContent: document.querySelector("#myPageContent"),
   closeMyPageDialog: document.querySelector("#closeMyPageDialog"),
+  updateHistoryButton: document.querySelector("#updateHistoryButton"),
+  updateHistoryDialog: document.querySelector("#updateHistoryDialog"),
+  updateHistoryContent: document.querySelector("#updateHistoryContent"),
+  closeUpdateHistoryDialog: document.querySelector("#closeUpdateHistoryDialog"),
   locateButton: document.querySelector("#locateButton"),
   printMapButton: document.querySelector("#printMapButton"),
   printMapImage: document.querySelector("#printMapImage"),
@@ -240,6 +246,7 @@ init();
 async function init() {
   locations = await loadLocations();
   updateRequests = await loadUpdateRequests();
+  updateHistory = await loadUpdateHistory();
   updateFormConfig = await loadUpdateFormConfig();
   selectedId = locations[0]?.id ?? "";
   migrateCollectionKeys();
@@ -267,6 +274,9 @@ function bindEvents() {
   elements.myPageDialog.addEventListener("close", disposeCardCatalogVirtualizer);
   elements.myPageContent.addEventListener("click", handleCardCatalogClick);
   elements.myPageContent.addEventListener("error", handleCardCatalogImageError, true);
+  elements.updateHistoryButton.addEventListener("click", openUpdateHistory);
+  elements.closeUpdateHistoryDialog.addEventListener("click", () => elements.updateHistoryDialog.close());
+  elements.updateHistoryContent.addEventListener("click", handleUpdateHistoryClick);
   elements.locateButton.addEventListener("click", locateUser);
   elements.printMapButton.addEventListener("click", printMap);
   elements.mobileTabButtons.forEach((button) => {
@@ -334,6 +344,18 @@ async function loadUpdateRequests() {
   } catch (error) {
     console.info("Update requests data is not available:", error);
     return [];
+  }
+}
+
+async function loadUpdateHistory() {
+  try {
+    const response = await fetch(versionedAssetUrl("./data/update-history.json"), { cache: "no-store" });
+    if (!response.ok) return { version: 1, updates: [] };
+    const history = await response.json();
+    return Array.isArray(history?.updates) ? history : { version: 1, updates: [] };
+  } catch (error) {
+    console.info("Update history is not available:", error);
+    return { version: 1, updates: [] };
   }
 }
 
@@ -1509,6 +1531,107 @@ function buildUpdateRequestUrl(location) {
   return url.toString();
 }
 
+function openUpdateHistory() {
+  updateHistoryBatchLimit = 3;
+  renderUpdateHistory();
+  elements.updateHistoryDialog.showModal();
+}
+
+function renderUpdateHistory() {
+  const updates = updateHistory.updates ?? [];
+  const visibleUpdates = updates.slice(0, updateHistoryBatchLimit);
+  elements.updateHistoryContent.innerHTML = updates.length
+    ? `
+      <p class="update-history-lead">配布状態、在庫、配布場所、時間など、利用者向け情報の変更を新しい順に表示します。</p>
+      <div class="update-history-list">
+        ${visibleUpdates.map(renderUpdateHistoryBatch).join("")}
+      </div>
+      ${visibleUpdates.length < updates.length
+        ? `<button class="ghost-button update-history-more" type="button" data-update-history-more>さらに表示（残り${updates.length - visibleUpdates.length}回）</button>`
+        : ""}
+    `
+    : '<p class="empty-state">表示できる更新履歴はまだありません。</p>';
+}
+
+function renderUpdateHistoryBatch(update) {
+  return `
+    <section class="update-history-batch" aria-labelledby="history-${escapeAttribute(update.id)}">
+      <header>
+        <div>
+          <h3 id="history-${escapeAttribute(update.id)}">${escapeHtml(formatHistoryDate(update.date))}</h3>
+          <p>${escapeHtml(update.source)}</p>
+        </div>
+        <span>${update.totalChanges}件</span>
+      </header>
+      <div class="update-history-changes">
+        ${update.changes.map(renderUpdateHistoryChange).join("")}
+      </div>
+      ${update.omittedChanges > 0 ? `<p class="inline-hint">ほか${update.omittedChanges}件の変更は省略されています。</p>` : ""}
+    </section>
+  `;
+}
+
+function renderUpdateHistoryChange(change) {
+  const locationExists = locations.some((location) => location.id === change.locationId);
+  const headingContent = `
+    <span class="update-history-badge ${escapeAttribute(change.importance)}">${escapeHtml(historyImportanceLabel(change))}</span>
+    <span class="update-history-card-name">${escapeHtml(change.cardName)}</span>
+    <strong>${escapeHtml(change.headline)}</strong>
+    <small>${escapeHtml([change.prefecture, change.municipality].filter(Boolean).join(" "))}</small>
+  `;
+  return `
+    <article class="update-history-change ${escapeAttribute(change.importance)}">
+      ${locationExists
+        ? `<button class="update-history-change-heading" type="button" data-history-location="${escapeAttribute(change.locationId)}" aria-label="${escapeAttribute(`${change.cardName}の詳細を開く`)}">${headingContent}</button>`
+        : `<div class="update-history-change-heading">${headingContent}</div>`}
+      <details>
+        <summary>変更内容（${change.fields.length}項目）</summary>
+        <dl class="update-history-fields">
+          ${change.fields.map(renderUpdateHistoryField).join("")}
+        </dl>
+      </details>
+    </article>
+  `;
+}
+
+function renderUpdateHistoryField(field) {
+  return `
+    <div class="update-history-field">
+      <dt>${escapeHtml(field.label)}</dt>
+      <dd>
+        <span><small>変更前</small>${escapeHtml(field.before ?? "—")}</span>
+        <span><small>変更後</small>${escapeHtml(field.after ?? "—")}</span>
+      </dd>
+    </div>
+  `;
+}
+
+function handleUpdateHistoryClick(event) {
+  if (event.target.closest("[data-update-history-more]")) {
+    updateHistoryBatchLimit += 3;
+    renderUpdateHistory();
+    return;
+  }
+  const locationButton = event.target.closest("[data-history-location]");
+  if (!locationButton) return;
+  elements.updateHistoryDialog.close();
+  selectListLocation(locationButton.dataset.historyLocation, { clearFilters: true });
+  switchMobilePanel("detail");
+}
+
+function formatHistoryDate(value) {
+  const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return match ? `${match[1]}年${Number(match[2])}月${Number(match[3])}日` : String(value);
+}
+
+function historyImportanceLabel(change) {
+  if (change.changeType === "added") return "追加";
+  if (change.changeType === "removed") return "削除";
+  if (change.importance === "critical") return "重要";
+  if (change.importance === "high") return "変更";
+  return "更新";
+}
+
 function openMyPage() {
   elements.myPageDialog.showModal();
   renderMyPage();
@@ -1517,6 +1640,8 @@ function openMyPage() {
 function renderMyPage({ focusTab = false } = {}) {
   disposeCardCatalogVirtualizer();
   const summarySelected = myPageTab === "summary";
+  const catalogSelected = myPageTab === "catalog";
+  const backupSelected = myPageTab === "backup";
   elements.myPageContent.innerHTML = `
     <div class="my-page-tabs" role="tablist" aria-label="取得状況メニュー">
       <button
@@ -1531,32 +1656,42 @@ function renderMyPage({ focusTab = false } = {}) {
       >概要・メモ</button>
       <button
         id="myPageCatalogTab"
-        class="my-page-tab${summarySelected ? "" : " active"}"
+        class="my-page-tab${catalogSelected ? " active" : ""}"
         type="button"
         role="tab"
-        aria-selected="${!summarySelected}"
+        aria-selected="${catalogSelected}"
         aria-controls="myPageCatalogPanel"
-        tabindex="${summarySelected ? "-1" : "0"}"
+        tabindex="${catalogSelected ? "0" : "-1"}"
         data-my-page-tab="catalog"
       >カードリスト</button>
+      <button
+        id="myPageBackupTab"
+        class="my-page-tab${backupSelected ? " active" : ""}"
+        type="button"
+        role="tab"
+        aria-selected="${backupSelected}"
+        aria-controls="myPageBackupPanel"
+        tabindex="${backupSelected ? "0" : "-1"}"
+        data-my-page-tab="backup"
+      >バックアップ</button>
     </div>
-    ${summarySelected ? renderMyPageSummaryPanel() : renderCardCatalogPanel()}
+    ${summarySelected ? renderMyPageSummaryPanel() : catalogSelected ? renderCardCatalogPanel() : renderCollectionBackupPanel()}
   `;
   bindMyPageEvents();
-  if (!summarySelected) startCardCatalogVirtualizer();
+  if (catalogSelected) startCardCatalogVirtualizer();
   if (focusTab) {
     elements.myPageContent.querySelector(`[data-my-page-tab="${myPageTab}"]`)?.focus();
   }
 }
 
 function activateMyPageTab(tab) {
-  if (!['summary', 'catalog'].includes(tab) || tab === myPageTab) return;
+  if (!["summary", "catalog", "backup"].includes(tab) || tab === myPageTab) return;
   myPageTab = tab;
   renderMyPage({ focusTab: true });
 }
 
 function handleMyPageTabKeydown(event) {
-  const tabs = ["summary", "catalog"];
+  const tabs = ["summary", "catalog", "backup"];
   const currentIndex = tabs.indexOf(event.currentTarget.dataset.myPageTab);
   let nextIndex = currentIndex;
 
@@ -1669,6 +1804,41 @@ function renderCardCatalogPanel() {
   `;
 }
 
+function renderCollectionBackupPanel() {
+  const savedCount = Object.keys(collections).length;
+  return `
+    <section id="myPageBackupPanel" class="my-page-panel collection-backup-panel" role="tabpanel" aria-labelledby="myPageBackupTab">
+      <section class="collection-backup-card">
+        <h3>バックアップを保存</h3>
+        <p>取得済み状態、取得日、配布場所ごとのメモをJSONファイルに保存します。</p>
+        <p class="inline-hint">この端末に保存されているデータ: ${savedCount}件</p>
+        <button class="primary-button" type="button" data-export-collections>JSONをダウンロード</button>
+      </section>
+      <section class="collection-backup-card">
+        <h3>バックアップから復元</h3>
+        <label class="collection-backup-file" for="collectionBackupFile">
+          JSONファイル
+          <input id="collectionBackupFile" type="file" accept="application/json,.json">
+        </label>
+        <fieldset class="collection-import-modes">
+          <legend>復元方法</legend>
+          <label>
+            <input type="radio" name="collectionImportMode" value="merge" checked>
+            <span><strong>安全にマージ</strong><small>現在のデータを優先して残し、不足分を追加します</small></span>
+          </label>
+          <label>
+            <input type="radio" name="collectionImportMode" value="replace">
+            <span><strong>完全に置き換え</strong><small>現在の取得状況とメモを削除して、ファイルの内容に置き換えます</small></span>
+          </label>
+        </fieldset>
+        <button class="primary-button" type="button" data-import-collections>内容を確認して復元</button>
+        <p id="collectionImportStatus" class="inline-hint" role="status" aria-live="polite"></p>
+      </section>
+      <p class="collection-backup-note">バックアップはこの端末内で処理され、外部へ送信されません。</p>
+    </section>
+  `;
+}
+
 function renderCardCatalogCard(location, index, total) {
   const collected = Boolean(collections[location.id]?.collected);
   const imageUrl = safeExternalUrl(location.imageUrl);
@@ -1725,6 +1895,73 @@ function bindMyPageEvents() {
     elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
   });
 
+  elements.myPageContent.querySelector("[data-export-collections]")?.addEventListener("click", exportCollections);
+  elements.myPageContent.querySelector("[data-import-collections]")?.addEventListener("click", importCollections);
+
+}
+
+function exportCollections() {
+  try {
+    const backup = globalThis.MhcardCollectionBackup.createBackup(collections);
+    const blob = new Blob([`${JSON.stringify(backup, null, 2)}\n`], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `mhcard-map-collections-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    showToast("バックアップを保存しました");
+  } catch (error) {
+    console.error("Could not export collection backup:", error);
+    showToast("バックアップを保存できませんでした");
+  }
+}
+
+async function importCollections() {
+  const input = elements.myPageContent.querySelector("#collectionBackupFile");
+  const status = elements.myPageContent.querySelector("#collectionImportStatus");
+  const file = input?.files?.[0];
+  if (!file) {
+    if (status) status.textContent = "JSONファイルを選んでください。";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    if (status) status.textContent = "ファイルが大きすぎます（上限5MB）。";
+    return;
+  }
+
+  try {
+    const backup = globalThis.MhcardCollectionBackup.parseBackupText(await file.text());
+    const mode = elements.myPageContent.querySelector('input[name="collectionImportMode"]:checked')?.value ?? "merge";
+    const count = Object.keys(backup.collections).length;
+    const message = mode === "replace"
+      ? `現在の取得状況とメモを削除し、バックアップの${count}件に完全置換します。続けますか？`
+      : `バックアップの${count}件を現在のデータへ安全にマージします。続けますか？`;
+    if (!window.confirm(message)) {
+      if (status) status.textContent = "復元をキャンセルしました。";
+      return;
+    }
+
+    const previousCollections = collections;
+    collections = mode === "replace"
+      ? backup.collections
+      : globalThis.MhcardCollectionBackup.mergeCollections(collections, backup.collections);
+    try {
+      migrateCollectionKeys();
+      saveJson(storageKeys.collections, collections);
+      renderAll();
+      renderMyPage();
+      showToast(`${count}件のバックアップを復元しました`);
+    } catch (error) {
+      collections = previousCollections;
+      throw error;
+    }
+  } catch (error) {
+    console.warn("Could not import collection backup:", error);
+    if (status) status.textContent = `復元できませんでした: ${error.message}`;
+  }
 }
 
 function handleCardCatalogClick(event) {
