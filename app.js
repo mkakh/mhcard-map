@@ -1081,62 +1081,14 @@ function handleMapMoveEnd() {
 function addLocationLayers(targetMap = map, bindInteractions = true) {
   targetMap.addSource("locations", {
     type: "geojson",
-    data: toLocationFeatureCollection(getFilteredLocations()),
-    cluster: true,
-    clusterMaxZoom: 10,
-    clusterRadius: 46,
-    clusterProperties: {
-      hasApproximate: ["max", ["case", ["get", "hasApproximate"], 1, 0]],
-      hasStoppedUnknown: ["max", ["case", ["get", "hasStoppedUnknown"], 1, 0]],
-      hasStoppedKnown: ["max", ["case", ["get", "hasStoppedKnown"], 1, 0]],
-      hasGeocodeFailed: ["max", ["case", ["get", "hasGeocodeFailed"], 1, 0]]
-    }
-  });
-
-  targetMap.addLayer({
-    id: "clusters",
-    type: "circle",
-    source: "locations",
-    filter: ["has", "point_count"],
-    paint: {
-      "circle-color": [
-        "case",
-        ["==", ["get", "hasGeocodeFailed"], 1],
-        "#7b7486",
-        ["==", ["get", "hasStoppedUnknown"], 1],
-        "#8b9298",
-        ["==", ["get", "hasStoppedKnown"], 1],
-        "#6f7d86",
-        ["==", ["get", "hasApproximate"], 1],
-        "#737373",
-        ["step", ["get", "point_count"], "#4d8bc8", 20, "#2f75b5", 80, "#1d5f99"]
-      ],
-      "circle-radius": ["step", ["get", "point_count"], 19, 20, 25, 80, 32],
-      "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 3
-    }
-  });
-
-  targetMap.addLayer({
-    id: "cluster-count",
-    type: "symbol",
-    source: "locations",
-    filter: ["has", "point_count"],
-    layout: {
-      "text-field": "{point_count_abbreviated}",
-      "text-size": 12,
-      "text-font": ["Noto Sans Regular"]
-    },
-    paint: {
-      "text-color": "#ffffff"
-    }
+    data: toLocationFeatureCollection(getFilteredLocations())
   });
 
   targetMap.addLayer({
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["all", selectedOrHighlightedExpression(), ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -1150,7 +1102,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "unclustered-locations",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": [
         "match",
@@ -1196,7 +1148,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "selected-shaped-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["all", selectedOrHighlightedExpression(), ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -1210,7 +1162,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "shaped-locations",
     type: "symbol",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["in", ["get", "visualState"], ["literal", markerShapeStates()]],
     layout: {
       "text-field": ["match", ["get", "visualState"], "stopped-known", "×", "stopped-unknown", "?", "geocode-failed", "!", "?"],
       "text-size": ["case", selectedOrHighlightedExpression(), 24, 19],
@@ -1238,7 +1190,6 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "location-hit-area",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]]],
     paint: {
       "circle-color": "#000000",
       "circle-radius": ["case", selectedOrHighlightedExpression(), 28, 22],
@@ -1248,21 +1199,11 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
 
   if (!bindInteractions) return;
 
-  targetMap.on("click", "clusters", async (event) => {
-    const features = targetMap.queryRenderedFeatures(event.point, { layers: ["clusters"] });
-    const clusterId = features[0].properties.cluster_id;
-    const zoom = await targetMap.getSource("locations").getClusterExpansionZoom(clusterId);
-    targetMap.easeTo({
-      center: features[0].geometry.coordinates,
-      zoom
-    });
-  });
-
   targetMap.on("click", "location-hit-area", (event) => {
     selectMapFeature(event.features[0]);
   });
 
-  ["clusters", "unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
+  ["unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
     targetMap.on("mouseenter", layerId, () => {
       targetMap.getCanvas().style.cursor = "pointer";
     });

@@ -115,11 +115,11 @@ Mobile interactions:
 
 Map rendering uses MapLibre GL JS with the Geospatial Information Authority of
 Japan standard raster tiles. The style includes the required GSI attribution;
-OpenFreeMap serves only the Noto Sans glyphs used by the app's cluster labels.
+OpenFreeMap serves only the glyphs used by the app's shaped status markers.
 
 Features:
 
-- Marker clustering
+- Individual location points at every zoom level
 - Current location button
 - Fallback to Tokyo station area if geolocation fails
 - Viewport filter
