@@ -29,6 +29,19 @@ test("renders an accessible, filterable, directly toggleable card catalogue", as
   assert.match(app, /画像なし/);
   assert.match(app, /該当するカードはありません。/);
   assert.match(app, /MhcardCatalog\.orderedPrefectures/);
+  assert.match(app, /MhcardCatalog\.calculateVirtualWindow/);
+  assert.match(app, /id="cardCatalogVirtualSpace"/);
+  assert.match(app, /id="cardCatalogGrid"[^>]*role="list"/);
+  assert.match(app, /class="card-catalog-item"[^>]*role="listitem"[^>]*aria-posinset=/);
+  assert.match(app, /requestAnimationFrame/);
+  assert.match(app, /ResizeObserver/);
+  assert.match(app, /aria-posinset/);
+  assert.match(app, /aria-setsize/);
+  assert.match(app, /measurementAttempts/);
+  assert.match(app, /measurementFrame/);
+  assert.match(app, /estimateVirtualRowHeight/);
+  assert.match(app, /cardCatalogVirtualizer !== virtualizer/);
+  assert.match(app, /closest\("\[data-card-catalog-toggle\]"\)/);
   assert.match(app, /function updateCardCatalogTile/);
   assert.match(app, /function updateCardCatalogCounts/);
 });
@@ -41,9 +54,16 @@ test("styles and specifies the new catalogue behavior", async () => {
 
   assert.match(styles, /\.my-page-tabs/);
   assert.match(styles, /\.card-catalog-grid/);
+  assert.match(styles, /\.card-catalog-virtual-space/);
+  assert.match(styles, /\.card-catalog-item/);
+  assert.match(styles, /--card-catalog-row-height/);
+  assert.match(styles, /overflow-anchor:\s*none/);
+  assert.match(styles, /overscroll-behavior:\s*contain/);
+  assert.match(styles, /100svh/);
   assert.match(styles, /\.card-catalog-card\[aria-pressed="true"\]/);
   assert.match(styles, /\.card-catalog-image\.image-missing/);
-  assert.match(spec, /A001.*A002.*B001/);
+  assert.match(spec, /full printed card number/i);
+  assert.match(spec, /virtual/i);
   assert.match(spec, /prefecture dropdown/i);
   assert.match(spec, /Left\/Right\/Home\/End/);
   assert.match(spec, /aria-pressed/);

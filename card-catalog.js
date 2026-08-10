@@ -61,9 +61,18 @@
     return `${match[1]}${match[2].padStart(3, "0")}${match[3]}`;
   }
 
+  function fullCardNumberSortKey(location) {
+    const id = String(location?.id ?? "");
+    const match = id.match(/^(\d{2})-(\d{3})-(.+)$/);
+    if (!match) return `~${id.toUpperCase().replaceAll("-", "")}`;
+    const suffix = seriesSortKey(location);
+    if (suffix.startsWith("~")) return `~${id.toUpperCase().replaceAll("-", "")}`;
+    return `${match[1]}-${match[2]}-${suffix}`;
+  }
+
   function compareLocations(a, b) {
-    const aKey = seriesSortKey(a);
-    const bKey = seriesSortKey(b);
+    const aKey = fullCardNumberSortKey(a);
+    const bKey = fullCardNumberSortKey(b);
     const invalidOrder = Number(aKey.startsWith("~")) - Number(bKey.startsWith("~"));
     return (
       invalidOrder ||
@@ -71,6 +80,57 @@
       idCollator.compare(String(a?.id ?? ""), String(b?.id ?? "")) ||
       nameCollator.compare(String(a?.cardName ?? ""), String(b?.cardName ?? ""))
     );
+  }
+
+  function calculateVirtualWindow({
+    itemCount,
+    columns,
+    rowHeight,
+    rowGap,
+    viewportStart,
+    viewportHeight,
+    overscanRows
+  }) {
+    const safeItemCount = Math.max(0, Math.floor(Number(itemCount) || 0));
+    const safeColumns = Math.max(1, Math.floor(Number(columns) || 0));
+    if (!safeItemCount) {
+      return { rowCount: 0, startIndex: 0, endIndex: 0, offsetTop: 0, totalHeight: 0 };
+    }
+
+    const safeRowHeight = Math.max(1, Number(rowHeight) || 0);
+    const safeRowGap = Math.max(0, Number(rowGap) || 0);
+    const safeViewportHeight = Math.max(0, Number(viewportHeight) || 0);
+    const safeOverscanRows = Math.max(0, Math.floor(Number(overscanRows) || 0));
+    const rowCount = Math.ceil(safeItemCount / safeColumns);
+    const stride = safeRowHeight + safeRowGap;
+    const totalHeight = rowCount * safeRowHeight + Math.max(0, rowCount - 1) * safeRowGap;
+    const maxViewportStart = Math.max(0, totalHeight - safeViewportHeight);
+    const safeViewportStart = Math.min(maxViewportStart, Math.max(0, Number(viewportStart) || 0));
+    const firstVisibleRow = Math.min(rowCount - 1, Math.floor(safeViewportStart / stride));
+    const visibleRowEnd = Math.min(
+      rowCount,
+      Math.max(firstVisibleRow + 1, Math.ceil((safeViewportStart + safeViewportHeight) / stride))
+    );
+    const startRow = Math.max(0, firstVisibleRow - safeOverscanRows);
+    const endRow = Math.min(rowCount, visibleRowEnd + safeOverscanRows);
+
+    return {
+      rowCount,
+      startIndex: startRow * safeColumns,
+      endIndex: Math.min(safeItemCount, endRow * safeColumns),
+      offsetTop: startRow * stride,
+      totalHeight
+    };
+  }
+
+  function estimateVirtualRowHeight({ availableWidth, columns, rowGap }) {
+    const safeColumns = Math.max(1, Math.floor(Number(columns) || 0));
+    const safeRowGap = Math.max(0, Number(rowGap) || 0);
+    const measuredWidth = Number(availableWidth);
+    const fallbackWidth = safeColumns <= 2 ? 280 : 720;
+    const safeWidth = Number.isFinite(measuredWidth) && measuredWidth > 0 ? measuredWidth : fallbackWidth;
+    const cardWidth = Math.max(1, (safeWidth - safeRowGap * Math.max(0, safeColumns - 1)) / safeColumns);
+    return Math.max(240, Math.ceil(cardWidth * 1.38 + 106));
   }
 
   function orderedPrefectures(items) {
@@ -83,7 +143,10 @@
   }
 
   globalThis.MhcardCatalog = Object.freeze({
+    calculateVirtualWindow,
     compareLocations,
+    estimateVirtualRowHeight,
+    fullCardNumberSortKey,
     orderedPrefectures,
     seriesSortKey
   });

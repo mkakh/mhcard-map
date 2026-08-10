@@ -240,8 +240,13 @@ The `取得数・メモ` dialog shows:
 
 The card catalogue:
 
-- Sorts normalized card suffixes in series and numeric order, such as
-  `A001`, `A002`, then `B001`; malformed identifiers are shown last.
+- Sorts by the full printed card number: prefecture code, municipality code,
+  then normalized series and numeric suffix (for example, `00-101-A001`,
+  `00-102-A001`, `00-102-B001`, then `01-100-A001`). Malformed identifiers are
+  shown last.
+- Uses a virtual scrolling window so only the visible rows plus a small
+  overscan buffer are mounted. This keeps DOM and decoded-image work bounded
+  even when the nationwide catalogue contains more than one thousand cards.
 - Can be narrowed with a prefecture dropdown.
 - Lists the prefecture dropdown in the official 47-prefecture order, independent
   of nationwide card IDs that start with `00`.
