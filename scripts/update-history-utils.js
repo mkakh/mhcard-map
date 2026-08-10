@@ -138,15 +138,20 @@ function buildLocationChange(before, after) {
 
   const fields = [...new Set([...Object.keys(before), ...Object.keys(after)])]
     .filter((field) => visibleFields.has(field))
-    .filter((field) => JSON.stringify(before[field]) !== JSON.stringify(after[field]))
     .sort((a, b) => fieldOrder(a) - fieldOrder(b) || a.localeCompare(b))
-    .map((field) => ({
-      field,
-      label: fieldLabels[field] ?? field,
-      kind: fieldKind(field, before[field], after[field]),
-      before: historyValue(field, before[field]),
-      after: historyValue(field, after[field])
-    }));
+    .map((field) => {
+      const beforeValue = historyValue(field, before[field]);
+      const afterValue = historyValue(field, after[field]);
+      if (beforeValue === afterValue) return null;
+      return {
+        field,
+        label: fieldLabels[field] ?? field,
+        kind: fieldKind(field, before[field], after[field]),
+        before: boundedHistoryValue(beforeValue),
+        after: boundedHistoryValue(afterValue)
+      };
+    })
+    .filter(Boolean);
   if (fields.length === 0) return null;
 
   const headline = historyHeadline(before, after, fields);
@@ -201,19 +206,52 @@ function historyValue(field, value) {
   if (value === undefined || value === null || value === "") return null;
   let text;
   if (["distributionPlaces", "englishVersionDistributionPlaces"].includes(field) && Array.isArray(value)) {
-    text = value.map((place) => [
-      place.name,
-      place.address,
-      [place.days, place.hours].filter(Boolean).join(" "),
-      place.closed,
-      Number.isFinite(place.lat) && Number.isFinite(place.lng) ? `${place.lat}, ${place.lng}` : ""
-    ].filter(Boolean).join(" / ")).join("\n");
+    text = value.map(distributionPlaceHistoryValue).filter(Boolean).join("\n");
   } else if (typeof value === "object") {
     text = JSON.stringify(value);
   } else {
     text = String(value);
   }
-  return text.length > 800 ? `${text.slice(0, 797)}...` : text;
+  return text || null;
+}
+
+function distributionPlaceHistoryValue(place) {
+  if (!place || typeof place !== "object") return "";
+  return [
+    place.name,
+    place.address,
+    distributionPlacePeriod(place),
+    distributionModeHistoryLabel(place.distributionMode),
+    place.availabilityNote,
+    [place.days, place.hours].filter(Boolean).join(" "),
+    place.closed,
+    Number.isFinite(place.lat) && Number.isFinite(place.lng) ? `${place.lat}, ${place.lng}` : "",
+    place.plusCode ? `Plus Code ${place.plusCode}` : ""
+  ].filter(Boolean).join(" / ");
+}
+
+function distributionPlacePeriod(place) {
+  if (place.startsOn && place.endsOn) return `有効期間 ${place.startsOn}～${place.endsOn}`;
+  if (place.startsOn) return `有効期間 ${place.startsOn}から`;
+  if (place.endsOn) return `有効期間 ${place.endsOn}まで`;
+  return "";
+}
+
+function distributionModeHistoryLabel(mode) {
+  return {
+    regular: "通常配布",
+    launch_event: "初回イベント",
+    limited: "限定配布",
+    fallback: "代替窓口"
+  }[mode] ?? "";
+}
+
+function boundedHistoryValue(value) {
+  if (value === null) return null;
+  if (value.length <= 800) return value;
+  const digest = createHash("sha256").update(value).digest("hex");
+  const suffix = `… [sha256:${digest}]`;
+  return `${value.slice(0, 800 - suffix.length)}${suffix}`;
 }
 
 function locationSummary(location) {
@@ -281,6 +319,8 @@ function validateHistoryChange(change, label, errors) {
     if (!isRecord(field)) errors.push(`${label} field ${fieldIndex} must be an object`);
     else if (!["field", "label", "kind"].every((key) => typeof field[key] === "string" && field[key])) {
       errors.push(`${label} field ${fieldIndex} is incomplete`);
+    } else if (field.before === field.after) {
+      errors.push(`${label} field ${fieldIndex} must change its user-facing value`);
     }
   });
 }

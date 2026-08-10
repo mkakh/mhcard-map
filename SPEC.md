@@ -236,6 +236,8 @@ Storage rules:
 - Data is not uploaded.
 - Data is not synced across devices.
 - Clearing browser storage removes collection data.
+- Newly collected cards and backup filenames use the current Asia/Tokyo
+  calendar date, so Japan midnight does not retain the previous UTC date.
 
 The `取得数・メモ` dialog shows:
 
@@ -371,6 +373,10 @@ Distribution places may additionally define `startsOn`, `endsOn`,
 `distributionMode` (`regular`, `launch_event`, `limited`, or `fallback`), and
 `availabilityNote`. These fields keep launch events, lottery-only windows, and
 regular distribution locations separate without hiding the card before launch.
+The default detail and navigation target is the first place active on the
+current Asia/Tokyo date, with inclusive start/end dates. If none is active, the
+earliest upcoming place is selected; if all are expired, the most recently
+expired place is selected. An explicit valid user selection remains selected.
 
 When GKP has listed a card, location IDs are generated from its card image filename.
 
@@ -408,7 +414,9 @@ After every displayed candidate is explicitly adopted or rejected,
 `npm run acknowledge:gkp-review -- --all-reviewed` advances its fingerprints.
 A partial review passes only reviewed card IDs instead. Records converted to
 `official_public_body_page` are removed from the GKP baseline. Unresolved
-candidates must not be acknowledged.
+candidates must not be acknowledged. When the candidate list is empty, the
+same command still removes any official-source baseline residue without
+requiring reviewed IDs.
 
 Older row-position-based IDs are kept in `legacyIds`. On first load, the app
 migrates local collection and memo data from legacy IDs to current stable IDs.
@@ -446,9 +454,12 @@ The app uses this file to show update request counts per location.
 `data/update-history.json` stores up to 24 update batches and 200 changed cards
 per batch. Each card entry identifies changed user-facing fields and keeps
 compact before/after values. Timestamp-only and internal geocoding metadata
-changes are excluded. Status, stock, distribution-place, address/coordinate,
-and hours changes are classified so the site can emphasize suspensions,
-resumptions, and other important updates.
+and nested link-only changes are excluded. Distribution-place schedules and
+availability notes are included. Values are compared before they are bounded;
+long bounded values keep a full-value digest so distinct changes cannot become
+identical after truncation. Status, stock, distribution-place,
+address/coordinate, and hours changes are classified so the site can emphasize
+suspensions, resumptions, and other important updates.
 
 The top-bar `更新履歴` button opens the newest three batches. Users can expand
 field-level before/after values, load older batches, and jump from an existing

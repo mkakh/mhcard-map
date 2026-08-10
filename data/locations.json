@@ -36446,8 +36446,8 @@
     "cardName": "大東市 B001",
     "prefecture": "大阪府",
     "municipality": "大東市",
-    "place": "大東市上下水道局宿直室",
-    "address": "大阪府大東市灰塚4-1-1",
+    "place": "大東市上下水道局庁舎2階 総務課",
+    "address": "大阪府大東市灰塚四丁目1番1号",
     "lat": 34.702827,
     "lng": 135.614304,
     "hours": "9:00～17:30",
@@ -36466,9 +36466,9 @@
     "facilityUrl": "https://www.city.daito.lg.jp/soshiki/39/",
     "stockUrl": "https://www.city.daito.lg.jp/soshiki/39/40329.html",
     "conditionUrl": "https://www.city.daito.lg.jp/soshiki/39/40329.html",
-    "geocodeQuery": "大阪府大東市灰塚4-1-1",
-    "geocodeTitle": "大阪府大東市灰塚四丁目１番",
-    "geocodedAt": "2026-07-30",
+    "geocodeQuery": "大阪府大東市灰塚四丁目1番1号",
+    "geocodeTitle": "大阪府大東市灰塚四丁目１番１号",
+    "geocodedAt": "2026-07-05",
     "plusCode": "8Q6QPJ37+4P",
     "distributionPlaces": [
       {

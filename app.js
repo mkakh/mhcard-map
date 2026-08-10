@@ -867,7 +867,7 @@ function normalizeDistributionPlaces(sourcePlaces, location) {
 }
 
 function primaryDistributionPlace(location) {
-  return distributionPlaces(location)[0] ?? {
+  return globalThis.MhcardAppUtils.selectPrimaryDistributionPlace(distributionPlaces(location)) ?? {
     id: "primary",
     name: displayPlace(location),
     address: location.address || "",
@@ -1470,7 +1470,7 @@ function toggleCollected(locationId) {
   collections[locationId] = {
     ...current,
     collected: !current.collected,
-    collectedOn: current.collectedOn || new Date().toISOString().slice(0, 10)
+    collectedOn: current.collectedOn || globalThis.MhcardAppUtils.calendarDateInJapan()
   };
   saveJson(storageKeys.collections, collections);
   renderAll();
@@ -1907,7 +1907,7 @@ function exportCollections() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `mhcard-map-collections-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = `mhcard-map-collections-${globalThis.MhcardAppUtils.calendarDateInJapan()}.json`;
     document.body.append(link);
     link.click();
     link.remove();
