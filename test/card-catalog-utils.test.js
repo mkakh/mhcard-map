@@ -3,7 +3,14 @@ import test from "node:test";
 
 await import("../card-catalog.js");
 
-const { compareLocations, orderedPrefectures, seriesSortKey } = globalThis.MhcardCatalog;
+const {
+  calculateVirtualWindow,
+  compareLocations,
+  estimateVirtualRowHeight,
+  fullCardNumberSortKey,
+  orderedPrefectures,
+  seriesSortKey
+} = globalThis.MhcardCatalog;
 
 test("normalizes catalogue series keys", () => {
   assert.equal(seriesSortKey({ id: "01-100-a-1" }), "A001");
@@ -11,19 +18,29 @@ test("normalizes catalogue series keys", () => {
   assert.equal(seriesSortKey({ id: "unstructured-card" }), "~UNSTRUCTUREDCARD");
 });
 
-test("sorts catalogue cards by series before municipality", () => {
+test("normalizes full printed card numbers", () => {
+  assert.equal(fullCardNumberSortKey({ id: "01-100-a-1" }), "01-100-A001");
+  assert.equal(fullCardNumberSortKey({ id: "13-101-B02" }), "13-101-B002");
+  assert.equal(fullCardNumberSortKey({ id: "unstructured-card" }), "~UNSTRUCTUREDCARD");
+});
+
+test("sorts catalogue cards by full printed card number", () => {
   const cards = [
     { id: "01-100-b-01", cardName: "B" },
     { id: "13-101-a-10", cardName: "A10" },
     { id: "47-201-a-02", cardName: "A2" },
-    { id: "02-202-a-01", cardName: "A1" }
+    { id: "02-202-a-01", cardName: "A1" },
+    { id: "00-102-b-01", cardName: "National B" },
+    { id: "00-102-a-01", cardName: "National A" }
   ];
 
   assert.deepEqual(cards.toSorted(compareLocations).map((card) => card.id), [
+    "00-102-a-01",
+    "00-102-b-01",
+    "01-100-b-01",
     "02-202-a-01",
-    "47-201-a-02",
     "13-101-a-10",
-    "01-100-b-01"
+    "47-201-a-02"
   ]);
 });
 
@@ -41,6 +58,99 @@ test("uses normalized card ID and name as deterministic tie breakers", () => {
     "Z",
     "Malformed"
   ]);
+});
+
+test("calculates a bounded virtual window at the top", () => {
+  assert.deepEqual(
+    calculateVirtualWindow({
+      itemCount: 1312,
+      columns: 2,
+      rowHeight: 300,
+      rowGap: 9,
+      viewportStart: 0,
+      viewportHeight: 600,
+      overscanRows: 4
+    }),
+    {
+      rowCount: 656,
+      startIndex: 0,
+      endIndex: 12,
+      offsetTop: 0,
+      totalHeight: 202695
+    }
+  );
+});
+
+test("calculates virtual windows in the middle and at the bottom", () => {
+  const middle = calculateVirtualWindow({
+    itemCount: 100,
+    columns: 3,
+    rowHeight: 200,
+    rowGap: 10,
+    viewportStart: 1050,
+    viewportHeight: 420,
+    overscanRows: 2
+  });
+  assert.deepEqual(middle, {
+    rowCount: 34,
+    startIndex: 9,
+    endIndex: 27,
+    offsetTop: 630,
+    totalHeight: 7130
+  });
+
+  const bottom = calculateVirtualWindow({
+    itemCount: 9,
+    columns: 2,
+    rowHeight: 100,
+    rowGap: 10,
+    viewportStart: 9999,
+    viewportHeight: 300,
+    overscanRows: 1
+  });
+  assert.deepEqual(bottom, {
+    rowCount: 5,
+    startIndex: 2,
+    endIndex: 9,
+    offsetTop: 110,
+    totalHeight: 540
+  });
+});
+
+test("keeps the fallback virtual window bounded when layout measurement is unavailable", () => {
+  for (const layout of [
+    { availableWidth: 0, columns: 2, rowGap: 9 },
+    { availableWidth: 720, columns: 3, rowGap: 12 }
+  ]) {
+    const rowHeight = estimateVirtualRowHeight(layout);
+    const windowState = calculateVirtualWindow({
+      itemCount: 1312,
+      columns: layout.columns,
+      rowHeight,
+      rowGap: layout.rowGap,
+      viewportStart: 0,
+      viewportHeight: 900,
+      overscanRows: 4
+    });
+
+    assert.ok(rowHeight >= 240);
+    assert.ok(windowState.endIndex < 60);
+  }
+});
+
+test("clamps invalid virtual-window inputs and handles an empty list", () => {
+  assert.deepEqual(
+    calculateVirtualWindow({
+      itemCount: 0,
+      columns: 0,
+      rowHeight: -1,
+      rowGap: -1,
+      viewportStart: -100,
+      viewportHeight: -20,
+      overscanRows: -2
+    }),
+    { rowCount: 0, startIndex: 0, endIndex: 0, offsetTop: 0, totalHeight: 0 }
+  );
 });
 
 test("keeps official prefecture order when nationwide card IDs start with 00", () => {

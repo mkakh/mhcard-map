@@ -174,8 +174,11 @@ let searchRenderTimer = 0;
 let currentFilteredLocations = [];
 let myPageTab = "summary";
 let cardCatalogPrefecture = "all";
+let cardCatalogVirtualizer = null;
+let cardCatalogRenderFrame = 0;
 
 const searchDebounceMs = 150;
+const cardCatalogOverscanRows = 4;
 const appVersion = "__APP_VERSION__";
 
 const fallbackMapView = {
@@ -261,6 +264,9 @@ function bindEvents() {
   elements.resetFiltersButton.addEventListener("click", resetFilters);
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
+  elements.myPageDialog.addEventListener("close", disposeCardCatalogVirtualizer);
+  elements.myPageContent.addEventListener("click", handleCardCatalogClick);
+  elements.myPageContent.addEventListener("error", handleCardCatalogImageError, true);
   elements.locateButton.addEventListener("click", locateUser);
   elements.printMapButton.addEventListener("click", printMap);
   elements.mobileTabButtons.forEach((button) => {
@@ -1504,11 +1510,12 @@ function buildUpdateRequestUrl(location) {
 }
 
 function openMyPage() {
-  renderMyPage();
   elements.myPageDialog.showModal();
+  renderMyPage();
 }
 
 function renderMyPage({ focusTab = false } = {}) {
+  disposeCardCatalogVirtualizer();
   const summarySelected = myPageTab === "summary";
   elements.myPageContent.innerHTML = `
     <div class="my-page-tabs" role="tablist" aria-label="取得状況メニュー">
@@ -1536,6 +1543,7 @@ function renderMyPage({ focusTab = false } = {}) {
     ${summarySelected ? renderMyPageSummaryPanel() : renderCardCatalogPanel()}
   `;
   bindMyPageEvents();
+  if (!summarySelected) startCardCatalogVirtualizer();
   if (focusTab) {
     elements.myPageContent.querySelector(`[data-my-page-tab="${myPageTab}"]`)?.focus();
   }
@@ -1624,6 +1632,7 @@ function cardCatalogLocations() {
 
 function renderCardCatalogPanel() {
   const cards = cardCatalogLocations();
+  const initialCards = cards.slice(0, 18);
   const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
   const options = cardCatalogPrefectures()
     .map(
@@ -1649,14 +1658,18 @@ function renderCardCatalogPanel() {
       </div>
       ${
         cards.length
-          ? `<div class="card-catalog-grid">${cards.map(renderCardCatalogCard).join("")}</div>`
+          ? `<div id="cardCatalogVirtualSpace" class="card-catalog-virtual-space">
+              <div id="cardCatalogGrid" class="card-catalog-grid" role="list" aria-label="マンホールカード一覧">
+                ${initialCards.map((location, index) => renderCardCatalogCard(location, index, cards.length)).join("")}
+              </div>
+            </div>`
           : '<p class="empty-state">該当するカードはありません。</p>'
       }
     </section>
   `;
 }
 
-function renderCardCatalogCard(location) {
+function renderCardCatalogCard(location, index, total) {
   const collected = Boolean(collections[location.id]?.collected);
   const imageUrl = safeExternalUrl(location.imageUrl);
   const image = imageUrl
@@ -1664,24 +1677,31 @@ function renderCardCatalogCard(location) {
     : "";
 
   return `
-    <button
-      class="card-catalog-card"
-      type="button"
-      aria-pressed="${collected}"
-      aria-label="${escapeAttribute(`${location.cardName}を${collected ? "未取得" : "取得済み"}にする`)}"
-      data-card-catalog-toggle="${escapeAttribute(location.id)}"
+    <div
+      class="card-catalog-item"
+      role="listitem"
+      aria-posinset="${index + 1}"
+      aria-setsize="${total}"
     >
-      <span class="card-catalog-image${imageUrl ? "" : " image-missing"}">
-        ${image}
-        <span class="card-catalog-image-placeholder">画像なし</span>
-      </span>
-      <span class="card-catalog-content">
-        <span class="card-catalog-number">${escapeHtml(cardNumber(location))}</span>
-        <strong class="card-catalog-name">${escapeHtml(location.cardName)}</strong>
-        <span class="card-catalog-location">${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</span>
-        <span class="card-catalog-state">${collected ? "取得済み" : "未取得"}</span>
-      </span>
-    </button>
+      <button
+        class="card-catalog-card"
+        type="button"
+        aria-pressed="${collected}"
+        aria-label="${escapeAttribute(`${location.cardName}を${collected ? "未取得" : "取得済み"}にする`)}"
+        data-card-catalog-toggle="${escapeAttribute(location.id)}"
+      >
+        <span class="card-catalog-image${imageUrl ? "" : " image-missing"}">
+          ${image}
+          <span class="card-catalog-image-placeholder">画像なし</span>
+        </span>
+        <span class="card-catalog-content">
+          <span class="card-catalog-number">${escapeHtml(cardNumber(location))}</span>
+          <strong class="card-catalog-name">${escapeHtml(location.cardName)}</strong>
+          <span class="card-catalog-location">${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</span>
+          <span class="card-catalog-state">${collected ? "取得済み" : "未取得"}</span>
+        </span>
+      </button>
+    </div>
   `;
 }
 
@@ -1705,21 +1725,175 @@ function bindMyPageEvents() {
     elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
   });
 
-  elements.myPageContent.querySelectorAll("[data-card-catalog-toggle]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const location = locations.find((item) => item.id === button.dataset.cardCatalogToggle);
-      if (!location) return;
-      toggleCollected(location.id);
-      updateCardCatalogTile(button, location);
-      updateCardCatalogCounts();
-    });
-  });
+}
 
-  elements.myPageContent.querySelectorAll(".card-catalog-image img").forEach((image) => {
-    image.addEventListener("error", () => {
-      image.closest(".card-catalog-image")?.classList.add("image-missing");
+function handleCardCatalogClick(event) {
+  const button = event.target.closest("[data-card-catalog-toggle]");
+  if (!button || !elements.myPageContent.contains(button)) return;
+  const location = locations.find((item) => item.id === button.dataset.cardCatalogToggle);
+  if (!location) return;
+  toggleCollected(location.id);
+  updateCardCatalogTile(button, location);
+  updateCardCatalogCounts();
+}
+
+function handleCardCatalogImageError(event) {
+  if (!event.target.matches(".card-catalog-image img")) return;
+  event.target.closest(".card-catalog-image")?.classList.add("image-missing");
+}
+
+function startCardCatalogVirtualizer() {
+  const panel = elements.myPageContent.querySelector("#myPageCatalogPanel");
+  const space = elements.myPageContent.querySelector("#cardCatalogVirtualSpace");
+  const grid = elements.myPageContent.querySelector("#cardCatalogGrid");
+  if (!panel || !space || !grid) return;
+
+  cardCatalogVirtualizer = {
+    cards: cardCatalogLocations(),
+    panel,
+    space,
+    grid,
+    columns: 1,
+    rowHeight: 1,
+    rowGap: 0,
+    startIndex: -1,
+    endIndex: -1,
+    visibleAnchorIndex: 0,
+    lastScrollTop: panel.scrollTop,
+    width: 0,
+    hasMeasured: false,
+    measurementAttempts: 0,
+    measurementFrame: 0,
+    resizeObserver: null,
+    windowResizeHandler: null
+  };
+
+  const scheduleRender = () => {
+    if (cardCatalogRenderFrame) return;
+    cardCatalogRenderFrame = window.requestAnimationFrame(() => {
+      cardCatalogRenderFrame = 0;
+      renderCardCatalogVirtualWindow();
     });
+  };
+  cardCatalogVirtualizer.scheduleRender = scheduleRender;
+  cardCatalogVirtualizer.scrollHandler = scheduleRender;
+  panel.addEventListener("scroll", scheduleRender, { passive: true });
+
+  const handleResize = () => resizeCardCatalogVirtualizer();
+  if ("ResizeObserver" in window) {
+    cardCatalogVirtualizer.resizeObserver = new ResizeObserver(handleResize);
+    cardCatalogVirtualizer.resizeObserver.observe(panel);
+  } else {
+    cardCatalogVirtualizer.windowResizeHandler = handleResize;
+    window.addEventListener("resize", handleResize);
+  }
+
+  scheduleCardCatalogMeasurement(cardCatalogVirtualizer, { preserveAnchor: false });
+}
+
+function disposeCardCatalogVirtualizer() {
+  if (cardCatalogRenderFrame) {
+    window.cancelAnimationFrame(cardCatalogRenderFrame);
+    cardCatalogRenderFrame = 0;
+  }
+  if (!cardCatalogVirtualizer) return;
+  if (cardCatalogVirtualizer.measurementFrame) {
+    window.cancelAnimationFrame(cardCatalogVirtualizer.measurementFrame);
+  }
+  cardCatalogVirtualizer.panel.removeEventListener("scroll", cardCatalogVirtualizer.scrollHandler);
+  cardCatalogVirtualizer.resizeObserver?.disconnect();
+  if (cardCatalogVirtualizer.windowResizeHandler) {
+    window.removeEventListener("resize", cardCatalogVirtualizer.windowResizeHandler);
+  }
+  cardCatalogVirtualizer = null;
+}
+
+function scheduleCardCatalogMeasurement(virtualizer, { preserveAnchor } = {}) {
+  if (virtualizer.measurementFrame) return;
+  virtualizer.measurementFrame = window.requestAnimationFrame(() => {
+    virtualizer.measurementFrame = 0;
+    if (cardCatalogVirtualizer !== virtualizer || !virtualizer.grid.isConnected) return;
+    resizeCardCatalogVirtualizer({ force: true, preserveAnchor });
   });
+}
+
+function resizeCardCatalogVirtualizer({ force = false, preserveAnchor = !force } = {}) {
+  const virtualizer = cardCatalogVirtualizer;
+  if (!virtualizer?.grid.isConnected) return;
+  const width = virtualizer.panel.getBoundingClientRect().width;
+  if (!force && virtualizer.hasMeasured && width > 0 && Math.abs(width - virtualizer.width) < 1) {
+    renderCardCatalogVirtualWindow();
+    return;
+  }
+
+  const hadMeasured = virtualizer.hasMeasured;
+  const anchorIndex = virtualizer.visibleAnchorIndex;
+  virtualizer.grid.style.removeProperty("--card-catalog-row-height");
+  const styles = getComputedStyle(virtualizer.grid);
+  const measuredTracks = styles.gridTemplateColumns.split(" ").filter((track) => track && track !== "none");
+  const columns = measuredTracks.length || (window.matchMedia("(max-width: 760px)").matches ? 2 : 3);
+  const measuredRowHeight = virtualizer.grid.firstElementChild?.getBoundingClientRect().height ?? 0;
+  const rowGap = Number.parseFloat(styles.rowGap) || 0;
+  let rowHeight = measuredRowHeight;
+
+  if (width <= 0 || measuredRowHeight <= 0) {
+    if (virtualizer.measurementAttempts < 1) {
+      virtualizer.measurementAttempts += 1;
+      scheduleCardCatalogMeasurement(virtualizer, { preserveAnchor });
+      return;
+    }
+    rowHeight = globalThis.MhcardCatalog.estimateVirtualRowHeight({
+      availableWidth: width,
+      columns,
+      rowGap
+    });
+  } else {
+    virtualizer.measurementAttempts = 0;
+  }
+
+  virtualizer.width = width;
+  virtualizer.columns = columns;
+  virtualizer.rowHeight = rowHeight;
+  virtualizer.rowGap = Math.max(0, rowGap);
+  virtualizer.hasMeasured = true;
+  virtualizer.startIndex = -1;
+  virtualizer.endIndex = -1;
+  virtualizer.grid.style.setProperty("--card-catalog-row-height", `${rowHeight}px`);
+  if (preserveAnchor && hadMeasured) {
+    const anchorRow = Math.floor(anchorIndex / columns);
+    virtualizer.panel.scrollTop = virtualizer.space.offsetTop + anchorRow * (virtualizer.rowHeight + rowGap);
+  }
+  renderCardCatalogVirtualWindow();
+}
+
+function renderCardCatalogVirtualWindow() {
+  const virtualizer = cardCatalogVirtualizer;
+  if (!virtualizer?.grid.isConnected) return;
+  const viewportStart = Math.max(0, virtualizer.panel.scrollTop - virtualizer.space.offsetTop);
+  if (Math.abs(virtualizer.panel.scrollTop - virtualizer.lastScrollTop) >= 1) {
+    virtualizer.visibleAnchorIndex =
+      Math.floor(viewportStart / (virtualizer.rowHeight + virtualizer.rowGap)) * virtualizer.columns;
+    virtualizer.lastScrollTop = virtualizer.panel.scrollTop;
+  }
+  const windowState = globalThis.MhcardCatalog.calculateVirtualWindow({
+    itemCount: virtualizer.cards.length,
+    columns: virtualizer.columns,
+    rowHeight: virtualizer.rowHeight,
+    rowGap: virtualizer.rowGap,
+    viewportStart,
+    viewportHeight: virtualizer.panel.clientHeight,
+    overscanRows: cardCatalogOverscanRows
+  });
+  virtualizer.space.style.height = `${windowState.totalHeight}px`;
+  if (windowState.startIndex === virtualizer.startIndex && windowState.endIndex === virtualizer.endIndex) return;
+
+  virtualizer.startIndex = windowState.startIndex;
+  virtualizer.endIndex = windowState.endIndex;
+  virtualizer.grid.style.transform = `translateY(${windowState.offsetTop}px)`;
+  virtualizer.grid.innerHTML = virtualizer.cards
+    .slice(windowState.startIndex, windowState.endIndex)
+    .map((location, index) => renderCardCatalogCard(location, windowState.startIndex + index, virtualizer.cards.length))
+    .join("");
 }
 
 function updateCardCatalogTile(button, location) {
