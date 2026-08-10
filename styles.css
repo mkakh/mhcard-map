@@ -827,6 +827,10 @@ label {
   overscroll-behavior: contain;
 }
 
+#myPageCatalogPanel {
+  padding-top: 0;
+}
+
 .card-catalog-toolbar {
   position: sticky;
   z-index: 2;
@@ -835,7 +839,7 @@ label {
   grid-template-columns: minmax(180px, 260px) 1fr;
   align-items: end;
   gap: 14px;
-  padding: 2px 2px 12px;
+  padding: 16px 2px 12px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }

@@ -59,6 +59,8 @@ test("styles and specifies the new catalogue behavior", async () => {
   assert.match(styles, /--card-catalog-row-height/);
   assert.match(styles, /overflow-anchor:\s*none/);
   assert.match(styles, /overscroll-behavior:\s*contain/);
+  assert.match(styles, /#myPageCatalogPanel\s*\{[^}]*padding-top:\s*0/);
+  assert.match(styles, /\.card-catalog-toolbar\s*\{[^}]*padding:\s*16px 2px 12px/);
   assert.match(styles, /100svh/);
   assert.match(styles, /\.card-catalog-card\[aria-pressed="true"\]/);
   assert.match(styles, /\.card-catalog-image\.image-missing/);
