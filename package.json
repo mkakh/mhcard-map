@@ -28,6 +28,7 @@
     "apply:geocode-candidates": "node scripts/apply-geocode-candidate-updates.js",
     "prepare:geocode-approvals": "node scripts/prepare-geocode-review-approvals.js",
     "sync:geocode-review-cache": "node scripts/sync-reviewed-geocode-cache.js",
+    "update:history": "node scripts/update-location-history.js",
     "update:codes": "node scripts/update-location-codes.js",
     "geocode": "node scripts/geocode-locations.js",
     "generate:icons": "node scripts/generate-icons.js",
