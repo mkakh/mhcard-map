@@ -93,6 +93,11 @@ test("acknowledgement advances rejected values and removes official-source entri
     createGkpObservation({ stock: "旧在庫" }, ["stock"]),
     null
   );
+  baseline.locations["13-103-a-01"] = mergeAcceptedGkpObservation(
+    undefined,
+    createGkpObservation({ stock: "候補外の旧在庫" }, ["stock"]),
+    null
+  );
   const candidates = [
     {
       id: "13-101-a-01",
@@ -107,7 +112,7 @@ test("acknowledgement advances rejected values and removes official-source entri
   const next = acknowledgeGkpReviewCandidates(
     baseline,
     candidates,
-    new Set(["13-102-a-01"])
+    new Set(["13-102-a-01", "13-103-a-01"])
   );
 
   assert.notEqual(
@@ -115,6 +120,7 @@ test("acknowledgement advances rejected values and removes official-source entri
     baseline.locations["13-101-a-01"].fingerprints
   );
   assert.equal(next.locations["13-102-a-01"], undefined);
+  assert.equal(next.locations["13-103-a-01"], undefined);
 });
 
 test("acknowledgement records whether a reviewed GKP row is present", () => {

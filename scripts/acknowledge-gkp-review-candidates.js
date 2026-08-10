@@ -37,9 +37,12 @@ const selectedCandidates = requestedIds.includes("--all-reviewed")
 
 const baseline = await readGkpReviewBaseline();
 const next = acknowledgeGkpReviewCandidates(baseline, selectedCandidates, officialIds);
+const removedOfficialCount = [...officialIds].filter(
+  (id) => baseline.locations[id] && !next.locations[id]
+).length;
 await writeGkpReviewBaseline(next);
 console.log(
   `Acknowledged ${selectedCandidates.length} reviewed GKP candidate(s); ` +
-  `${selectedCandidates.filter((candidate) => officialIds.has(candidate.id)).length} ` +
+  `${removedOfficialCount} ` +
   `official-source record(s) removed from the baseline`
 );

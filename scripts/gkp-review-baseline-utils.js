@@ -195,6 +195,10 @@ export function acknowledgeGkpReviewCandidates(baseline, candidates, officialIds
     entry.fingerprints = fingerprints.join("|");
     next.locations[candidate.id] = entry;
   }
+
+  for (const officialId of officialIds) {
+    delete next.locations[officialId];
+  }
   return next;
 }
 
