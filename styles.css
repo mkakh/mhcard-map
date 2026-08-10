@@ -745,6 +745,7 @@ label {
 
 .modal.wide {
   width: min(760px, calc(100vw - 28px));
+  max-height: calc(100dvh - 28px);
 }
 
 .modal::backdrop {
@@ -755,6 +756,11 @@ label {
   display: grid;
   gap: 14px;
   padding: 18px;
+}
+
+.modal.wide form {
+  grid-template-rows: auto minmax(0, 1fr);
+  max-height: calc(100dvh - 28px);
 }
 
 .modal header {
@@ -770,7 +776,189 @@ label {
 
 .my-page {
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.my-page-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.my-page-tab {
+  min-height: 44px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.my-page-tab:hover {
+  color: var(--primary-strong);
+  background: var(--surface-2);
+}
+
+.my-page-tab.active {
+  border-bottom-color: var(--primary);
+  color: var(--primary-strong);
+}
+
+.my-page-tab:focus-visible,
+.card-catalog-card:focus-visible {
+  outline: 3px solid rgba(31, 122, 77, 0.35);
+  outline-offset: 2px;
+}
+
+.my-page-panel {
+  display: grid;
+  align-content: start;
   gap: 14px;
+  min-height: 0;
+  padding: 14px 2px 2px;
+  overflow: auto;
+}
+
+.card-catalog-toolbar {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  align-items: end;
+  gap: 14px;
+  padding: 2px 2px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.card-catalog-filter {
+  min-width: 0;
+}
+
+.card-catalog-counts {
+  margin: 0 0 10px;
+  color: var(--muted);
+  text-align: right;
+  font-size: 13px;
+}
+
+.card-catalog-counts strong {
+  color: var(--primary-strong);
+}
+
+.card-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 2px 2px;
+}
+
+.card-catalog-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.card-catalog-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px rgba(25, 40, 28, 0.12);
+  transform: translateY(-1px);
+}
+
+.card-catalog-card[aria-pressed="true"] {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 2px rgba(31, 122, 77, 0.2);
+  background: #f5fbf7;
+}
+
+.card-catalog-image {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1.38;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.card-catalog-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+}
+
+.card-catalog-image-placeholder {
+  display: none;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.card-catalog-image.image-missing img {
+  display: none;
+}
+
+.card-catalog-image.image-missing .card-catalog-image-placeholder {
+  display: block;
+}
+
+.card-catalog-content {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px;
+}
+
+.card-catalog-number {
+  color: var(--primary-strong);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.card-catalog-name {
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-catalog-location {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-catalog-state {
+  justify-self: start;
+  margin-top: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.card-catalog-card[aria-pressed="true"] .card-catalog-state {
+  background: var(--primary);
+  color: #fff;
 }
 
 .memo-list {
@@ -898,6 +1086,25 @@ label {
     align-items: center;
     gap: 10px;
     padding: 10px 12px;
+  }
+
+  .modal.wide form {
+    padding: 14px;
+  }
+
+  .card-catalog-toolbar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .card-catalog-counts {
+    margin: 0;
+    text-align: left;
+  }
+
+  .card-catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
   }
 
   .brand {
