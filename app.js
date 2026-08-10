@@ -172,8 +172,13 @@ let printMapObjectUrl = "";
 let shouldFocusSelected = false;
 let searchRenderTimer = 0;
 let currentFilteredLocations = [];
+let myPageTab = "summary";
+let cardCatalogPrefecture = "all";
+let cardCatalogVirtualizer = null;
+let cardCatalogRenderFrame = 0;
 
 const searchDebounceMs = 150;
+const cardCatalogOverscanRows = 4;
 const appVersion = "__APP_VERSION__";
 
 const fallbackMapView = {
@@ -259,6 +264,9 @@ function bindEvents() {
   elements.resetFiltersButton.addEventListener("click", resetFilters);
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
+  elements.myPageDialog.addEventListener("close", disposeCardCatalogVirtualizer);
+  elements.myPageContent.addEventListener("click", handleCardCatalogClick);
+  elements.myPageContent.addEventListener("error", handleCardCatalogImageError, true);
   elements.locateButton.addEventListener("click", locateUser);
   elements.printMapButton.addEventListener("click", printMap);
   elements.mobileTabButtons.forEach((button) => {
@@ -1081,62 +1089,14 @@ function handleMapMoveEnd() {
 function addLocationLayers(targetMap = map, bindInteractions = true) {
   targetMap.addSource("locations", {
     type: "geojson",
-    data: toLocationFeatureCollection(getFilteredLocations()),
-    cluster: true,
-    clusterMaxZoom: 10,
-    clusterRadius: 46,
-    clusterProperties: {
-      hasApproximate: ["max", ["case", ["get", "hasApproximate"], 1, 0]],
-      hasStoppedUnknown: ["max", ["case", ["get", "hasStoppedUnknown"], 1, 0]],
-      hasStoppedKnown: ["max", ["case", ["get", "hasStoppedKnown"], 1, 0]],
-      hasGeocodeFailed: ["max", ["case", ["get", "hasGeocodeFailed"], 1, 0]]
-    }
-  });
-
-  targetMap.addLayer({
-    id: "clusters",
-    type: "circle",
-    source: "locations",
-    filter: ["has", "point_count"],
-    paint: {
-      "circle-color": [
-        "case",
-        ["==", ["get", "hasGeocodeFailed"], 1],
-        "#7b7486",
-        ["==", ["get", "hasStoppedUnknown"], 1],
-        "#8b9298",
-        ["==", ["get", "hasStoppedKnown"], 1],
-        "#6f7d86",
-        ["==", ["get", "hasApproximate"], 1],
-        "#737373",
-        ["step", ["get", "point_count"], "#4d8bc8", 20, "#2f75b5", 80, "#1d5f99"]
-      ],
-      "circle-radius": ["step", ["get", "point_count"], 19, 20, 25, 80, 32],
-      "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 3
-    }
-  });
-
-  targetMap.addLayer({
-    id: "cluster-count",
-    type: "symbol",
-    source: "locations",
-    filter: ["has", "point_count"],
-    layout: {
-      "text-field": "{point_count_abbreviated}",
-      "text-size": 12,
-      "text-font": ["Noto Sans Regular"]
-    },
-    paint: {
-      "text-color": "#ffffff"
-    }
+    data: toLocationFeatureCollection(getFilteredLocations())
   });
 
   targetMap.addLayer({
     id: "selected-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["all", selectedOrHighlightedExpression(), ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -1150,7 +1110,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "unclustered-locations",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]]],
+    filter: ["!", ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": [
         "match",
@@ -1196,7 +1156,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "selected-shaped-location-halo",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], selectedOrHighlightedExpression(), ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["all", selectedOrHighlightedExpression(), ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
     paint: {
       "circle-color": "#ffffff",
       "circle-radius": 18,
@@ -1210,7 +1170,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "shaped-locations",
     type: "symbol",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]], ["in", ["get", "visualState"], ["literal", markerShapeStates()]]],
+    filter: ["in", ["get", "visualState"], ["literal", markerShapeStates()]],
     layout: {
       "text-field": ["match", ["get", "visualState"], "stopped-known", "×", "stopped-unknown", "?", "geocode-failed", "!", "?"],
       "text-size": ["case", selectedOrHighlightedExpression(), 24, 19],
@@ -1238,7 +1198,6 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     id: "location-hit-area",
     type: "circle",
     source: "locations",
-    filter: ["all", ["!", ["has", "point_count"]]],
     paint: {
       "circle-color": "#000000",
       "circle-radius": ["case", selectedOrHighlightedExpression(), 28, 22],
@@ -1248,21 +1207,11 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
 
   if (!bindInteractions) return;
 
-  targetMap.on("click", "clusters", async (event) => {
-    const features = targetMap.queryRenderedFeatures(event.point, { layers: ["clusters"] });
-    const clusterId = features[0].properties.cluster_id;
-    const zoom = await targetMap.getSource("locations").getClusterExpansionZoom(clusterId);
-    targetMap.easeTo({
-      center: features[0].geometry.coordinates,
-      zoom
-    });
-  });
-
   targetMap.on("click", "location-hit-area", (event) => {
     selectMapFeature(event.features[0]);
   });
 
-  ["clusters", "unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
+  ["unclustered-locations", "shaped-locations", "location-hit-area"].forEach((layerId) => {
     targetMap.on("mouseenter", layerId, () => {
       targetMap.getCanvas().style.cursor = "pointer";
     });
@@ -1561,6 +1510,67 @@ function buildUpdateRequestUrl(location) {
 }
 
 function openMyPage() {
+  elements.myPageDialog.showModal();
+  renderMyPage();
+}
+
+function renderMyPage({ focusTab = false } = {}) {
+  disposeCardCatalogVirtualizer();
+  const summarySelected = myPageTab === "summary";
+  elements.myPageContent.innerHTML = `
+    <div class="my-page-tabs" role="tablist" aria-label="取得状況メニュー">
+      <button
+        id="myPageSummaryTab"
+        class="my-page-tab${summarySelected ? " active" : ""}"
+        type="button"
+        role="tab"
+        aria-selected="${summarySelected}"
+        aria-controls="myPageSummaryPanel"
+        tabindex="${summarySelected ? "0" : "-1"}"
+        data-my-page-tab="summary"
+      >概要・メモ</button>
+      <button
+        id="myPageCatalogTab"
+        class="my-page-tab${summarySelected ? "" : " active"}"
+        type="button"
+        role="tab"
+        aria-selected="${!summarySelected}"
+        aria-controls="myPageCatalogPanel"
+        tabindex="${summarySelected ? "-1" : "0"}"
+        data-my-page-tab="catalog"
+      >カードリスト</button>
+    </div>
+    ${summarySelected ? renderMyPageSummaryPanel() : renderCardCatalogPanel()}
+  `;
+  bindMyPageEvents();
+  if (!summarySelected) startCardCatalogVirtualizer();
+  if (focusTab) {
+    elements.myPageContent.querySelector(`[data-my-page-tab="${myPageTab}"]`)?.focus();
+  }
+}
+
+function activateMyPageTab(tab) {
+  if (!['summary', 'catalog'].includes(tab) || tab === myPageTab) return;
+  myPageTab = tab;
+  renderMyPage({ focusTab: true });
+}
+
+function handleMyPageTabKeydown(event) {
+  const tabs = ["summary", "catalog"];
+  const currentIndex = tabs.indexOf(event.currentTarget.dataset.myPageTab);
+  let nextIndex = currentIndex;
+
+  if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % tabs.length;
+  if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+  if (event.key === "Home") nextIndex = 0;
+  if (event.key === "End") nextIndex = tabs.length - 1;
+  if (nextIndex === currentIndex) return;
+
+  event.preventDefault();
+  activateMyPageTab(tabs[nextIndex]);
+}
+
+function renderMyPageSummaryPanel() {
   const collectedLocations = locations.filter((location) => collections[location.id]?.collected);
   const memoLocations = locations.filter((location) => Object.keys(placeMemos(collections[location.id])).length > 0);
   const progressPercent = locations.length ? Math.round((collectedLocations.length / locations.length) * 100) : 0;
@@ -1571,7 +1581,8 @@ function openMyPage() {
     return acc;
   }, {});
 
-  elements.myPageContent.innerHTML = `
+  return `
+    <section id="myPageSummaryPanel" class="my-page-panel" role="tabpanel" aria-labelledby="myPageSummaryTab">
     <div class="progress-grid">
       <div class="progress-card"><strong>${collectedLocations.length}</strong><span>取得済み</span></div>
       <div class="progress-card"><strong>${locations.length - collectedLocations.length}</strong><span>未取得</span></div>
@@ -1604,7 +1615,102 @@ function openMyPage() {
           : '<p class="inline-hint">保存済みメモはありません。</p>'
       }
     </section>
+    </section>
   `;
+}
+
+function cardCatalogPrefectures() {
+  return globalThis.MhcardCatalog.orderedPrefectures(locations);
+}
+
+function cardCatalogLocations() {
+  return locations
+    .filter((location) => cardCatalogPrefecture === "all" || location.prefecture === cardCatalogPrefecture)
+    .slice()
+    .sort(globalThis.MhcardCatalog.compareLocations);
+}
+
+function renderCardCatalogPanel() {
+  const cards = cardCatalogLocations();
+  const initialCards = cards.slice(0, 18);
+  const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
+  const options = cardCatalogPrefectures()
+    .map(
+      (prefecture) =>
+        `<option value="${escapeAttribute(prefecture)}"${prefecture === cardCatalogPrefecture ? " selected" : ""}>${escapeHtml(prefecture)}</option>`
+    )
+    .join("");
+
+  return `
+    <section id="myPageCatalogPanel" class="my-page-panel" role="tabpanel" aria-labelledby="myPageCatalogTab">
+      <div class="card-catalog-toolbar">
+        <label class="card-catalog-filter" for="cardCatalogPrefecture">
+          都道府県
+          <select id="cardCatalogPrefecture">
+            <option value="all"${cardCatalogPrefecture === "all" ? " selected" : ""}>すべて</option>
+            ${options}
+          </select>
+        </label>
+        <p class="card-catalog-counts" aria-live="polite">
+          <span id="cardCatalogVisibleCount">${cards.length}</span>枚中
+          <strong id="cardCatalogCollectedCount">${collectedCount}</strong>枚取得済み
+        </p>
+      </div>
+      ${
+        cards.length
+          ? `<div id="cardCatalogVirtualSpace" class="card-catalog-virtual-space">
+              <div id="cardCatalogGrid" class="card-catalog-grid" role="list" aria-label="マンホールカード一覧">
+                ${initialCards.map((location, index) => renderCardCatalogCard(location, index, cards.length)).join("")}
+              </div>
+            </div>`
+          : '<p class="empty-state">該当するカードはありません。</p>'
+      }
+    </section>
+  `;
+}
+
+function renderCardCatalogCard(location, index, total) {
+  const collected = Boolean(collections[location.id]?.collected);
+  const imageUrl = safeExternalUrl(location.imageUrl);
+  const image = imageUrl
+    ? `<img src="${escapeAttribute(imageUrl)}" alt="${escapeAttribute(`${location.cardName} カード画像`)}" loading="lazy" decoding="async">`
+    : "";
+
+  return `
+    <div
+      class="card-catalog-item"
+      role="listitem"
+      aria-posinset="${index + 1}"
+      aria-setsize="${total}"
+    >
+      <button
+        class="card-catalog-card"
+        type="button"
+        aria-pressed="${collected}"
+        aria-label="${escapeAttribute(`${location.cardName}を${collected ? "未取得" : "取得済み"}にする`)}"
+        data-card-catalog-toggle="${escapeAttribute(location.id)}"
+      >
+        <span class="card-catalog-image${imageUrl ? "" : " image-missing"}">
+          ${image}
+          <span class="card-catalog-image-placeholder">画像なし</span>
+        </span>
+        <span class="card-catalog-content">
+          <span class="card-catalog-number">${escapeHtml(cardNumber(location))}</span>
+          <strong class="card-catalog-name">${escapeHtml(location.cardName)}</strong>
+          <span class="card-catalog-location">${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</span>
+          <span class="card-catalog-state">${collected ? "取得済み" : "未取得"}</span>
+        </span>
+      </button>
+    </div>
+  `;
+}
+
+function bindMyPageEvents() {
+  elements.myPageContent.querySelectorAll("[data-my-page-tab]").forEach((button) => {
+    button.addEventListener("click", () => activateMyPageTab(button.dataset.myPageTab));
+    button.addEventListener("keydown", handleMyPageTabKeydown);
+  });
+
   elements.myPageContent.querySelectorAll("[data-memo-location]").forEach((button) => {
     button.addEventListener("click", () => {
       elements.myPageDialog.close();
@@ -1612,7 +1718,199 @@ function openMyPage() {
       switchMobilePanel("detail");
     });
   });
-  elements.myPageDialog.showModal();
+
+  elements.myPageContent.querySelector("#cardCatalogPrefecture")?.addEventListener("change", (event) => {
+    cardCatalogPrefecture = event.currentTarget.value;
+    renderMyPage();
+    elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
+  });
+
+}
+
+function handleCardCatalogClick(event) {
+  const button = event.target.closest("[data-card-catalog-toggle]");
+  if (!button || !elements.myPageContent.contains(button)) return;
+  const location = locations.find((item) => item.id === button.dataset.cardCatalogToggle);
+  if (!location) return;
+  toggleCollected(location.id);
+  updateCardCatalogTile(button, location);
+  updateCardCatalogCounts();
+}
+
+function handleCardCatalogImageError(event) {
+  if (!event.target.matches(".card-catalog-image img")) return;
+  event.target.closest(".card-catalog-image")?.classList.add("image-missing");
+}
+
+function startCardCatalogVirtualizer() {
+  const panel = elements.myPageContent.querySelector("#myPageCatalogPanel");
+  const space = elements.myPageContent.querySelector("#cardCatalogVirtualSpace");
+  const grid = elements.myPageContent.querySelector("#cardCatalogGrid");
+  if (!panel || !space || !grid) return;
+
+  cardCatalogVirtualizer = {
+    cards: cardCatalogLocations(),
+    panel,
+    space,
+    grid,
+    columns: 1,
+    rowHeight: 1,
+    rowGap: 0,
+    startIndex: -1,
+    endIndex: -1,
+    visibleAnchorIndex: 0,
+    lastScrollTop: panel.scrollTop,
+    width: 0,
+    hasMeasured: false,
+    measurementAttempts: 0,
+    measurementFrame: 0,
+    resizeObserver: null,
+    windowResizeHandler: null
+  };
+
+  const scheduleRender = () => {
+    if (cardCatalogRenderFrame) return;
+    cardCatalogRenderFrame = window.requestAnimationFrame(() => {
+      cardCatalogRenderFrame = 0;
+      renderCardCatalogVirtualWindow();
+    });
+  };
+  cardCatalogVirtualizer.scheduleRender = scheduleRender;
+  cardCatalogVirtualizer.scrollHandler = scheduleRender;
+  panel.addEventListener("scroll", scheduleRender, { passive: true });
+
+  const handleResize = () => resizeCardCatalogVirtualizer();
+  if ("ResizeObserver" in window) {
+    cardCatalogVirtualizer.resizeObserver = new ResizeObserver(handleResize);
+    cardCatalogVirtualizer.resizeObserver.observe(panel);
+  } else {
+    cardCatalogVirtualizer.windowResizeHandler = handleResize;
+    window.addEventListener("resize", handleResize);
+  }
+
+  scheduleCardCatalogMeasurement(cardCatalogVirtualizer, { preserveAnchor: false });
+}
+
+function disposeCardCatalogVirtualizer() {
+  if (cardCatalogRenderFrame) {
+    window.cancelAnimationFrame(cardCatalogRenderFrame);
+    cardCatalogRenderFrame = 0;
+  }
+  if (!cardCatalogVirtualizer) return;
+  if (cardCatalogVirtualizer.measurementFrame) {
+    window.cancelAnimationFrame(cardCatalogVirtualizer.measurementFrame);
+  }
+  cardCatalogVirtualizer.panel.removeEventListener("scroll", cardCatalogVirtualizer.scrollHandler);
+  cardCatalogVirtualizer.resizeObserver?.disconnect();
+  if (cardCatalogVirtualizer.windowResizeHandler) {
+    window.removeEventListener("resize", cardCatalogVirtualizer.windowResizeHandler);
+  }
+  cardCatalogVirtualizer = null;
+}
+
+function scheduleCardCatalogMeasurement(virtualizer, { preserveAnchor } = {}) {
+  if (virtualizer.measurementFrame) return;
+  virtualizer.measurementFrame = window.requestAnimationFrame(() => {
+    virtualizer.measurementFrame = 0;
+    if (cardCatalogVirtualizer !== virtualizer || !virtualizer.grid.isConnected) return;
+    resizeCardCatalogVirtualizer({ force: true, preserveAnchor });
+  });
+}
+
+function resizeCardCatalogVirtualizer({ force = false, preserveAnchor = !force } = {}) {
+  const virtualizer = cardCatalogVirtualizer;
+  if (!virtualizer?.grid.isConnected) return;
+  const width = virtualizer.panel.getBoundingClientRect().width;
+  if (!force && virtualizer.hasMeasured && width > 0 && Math.abs(width - virtualizer.width) < 1) {
+    renderCardCatalogVirtualWindow();
+    return;
+  }
+
+  const hadMeasured = virtualizer.hasMeasured;
+  const anchorIndex = virtualizer.visibleAnchorIndex;
+  virtualizer.grid.style.removeProperty("--card-catalog-row-height");
+  const styles = getComputedStyle(virtualizer.grid);
+  const measuredTracks = styles.gridTemplateColumns.split(" ").filter((track) => track && track !== "none");
+  const columns = measuredTracks.length || (window.matchMedia("(max-width: 760px)").matches ? 2 : 3);
+  const measuredRowHeight = virtualizer.grid.firstElementChild?.getBoundingClientRect().height ?? 0;
+  const rowGap = Number.parseFloat(styles.rowGap) || 0;
+  let rowHeight = measuredRowHeight;
+
+  if (width <= 0 || measuredRowHeight <= 0) {
+    if (virtualizer.measurementAttempts < 1) {
+      virtualizer.measurementAttempts += 1;
+      scheduleCardCatalogMeasurement(virtualizer, { preserveAnchor });
+      return;
+    }
+    rowHeight = globalThis.MhcardCatalog.estimateVirtualRowHeight({
+      availableWidth: width,
+      columns,
+      rowGap
+    });
+  } else {
+    virtualizer.measurementAttempts = 0;
+  }
+
+  virtualizer.width = width;
+  virtualizer.columns = columns;
+  virtualizer.rowHeight = rowHeight;
+  virtualizer.rowGap = Math.max(0, rowGap);
+  virtualizer.hasMeasured = true;
+  virtualizer.startIndex = -1;
+  virtualizer.endIndex = -1;
+  virtualizer.grid.style.setProperty("--card-catalog-row-height", `${rowHeight}px`);
+  if (preserveAnchor && hadMeasured) {
+    const anchorRow = Math.floor(anchorIndex / columns);
+    virtualizer.panel.scrollTop = virtualizer.space.offsetTop + anchorRow * (virtualizer.rowHeight + rowGap);
+  }
+  renderCardCatalogVirtualWindow();
+}
+
+function renderCardCatalogVirtualWindow() {
+  const virtualizer = cardCatalogVirtualizer;
+  if (!virtualizer?.grid.isConnected) return;
+  const viewportStart = Math.max(0, virtualizer.panel.scrollTop - virtualizer.space.offsetTop);
+  if (Math.abs(virtualizer.panel.scrollTop - virtualizer.lastScrollTop) >= 1) {
+    virtualizer.visibleAnchorIndex =
+      Math.floor(viewportStart / (virtualizer.rowHeight + virtualizer.rowGap)) * virtualizer.columns;
+    virtualizer.lastScrollTop = virtualizer.panel.scrollTop;
+  }
+  const windowState = globalThis.MhcardCatalog.calculateVirtualWindow({
+    itemCount: virtualizer.cards.length,
+    columns: virtualizer.columns,
+    rowHeight: virtualizer.rowHeight,
+    rowGap: virtualizer.rowGap,
+    viewportStart,
+    viewportHeight: virtualizer.panel.clientHeight,
+    overscanRows: cardCatalogOverscanRows
+  });
+  virtualizer.space.style.height = `${windowState.totalHeight}px`;
+  if (windowState.startIndex === virtualizer.startIndex && windowState.endIndex === virtualizer.endIndex) return;
+
+  virtualizer.startIndex = windowState.startIndex;
+  virtualizer.endIndex = windowState.endIndex;
+  virtualizer.grid.style.transform = `translateY(${windowState.offsetTop}px)`;
+  virtualizer.grid.innerHTML = virtualizer.cards
+    .slice(windowState.startIndex, windowState.endIndex)
+    .map((location, index) => renderCardCatalogCard(location, windowState.startIndex + index, virtualizer.cards.length))
+    .join("");
+}
+
+function updateCardCatalogTile(button, location) {
+  const collected = Boolean(collections[location.id]?.collected);
+  button.setAttribute("aria-pressed", String(collected));
+  button.setAttribute("aria-label", `${location.cardName}を${collected ? "未取得" : "取得済み"}にする`);
+  const state = button.querySelector(".card-catalog-state");
+  if (state) state.textContent = collected ? "取得済み" : "未取得";
+}
+
+function updateCardCatalogCounts() {
+  const cards = cardCatalogLocations();
+  const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
+  const visibleCount = elements.myPageContent.querySelector("#cardCatalogVisibleCount");
+  const collected = elements.myPageContent.querySelector("#cardCatalogCollectedCount");
+  if (visibleCount) visibleCount.textContent = String(cards.length);
+  if (collected) collected.textContent = String(collectedCount);
 }
 
 function switchMobilePanel(panel) {

@@ -33,6 +33,7 @@ updated by GitHub Actions pull requests.
 ```text
 index.html
 app.js
+card-catalog.js
 styles.css
 data/locations.json
 data/update-form-config.json
@@ -115,11 +116,11 @@ Mobile interactions:
 
 Map rendering uses MapLibre GL JS with the Geospatial Information Authority of
 Japan standard raster tiles. The style includes the required GSI attribution;
-OpenFreeMap serves only the Noto Sans glyphs used by the app's cluster labels.
+OpenFreeMap serves only the glyphs used by the app's shaped status markers.
 
 Features:
 
-- Marker clustering
+- Individual location points at every zoom level
 - Current location button
 - Fallback to Tokyo station area if geolocation fails
 - Viewport filter
@@ -233,12 +234,30 @@ Storage rules:
 
 The `取得数・メモ` dialog shows:
 
-- Collected count
-- Uncollected count
-- Completion rate
-- Prefecture-level counts
-- Saved memo count
-- Memo list
+- An `概要・メモ` tab with collected/uncollected counts, completion rate,
+  prefecture-level counts, saved memo count, and memo list
+- A `カードリスト` tab with all card images and collection states
+
+The card catalogue:
+
+- Sorts by the full printed card number: prefecture code, municipality code,
+  then normalized series and numeric suffix (for example, `00-101-A001`,
+  `00-102-A001`, `00-102-B001`, then `01-100-A001`). Malformed identifiers are
+  shown last.
+- Uses a virtual scrolling window so only the visible rows plus a small
+  overscan buffer are mounted. This keeps DOM and decoded-image work bounded
+  even when the nationwide catalogue contains more than one thousand cards.
+- Can be narrowed with a prefecture dropdown.
+- Lists the prefecture dropdown in the official 47-prefecture order, independent
+  of nationwide card IDs that start with `00`.
+- Shows the number of visible and collected cards for the current selection.
+- Shows an empty-state message when no card matches the current selection.
+- Toggles collected/uncollected state when a card is tapped without resetting
+  the catalogue scroll position.
+- Shows `画像なし` if an image URL is unavailable or an image fails to load.
+- Supports Left/Right/Home/End keyboard navigation between tabs and moves focus
+  to the active tab. Each card exposes its current collection state through
+  `aria-pressed`.
 
 Memo discoverability:
 
