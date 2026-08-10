@@ -33,6 +33,60 @@ test("records additions, removals, locations, hours, and coordinates", () => {
   assert.deepEqual(batch.changes[1].fields.map((field) => field.kind), ["location", "hours", "coordinates"]);
 });
 
+test("ignores internal distribution-place changes and retains visible schedule changes", () => {
+  const beforePlace = {
+    id: "place-1",
+    name: "配布施設",
+    address: "東京都千代田区丸の内1-1",
+    hours: "9:00～17:00",
+    lat: 35,
+    lng: 139,
+    geocodeTitle: "内部検索結果A",
+    url: "https://example.jp/old"
+  };
+  const internalOnly = buildHistoryBatch(
+    [location({ distributionPlaces: [beforePlace] })],
+    [location({ distributionPlaces: [{ ...beforePlace, geocodeTitle: "内部検索結果B", url: "https://example.jp/new" }] })],
+    { at: "2026-08-10", source: "test" }
+  );
+  const visible = buildHistoryBatch(
+    [location({ distributionPlaces: [beforePlace] })],
+    [location({
+      distributionPlaces: [{
+        ...beforePlace,
+        startsOn: "2026-08-29",
+        distributionMode: "regular",
+        availabilityNote: "8月29日から通常配布"
+      }]
+    })],
+    { at: "2026-08-10", source: "test" }
+  );
+
+  assert.equal(internalOnly, null);
+  assert.equal(visible.totalChanges, 1);
+  assert.match(visible.changes[0].fields[0].after, /2026-08-29から/);
+  assert.match(visible.changes[0].fields[0].after, /通常配布/);
+  assert.match(visible.changes[0].fields[0].after, /8月29日から通常配布/);
+});
+
+test("keeps long user-facing values distinguishable after bounding them", () => {
+  const sharedPrefix = "長い住所".repeat(250);
+  const before = location({
+    distributionPlaces: [{ name: "配布施設", address: `${sharedPrefix}変更前`, lat: 35, lng: 139 }]
+  });
+  const after = location({
+    distributionPlaces: [{ name: "配布施設", address: `${sharedPrefix}変更後`, lat: 35, lng: 139 }]
+  });
+  const batch = buildHistoryBatch([before], [after], { at: "2026-08-10", source: "test" });
+  const field = batch.changes[0].fields[0];
+
+  assert.equal(field.before.length, 800);
+  assert.equal(field.after.length, 800);
+  assert.notEqual(field.before, field.after);
+  assert.match(field.before, /\[sha256:[a-f0-9]{64}\]$/);
+  assert.deepEqual(validateUpdateHistory(appendHistoryBatch(null, batch)), []);
+});
+
 test("uses the Japan calendar date and reserves critical stock emphasis for availability transitions", () => {
   const ordinary = buildHistoryBatch([location()], [location({ stock: "在庫十分" })], {
     at: "2026-08-09T18:00:00Z",
@@ -65,6 +119,16 @@ test("deduplicates and caps history batches", () => {
 
 test("rejects malformed history", () => {
   assert.ok(validateUpdateHistory({ version: 99, generatedAt: "bad", updates: [] }).length >= 2);
+});
+
+test("rejects history fields whose user-facing values are identical", () => {
+  const batch = buildHistoryBatch([location()], [location({ stock: "残り僅か" })], {
+    at: "2026-08-10",
+    source: "test"
+  });
+  batch.changes[0].fields[0].after = batch.changes[0].fields[0].before;
+
+  assert.match(validateUpdateHistory(appendHistoryBatch(null, batch)).join("\n"), /must change its user-facing value/);
 });
 
 function location(overrides = {}) {
