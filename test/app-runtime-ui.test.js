@@ -19,6 +19,16 @@ test("normal location list uses a bounded accessible virtual window", async () =
   assert.match(app, /aria-current="true"/);
 });
 
+test("normal location filters and results share official prefecture ordering", async () => {
+  const app = await readFile("app.js", "utf8");
+  const fillPrefectures = app.slice(app.indexOf("function fillPrefectures"), app.indexOf("async function loadLocations"));
+  const sortLocations = app.slice(app.indexOf("function sortLocations"), app.indexOf("function cardNumber"));
+
+  assert.match(fillPrefectures, /MhcardCatalog\.orderedPrefectures\(locations\)/);
+  assert.match(sortLocations, /MhcardCatalog\.comparePrefectureLocations\(a, b\)/);
+  assert.doesNotMatch(app, /function prefectureCode\(/);
+});
+
 test("update request form keeps loading and unavailable states distinct", async () => {
   const app = await readFile("app.js", "utf8");
   assert.match(app, /let updateFormConfigLoaded = false/);
