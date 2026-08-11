@@ -60,6 +60,10 @@ async function openCatalogue(page) {
   await expect(page.locator("#myPageCatalogPanel")).toBeVisible();
 }
 
+async function openMobilePanel(page, name) {
+  await page.getByRole("button", { name, exact: true }).click();
+}
+
 test("renders core data before optional JSON hydration and filters the catalogue", async ({ page }) => {
   const optional = await makePageDeterministic(page, {
     blockedOptional: {
@@ -71,7 +75,9 @@ test("renders core data before optional JSON hydration and filters the catalogue
   await page.goto("/");
 
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
+  await openMobilePanel(page, "検索");
   await expect(page.locator("#requestCount")).toHaveText("0");
+  await openMobilePanel(page, "詳細");
   await expect(page.locator("#openRequest")).toBeDisabled();
   await expect(page.locator("#openRequest")).toHaveText("更新要求フォームを確認中");
   optional.release("update-requests.json");
@@ -90,7 +96,7 @@ test("keeps the 1312-card normal list reachable with a bounded DOM window", asyn
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
   const total = (await page.locator("#totalCount").textContent()).trim();
-  await page.getByRole("button", { name: "検索" }).click();
+  await openMobilePanel(page, "検索");
 
   const renderedCards = page.locator(".location-list-item");
   await expect(renderedCards.first()).toBeVisible();
@@ -100,7 +106,7 @@ test("keeps the 1312-card normal list reachable with a bounded DOM window", asyn
   await secondButton.click();
   await expect(secondButton).toHaveClass(/active/);
   await expect(secondButton).toHaveAttribute("aria-current", "true");
-  await page.getByRole("button", { name: "検索" }).click();
+  await openMobilePanel(page, "検索");
 
   await renderedCards.first().locator("button").focus();
   await page.keyboard.press("Tab");
@@ -134,6 +140,7 @@ test("publishes delayed request counts even while the location filter is empty",
   });
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
+  await openMobilePanel(page, "検索");
   await page.locator("#searchInput").fill("__no_location_can_match_this__");
   await expect(page.locator("#totalCount")).toHaveText("0");
   optional.release("update-requests.json");
@@ -152,6 +159,7 @@ test("enables the update request only after form configuration finishes loading"
   });
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
+  await openMobilePanel(page, "詳細");
   await expect(page.locator("#openRequest")).toBeDisabled();
   await expect(page.locator("#openRequest")).toHaveText("更新要求フォームを確認中");
   await page.locator("#collectedOn").fill("2026-08-12");
@@ -168,10 +176,11 @@ test("refreshes collected and memo badges immediately in the same virtual window
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
 
+  await openMobilePanel(page, "詳細");
   await page.locator("#toggleCollected").click();
   await page.locator("[data-place-memo]").first().fill("入口は北側");
   await page.locator("#saveMemo").click();
-  await page.getByRole("button", { name: "検索" }).click();
+  await openMobilePanel(page, "検索");
   const selectedCard = page.locator('[data-location-list-id="01-100-a-01"]');
   await expect(selectedCard).toHaveAttribute("aria-current", "true");
   await expect(selectedCard.getByText("取得済み", { exact: true })).toBeVisible();
@@ -190,7 +199,7 @@ test("keeps a worst-case location row within its fixed height at 320px", async (
   });
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
-  await page.getByRole("button", { name: "検索" }).click();
+  await openMobilePanel(page, "検索");
   await page.locator("#searchInput").fill("恵庭市 B001");
   const card = page.locator('[data-location-list-id="01-231-b-01"]');
   await expect(card).toBeVisible();
