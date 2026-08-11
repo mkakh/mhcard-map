@@ -70,6 +70,36 @@
     return `${match[1]}-${match[2]}-${suffix}`;
   }
 
+  function publicationSeriesNumber(value) {
+    const normalized = String(value ?? "")
+      .trim()
+      .replace(/[０-９]/g, (digit) => String.fromCharCode(digit.charCodeAt(0) - 0xfee0));
+    const match = normalized.match(/^(?:第0*([0-9]+)弾|0*([0-9]+))$/);
+    if (!match) return null;
+    const number = Number(match[1] ?? match[2]);
+    return Number.isSafeInteger(number) && number > 0 ? number : null;
+  }
+
+  function orderedPublicationSeries(items) {
+    return [
+      ...new Set(
+        items
+          .map((item) => publicationSeriesNumber(item?.series))
+          .filter((number) => number !== null)
+      )
+    ].sort((a, b) => a - b);
+  }
+
+  function filterCatalogLocations(items, { prefecture = "all", series = "all" } = {}) {
+    const selectedSeries = series === "all" ? null : publicationSeriesNumber(series);
+    if (series !== "all" && selectedSeries === null) return [];
+    return items.filter(
+      (item) =>
+        (prefecture === "all" || item?.prefecture === prefecture) &&
+        (selectedSeries === null || publicationSeriesNumber(item?.series) === selectedSeries)
+    );
+  }
+
   function compareLocations(a, b) {
     const aKey = fullCardNumberSortKey(a);
     const bKey = fullCardNumberSortKey(b);
@@ -146,8 +176,11 @@
     calculateVirtualWindow,
     compareLocations,
     estimateVirtualRowHeight,
+    filterCatalogLocations,
     fullCardNumberSortKey,
+    orderedPublicationSeries,
     orderedPrefectures,
+    publicationSeriesNumber,
     seriesSortKey
   });
 })();

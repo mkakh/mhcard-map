@@ -22,6 +22,9 @@ test("renders an accessible, filterable, directly toggleable card catalogue", as
   assert.match(app, /role="tabpanel"/);
   assert.match(app, /data-my-page-tab/);
   assert.match(app, /id="cardCatalogPrefecture"/);
+  assert.match(app, /id="cardCatalogSeries"/);
+  assert.match(app, /MhcardCatalog\.orderedPublicationSeries/);
+  assert.match(app, /\.filterCatalogLocations\(/);
   assert.match(app, /data-card-catalog-toggle/);
   assert.match(app, /aria-pressed=/);
   assert.match(app, /loading="lazy"/);
@@ -54,6 +57,7 @@ test("styles and specifies the new catalogue behavior", async () => {
 
   assert.match(styles, /\.my-page-tabs/);
   assert.match(styles, /\.card-catalog-grid/);
+  assert.match(styles, /\.card-catalog-filters\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
   assert.match(styles, /\.card-catalog-virtual-space/);
   assert.match(styles, /\.card-catalog-item/);
   assert.match(styles, /--card-catalog-row-height/);
@@ -67,6 +71,7 @@ test("styles and specifies the new catalogue behavior", async () => {
   assert.match(spec, /full printed card number/i);
   assert.match(spec, /virtual/i);
   assert.match(spec, /prefecture dropdown/i);
+  assert.match(spec, /publication-series dropdown/i);
   assert.match(spec, /Left\/Right\/Home\/End/);
   assert.match(spec, /aria-pressed/);
 });

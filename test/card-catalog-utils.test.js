@@ -7,8 +7,11 @@ const {
   calculateVirtualWindow,
   compareLocations,
   estimateVirtualRowHeight,
+  filterCatalogLocations,
   fullCardNumberSortKey,
+  orderedPublicationSeries,
   orderedPrefectures,
+  publicationSeriesNumber,
   seriesSortKey
 } = globalThis.MhcardCatalog;
 
@@ -22,6 +25,51 @@ test("normalizes full printed card numbers", () => {
   assert.equal(fullCardNumberSortKey({ id: "01-100-a-1" }), "01-100-A001");
   assert.equal(fullCardNumberSortKey({ id: "13-101-B02" }), "13-101-B002");
   assert.equal(fullCardNumberSortKey({ id: "unstructured-card" }), "~UNSTRUCTUREDCARD");
+});
+
+test("normalizes publication series numbers", () => {
+  assert.equal(publicationSeriesNumber("第01弾"), 1);
+  assert.equal(publicationSeriesNumber("第2弾"), 2);
+  assert.equal(publicationSeriesNumber("第０２弾"), 2);
+  assert.equal(publicationSeriesNumber("未設定"), null);
+  assert.equal(publicationSeriesNumber(""), null);
+});
+
+test("orders unique publication series numerically", () => {
+  const cards = [
+    { series: "第10弾" },
+    { series: "第02弾" },
+    { series: "第2弾" },
+    { series: "第01弾" },
+    { series: "未設定" }
+  ];
+
+  assert.deepEqual(orderedPublicationSeries(cards), [1, 2, 10]);
+});
+
+test("filters the catalogue by prefecture and publication series without mutating it", () => {
+  const cards = [
+    { id: "13-100-A001", prefecture: "東京都", series: "第01弾" },
+    { id: "13-100-B001", prefecture: "東京都", series: "第02弾" },
+    { id: "27-100-A001", prefecture: "大阪府", series: "第2弾" },
+    { id: "27-100-B001", prefecture: "大阪府", series: "" }
+  ];
+  const snapshot = structuredClone(cards);
+
+  assert.deepEqual(
+    filterCatalogLocations(cards, { prefecture: "東京都", series: "all" }).map((card) => card.id),
+    ["13-100-A001", "13-100-B001"]
+  );
+  assert.deepEqual(
+    filterCatalogLocations(cards, { prefecture: "all", series: "2" }).map((card) => card.id),
+    ["13-100-B001", "27-100-A001"]
+  );
+  assert.deepEqual(
+    filterCatalogLocations(cards, { prefecture: "東京都", series: "2" }).map((card) => card.id),
+    ["13-100-B001"]
+  );
+  assert.deepEqual(filterCatalogLocations(cards), cards);
+  assert.deepEqual(cards, snapshot);
 });
 
 test("sorts catalogue cards by full printed card number", () => {

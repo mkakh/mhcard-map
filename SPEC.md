@@ -263,7 +263,11 @@ The card catalogue:
 - Uses a virtual scrolling window so only the visible rows plus a small
   overscan buffer are mounted. This keeps DOM and decoded-image work bounded
   even when the nationwide catalogue contains more than one thousand cards.
-- Can be narrowed with a prefecture dropdown.
+- Can be narrowed with side-by-side prefecture and publication-series dropdowns.
+- Combines prefecture and publication-series selections with AND matching, and
+  normalizes zero-padded variants such as `第02弾` and `第2弾` to the same series.
+- Keeps the full publication-series option list stable and sorts it numerically,
+  independent of the selected prefecture.
 - Lists the prefecture dropdown in the official 47-prefecture order, independent
   of nationwide card IDs that start with `00`.
 - Shows the number of visible and collected cards for the current selection.

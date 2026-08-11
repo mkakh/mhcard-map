@@ -175,6 +175,7 @@ let searchRenderTimer = 0;
 let currentFilteredLocations = [];
 let myPageTab = "summary";
 let cardCatalogPrefecture = "all";
+let cardCatalogSeries = "all";
 let cardCatalogVirtualizer = null;
 let cardCatalogRenderFrame = 0;
 let updateHistoryBatchLimit = 3;
@@ -1758,9 +1759,13 @@ function cardCatalogPrefectures() {
   return globalThis.MhcardCatalog.orderedPrefectures(locations);
 }
 
+function cardCatalogPublicationSeries() {
+  return globalThis.MhcardCatalog.orderedPublicationSeries(locations);
+}
+
 function cardCatalogLocations() {
-  return locations
-    .filter((location) => cardCatalogPrefecture === "all" || location.prefecture === cardCatalogPrefecture)
+  return globalThis.MhcardCatalog
+    .filterCatalogLocations(locations, { prefecture: cardCatalogPrefecture, series: cardCatalogSeries })
     .slice()
     .sort(globalThis.MhcardCatalog.compareLocations);
 }
@@ -1769,23 +1774,38 @@ function renderCardCatalogPanel() {
   const cards = cardCatalogLocations();
   const initialCards = cards.slice(0, 18);
   const collectedCount = cards.filter((location) => collections[location.id]?.collected).length;
-  const options = cardCatalogPrefectures()
+  const prefectureOptions = cardCatalogPrefectures()
     .map(
       (prefecture) =>
         `<option value="${escapeAttribute(prefecture)}"${prefecture === cardCatalogPrefecture ? " selected" : ""}>${escapeHtml(prefecture)}</option>`
+    )
+    .join("");
+  const seriesOptions = cardCatalogPublicationSeries()
+    .map(
+      (series) =>
+        `<option value="${series}"${String(series) === cardCatalogSeries ? " selected" : ""}>第${series}弾</option>`
     )
     .join("");
 
   return `
     <section id="myPageCatalogPanel" class="my-page-panel" role="tabpanel" aria-labelledby="myPageCatalogTab">
       <div class="card-catalog-toolbar">
-        <label class="card-catalog-filter" for="cardCatalogPrefecture">
-          都道府県
-          <select id="cardCatalogPrefecture">
-            <option value="all"${cardCatalogPrefecture === "all" ? " selected" : ""}>すべて</option>
-            ${options}
-          </select>
-        </label>
+        <div class="card-catalog-filters">
+          <label class="card-catalog-filter" for="cardCatalogPrefecture">
+            都道府県
+            <select id="cardCatalogPrefecture">
+              <option value="all"${cardCatalogPrefecture === "all" ? " selected" : ""}>すべて</option>
+              ${prefectureOptions}
+            </select>
+          </label>
+          <label class="card-catalog-filter" for="cardCatalogSeries">
+            発行弾
+            <select id="cardCatalogSeries">
+              <option value="all"${cardCatalogSeries === "all" ? " selected" : ""}>すべて</option>
+              ${seriesOptions}
+            </select>
+          </label>
+        </div>
         <p class="card-catalog-counts" aria-live="polite">
           <span id="cardCatalogVisibleCount">${cards.length}</span>枚中
           <strong id="cardCatalogCollectedCount">${collectedCount}</strong>枚取得済み
@@ -1893,6 +1913,12 @@ function bindMyPageEvents() {
     cardCatalogPrefecture = event.currentTarget.value;
     renderMyPage();
     elements.myPageContent.querySelector("#cardCatalogPrefecture")?.focus();
+  });
+
+  elements.myPageContent.querySelector("#cardCatalogSeries")?.addEventListener("change", (event) => {
+    cardCatalogSeries = event.currentTarget.value;
+    renderMyPage();
+    elements.myPageContent.querySelector("#cardCatalogSeries")?.focus();
   });
 
   elements.myPageContent.querySelector("[data-export-collections]")?.addEventListener("click", exportCollections);
