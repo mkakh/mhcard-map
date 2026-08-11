@@ -23,7 +23,7 @@ test("renders an accessible, filterable, directly toggleable card catalogue", as
   assert.match(app, /data-my-page-tab/);
   assert.match(app, /id="cardCatalogPrefecture"/);
   assert.match(app, /id="cardCatalogSeries"/);
-  assert.match(app, /MhcardCatalog\.orderedPublicationSeries/);
+  assert.match(app, /MhcardCatalog\.publicationSeriesOptions/);
   assert.match(app, /\.filterCatalogLocations\(/);
   assert.match(app, /data-card-catalog-toggle/);
   assert.match(app, /aria-pressed=/);
@@ -72,6 +72,7 @@ test("styles and specifies the new catalogue behavior", async () => {
   assert.match(spec, /virtual/i);
   assert.match(spec, /prefecture dropdown/i);
   assert.match(spec, /publication-series dropdown/i);
+  assert.match(spec, /all issue months/i);
   assert.match(spec, /Left\/Right\/Home\/End/);
   assert.match(spec, /aria-pressed/);
 });

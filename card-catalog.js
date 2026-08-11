@@ -90,6 +90,57 @@
     ].sort((a, b) => a - b);
   }
 
+  function publicationIssueMonthKey(value) {
+    const match = String(value ?? "").trim().match(/^(\d{4})[/-](\d{2})[/-](\d{2})$/);
+    if (!match) return null;
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (
+      date.getUTCFullYear() !== year ||
+      date.getUTCMonth() !== month - 1 ||
+      date.getUTCDate() !== day
+    ) {
+      return null;
+    }
+    return `${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}`;
+  }
+
+  function formatPublicationIssueMonths(monthKeys) {
+    const groups = new Map();
+    [...new Set(monthKeys)]
+      .filter((key) => /^\d{4}-(?:0[1-9]|1[0-2])$/.test(key))
+      .sort()
+      .forEach((key) => {
+        const [year, month] = key.split("-");
+        if (!groups.has(year)) groups.set(year, []);
+        groups.get(year).push(Number(month));
+      });
+    return [...groups]
+      .map(([year, months]) => `${year}年${months.join("・")}月`)
+      .join("・");
+  }
+
+  function publicationSeriesOptions(items) {
+    const monthsBySeries = new Map(orderedPublicationSeries(items).map((number) => [number, new Set()]));
+    items.forEach((item) => {
+      const number = publicationSeriesNumber(item?.series);
+      const monthKey = publicationIssueMonthKey(item?.issuedOn);
+      if (number !== null && monthKey) monthsBySeries.get(number)?.add(monthKey);
+    });
+    return [...monthsBySeries].map(([number, months]) => {
+      const issuedMonths = [...months].sort();
+      const monthLabel = formatPublicationIssueMonths(issuedMonths);
+      return {
+        number,
+        value: String(number),
+        issuedMonths,
+        label: `第${number}弾${monthLabel ? `（${monthLabel}）` : ""}`
+      };
+    });
+  }
+
   function filterCatalogLocations(items, { prefecture = "all", series = "all" } = {}) {
     const selectedSeries = series === "all" ? null : publicationSeriesNumber(series);
     if (series !== "all" && selectedSeries === null) return [];
@@ -177,10 +228,13 @@
     compareLocations,
     estimateVirtualRowHeight,
     filterCatalogLocations,
+    formatPublicationIssueMonths,
     fullCardNumberSortKey,
     orderedPublicationSeries,
     orderedPrefectures,
+    publicationIssueMonthKey,
     publicationSeriesNumber,
+    publicationSeriesOptions,
     seriesSortKey
   });
 })();

@@ -268,6 +268,9 @@ The card catalogue:
   normalizes zero-padded variants such as `第02弾` and `第2弾` to the same series.
 - Keeps the full publication-series option list stable and sorts it numerically,
   independent of the selected prefecture.
+- Shows all issue months found in `issuedOn` beside each publication series,
+  deduplicated and sorted chronologically. Multiple months in one year use a
+  compact label such as `第26弾（2025年7・11・12月）`.
 - Lists the prefecture dropdown in the official 47-prefecture order, independent
   of nationwide card IDs that start with `00`.
 - Shows the number of visible and collected cards for the current selection.
