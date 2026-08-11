@@ -176,12 +176,19 @@ test("refreshes collected and memo badges immediately in the same virtual window
   await page.goto("/");
   await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
 
+  await openMobilePanel(page, "検索");
+  const renderedCard = page.locator("[data-location-list-id]").first();
+  await expect(renderedCard).toBeVisible();
+  const locationId = await renderedCard.getAttribute("data-location-list-id");
+  expect(locationId).toBeTruthy();
+  await renderedCard.click();
+
   await openMobilePanel(page, "詳細");
   await page.locator("#toggleCollected").click();
   await page.locator("[data-place-memo]").first().fill("入口は北側");
   await page.locator("#saveMemo").click();
   await openMobilePanel(page, "検索");
-  const selectedCard = page.locator('[data-location-list-id="01-100-a-01"]');
+  const selectedCard = page.locator(`[data-location-list-id="${locationId}"]`);
   await expect(selectedCard).toHaveAttribute("aria-current", "true");
   await expect(selectedCard.getByText("取得済み", { exact: true })).toBeVisible();
   await expect(selectedCard.getByText("メモあり", { exact: true })).toBeVisible();
