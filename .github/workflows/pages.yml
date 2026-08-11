@@ -22,24 +22,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Prepare static files
         run: |
           mkdir -p dist
           cp index.html app.js card-catalog.js collection-backup.js app-utils.js styles.css dist/
           cp robots.txt sitemap.xml dist/
-          cp manifest.webmanifest dist/
+          cp favicon.ico manifest.webmanifest dist/
           cp -R icons dist/icons
           cp LICENSE NOTICE.md dist/
           cp CNAME dist/
-          cp -R data dist/data
+          mkdir -p dist/data
+          cp data/locations.json data/update-history.json data/update-form-config.json data/update-requests.json dist/data/
       - name: Set asset version
         run: |
           APP_VERSION="$(git rev-parse --short HEAD)"
           find dist -type f \( -name "*.html" -o -name "*.js" \) -print0 | xargs -0 sed -i "s/__APP_VERSION__/${APP_VERSION}/g"
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: dist
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

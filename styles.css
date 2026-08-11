@@ -275,18 +275,43 @@ label {
 }
 
 .location-list {
+  --location-list-row-height: 204px;
+  position: relative;
+  display: block;
+  padding: 12px;
+  overflow-anchor: none;
+}
+
+.location-list-virtual-space {
+  position: relative;
+  min-width: 0;
+}
+
+.location-list-window {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   display: grid;
   gap: 8px;
-  padding: 12px;
+  will-change: transform;
 }
 
 .location-card {
+  box-sizing: border-box;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
   text-align: left;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
   padding: 12px;
+}
+
+.location-list-item {
+  min-width: 0;
+  height: var(--location-list-row-height);
 }
 
 .location-card.active {
@@ -298,6 +323,13 @@ label {
 .detail-panel h2 {
   margin: 0;
   font-size: 16px;
+}
+
+.location-card h3,
+.location-card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .location-card p {

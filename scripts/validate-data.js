@@ -11,6 +11,10 @@ import {
 } from "./source-policy-utils.js";
 import { readGkpReviewBaseline } from "./gkp-review-baseline-utils.js";
 import { validateUpdateHistory } from "./update-history-utils.js";
+import {
+  catalogueMetadataValidationErrors,
+  isRealCalendarDate
+} from "./catalogue-metadata-utils.js";
 
 const dataPath = join(process.cwd(), "data", "locations.json");
 const municipalityCodesPath = join(process.cwd(), "data", "municipality-codes.json");
@@ -85,12 +89,13 @@ function validateLocations(items) {
     if (!allowedStatuses.has(location.status)) fail(`${label}: unknown status ${location.status}`);
     const sourceError = sourcePolicyError(location);
     if (sourceError) fail(`${label}: ${sourceError}`);
+    validateOptionalCatalogueMetadata(label, location);
     validateIsoDate(label, "distributionStartsOn", location.distributionStartsOn);
     if (location.status === "配布開始前" && !location.distributionStartsOn) {
       fail(`${label}: distributionStartsOn is required for 配布開始前`);
     }
     if (!allowedCoordinateAccuracy.has(location.coordinateAccuracy)) fail(`${label}: unknown coordinateAccuracy ${location.coordinateAccuracy}`);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(location.updatedAt ?? ""))) fail(`${label}: updatedAt must be YYYY-MM-DD`);
+    if (!isRealCalendarDate(location.updatedAt, "-")) fail(`${label}: updatedAt must be a real YYYY-MM-DD date`);
     if (location.hasEnglishVersion !== undefined && typeof location.hasEnglishVersion !== "boolean") {
       fail(`${label}: hasEnglishVersion must be a boolean`);
     }
@@ -306,7 +311,11 @@ function validateUrl(label, field, value) {
 
 function validateIsoDate(label, field, value) {
   if (value === undefined) return;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) fail(`${label}: ${field} must be YYYY-MM-DD`);
+  if (!isRealCalendarDate(value, "-")) fail(`${label}: ${field} must be a real YYYY-MM-DD date`);
+}
+
+function validateOptionalCatalogueMetadata(label, location) {
+  catalogueMetadataValidationErrors(location).forEach((error) => fail(`${label}: ${error}`));
 }
 
 function fail(message) {

@@ -18,6 +18,7 @@ import {
   writeGkpReviewCandidates
 } from "./gkp-review-candidate-utils.js";
 import { isCurrentDistributionStopped } from "./distribution-stock-utils.js";
+import { normalizeImportedPublicationSeries } from "./catalogue-metadata-utils.js";
 import {
   GKP_CONTENT_REVIEW_FIELDS,
   createGkpObservation,
@@ -109,7 +110,7 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const [municipalityHtml, imageHtml, seriesHtml, issuedHtml, distributionHtml, hoursHtml, stockHtml] = cells.slice(-7);
     const municipality = cleanupText(municipalityHtml).replace(/\n+/g, " ");
     const rawCardCode = extractCardCode(municipality);
-    const series = cleanupText(seriesHtml);
+    const series = normalizeImportedPublicationSeries(cleanupText(seriesHtml));
     const issuedOn = cleanupText(issuedHtml);
     const distributionStartsOn = normalizeDistributionDate(issuedOn);
     const distributionText = cleanupText(distributionHtml);

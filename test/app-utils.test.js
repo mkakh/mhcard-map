@@ -3,7 +3,7 @@ import test from "node:test";
 
 await import("../app-utils.js");
 
-const { calendarDateInJapan, selectPrimaryDistributionPlace } = globalThis.MhcardAppUtils;
+const { calendarDateInJapan, selectPrimaryDistributionPlace, placeCoordinateCategory } = globalThis.MhcardAppUtils;
 
 test("uses the Asia/Tokyo calendar date at the local midnight boundary", () => {
   assert.equal(calendarDateInJapan(new Date("2026-08-10T14:59:59Z")), "2026-08-10");
@@ -42,4 +42,19 @@ test("preserves source order for unscheduled places and invalid comparison dates
   assert.equal(selectPrimaryDistributionPlace(places, "2026-08-11").id, "first");
   assert.equal(selectPrimaryDistributionPlace(places, "not-a-date").id, "first");
   assert.equal(selectPrimaryDistributionPlace([], "2026-08-11"), null);
+});
+
+test("classifies suspended places with and without a known address", () => {
+  assert.equal(
+    placeCoordinateCategory({ status: "休止中" }, { address: "東京都千代田区", coordinateAccuracy: "address" }),
+    "stopped-known"
+  );
+  assert.equal(
+    placeCoordinateCategory({ status: "休止中" }, { address: "", coordinateAccuracy: "prefecture_approx" }),
+    "stopped-unknown"
+  );
+  assert.equal(
+    placeCoordinateCategory({ status: "配布中" }, { address: "", geocodeError: "not found" }),
+    "geocode-failed"
+  );
 });

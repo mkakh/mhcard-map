@@ -67,6 +67,9 @@ test/
 tools/web-search.sh
 .github/workflows/pages.yml
 .github/workflows/data-update.yml
+.github/workflows/ci.yml
+.github/workflows/codeql.yml
+.github/dependabot.yml
 CNAME
 LICENSE
 NOTICE.md
@@ -84,6 +87,9 @@ The app runs as static files.
 - `data/update-history.json` stores bounded, machine-readable user-facing changes.
 - `data/update-form-config.json` configures the Google Form prefill URL.
 - `data/update-requests.json` stores imported update request summaries.
+- Location data is required for the initial application render. The form
+  configuration, update-request summaries, and update history are independent
+  optional resources and are loaded without blocking that first render.
 
 Local development:
 
@@ -236,6 +242,10 @@ Storage rules:
 - Data is not uploaded.
 - Data is not synced across devices.
 - Clearing browser storage removes collection data.
+- A storage write must complete before the in-memory collection state is
+  committed. Quota, security, and other `localStorage` failures retain the
+  previous state and show an error instead of presenting an unsaved change as
+  successful.
 - Newly collected cards and backup filenames use the current Asia/Tokyo
   calendar date, so Japan midnight does not retain the previous UTC date.
 
@@ -287,6 +297,12 @@ Memo discoverability:
 - Location list shows a `メモあり` badge.
 - Memo text is included in search.
 - Memo list items can jump to the relevant location.
+
+The main search-result list also uses a virtual scrolling window. Filtering,
+sorting, and viewport changes update its bounded visible window rather than
+mounting the complete nationwide result set. A card-catalogue collection toggle
+updates the affected card and counters without rebuilding unrelated map and
+detail views.
 
 ## 10. Update Request Specification
 
@@ -486,6 +502,7 @@ npm run update:codes
 npm run sync:geocode-review-cache
 npm run import:forms
 npm run validate:data
+npm run test:e2e
 npm run audit:geocode-precision:changed
 npm run audit:geocode-review:issues
 npm run audit:geocode-candidates
@@ -688,7 +705,18 @@ Published files:
 - `LICENSE`
 - `NOTICE.md`
 - `CNAME`
-- `data/`
+- `data/locations.json`
+- `data/update-history.json`
+- `data/update-form-config.json`
+- `data/update-requests.json`
+
+Importer baselines, geocode caches, and municipality reference data stay in the
+repository but are not copied into the Pages artifact.
+
+Pull request automation runs data validation, Node.js tests, a Chromium browser
+smoke test, and CodeQL JavaScript/TypeScript analysis. CodeQL also runs on main
+pushes and weekly. Actions are pinned to immutable commit SHAs, and Dependabot
+checks both GitHub Actions and npm dependencies weekly.
 
 Pages configuration:
 
@@ -765,10 +793,13 @@ respective rights holders. See `NOTICE.md`.
 - Some stock rows have no stock URL and fall back to the GKP prefecture page.
 - External URLs may change or become unavailable.
 - External links from scraped data are restricted to `http:` and `https:`.
-- Current imported data has a single `updatedAt` value, so updated-date sorting
-  may not visibly change order until future updates create date differences.
-- `要確認` remains a supported status filter, but the current imported dataset
-  may contain no matching records.
+- Collection state can be transferred manually with JSON backup and restore,
+  but there is no automatic cloud backup or conflict resolution between devices.
+- Optional update-history, update-request, and form-configuration resources may
+  be temporarily unavailable; the map remains usable, while only the related
+  optional feature is disabled for that session.
+- The browser smoke suite covers the critical mobile collection flow, not every
+  browser, assistive-technology, or external-map-provider combination.
 
 ## 18. Current Completion Status
 
@@ -785,6 +816,11 @@ Completed:
 - Google Forms prefilled update request link
 - GitHub Pages deployment workflow
 - Data update pull request workflow
+- Virtualized nationwide search and card-catalogue lists
+- Non-blocking optional-data loading and transactional collection storage
+- Pull request validation, browser smoke tests, and CodeQL analysis
+- Weekly GitHub Actions and npm dependency checks through Dependabot
+- Runtime-only data packaging for the Pages artifact
 - Stock URL normalization from GKP stock column
 - Custom domain configuration for `mhcard-map.com`
 - Site metadata

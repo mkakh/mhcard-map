@@ -33,6 +33,11 @@
     "geocode": "node scripts/geocode-locations.js",
     "generate:icons": "node scripts/generate-icons.js",
     "validate:data": "node scripts/validate-data.js",
-    "test": "node --test"
+    "test": "node --test",
+    "test:e2e": "playwright test",
+    "test:e2e:list": "playwright test --list"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
   }
 }

@@ -54,8 +54,17 @@
       && date.getUTCDate() === Number(match[3]);
   }
 
+  function placeCoordinateCategory(location, place) {
+    if (location?.status === "休止中" && place?.address) return "stopped-known";
+    if (location?.status === "休止中" && !place?.address) return "stopped-unknown";
+    if (place?.geocodeError) return "geocode-failed";
+    if (place?.coordinateAccuracy !== "address") return "approximate";
+    return "address";
+  }
+
   globalThis.MhcardAppUtils = Object.freeze({
     calendarDateInJapan,
-    selectPrimaryDistributionPlace
+    selectPrimaryDistributionPlace,
+    placeCoordinateCategory
   });
 })();

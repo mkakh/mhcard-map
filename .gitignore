@@ -4,6 +4,9 @@ node_modules/
 Thumbs.db
 .tmp/
 tmp_*.html
+test-results/
+playwright-report/
+blob-report/
 
 # Local web-search API credentials
 secrets/*.env
