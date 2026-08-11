@@ -1,7 +1,102 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-10T20:59:04.526Z",
+  "generatedAt": "2026-08-11T18:47:45.800Z",
   "updates": [
+    {
+      "id": "2026-08-12-5014828bad67",
+      "date": "2026-08-12",
+      "generatedAt": "2026-08-11T18:47:45.800Z",
+      "source": "益城町公式配布休止確認・発行弾表記正規化",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "30-366-a-01",
+          "cardName": "有田川町",
+          "prefecture": "和歌山県",
+          "municipality": "有田川町",
+          "changeType": "changed",
+          "headline": "発行弾を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "series",
+              "label": "発行弾",
+              "kind": "general",
+              "before": "第2弾",
+              "after": "第02弾"
+            }
+          ]
+        },
+        {
+          "locationId": "43-443-b-01",
+          "cardName": "益城町 B001",
+          "prefecture": "熊本県",
+          "municipality": "益城町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "要確認",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "配布開始延期（開始日未定）",
+              "after": "在庫あり（配布休止中、再開時期未定）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "※令和8年熊本地震の影響により、令和8年7月31日から予定していた配布開始を延期します\n8:30～12:00、13:00～17:00",
+              "after": "8:30～12:00、13:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "原則月曜日（月曜日が祝日の場合は翌日）、年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "令和8年熊本地震の影響により、2026年7月31日から予定していた配布開始を延期",
+              "after": "令和8年熊本地震の影響により配布休止中。2026年7月31日に予定していた配布開始は延期され、再開時期は未定"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.town.mashiki.lg.jp/kiji0037336/index.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.town.mashiki.lg.jp/kiji0037336/index.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.town.mashiki.lg.jp/default.html",
+              "after": "https://www.town.mashiki.lg.jp/kiji0037336/index.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-08-11-7aecba9f91f8",
       "date": "2026-08-11",

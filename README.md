@@ -20,7 +20,7 @@ http://localhost:4173
 - MapLibre GL JSによる実地図表示
 - GeoJSON sourceによる地点描画
 - すべてのズーム率で各配布場所を個別の点として表示
-- GKP検索ページから生成した実データ1291件の表示
+- GKP検索ページと官公庁・公的機関の公式ページから整備した実データの表示
 - キーワード検索
 - 都道府県、取得状態、配布状態フィルター
 - 配布開始前カードと初回イベント・通常配布予定地の事前表示
@@ -71,4 +71,21 @@ npm run geocode
 
 地図表示には MapLibre GL JS を使用しています。
 
-地図タイル、MapLibre本体、クラスタ数表示用フォントはネットワーク経由で読み込みます。
+地図タイル、MapLibre本体、ステータスマーカー用フォントはネットワーク経由で読み込みます。
+
+## 品質管理
+
+Pull Requestでは、配布場所データ検証、Node.jsテスト、Chromiumを使った
+モバイル表示のブラウザスモークテスト、CodeQL解析を実行します。GitHub
+Actionsとnpm依存関係はDependabotが週次で確認します。
+
+```bash
+npm run validate:data
+npm test
+npm run test:e2e
+```
+
+GitHub Pagesにはアプリが実行時に読む4つのJSON
+（`locations.json`、`update-history.json`、`update-form-config.json`、
+`update-requests.json`）だけを公開し、更新処理用のキャッシュやレビュー基準は
+配信物へ含めません。

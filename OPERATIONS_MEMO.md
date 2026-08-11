@@ -1,127 +1,91 @@
 # 運用備忘録
 
-## 採用方針
+この文書は現在の運用経路と定期確認事項をまとめる。製品仕様は
+`SPEC.md`、データ変更時の必須手順と情報源の優先順位は`AGENTS.md`を
+正とし、この文書へ重複させない。
 
-- ログインは廃止する。
-- 取得済み、取得日、メモはログインなしでブラウザの `localStorage` に保存する。
-- UI文言は「ログイン」ではなく「この端末に保存」「保存データ」へ寄せる。
-- 更新要求はログイン不要にする。
-- 更新要求の一次受付は Google Forms を使う。
-- Google Forms の回答は Google Sheets に集約する。
-- GitHub Actions で定期的にデータ更新とフォーム回答取り込みを行う。
-- 自動反映ではなく、自動PRを作成して管理者が承認・マージする。
-- 公開は GitHub Pages を第一候補にする。
-- 独自ドメイン `mhcard-map.com` は GitHub Pages の CNAME で利用する。
-- さくらサーバーは将来のAPI/DB用途として温存し、初期公開では必須にしない。
+## 現在の構成
 
-## データ保存
+- 公開先: GitHub Pages（`https://mhcard-map.com/`）
+- 公開契機: `main`へのpush、またはPages workflowの手動実行
+- ユーザーデータ: `localStorage.mhc_collections`へ端末内保存
+- 更新要求: ログイン不要のGoogle Form
+- 配布場所データ: リポジトリのJSONをPull Requestでレビュー
+- 定期更新: 毎週日曜18:00 UTCと手動実行
+- 自動更新の出力: `automation/location-data-update`ブランチのPull Request
 
-現状のローカル保存先:
+ユーザーアカウント、疑似ログイン、サーバー側DB、自動的な端末間同期は
+使用しない。取得状況とメモの移行はJSONバックアップ／復元で行う。
 
-- 取得済み、取得日、メモ: `localStorage.mhc_collections`
-- 疑似ログイン状態: `localStorage.mhc_user`
+## Pull Requestの確認
 
-今後:
+通常のPull Requestでは次を成功させてからマージする。
 
-- `mhc_user` は廃止する。
-- `mhc_collections` は継続利用する。
-- 更新要求はローカル保存せず、Google Formsへ送信する。
+- `Validate location data`
+- `Run tests`
+- `Browser smoke test`
+- `Analyze JavaScript and TypeScript`（CodeQL）
 
-## 自動更新
+GitHubの`main`ルールでは、Pull Requestと上記チェックを必須にする。Pagesは
+`main`をそのまま公開するため、チェック失敗を管理者判断で迂回しない。
 
-想定コマンド:
+自動更新Pull Requestでは、さらに以下を確認する。
 
-```bash
-npm run import:gkp
-npm run geocode
-npm run normalize:links
-npm run update:codes
-```
+- GKP候補のカードID・変更項目と同期コメント
+- 配布場所と座標のbefore/after、移動距離、根拠URL
+- 大量差分、画像コード不一致、ジオコード失敗
+- `data/update-history.json`に生成された利用者向け更新履歴
+- 継続Issueに残った未解決のGKP・検証候補
 
-GitHub Actions の方針:
+データを手作業で変更する場合は、この要約ではなく`AGENTS.md`の
+「Manual location-data changes」を最初から最後まで実施する。
 
-- 週1回の定期実行から開始する。
-- 手動実行 `workflow_dispatch` も用意する。
-- 差分がある場合は直接pushではなくPRを作成する。
-- GKP HTML構造変更、ジオコード失敗、大量差分がある場合はPR上で確認する。
+## GitHub Actionsと依存関係
 
-## Google Forms 更新要求
+- Workflow内の外部Actionは、バージョンコメント付きの完全なcommit SHAで
+  固定する。タグへ戻さない。
+- DependabotがGitHub Actionsとnpmを週次確認する。更新PRでも通常の全CIを
+  通し、Actionのリリースノートと権限変更を確認する。
+- CodeQLはPull Request、`main`へのpush、週次スケジュールで実行する。
+- `Update Location Data`は書込権限を持つため、権限を増やさず、60分の
+  タイムアウトを維持する。
+- Workflowや公開対象を変えたら`actionlint`と`npm test`を実行する。
 
-フォームに持たせる項目:
+## Pages公開物
 
-- location id
-- cardName
-- prefecture
-- municipality
-- place
-- address
-- sourceUrl
-- facilityUrl
-- request type
-- message
-- referenceUrl
+Pages artifactへ含めるデータは、ブラウザが実行時に読む次の4ファイルだけ。
 
-詳細画面の「更新要求」ボタンからGoogle Formを開き、URLパラメータで可能な項目を事前入力する。
+- `data/locations.json`
+- `data/update-history.json`
+- `data/update-form-config.json`
+- `data/update-requests.json`
 
-半自動反映:
+`data/geocode-cache.json`、`data/gkp-review-baseline.json`、
+`data/municipality-codes.json`などの更新処理用ファイルは公開物へコピーしない。
+リポジトリ自体は公開されているため、これは秘密情報対策ではなく、配信境界と
+artifact容量を明確にするための区分である。
 
-1. Google Forms回答がSheetsに保存される。
-2. GitHub ActionsがSheetsをCSVまたはAPIで取得する。
-3. 取り込みスクリプトが未処理回答を `data/update-requests.json` に保存する。
-4. 反映候補を `data/locations.json` に適用する。
-5. ActionsがPRを作成する。
-6. 管理者が差分を確認してマージする。
+## 外部設定の定期確認
 
-初期は「回答取り込みPR」までを優先し、完全な自動反映は後回しにする。
+コードだけでは保証できないため、次をGitHubと各サービスの設定画面で確認する。
 
-## 公開
+- PagesのsourceがGitHub Actions、custom domainが`mhcard-map.com`、HTTPSが有効
+- `main`ルールでPull RequestとCIチェックが必須
+- Actions secret `GOOGLE_FORM_RESPONSES_CSV_URL`が利用可能
+- Google Formのentry IDと`data/update-form-config.json`が一致
+- Secret scanning、push protection、code scanningが有効
+- 独自ドメインのDNSと証明書に警告がない
 
-初期公開:
+フォーム、Sheet、DNS、GitHubのrepository settingsを変更した場合は、変更日と
+確認結果を該当IssueまたはPull Requestへ記録する。この文書へ一時的な障害や
+個別カードの調査メモを蓄積しない。
 
-- GitHub Pages
-- public repository
-- 独自ドメインは `mhcard-map.com` をCNAME設定
-- 画像は外部URL参照のまま
-- データは `data/locations.json` を静的配信
+## 障害時の切り分け
 
-費用:
-
-- GitHub Pages: public repoなら無料
-- GitHub Actions: public repoなら無料
-- Google Forms / Sheets: 無料枠
-- さくらサーバー: 初期公開では不要
-
-## 次手順
-
-1. ログインUIと疑似ログイン処理を削除する。
-2. 取得済み、取得日、メモをログインなしで保存できるようにする。
-3. マイページを「保存データ」画面へ変更する。
-4. 更新要求ダイアログをGoogle Forms外部リンク方式へ変更する。
-5. Google Formを作成し、entry IDを設定ファイルへ反映する。
-6. GitHub Pages用のActionsを追加する。
-7. 自動データ更新用Actionsを追加する。
-8. Google Sheets取り込みスクリプトを追加する。
-9. 取り込み結果をPR化するActionsを追加する。
-10. SPEC.mdをログイン廃止、Google Forms、GitHub Pages運用に合わせて更新する。
-
-## 実施済み
-
-- ログインUIと疑似ログイン処理を削除。
-- 取得済み、取得日、メモをログインなしで `localStorage.mhc_collections` に保存。
-- マイページを「保存データ」画面へ変更。
-- 更新要求ダイアログをGoogle Forms外部リンク方式へ変更。
-- Google Forms設定ファイル `data/update-form-config.json` を追加。
-- GitHub Pages用Actionsを追加。
-- 自動データ更新用Actionsを追加。
-- Google Sheets CSV取り込みスクリプト `scripts/import-form-requests.js` を追加。
-- 取り込み結果をPR化するActionsを追加。
-- GitHub Pages用 `CNAME` を追加。
-
-## 手動で残る作業
-
-- GitHub Pagesをリポジトリ設定で有効化する。
-- `mhcard-map.com` のDNSをGitHub Pagesへ向ける。
-- Google Formを作成する。
-- Google Formのentry IDを `data/update-form-config.json` に設定する。
-- Google SheetsのCSV URLをActions secret `GOOGLE_FORM_RESPONSES_CSV_URL` に設定する。
-- SPEC.mdを最終運用仕様として整理する。
+- 地図が表示されない: `locations.json`取得、JSON検証、ブラウザconsoleを確認
+- 更新履歴だけ表示されない: `update-history.json`取得を確認。地図本体とは分離
+- 更新要求だけ開けない: form configとGoogle Form公開設定を確認
+- 定期更新が失敗: 失敗step、同期された検証Issue、GKP候補Issueを先に確認
+- Pagesが失敗: artifact作成、4つのruntime JSON、CNAME、deploy environmentを確認
+- 端末保存が失敗: 容量・プライベートモード・ブラウザ設定を確認し、利用者へ
+  未保存であることが表示されることを確認

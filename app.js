@@ -165,6 +165,7 @@ let collections = loadJson(storageKeys.collections, {});
 let updateRequests = [];
 let updateHistory = { version: 1, updates: [] };
 let updateFormConfig = null;
+let updateFormConfigLoaded = false;
 let userPosition = null;
 let map = null;
 let mapReady = false;
@@ -173,6 +174,8 @@ let printMapObjectUrl = "";
 let shouldFocusSelected = false;
 let searchRenderTimer = 0;
 let currentFilteredLocations = [];
+let locationListVirtualizer = null;
+let locationListRenderFrame = 0;
 let myPageTab = "summary";
 let cardCatalogPrefecture = "all";
 let cardCatalogSeries = "all";
@@ -181,6 +184,8 @@ let cardCatalogRenderFrame = 0;
 let updateHistoryBatchLimit = 3;
 
 const searchDebounceMs = 150;
+const locationListRowGap = 8;
+const locationListOverscanRows = 3;
 const cardCatalogOverscanRows = 4;
 const appVersion = "__APP_VERSION__";
 
@@ -221,6 +226,7 @@ const elements = {
   sortSelect: document.querySelector("#sortSelect"),
   viewportFilterToggle: document.querySelector("#viewportFilterToggle"),
   resetFiltersButton: document.querySelector("#resetFiltersButton"),
+  sidebar: document.querySelector(".sidebar"),
   locationList: document.querySelector("#locationList"),
   mapCanvas: document.querySelector("#mapCanvas"),
   detailContent: document.querySelector("#detailContent"),
@@ -245,17 +251,33 @@ const elements = {
 init();
 
 async function init() {
-  locations = await loadLocations();
-  updateRequests = await loadUpdateRequests();
-  updateHistory = await loadUpdateHistory();
-  updateFormConfig = await loadUpdateFormConfig();
+  const locationsPromise = loadLocations();
+  const requestsPromise = loadUpdateRequests().then((value) => {
+    updateRequests = value;
+    renderSummary(currentFilteredLocations);
+  });
+  const historyPromise = loadUpdateHistory().then((value) => {
+    updateHistory = value;
+    if (elements.updateHistoryDialog.open) renderUpdateHistory();
+  });
+  const formConfigPromise = loadUpdateFormConfig().then((value) => {
+    updateFormConfig = value;
+  }).finally(() => {
+    updateFormConfigLoaded = true;
+    updateRequestButtonState();
+  });
+
+  locations = await locationsPromise;
   selectedId = locations[0]?.id ?? "";
   migrateCollectionKeys();
   fillPrefectures();
   bindEvents();
+  startLocationListVirtualizer();
   switchMobilePanel("map");
   initMap();
   renderAll();
+
+  void Promise.all([requestsPromise, historyPromise, formConfigPromise]);
 }
 
 function bindEvents() {
@@ -270,6 +292,10 @@ function bindEvents() {
   ].forEach((element) => element.addEventListener("input", renderAll));
 
   elements.resetFiltersButton.addEventListener("click", resetFilters);
+  elements.locationList.addEventListener("click", handleLocationListClick);
+  elements.locationList.addEventListener("keydown", handleLocationListKeydown);
+  elements.locationList.addEventListener("pointerover", handleLocationListPointerOver);
+  elements.locationList.addEventListener("pointerout", handleLocationListPointerOut);
   elements.myPageButton.addEventListener("click", openMyPage);
   elements.closeMyPageDialog.addEventListener("click", () => elements.myPageDialog.close());
   elements.myPageDialog.addEventListener("close", disposeCardCatalogVirtualizer);
@@ -496,9 +522,11 @@ function compareCardNumber(a, b) {
 }
 
 function renderList(filtered) {
-  elements.locationList.replaceChildren();
-
   if (filtered.length === 0) {
+    locationListVirtualizer.items = [];
+    locationListVirtualizer.startIndex = -1;
+    locationListVirtualizer.endIndex = -1;
+    elements.locationList.replaceChildren();
     const empty = document.createElement("p");
     empty.className = "empty-state";
     empty.textContent = "条件に一致する配布場所がありません。";
@@ -506,29 +534,168 @@ function renderList(filtered) {
     return;
   }
 
-  filtered.forEach((location) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `location-card ${location.id === selectedId ? "active" : ""}`;
-    button.addEventListener("click", () => selectListLocation(location.id));
-    button.addEventListener("mouseenter", () => setHoveredLocation(location.id));
-    button.addEventListener("mousemove", () => resumeListHover(location.id));
-    button.addEventListener("mouseleave", () => setHoveredLocation(""));
+  const itemsChanged = locationListVirtualizer.items.length !== filtered.length
+    || locationListVirtualizer.items.some((location, index) => location.id !== filtered[index]?.id);
+  if (itemsChanged && locationListVirtualizer.items.length) {
+    elements.sidebar.scrollTop = Math.min(elements.sidebar.scrollTop, elements.locationList.offsetTop);
+  }
+  locationListVirtualizer.items = filtered;
+  if (itemsChanged) {
+    locationListVirtualizer.startIndex = -1;
+    locationListVirtualizer.endIndex = -1;
+  }
+  renderLocationListVirtualWindow({ force: true });
+}
 
-    button.innerHTML = `
-      <h3>${escapeHtml(location.cardName)}</h3>
-      <p>${escapeHtml(displayPlace(location))}</p>
-      <p>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</p>
-      <div class="badge-row">
-        ${renderStatusBadge(location)}
-        ${renderEnglishVersionBadge(location)}
-        ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
-        ${Object.keys(placeMemos(collections[location.id])).length > 0 ? '<span class="badge memo">メモあり</span>' : ""}
-        ${renderCoordinateBadge(location, primaryDistributionPlace(location))}
+function startLocationListVirtualizer() {
+  const scheduleRender = () => {
+    if (locationListRenderFrame) return;
+    locationListRenderFrame = window.requestAnimationFrame(() => {
+      locationListRenderFrame = 0;
+      renderLocationListVirtualWindow();
+    });
+  };
+  locationListVirtualizer = {
+    items: [],
+    startIndex: -1,
+    endIndex: -1,
+    scheduleRender,
+    resizeObserver: null
+  };
+  elements.sidebar.addEventListener("scroll", scheduleRender, { passive: true });
+  if ("ResizeObserver" in window) {
+    locationListVirtualizer.resizeObserver = new ResizeObserver(scheduleRender);
+    locationListVirtualizer.resizeObserver.observe(elements.sidebar);
+  } else {
+    window.addEventListener("resize", scheduleRender);
+  }
+}
+
+function renderLocationListVirtualWindow({ force = false } = {}) {
+  const virtualizer = locationListVirtualizer;
+  if (!virtualizer) return;
+  const itemCount = virtualizer.items.length;
+  if (!itemCount) return;
+
+  const listTop = elements.locationList.offsetTop + 12;
+  const viewportHeight = elements.sidebar.clientHeight || window.innerHeight || 600;
+  const rowHeight = getLocationListRowHeight();
+  const stride = rowHeight + locationListRowGap;
+  const totalHeight = itemCount * stride - locationListRowGap;
+  const viewportStart = Math.min(
+    Math.max(0, totalHeight - viewportHeight),
+    Math.max(0, elements.sidebar.scrollTop - listTop)
+  );
+  const firstVisible = Math.floor(viewportStart / stride);
+  const visibleRows = Math.ceil(viewportHeight / stride) + 1;
+  const startIndex = Math.max(0, firstVisible - locationListOverscanRows);
+  const endIndex = Math.min(itemCount, firstVisible + visibleRows + locationListOverscanRows);
+  elements.locationList.style.setProperty("--location-list-total-height", `${totalHeight}px`);
+  if (!force && startIndex === virtualizer.startIndex && endIndex === virtualizer.endIndex) return;
+  const focusedLocationId = document.activeElement?.closest?.("[data-location-list-id]")?.dataset.locationListId ?? "";
+  virtualizer.startIndex = startIndex;
+  virtualizer.endIndex = endIndex;
+  elements.locationList.innerHTML = `
+    <div class="location-list-virtual-space" style="height:${totalHeight}px">
+      <div class="location-list-window" style="transform:translateY(${startIndex * stride}px)">
+        ${virtualizer.items.slice(startIndex, endIndex).map((location, index) => renderLocationListCard(location, startIndex + index, itemCount)).join("")}
       </div>
-    `;
-    elements.locationList.append(button);
-  });
+    </div>
+  `;
+  if (focusedLocationId) findRenderedLocationButton(focusedLocationId)?.focus({ preventScroll: true });
+}
+
+function renderLocationListCard(location, index, total) {
+  return `
+    <div
+      class="location-list-item"
+      role="listitem"
+      aria-posinset="${index + 1}"
+      aria-setsize="${total}"
+    >
+      <button
+        type="button"
+        class="location-card${location.id === selectedId ? " active" : ""}"
+        data-location-list-id="${escapeAttribute(location.id)}"
+        ${location.id === selectedId ? 'aria-current="true"' : ""}
+      >
+        <h3>${escapeHtml(location.cardName)}</h3>
+        <p>${escapeHtml(displayPlace(location))}</p>
+        <p>${escapeHtml(location.prefecture)} ${escapeHtml(location.municipality)}</p>
+        <div class="badge-row">
+          ${renderStatusBadge(location)}
+          ${renderEnglishVersionBadge(location)}
+          ${collections[location.id]?.collected ? '<span class="badge collected">取得済み</span>' : '<span class="badge">未取得</span>'}
+          ${Object.keys(placeMemos(collections[location.id])).length > 0 ? '<span class="badge memo">メモあり</span>' : ""}
+          ${renderCoordinateBadge(location, primaryDistributionPlace(location))}
+        </div>
+      </button>
+    </div>
+  `;
+}
+
+function handleLocationListClick(event) {
+  const button = event.target.closest("[data-location-list-id]");
+  if (button) selectListLocation(button.dataset.locationListId);
+}
+
+function handleLocationListKeydown(event) {
+  if (!locationListVirtualizer || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+  const button = event.target.closest("[data-location-list-id]");
+  if (!button) return;
+  const currentIndex = locationListVirtualizer.items.findIndex((location) => location.id === button.dataset.locationListId);
+  if (currentIndex < 0) return;
+
+  let nextIndex = currentIndex;
+  if (event.key === "ArrowDown") nextIndex = Math.min(locationListVirtualizer.items.length - 1, currentIndex + 1);
+  if (event.key === "ArrowUp") nextIndex = Math.max(0, currentIndex - 1);
+  if (event.key === "Home") nextIndex = 0;
+  if (event.key === "End") nextIndex = locationListVirtualizer.items.length - 1;
+  if (nextIndex === currentIndex) return;
+
+  event.preventDefault();
+  focusLocationListIndex(nextIndex);
+}
+
+function focusLocationListIndex(index) {
+  const virtualizer = locationListVirtualizer;
+  const location = virtualizer?.items[index];
+  if (!location) return;
+  const rowHeight = getLocationListRowHeight();
+  const stride = rowHeight + locationListRowGap;
+  const listTop = elements.locationList.offsetTop + 12;
+  const itemTop = listTop + index * stride;
+  const itemBottom = itemTop + rowHeight;
+  const viewportTop = elements.sidebar.scrollTop;
+  const viewportBottom = viewportTop + elements.sidebar.clientHeight;
+
+  if (itemTop < viewportTop) elements.sidebar.scrollTop = itemTop;
+  else if (itemBottom > viewportBottom) elements.sidebar.scrollTop = itemBottom - elements.sidebar.clientHeight;
+  renderLocationListVirtualWindow({ force: true });
+  findRenderedLocationButton(location.id)?.focus({ preventScroll: true });
+}
+
+function getLocationListRowHeight() {
+  const value = Number.parseFloat(getComputedStyle(elements.locationList).getPropertyValue("--location-list-row-height"));
+  return Number.isFinite(value) && value > 0 ? value : 204;
+}
+
+function findRenderedLocationButton(locationId) {
+  return [...elements.locationList.querySelectorAll("[data-location-list-id]")]
+    .find((button) => button.dataset.locationListId === locationId);
+}
+
+function handleLocationListPointerOver(event) {
+  const button = event.target.closest("[data-location-list-id]");
+  if (!button || button.contains(event.relatedTarget)) return;
+  if (listHoverSuspended) resumeListHover(button.dataset.locationListId);
+  else setHoveredLocation(button.dataset.locationListId);
+}
+
+function handleLocationListPointerOut(event) {
+  const button = event.target.closest("[data-location-list-id]");
+  if (!button || button.contains(event.relatedTarget)) return;
+  setHoveredLocation("");
 }
 
 function renderMap(filtered) {
@@ -673,6 +840,7 @@ function renderDetail() {
   `;
 
   document.querySelector("#memoInput")?.closest("label")?.remove();
+  updateRequestButtonState();
   document.querySelector("#toggleCollected").addEventListener("click", () => toggleCollected(location.id));
   document.querySelector("#openRequest").addEventListener("click", () => openRequestDialog(location.id));
   bindCopyButton("copyPlusCode", selectedPlace.plusCode, "Plus Codeをコピーしました");
@@ -696,6 +864,16 @@ function renderDetail() {
     element.addEventListener("click", (event) => event.stopPropagation());
   });
   document.querySelector("#saveMemo").addEventListener("click", () => saveMemo(location.id));
+}
+
+function updateRequestButtonState() {
+  const button = document.querySelector("#openRequest");
+  if (!button) return;
+  const available = updateFormConfigLoaded && Boolean(updateFormConfig?.formUrl);
+  button.disabled = !available;
+  button.textContent = updateFormConfigLoaded
+    ? (available ? "更新要求" : "更新要求フォーム未設定")
+    : "更新要求フォームを確認中";
 }
 
 function renderDistributionPlaces(location, places, collection) {
@@ -956,11 +1134,7 @@ function coordinateCategory(location) {
 }
 
 function placeCoordinateCategory(location, place) {
-  if (location.status === "莨第ｭ｢荳ｭ" && place.address) return "stopped-known";
-  if (location.status === "莨第ｭ｢荳ｭ" && !place.address) return "stopped-unknown";
-  if (place.geocodeError) return "geocode-failed";
-  if (place.coordinateAccuracy !== "address") return "approximate";
-  return "address";
+  return globalThis.MhcardAppUtils.placeCoordinateCategory(location, place);
 }
 
 function renderCoordinateBadge(location, place = primaryDistributionPlace(location)) {
@@ -1468,13 +1642,32 @@ function renderPrintPopupImage(imageUrl, cardName) {
 
 function toggleCollected(locationId) {
   const current = collections[locationId] ?? {};
-  collections[locationId] = {
-    ...current,
-    collected: !current.collected,
-    collectedOn: current.collectedOn || globalThis.MhcardAppUtils.calendarDateInJapan()
+  const nextCollections = {
+    ...collections,
+    [locationId]: {
+      ...current,
+      collected: !current.collected,
+      collectedOn: current.collectedOn || globalThis.MhcardAppUtils.calendarDateInJapan()
+    }
   };
-  saveJson(storageKeys.collections, collections);
-  renderAll();
+  try {
+    saveJson(storageKeys.collections, nextCollections);
+  } catch (error) {
+    console.warn("Could not save collection state:", error);
+    showToast("取得状態を保存できませんでした。ブラウザの保存容量や設定を確認してください");
+    return false;
+  }
+
+  collections = nextCollections;
+  if (elements.collectionFilter.value !== "all") {
+    renderAll();
+  } else {
+    renderLocationListVirtualWindow({ force: true });
+    updateLocationSource();
+    if (selectedId === locationId) renderDetail();
+    renderSummary(currentFilteredLocations);
+  }
+  return true;
 }
 
 function saveMemo(locationId) {
@@ -1484,19 +1677,31 @@ function saveMemo(locationId) {
     if (value) placeMemosValue[textarea.dataset.placeMemo] = value;
   });
 
-  collections[locationId] = {
+  const nextLocationCollection = {
     ...(collections[locationId] ?? {}),
     collected: Boolean(collections[locationId]?.collected),
     collectedOn: document.querySelector("#collectedOn").value,
     placeMemos: placeMemosValue
   };
-  delete collections[locationId].memo;
-  saveJson(storageKeys.collections, collections);
+  delete nextLocationCollection.memo;
+  const nextCollections = { ...collections, [locationId]: nextLocationCollection };
+  try {
+    saveJson(storageKeys.collections, nextCollections);
+  } catch (error) {
+    console.warn("Could not save memo:", error);
+    showToast("メモを保存できませんでした。ブラウザの保存容量や設定を確認してください");
+    return;
+  }
+  collections = nextCollections;
   showToast("メモを保存しました");
   renderAll();
 }
 
 function openRequestDialog(locationId) {
+  if (!updateFormConfigLoaded) {
+    showToast("更新要求フォームを確認しています");
+    return;
+  }
   const location = locations.find((item) => item.id === locationId);
   const url = buildUpdateRequestUrl(location);
   if (!url) {
@@ -1970,18 +2175,17 @@ async function importCollections() {
       return;
     }
 
-    const previousCollections = collections;
-    collections = mode === "replace"
+    const importedCollections = mode === "replace"
       ? backup.collections
       : globalThis.MhcardCollectionBackup.mergeCollections(collections, backup.collections);
     try {
-      migrateCollectionKeys();
-      saveJson(storageKeys.collections, collections);
+      const nextCollections = buildMigratedCollections(importedCollections);
+      saveJson(storageKeys.collections, nextCollections);
+      collections = nextCollections;
       renderAll();
       renderMyPage();
       showToast(`${count}件のバックアップを復元しました`);
     } catch (error) {
-      collections = previousCollections;
       throw error;
     }
   } catch (error) {
@@ -1995,7 +2199,7 @@ function handleCardCatalogClick(event) {
   if (!button || !elements.myPageContent.contains(button)) return;
   const location = locations.find((item) => item.id === button.dataset.cardCatalogToggle);
   if (!location) return;
-  toggleCollected(location.id);
+  if (!toggleCollected(location.id)) return;
   updateCardCatalogTile(button, location);
   updateCardCatalogCounts();
 }
@@ -2188,6 +2392,7 @@ function switchMobilePanel(panel) {
   if (panel === "map" && mapReady) {
     resizeMapAfterLayoutChange();
   }
+  if (panel === "list") locationListVirtualizer?.scheduleRender();
 }
 
 function resizeMapSoon() {
@@ -2620,32 +2825,56 @@ function saveJson(key, value) {
 }
 
 function migrateCollectionKeys() {
+  const nextCollections = buildMigratedCollections(collections);
+  if (nextCollections === collections) return;
+  try {
+    saveJson(storageKeys.collections, nextCollections);
+    collections = nextCollections;
+  } catch (error) {
+    console.warn("Could not persist migrated collection data; continuing with the previous data:", error);
+  }
+}
+
+function buildMigratedCollections(sourceCollections) {
+  let nextCollections = sourceCollections;
   let changed = false;
+
+  const writableCollections = () => {
+    if (!changed) {
+      nextCollections = Object.fromEntries(
+        Object.entries(sourceCollections).map(([id, value]) => [id, value && typeof value === "object" ? { ...value } : value])
+      );
+      changed = true;
+    }
+    return nextCollections;
+  };
 
   locations.forEach((location) => {
     (location.legacyIds ?? []).forEach((legacyId) => {
-      if (!legacyId || legacyId === location.id || !collections[legacyId]) return;
-      collections[location.id] = {
-        ...collections[legacyId],
-        ...(collections[location.id] ?? {})
+      if (!legacyId || legacyId === location.id || !nextCollections[legacyId]) return;
+      const target = writableCollections();
+      target[location.id] = {
+        ...target[legacyId],
+        ...(target[location.id] ?? {})
       };
-      delete collections[legacyId];
-      changed = true;
+      delete target[legacyId];
     });
 
-    const collection = collections[location.id];
+    const collection = nextCollections[location.id];
     if (collection?.memo) {
+      const target = writableCollections();
+      const nextCollection = { ...target[location.id] };
       const primaryPlaceId = primaryDistributionPlace(location).id;
-      collection.placeMemos = {
-        [primaryPlaceId]: collection.memo,
-        ...placeMemos(collection)
+      nextCollection.placeMemos = {
+        [primaryPlaceId]: nextCollection.memo,
+        ...placeMemos(nextCollection)
       };
-      delete collection.memo;
-      changed = true;
+      delete nextCollection.memo;
+      target[location.id] = nextCollection;
     }
   });
 
-  if (changed) saveJson(storageKeys.collections, collections);
+  return changed ? nextCollections : sourceCollections;
 }
 
 function safeExternalUrl(value) {
