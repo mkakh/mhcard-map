@@ -8,10 +8,13 @@ const {
   compareLocations,
   estimateVirtualRowHeight,
   filterCatalogLocations,
+  formatPublicationIssueMonths,
   fullCardNumberSortKey,
   orderedPublicationSeries,
   orderedPrefectures,
+  publicationIssueMonthKey,
   publicationSeriesNumber,
+  publicationSeriesOptions,
   seriesSortKey
 } = globalThis.MhcardCatalog;
 
@@ -45,6 +48,42 @@ test("orders unique publication series numerically", () => {
   ];
 
   assert.deepEqual(orderedPublicationSeries(cards), [1, 2, 10]);
+});
+
+test("normalizes valid publication dates to month keys", () => {
+  assert.equal(publicationIssueMonthKey("2026/07/31"), "2026-07");
+  assert.equal(publicationIssueMonthKey("2026-09-10"), "2026-09");
+  assert.equal(publicationIssueMonthKey("2024/02/29"), "2024-02");
+  assert.equal(publicationIssueMonthKey("2025/02/29"), null);
+  assert.equal(publicationIssueMonthKey("2026/13/01"), null);
+  assert.equal(publicationIssueMonthKey(""), null);
+});
+
+test("formats all publication months compactly and chronologically", () => {
+  assert.equal(formatPublicationIssueMonths(["2025-12", "2025-07", "2025-11"]), "2025年7・11・12月");
+  assert.equal(formatPublicationIssueMonths(["2023-01", "2022-08"]), "2022年8月・2023年1月");
+  assert.equal(formatPublicationIssueMonths([]), "");
+});
+
+test("builds publication-series options with every unique issue month", () => {
+  const cards = [
+    { series: "第29弾", issuedOn: "2026/09/10" },
+    { series: "第02弾", issuedOn: "2016/08/01" },
+    { series: "第29弾", issuedOn: "2026/07/31" },
+    { series: "第29弾", issuedOn: "2026/07/15" },
+    { series: "第01弾", issuedOn: "invalid" }
+  ];
+
+  assert.deepEqual(publicationSeriesOptions(cards), [
+    { number: 1, value: "1", issuedMonths: [], label: "第1弾" },
+    { number: 2, value: "2", issuedMonths: ["2016-08"], label: "第2弾（2016年8月）" },
+    {
+      number: 29,
+      value: "29",
+      issuedMonths: ["2026-07", "2026-09"],
+      label: "第29弾（2026年7・9月）"
+    }
+  ]);
 });
 
 test("filters the catalogue by prefecture and publication series without mutating it", () => {

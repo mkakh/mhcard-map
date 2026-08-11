@@ -1759,8 +1759,8 @@ function cardCatalogPrefectures() {
   return globalThis.MhcardCatalog.orderedPrefectures(locations);
 }
 
-function cardCatalogPublicationSeries() {
-  return globalThis.MhcardCatalog.orderedPublicationSeries(locations);
+function cardCatalogPublicationSeriesOptions() {
+  return globalThis.MhcardCatalog.publicationSeriesOptions(locations);
 }
 
 function cardCatalogLocations() {
@@ -1780,10 +1780,10 @@ function renderCardCatalogPanel() {
         `<option value="${escapeAttribute(prefecture)}"${prefecture === cardCatalogPrefecture ? " selected" : ""}>${escapeHtml(prefecture)}</option>`
     )
     .join("");
-  const seriesOptions = cardCatalogPublicationSeries()
+  const seriesOptions = cardCatalogPublicationSeriesOptions()
     .map(
-      (series) =>
-        `<option value="${series}"${String(series) === cardCatalogSeries ? " selected" : ""}>第${series}弾</option>`
+      (option) =>
+        `<option value="${option.value}"${option.value === cardCatalogSeries ? " selected" : ""}>${escapeHtml(option.label)}</option>`
     )
     .join("");
 
