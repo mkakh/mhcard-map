@@ -6,6 +6,7 @@ await import("../card-catalog.js");
 const {
   calculateVirtualWindow,
   compareLocations,
+  comparePrefectureLocations,
   estimateVirtualRowHeight,
   filterCatalogLocations,
   formatPublicationIssueMonths,
@@ -242,13 +243,15 @@ test("clamps invalid virtual-window inputs and handles an empty list", () => {
 
 test("keeps official prefecture order when nationwide card IDs start with 00", () => {
   const cards = [
-    { id: "00-102-a-01", prefecture: "大阪府" },
-    { id: "13-101-a-01", prefecture: "東京都" },
-    { id: "00-101-a-01", prefecture: "埼玉県" },
-    { id: "02-100-a-01", prefecture: "青森県" },
-    { id: "01-100-a-01", prefecture: "北海道" },
-    { id: "00-102-b-01", prefecture: "東京都" },
-    { id: "99-999-a-01", prefecture: "架空県" }
+    { id: "00-102-a-01", prefecture: "大阪府", municipality: "A市", cardName: "大阪" },
+    { id: "13-101-a-01", prefecture: "東京都", municipality: "B市", cardName: "東京B" },
+    { id: "00-101-a-01", prefecture: "埼玉県", municipality: "A市", cardName: "埼玉" },
+    { id: "02-100-a-01", prefecture: "青森県", municipality: "A市", cardName: "青森" },
+    { id: "01-100-a-01", prefecture: "北海道", municipality: "A市", cardName: "北海道" },
+    { id: "00-102-b-01", prefecture: "東京都", municipality: "A市", cardName: "東京B" },
+    { id: "00-102-c-01", prefecture: "東京都", municipality: "A市", cardName: "東京A" },
+    { id: "99-999-a-01", prefecture: "架空県", municipality: "A市", cardName: "架空" },
+    { id: "99-999-b-01", prefecture: "未知県", municipality: "A市", cardName: "未知" }
   ];
 
   assert.deepEqual(orderedPrefectures(cards), [
@@ -257,6 +260,18 @@ test("keeps official prefecture order when nationwide card IDs start with 00", (
     "埼玉県",
     "東京都",
     "大阪府",
-    "架空県"
+    "架空県",
+    "未知県"
+  ]);
+  assert.deepEqual(cards.toSorted(comparePrefectureLocations).map((card) => card.id), [
+    "01-100-a-01",
+    "02-100-a-01",
+    "00-101-a-01",
+    "00-102-c-01",
+    "00-102-b-01",
+    "13-101-a-01",
+    "00-102-a-01",
+    "99-999-a-01",
+    "99-999-b-01"
   ]);
 });

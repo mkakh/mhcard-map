@@ -302,7 +302,10 @@ The main search-result list also uses a virtual scrolling window. Filtering,
 sorting, and viewport changes update its bounded visible window rather than
 mounting the complete nationwide result set. A card-catalogue collection toggle
 updates the affected card and counters without rebuilding unrelated map and
-detail views.
+detail views. Its prefecture dropdown and default prefecture sort use the
+official 47-prefecture order and each location's actual prefecture metadata, so
+nationwide card IDs beginning with `00-` remain ordered in their real
+prefectures.
 
 ## 10. Update Request Specification
 

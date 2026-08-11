@@ -163,6 +163,22 @@
     );
   }
 
+  function comparePrefectureNames(a, b) {
+    const aName = String(a ?? "");
+    const bName = String(b ?? "");
+    const aIndex = prefectureOrderByName.get(aName) ?? Number.MAX_SAFE_INTEGER;
+    const bIndex = prefectureOrderByName.get(bName) ?? Number.MAX_SAFE_INTEGER;
+    return aIndex - bIndex || nameCollator.compare(aName, bName);
+  }
+
+  function comparePrefectureLocations(a, b) {
+    return (
+      comparePrefectureNames(a?.prefecture, b?.prefecture) ||
+      nameCollator.compare(String(a?.municipality ?? ""), String(b?.municipality ?? "")) ||
+      nameCollator.compare(String(a?.cardName ?? ""), String(b?.cardName ?? ""))
+    );
+  }
+
   function calculateVirtualWindow({
     itemCount,
     columns,
@@ -216,16 +232,13 @@
 
   function orderedPrefectures(items) {
     const prefectures = [...new Set(items.map((item) => String(item?.prefecture ?? "")).filter(Boolean))];
-    return prefectures.sort((a, b) => {
-      const aIndex = prefectureOrderByName.get(a) ?? Number.MAX_SAFE_INTEGER;
-      const bIndex = prefectureOrderByName.get(b) ?? Number.MAX_SAFE_INTEGER;
-      return aIndex - bIndex || nameCollator.compare(a, b);
-    });
+    return prefectures.sort(comparePrefectureNames);
   }
 
   globalThis.MhcardCatalog = Object.freeze({
     calculateVirtualWindow,
     compareLocations,
+    comparePrefectureLocations,
     estimateVirtualRowHeight,
     filterCatalogLocations,
     formatPublicationIssueMonths,

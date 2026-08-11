@@ -324,7 +324,7 @@ function renderAllAfterSearchInput() {
 
 function fillPrefectures() {
   elements.prefectureFilter.querySelectorAll("option:not([value='all'])").forEach((option) => option.remove());
-  const prefectures = [...new Set(locations.map((location) => location.prefecture))].sort();
+  const prefectures = globalThis.MhcardCatalog.orderedPrefectures(locations);
   prefectures.forEach((prefecture) => {
     const option = document.createElement("option");
     option.value = prefecture;
@@ -488,15 +488,7 @@ function sortLocations(a, b) {
     return distanceFromUser(a) - distanceFromUser(b);
   }
 
-  return (
-    prefectureCode(a).localeCompare(prefectureCode(b)) ||
-    a.municipality.localeCompare(b.municipality, "ja") ||
-    a.cardName.localeCompare(b.cardName, "ja")
-  );
-}
-
-function prefectureCode(location) {
-  return location.id.split("-")[0] || "99";
+  return globalThis.MhcardCatalog.comparePrefectureLocations(a, b);
 }
 
 function cardNumber(location) {
