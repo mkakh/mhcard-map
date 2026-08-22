@@ -1,7 +1,992 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-11T18:47:45.800Z",
+  "generatedAt": "2026-08-22T21:53:37.337Z",
   "updates": [
+    {
+      "id": "2026-08-23-f49cdf7c7eeb",
+      "date": "2026-08-23",
+      "generatedAt": "2026-08-22T21:53:37.337Z",
+      "source": "GKP and municipal source maintenance 2026-08-23",
+      "totalChanges": 18,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "02-210-a-01",
+          "cardName": "平川市 A001",
+          "prefecture": "青森県",
+          "municipality": "平川市",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00\nただし、年末年始はお休みです",
+              "after": "9:00～17:00\nただし、年末年始はお休みです\n※閉館時間等が変更になる場合があるため、観光協会公式ページも確認してください"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
+              "after": "https://www.city.hirakawa.lg.jp/kurashi/suidou/gesuidou/colormanhole.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
+              "after": "https://www.city.hirakawa.lg.jp/kurashi/suidou/gesuidou/colormanhole.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-245-b-01",
+          "cardName": "ふじみ野市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "ふじみ野市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "公式情報を確認",
+              "after": "在庫終了のため配布中止。再配布準備が整い次第、公式ページで告知（2026-08-23確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布休止中"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。窓口アンケートに協力"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/2309.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.fujimino.saitama.jp/soshikiichiran/jogesuidoka/gesuidoshisetsukakari/2309.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-210-a-01",
+          "cardName": "小金井市 A001",
+          "prefecture": "東京都",
+          "municipality": "小金井市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください。\n※現在、配布を一時中止しています",
+              "after": "数に限りあり（2026年8月17日から配布再開、公式、2026-08-23確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "小金井市第二庁舎4階 環境部下水道課窓口",
+              "after": "小金井市第二庁舎4階 下水道課窓口"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "小金井市第二庁舎4階 環境部下水道課窓口 / 東京都小金井市前原町3-41-15 / 平日 9：00～12：00、13：00～17：00 / 年末年始（12/29～1/3）はお休みです / 35.69883, 139.504944 / Plus Code 8Q7XMGX3+GX\n小金井市観光 まちおこし協会 / 小金井市本町1丁目18番14号 松島ビル103 / 土曜(日曜、祝日は除く) 9：00～12：00、13：00～17：00 / 年末年始（12/29～1/3）はお休みです / 35.700825, 139.507843 / Plus Code 8Q7XPG25+84",
+              "after": "小金井市第二庁舎4階 下水道課窓口 / 東京都小金井市前原町3-41-15 / 月～金（祝日を除く） 9:00～12:00、13:00～16:00 / 土日、祝日、年末年始（12/29～1/3） / 35.69883, 139.504944 / Plus Code 8Q7XMGX3+GX\n小金井市観光まちおこし協会 / 小金井市本町1丁目18番14号 松島ビル103 / 土曜（日曜・祝日を除く） 9:00～12:00、13:00～16:00 / 日曜、祝日、年末年始（12/29～1/3） / 35.700825, 139.507843 / Plus Code 8Q7XPG25+84"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～12：00、13：00～17：00\nただし、年末年始（12/29～1/3）はお休みです",
+              "after": "【月～金（祝日を除く）】9:00～12:00、13:00～16:00\n【土曜（日曜・祝日を除く）】9:00～12:00、13:00～16:00\nただし、年末年始（12/29～1/3）はお休みです"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "日曜、祝日、年末年始（12/29～1/3）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。小金井市観光まちおこし協会への問合せ不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.koganei.lg.jp/kurashi/478/keihatuzigyou/mcardhaihu.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.koganei.lg.jp/",
+              "after": "https://www.city.koganei.lg.jp/kurashi/478/keihatuzigyou/mcardhaihu.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.koganei.lg.jp/kurashi/478/keihatuzigyou/mcardhaihu.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.koganei.lg.jp/smph/kurashi/478/keihatuzigyou/mcardhaihu.html",
+              "after": "https://www.city.koganei.lg.jp/kurashi/478/keihatuzigyou/mcardhaihu.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-218-a-01",
+          "cardName": "福生市",
+          "prefecture": "東京都",
+          "municipality": "福生市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（○、公式、2026-08-23確認）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "福生市観光案内所「くるみる ふっさ」 / 東京都福生市本町23番地 / 通常 10：00～18：00 / 月曜及び木曜（祝日の場合は翌日）、年末年始（12月29日から1月3日）はお休みです / 35.739513, 139.328583 / Plus Code 8Q7XP8QH+RC\n福生市役所第一棟３階 道路下水道課窓口 / 東京都福生市本町５番地 / 上記の定土日祝日 8：30～17：15 / 上記の定休日に配布します 年末年始（12/29～1/3）はお休みです / 35.738701, 139.326782 / Plus Code 8Q7XP8QG+FP",
+              "after": "福生市観光案内所「くるみる ふっさ」 / 東京都福生市本町23番地 / 平日・土日祝日（月曜定休日） 10:00～18:00 / 月曜（祝日の場合は翌日）、年末年始（12/29～1/3） / 35.739513, 139.328583 / Plus Code 8Q7XP8QH+RC\n福生市役所第一棟3階 道路下水道課下水道係窓口 / 東京都福生市本町５番地 / 観光案内所の定休日 8:30～17:15 / 年末年始（12/29～1/3） / 35.738701, 139.326782 / Plus Code 8Q7XP8QG+FP"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【通常】10：00～18：00\nただし、月曜及び木曜（祝日の場合は翌日）、年末年始（12月29日から1月3日）はお休みです\n【上記の定休日】8：30～17：15\n上記の定休日に配布します\nただし、年末年始（12/29～1/3）はお休みです",
+              "after": "【通常】10:00～18:00\nただし、月曜（祝日の場合は翌日）、年末年始（12/29～1/3）はお休みです\n【観光案内所の定休日】8:30～17:15\nただし、年末年始（12/29～1/3）はお休みです"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。アンケートに協力"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.fussa.tokyo.jp/life/city/1017110/1017111.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.fussa.tokyo.jp/life/city/1017110/1017111.html"
+            }
+          ]
+        },
+        {
+          "locationId": "21-404-a-01",
+          "cardName": "池田町 A001",
+          "prefecture": "岐阜県",
+          "municipality": "池田町",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：15（年中無休）\nただし、土日、祝日、年末年始に配布希望の方は、平日（8：30～17：15）に要予約",
+              "after": "9:00～16:30\nただし、土日、祝日、年末年始に配布希望の場合は、平日9:00～16:30に電話予約が必要"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "土日、祝日、年末年始は要事前予約"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。休日配布は平日の配布時間内に電話予約が必要"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001112.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.town.gifu-ikeda.lg.jp/",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001112.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001112.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001112.html"
+            }
+          ]
+        },
+        {
+          "locationId": "21-404-b-01",
+          "cardName": "池田町 B001",
+          "prefecture": "岐阜県",
+          "municipality": "池田町",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：15（年中無休）\nただし、土日、祝日、年末年始に配布希望の方は、平日（8：30～17：15）に要予約",
+              "after": "9:00～16:30\nただし、土日、祝日、年末年始に配布希望の場合は、平日9:00～16:30に電話予約が必要"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "土日、祝日、年末年始は要事前予約"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。休日配布は平日の配布時間内に電話予約が必要"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001223.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.town.gifu-ikeda.lg.jp/",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001223.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001223.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
+              "after": "https://www.town.gifu-ikeda.lg.jp/0000001223.html"
+            }
+          ]
+        },
+        {
+          "locationId": "22-210-a-01",
+          "cardName": "富士市 A001",
+          "prefecture": "静岡県",
+          "municipality": "富士市",
+          "changeType": "changed",
+          "headline": "在庫・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫が少なくなった場合は公式ページで告知（2026-08-23確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.fuji.shizuoka.jp/1545150000/p007434.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.fuji.shizuoka.jp/fujijikan/fujipedia/kb719c0000003ch5.html",
+              "after": "https://www.city.fuji.shizuoka.jp/1545150000/p007434.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.fuji.shizuoka.jp/1545150000/p007434.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.fuji.shizuoka.jp/fujijikan/fujipedia/kb719c0000003ch5.html",
+              "after": "https://www.city.fuji.shizuoka.jp/1545150000/p007434.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-221-a-01",
+          "cardName": "柏原市 A001",
+          "prefecture": "大阪府",
+          "municipality": "柏原市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（デラウェア版、公式、2026-08-23確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "柏原市市役所別館 下水工務課",
+              "after": "柏原市役所別館1階 下水工務課窓口"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "大阪府柏原市安堂町1-55（1階）",
+              "after": "大阪府柏原市安堂町1-55"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "柏原市市役所別館 下水工務課 / 大阪府柏原市安堂町1-55（1階） / 平日 9：00～17：00 / 年末年始、臨時休館日はお休みです ※リビエールホール休館に伴い、土曜、日曜、祝日の配布については、令和7年11月1日から当面の間休止いたします / 34.579174, 135.628326 / Plus Code 8Q6QHJHH+M8\n柏原市民文化会館 リビエールホール / 大阪府柏原市安堂1-60 / 土日祝日 9：00～17：00 / 年末年始、臨時休館日はお休みです ※リビエールホール休館に伴い、土曜、日曜、祝日の配布については、令和7年11月1日から当面の間休止いたします / 34.5798, 135.62817 / Plus Code 8Q6QHJHH+W7",
+              "after": "柏原市役所別館1階 下水工務課窓口 / 大阪府柏原市安堂町1-55 / 平日 9:00～16:30 / 年末年始（12/29～1/3） / 34.579174, 135.628326 / Plus Code 8Q6QHJHH+M8\n柏原市役所本館2階 かしわらテラス臨時図書スペース / 大阪府柏原市安堂町1-55 / 土日祝日 土曜 10:00～18:00／日曜・祝日 9:30～17:00 / 年末年始（12/29～1/3）、図書スペース臨時休業日 / 34.579174, 135.628326 / Plus Code 8Q6QHJHH+M8"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：00\nただし、年末年始、臨時休館日はお休みです\n※リビエールホール休館に伴い、土曜、日曜、祝日の配布については、令和7年11月1日から当面の間休止いたします",
+              "after": "【平日】9:00～16:30\n【土曜】10:00～18:00\n【日曜・祝日】9:30～17:00\nただし、年末年始（12/29～1/3）と臨時休業日はお休みです"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）、図書スペース臨時休業日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.kashiwara.osaka.jp/static/manhole-card/"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.kashiwara.osaka.jp/",
+              "after": "https://www.city.kashiwara.osaka.jp/static/manhole-card/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.kashiwara.osaka.jp/static/manhole-card/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.kashiwara.osaka.jp/static/manhole-card/",
+              "after": "https://www.city.kashiwara.osaka.jp/static/manhole-card/"
+            }
+          ]
+        },
+        {
+          "locationId": "27-228-a-01",
+          "cardName": "泉南市",
+          "prefecture": "大阪府",
+          "municipality": "泉南市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布時間・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "泉南市観光協会観光案内所 / 大阪府泉南市りんくう南浜4-201 / 火・水以外 10：00～16：00 / 34.382992, 135.267197 / Plus Code 8Q6Q97M8+5V\n泉南市上下水道部 下水道整備課 / 大阪府泉南市樽井737 / 火・水のみ 9：00～17：30 ※月・火曜が祝日の場合は、観光案内所にて配布します / 年末年始（12/28～1/4）はお休みです / 34.367748, 135.274216 / Plus Code 8Q6Q979F+3M",
+              "after": "泉南市観光協会観光案内所 / 大阪府泉南市りんくう南浜4-201 / 月・木～日 10:00～16:00 / 火・水 / 34.382992, 135.267197 / Plus Code 8Q6Q97M8+5V\n泉南市役所別館2階 下水道課窓口 / 大阪府泉南市樽井一丁目1番1号 / 火・水 9:00～17:30 / 祝日、年末年始 / 34.365158, 135.274017 / Plus Code 8Q6Q978F+3J"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【月・火以外】10：00～16：00\n【月・火のみ】9：00～17：30\nただし、年末年始（12/28～1/4）はお休みです\n※月・火曜が祝日の場合は、観光案内所にて配布します",
+              "after": "【月・木～日】10:00～16:00\n【火・水】9:00～17:30"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。アンケートに協力"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.sennan.lg.jp/kakuka/toshiseibi/gesui/gesui_soumu/manhole_card/1499661374299.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.sennan.lg.jp/kakuka/toshiseibi/gesui/gesui_soumu/manhole_card/1499661374299.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.sennan.lg.jp/kakuka/toshiseibi/gesui/gesui_soumu/manhole_card/1499661374299.html"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-a-01",
+          "cardName": "熊本市 A001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-b-01",
+          "cardName": "熊本市 B001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-d-01",
+          "cardName": "熊本市 D001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-e-01",
+          "cardName": "熊本市 E001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-f-01",
+          "cardName": "熊本市 F001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "熊本県民総合運動公園では配布中。リブワーク藤崎台球場は施設休館のため配布中止（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-h-01",
+          "cardName": "熊本市 H001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-i-01",
+          "cardName": "熊本市 I001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-j-01",
+          "cardName": "熊本市 J001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "熊本県民総合運動公園では配布中。リブワーク藤崎台球場は施設休館のため配布中止（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-k-01",
+          "cardName": "熊本市 K001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "配布中。施設の最新情報は各施設公式ページを確認（熊本市上下水道局、2026-08-23確認）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-08-12-5014828bad67",
       "date": "2026-08-12",
