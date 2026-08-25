@@ -1,7 +1,871 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-22T21:53:37.337Z",
+  "generatedAt": "2026-08-25T21:32:43.899Z",
   "updates": [
+    {
+      "id": "2026-08-26-4d7ba5149f3c",
+      "date": "2026-08-26",
+      "generatedAt": "2026-08-25T21:32:43.899Z",
+      "source": "Official card data maintenance 2026-08-26",
+      "totalChanges": 14,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-209-a-01",
+          "cardName": "真岡市",
+          "prefecture": "栃木県",
+          "municipality": "真岡市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫終了。今後の配布再開予定なし（真岡市、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布終了（再開予定なし）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "在庫終了。今後の配布再開予定なし"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.moka.lg.jp/kakuka/gesuido/gyomu/jogesuido/9271.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.kubokinen.net/",
+              "after": "https://www.city.moka.lg.jp/kakuka/gesuido/gyomu/jogesuido/9271.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.moka.lg.jp/kakuka/gesuido/gyomu/jogesuido/9271.html"
+            }
+          ]
+        },
+        {
+          "locationId": "09-211-a-01",
+          "cardName": "矢板市 A001",
+          "prefecture": "栃木県",
+          "municipality": "矢板市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "2026年10月23日9:00から再配布予定（矢板市、2026-08-26確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "道の駅やいた",
+              "after": "一般社団法人 矢板市観光協会（城の湯温泉センター内）"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "栃木県矢板市矢板114番地１",
+              "after": "栃木県矢板市川崎反町295"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8:30～17:00\nただし、年末年始はお休みです",
+              "after": "9:00～15:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "第1・3火曜日（祝祭日の場合は翌日）、城の湯温泉センター休館日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.806488",
+              "after": "36.793873"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.922745",
+              "after": "139.91774"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.yaita.tochigi.jp/site/kankou/manho-ru2026.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.michinoeki-yaita.com/",
+              "after": "https://www.city.yaita.tochigi.jp/site/kankou/manho-ru2026.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XRW4F+H3",
+              "after": "8Q8XQWV9+G3"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.yaita.tochigi.jp/site/kankou/manho-ru2026.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.yaita.tochigi.jp/soshiki/syoukou/",
+              "after": "https://www.city.yaita.tochigi.jp/site/kankou/manho-ru2026.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-225-a-01",
+          "cardName": "入間市 A001",
+          "prefecture": "埼玉県",
+          "municipality": "入間市",
+          "changeType": "changed",
+          "headline": "在庫・配布時間・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（入間市、2026-08-26確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：00",
+              "after": "9:00～16:30"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。直接手渡しのみ"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.iruma.saitama.jp/soshiki/jogesuidokeeka/jogesuido/gesuido/oshirase_event/3577.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.iruma.saitama.jp/soshiki/jogesuidokeeka/index.html",
+              "after": "https://www.city.iruma.saitama.jp/soshiki/jogesuidokeeka/jogesuido/gesuido/oshirase_event/3577.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.city.iruma.saitama.jp/soshiki/jogesuidokeeka/jogesuido/gesuido/oshirase_event/3577.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-442-b-01",
+          "cardName": "宮代町 B001",
+          "prefecture": "埼玉県",
+          "municipality": "宮代町",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "在庫あり（2026年7月1日から配布再開、宮代町、2026-08-26確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10:00～21:00\n※ホームページで営業時間・休業日をご確認ください",
+              "after": "営業時間内。配布先公式ページで営業時間・休業日を確認"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布先の休業日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。代理受取・予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.town.miyashiro.lg.jp/0000013667.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.town.miyashiro.lg.jp/0000013667.html"
+            }
+          ]
+        },
+        {
+          "locationId": "12-100-b-01",
+          "cardName": "千葉市 B001",
+          "prefecture": "千葉県",
+          "municipality": "千葉市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし。配布を一時中止。2026年10月ごろ再配布予定（千葉市、2026-08-26確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.chiba.jp/kensetsu/gesuidokikaku/eigyo/manholecard.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.chiba.jp/kensetsu/gesuidokikaku/eigyo/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "14-205-b-01",
+          "cardName": "藤沢市 B001",
+          "prefecture": "神奈川県",
+          "municipality": "藤沢市",
+          "changeType": "changed",
+          "headline": "在庫・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "在庫なし。2026年9月1日から配布再開予定（藤沢市、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（祝日・振替休日の場合は翌日）、年末年始（1月1日、12月27日～31日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.fujisawa.kanagawa.jp/gesui-ke/manholecard.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.city.fujisawa.kanagawa.jp/gesui-ke/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "23-216-a-01",
+          "cardName": "常滑市 A001",
+          "prefecture": "愛知県",
+          "municipality": "常滑市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし。入荷待ちのため配布を一時中止（常滑市、2026-08-26確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:30～16：30\nただし、水曜日（祝日の場合は営業）はお休みです",
+              "after": "9:30～16:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "水曜日（祝日は営業）、年末年始（12月28日～1月4日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.tokoname.aichi.jp/shisei/guide/1002804/1009076/1009061.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.instagram.com/kobokan.tokoname?igsh=dzQwMXhrYnhncnRj",
+              "after": "https://kobokan-tokoname.com/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.tokoname.aichi.jp/shisei/guide/1002804/1009076/1009061.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.tokoname.aichi.jp/kurashi/suido/1000953/1007678.html",
+              "after": "https://www.city.tokoname.aichi.jp/shisei/guide/1002804/1009076/1009061.html"
+            }
+          ]
+        },
+        {
+          "locationId": "23-225-a-01",
+          "cardName": "知立市",
+          "prefecture": "愛知県",
+          "municipality": "知立市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "配布中（知立市、2026-08-26確認）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "知立市役所上下水道部下水道課 / 愛知県知立市広見三丁目1番地 / 平日 8：30～17：15 / 年末年始はお休みです / 35.001492, 137.05072 / Plus Code 8Q7V2322+H7\n知立市観光交流センター / 愛知県知立市中町中128番地 / 土日・祝日 9：00～17：00 / 年末年始はお休みです / 35.007603, 137.042374 / Plus Code 8Q7V225R+2W",
+              "after": "知立市役所上下水道部下水道課 / 愛知県知立市広見三丁目1番地 / 平日 9：00～16：00 / 年末年始はお休みです / 35.001492, 137.05072 / Plus Code 8Q7V2322+H7\n知立市観光交流センター / 愛知県知立市中町中128番地 / 土日・祝日 9：00～17：00 / 年末年始はお休みです / 35.007603, 137.042374 / Plus Code 8Q7V225R+2W"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8：30～17：15\nただし、年末年始はお休みです\n【土日・祝日】9：00～17：00\nただし、年末年始はお休みです",
+              "after": "【平日】9：00～16：00\nただし、土日・祝日、年末年始はお休みです\n【土日・祝日】9：00～17：00\nただし、年末年始はお休みです"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "平日は土日・祝日、年末年始。土日・祝日は年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.chiryu.aichi.jp/soshiki/jogesuido/gesuido/osirase/1688689966943.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.chiryu.aichi.jp/soshiki/jogesuido/gesuido/index.html",
+              "after": "https://www.city.chiryu.aichi.jp/soshiki/jogesuido/gesuido/osirase/1688689966943.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=23#mhcard_result",
+              "after": "https://www.city.chiryu.aichi.jp/soshiki/jogesuido/gesuido/osirase/1688689966943.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.chiryu.aichi.jp/kurashi/jogesuido/1/1688690394356.html",
+              "after": "https://www.city.chiryu.aichi.jp/soshiki/jogesuido/gesuido/osirase/1688689966943.html"
+            }
+          ]
+        },
+        {
+          "locationId": "25-201-c-01",
+          "cardName": "大津市 C001",
+          "prefecture": "滋賀県",
+          "municipality": "大津市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫切れ。配布一時休止中。再入荷時期未定（大津市、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布一時休止中"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.otsu.lg.jp/soshiki/025/1604/g/kanko/74138.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.otsu.lg.jp/soshiki/025/1604/g/kanko/74138.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-208-b-01",
+          "cardName": "貝塚市 B001",
+          "prefecture": "大阪府",
+          "municipality": "貝塚市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "市制施行80周年記念版は配布を一時中止（貝塚市、2026-08-26確認）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10：00～19：00\nただし、12月29日～1月3日はお休みです",
+              "after": "10:00～19:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12月29日～1月3日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.kaizuka.lg.jp/kakuka/jogesuido/gesuisuisin/topics/manholucard.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.kaizuka.lg.jp/kakuka/jogesuido/gesuisuisin/topics/manholucard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-301-a-01",
+          "cardName": "島本町 A001",
+          "prefecture": "大阪府",
+          "municipality": "島本町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "2026年7月4日で予定数の配布を終了。再配布未定（島本町、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布終了"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "再配布の有無は未定"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.town.shimamoto.lg.jp/site/suidou/2227.html",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-301-b-01",
+          "cardName": "島本町 B001",
+          "prefecture": "大阪府",
+          "municipality": "島本町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "2026年3月で配布を終了。再配布未定（島本町、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布終了"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "再配布の有無は未定"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.town.shimamoto.lg.jp/site/suidou/2227.html",
+              "after": "https://www.town.shimamoto.lg.jp/site/suidou/36299.html"
+            }
+          ]
+        },
+        {
+          "locationId": "33-212-b-01",
+          "cardName": "瀬戸内市 B001",
+          "prefecture": "岡山県",
+          "municipality": "瀬戸内市",
+          "changeType": "changed",
+          "headline": "在庫・配布状況を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止してします",
+              "after": "在庫なし。配布を一時中止。再開時期未定（瀬戸内市、2026-08-26確認）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布一時中止中"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "配布再開時期未定"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.setouchi.lg.jp/soshiki/35/1990.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.setouchi.lg.jp/token/index.html",
+              "after": "https://www.city.setouchi.lg.jp/soshiki/35/1990.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.setouchi.lg.jp/soshiki/35/1990.html"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-l-01",
+          "cardName": "熊本市 L001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "在庫あり（熊本市上下水道局、2026-08-26確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "施設の最新情報は公式ページを確認"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-08-23-f49cdf7c7eeb",
       "date": "2026-08-23",
