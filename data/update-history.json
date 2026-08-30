@@ -1,7 +1,181 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-28T21:25:39.817Z",
+  "generatedAt": "2026-08-30T20:32:22.356Z",
   "updates": [
+    {
+      "id": "2026-08-31-dc079b266d52",
+      "date": "2026-08-31",
+      "generatedAt": "2026-08-30T20:32:22.356Z",
+      "source": "Automated location data update",
+      "totalChanges": 6,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-204-a-01",
+          "cardName": "旭川市 A001",
+          "prefecture": "北海道",
+          "municipality": "旭川市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.7812334, 142.2954047 / Plus Code 8RM4Q7JW+F5\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.780354, 142.2940639 / Plus Code 8RM4Q7JV+4J",
+              "after": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.7812334",
+              "after": "43.783279"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "142.2954047",
+              "after": "142.29689"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM4Q7JW+F5",
+              "after": "8RM4Q7MW+8Q"
+            }
+          ]
+        },
+        {
+          "locationId": "08-208-b-01",
+          "cardName": "龍ケ崎市 B001",
+          "prefecture": "茨城県",
+          "municipality": "龍ケ崎市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.929466, 140.13837 / Plus Code 8R72W4HQ+Q8\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV",
+              "after": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.928963, 140.138031 / Plus Code 8R72W4HQ+H6\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.929466",
+              "after": "35.928963"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.13837",
+              "after": "140.138031"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R72W4HQ+Q8",
+              "after": "8R72W4HQ+H6"
+            }
+          ]
+        },
+        {
+          "locationId": "09-211-a-01",
+          "cardName": "矢板市 A001",
+          "prefecture": "栃木県",
+          "municipality": "矢板市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.793873",
+              "after": "36.790005"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.91774",
+              "after": "139.917679"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XQWV9+G3",
+              "after": "8Q8XQWR9+23"
+            }
+          ]
+        },
+        {
+          "locationId": "16-201-d-01",
+          "cardName": "富山市 D001",
+          "prefecture": "富山県",
+          "municipality": "富山市",
+          "changeType": "changed",
+          "headline": "英語版の配布場所を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "englishVersionDistributionPlaces",
+              "label": "英語版の配布場所",
+              "kind": "location",
+              "before": "TOYAMAキラリ（富山市ガラス美術館）1階 総合案内 / 富山市西町5番1号 / 英語版 9時30分から17時（第1水曜日休み、臨時休館有） / 36.688713, 137.214706 / Plus Code 8Q8VM6Q7+FV",
+              "after": "TOYAMAキラリ（富山市ガラス美術館）1階 総合案内 / 富山市西町5番1号 / 英語版 9時30分から17時（第1・第3水曜日休み、年末年始休み、臨時休館有） / 36.688713, 137.214706 / Plus Code 8Q8VM6Q7+FV"
+            }
+          ]
+        },
+        {
+          "locationId": "20-000-f-01",
+          "cardName": "長野県(流域下水道・F001）",
+          "prefecture": "長野県",
+          "municipality": "長野県",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長野県(流域下水道・F001） / 長野県 / 長野県 / 諏訪市温泉・温水利用型健康運動施設「すわっこランド」1階受付 / 長野県諏訪市大字豊田732番地"
+            }
+          ]
+        },
+        {
+          "locationId": "20-321-b-01",
+          "cardName": "軽井沢町 B001",
+          "prefecture": "長野県",
+          "municipality": "軽井沢町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341034, 138.54686 / Plus Code 8Q8W8GRW+CP\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.347736, 138.59213 / Plus Code 8Q8W8HXR+3V",
+              "after": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341034, 138.54686 / Plus Code 8Q8W8GRW+CP\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.348129, 138.59079 / Plus Code 8Q8W8HXR+78"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-08-29-7e345d7e2e06",
       "date": "2026-08-29",
