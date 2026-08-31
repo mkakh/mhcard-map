@@ -1,7 +1,172 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-28T21:25:39.817Z",
+  "generatedAt": "2026-08-31T21:24:10.984Z",
   "updates": [
+    {
+      "id": "2026-09-01-a271a981b398",
+      "date": "2026-09-01",
+      "generatedAt": "2026-08-31T21:24:10.984Z",
+      "source": "Reviewed existing-card maintenance 2026-09-01",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "24-205-a-01",
+          "cardName": "桑名市 A001",
+          "prefecture": "三重県",
+          "municipality": "桑名市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（桑名市、2026-09-01確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "桑名市物産観光案内所",
+              "after": "クワナベース"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "三重県桑名市有楽町59",
+              "after": "三重県桑名市大字東方55-1"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12月29日～1月3日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.067581",
+              "after": "35.0659166667"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "136.684753",
+              "after": "136.682"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=24#mhcard_result",
+              "after": "https://www.city.kuwana.lg.jp/kikakusoumu/kurashi/kankyou/20240614.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.kuwana.lg.jp/kikakusoumu/kurashi/kankyou/20240614.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7R3M9M+2W",
+              "after": "8Q7R3M8J+9R"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=24#mhcard_result",
+              "after": "https://www.city.kuwana.lg.jp/kikakusoumu/kurashi/kankyou/20240614.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-232-a-01",
+          "cardName": "阪南市",
+          "prefecture": "大阪府",
+          "municipality": "阪南市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（阪南市、2026-09-01確認）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "阪南市都市整備部下水道課（阪南市分室２階） / 大阪府阪南市鳥取74-1 / 平日 8：45～17：15 / 34.355755, 135.234375 / Plus Code 8Q6Q964M+8P\n阪南市役所地下１階守衛室 / 大阪府阪南市尾崎町３５－１ / 土日祝日 8：45～17：15 / 年末年始はお休みです / 34.359455, 135.239746 / Plus Code 8Q6Q965Q+QV",
+              "after": "阪南市都市整備部下水道課（阪南市分室２階） / 大阪府阪南市鳥取74-1 / 平日 9：00～16：30 / 34.355755, 135.234375 / Plus Code 8Q6Q964M+8P\n阪南市役所地下１階守衛室 / 大阪府阪南市尾崎町３５－１ / 土日祝日 8：45～17：15 / 年末年始はお休みです / 34.359455, 135.239746 / Plus Code 8Q6Q965Q+QV"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8：45～17：15\n【土日祝日】8：45～17：15\nただし、年末年始はお休みです",
+              "after": "【平日】9：00～16：30\n【土日祝日】8：45～17：15\nただし、年末年始はお休みです"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。代理受取・予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.hannan.lg.jp/kakuka/toshi/gesuido/6682.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.city.hannan.lg.jp/",
+              "after": "https://www.city.hannan.lg.jp/kakuka/toshi/gesuido/6682.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.hannan.lg.jp/kakuka/toshi/gesuido/6682.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-08-29-7e345d7e2e06",
       "date": "2026-08-29",
