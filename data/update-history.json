@@ -1,7 +1,130 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-31T21:24:10.984Z",
+  "generatedAt": "2026-09-01T02:33:49.030Z",
   "updates": [
+    {
+      "id": "2026-09-01-cb674be3d759",
+      "date": "2026-09-01",
+      "generatedAt": "2026-09-01T02:33:49.030Z",
+      "source": "長野県F001追加・観音寺市公式配布場所更新",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "20-000-f-01",
+          "cardName": "長野県 （流域下水道・F001）",
+          "prefecture": "長野県",
+          "municipality": "長野県",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長野県 （流域下水道・F001） / 長野県 / 長野県 / すわっこランド 1階受付 / 長野県諏訪市大字豊田732番地"
+            }
+          ]
+        },
+        {
+          "locationId": "37-205-a-01",
+          "cardName": "観音寺市",
+          "prefecture": "香川県",
+          "municipality": "観音寺市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "観音寺市下水浄化センター",
+              "after": "大正橋プラザ"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "香川県観音寺市瀬戸町四丁目２番11号",
+              "after": "香川県観音寺市観音寺町甲1234-4"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "観音寺市下水浄化センター / 香川県観音寺市瀬戸町四丁目２番11号 / 平日 8：30～17：15 / 34.113533, 133.635101 / Plus Code 8Q6M4J7P+C2\n観音寺市役所守衛室 / 香川県観音寺市坂本町一丁目１番１号 / 土日祝日 8：30～17：15 / 34.127544, 133.66098 / Plus Code 8Q6M4MH6+29",
+              "after": "大正橋プラザ / 香川県観音寺市観音寺町甲1234-4 / 通常配布 / 12月29日～1月3日を除く 9:00～17:00 / 12月29日～1月3日は観音寺市役所守衛室で配布 / 34.12528745, 133.65503495 / Plus Code 8Q6M4MG4+42\n観音寺市役所守衛室 / 香川県観音寺市坂本町一丁目１番１号 / 代替窓口 / 12月29日～1月3日 9:00～17:00 / 34.127544, 133.66098 / Plus Code 8Q6M4MH6+29"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8：30～17：15",
+              "after": "9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "12月29日～1月3日は観音寺市役所守衛室で配布"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。通常は大正橋プラザ、12月29日～1月3日は観音寺市役所守衛室で配布"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.113533",
+              "after": "34.12528745"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.635101",
+              "after": "133.65503495"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
+              "after": "https://www.city.kanonji.kagawa.jp/soshiki/26/18252.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.kanonji.kagawa.jp/soshiki/26/18252.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6M4J7P+C2",
+              "after": "8Q6M4MG4+42"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
+              "after": "https://www.city.kanonji.kagawa.jp/soshiki/26/18252.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-01-a271a981b398",
       "date": "2026-09-01",
