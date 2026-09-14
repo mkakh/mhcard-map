@@ -1,7 +1,134 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T21:22:37.837Z",
+  "generatedAt": "2026-09-14T00:38:00.130Z",
   "updates": [
+    {
+      "id": "2026-09-14-edc7e3cfa47d",
+      "date": "2026-09-14",
+      "generatedAt": "2026-09-14T00:38:00.130Z",
+      "source": "Issue/PR公式確認メンテナンス",
+      "totalChanges": 3,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-634-a-01",
+          "cardName": "鹿追町 A001",
+          "prefecture": "北海道",
+          "municipality": "鹿追町",
+          "changeType": "changed",
+          "headline": "配布状態を配布中へ変更",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "要確認",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "鹿追町公式で確認できる配布は2026年8月23日のお披露目式のみ。現在の通常配布は未確認（鹿追町、2026-08-29確認）",
+              "after": "2,000枚（2026年8月31日現在）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "道の駅しかおい 芝生広場（裏庭）",
+              "after": "観光インフォメーションデスク（道の駅しかおい裏プレハブ）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "道の駅しかおい 芝生広場（裏庭） / 北海道河東郡鹿追町東町3丁目2-7 / 有効期間 2026-08-23～2026-08-23 / 初回イベント / お披露目式終了後に1人1枚配布 / 2026年8月23日 11:00～（お披露目式終了後に配布） / 43.097996, 142.98846 / Plus Code 8RM43XXQ+59",
+              "after": "観光インフォメーションデスク（道の駅しかおい裏プレハブ） / 北海道河東郡鹿追町東町3丁目2-7 / 有効期間 2026-08-24から / 通常配布 / 月・火・金・土・日 4月～10月 9:00～17:00、11月～3月 10:00～16:00 / 年末年始 / 43.097996, 142.98846 / Plus Code 8RM43XXQ+59\n鹿追町役場商工観光課（2階） / 北海道河東郡鹿追町東町1丁目15番地1 / 有効期間 2026-08-24から / 通常配布 / 水・木 8:30～17:15 / 年末年始 / 43.099107, 142.989043 / Plus Code 8RM43XXQ+JJ"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "2026年8月23日 11:00～（お披露目式終了後に配布）",
+              "after": "月・火・金・土・日：4月～10月 9:00～17:00、11月～3月 10:00～16:00（水・木は鹿追町役場商工観光課で8:30～17:15）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "通常配布は未公表",
+              "after": "年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "お披露目式終了後、1人1枚。予約・郵送不可。通常配布は公式発表待ち",
+              "after": "2026年8月24日から通常配布。1人1枚。予約・郵送不可。転売禁止"
+            }
+          ]
+        },
+        {
+          "locationId": "16-201-d-01",
+          "cardName": "富山市 D001",
+          "prefecture": "富山県",
+          "municipality": "富山市",
+          "changeType": "changed",
+          "headline": "英語版の配布場所を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "englishVersionDistributionPlaces",
+              "label": "英語版の配布場所",
+              "kind": "location",
+              "before": "TOYAMAキラリ（富山市ガラス美術館）1階 総合案内 / 富山市西町5番1号 / 英語版 9時30分から17時（第1水曜日休み、臨時休館有） / 36.688713, 137.214706 / Plus Code 8Q8VM6Q7+FV",
+              "after": "TOYAMAキラリ（富山市ガラス美術館）1階 総合案内 / 富山市西町5番1号 / 英語版 9時30分から17時（第1・第3水曜日休み、年末年始休み、臨時休館有） / 36.688713, 137.214706 / Plus Code 8Q8VM6Q7+FV"
+            }
+          ]
+        },
+        {
+          "locationId": "43-443-b-01",
+          "cardName": "益城町 B001",
+          "prefecture": "熊本県",
+          "municipality": "益城町",
+          "changeType": "changed",
+          "headline": "配布状態を配布開始前へ変更",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "休止中",
+              "after": "配布開始前"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "在庫あり（配布休止中、再開時期未定）",
+              "after": "2種類とも在庫あり（益城町公式、2026年9月3日更新）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "令和8年熊本地震の影響により配布休止中。2026年7月31日に予定していた配布開始は延期され、再開時期は未定",
+              "after": "延期されていた配布は2026年9月19日開始。来館者が住所・氏名を記入し、1人1枚。代理受取不可"
+            },
+            {
+              "field": "distributionStartsOn",
+              "label": "配布開始日",
+              "kind": "general",
+              "before": null,
+              "after": "2026-09-19"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-13-8bcf28a2abc2",
       "date": "2026-09-13",
