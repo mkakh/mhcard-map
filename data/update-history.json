@@ -1,7 +1,306 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-14T00:38:00.130Z",
+  "generatedAt": "2026-09-15T21:13:36.855Z",
   "updates": [
+    {
+      "id": "2026-09-16-c070695c78ae",
+      "date": "2026-09-16",
+      "generatedAt": "2026-09-15T21:13:36.855Z",
+      "source": "Official GKP and municipal maintenance 2026-09-16",
+      "totalChanges": 4,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-518-a-01",
+          "cardName": "利尻町",
+          "prefecture": "北海道",
+          "municipality": "利尻町",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫状況は利尻町役場建設課上下水道係へお問い合わせください"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "利尻町役場",
+              "after": "利尻町役場建設課"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "利尻町役場建設課 / 北海道利尻郡利尻町沓形字緑町14番地1 / 平日 8:30～17:15 / 年末年始（12/31～1/5） / 45.187096, 141.13954 / Plus Code 8RQ354PQ+RR\n交流促進施設どんと1階郷土資料室（図書室） / 北海道利尻郡利尻町字富士見町2番地2 / 土日祝日 9:30～17:30 / 年末年始（12/31～1/5） / 45.187016, 141.139587 / Plus Code 8RQ354PQ+RR"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】9:00～17:00\n【休日】9:00～12:00\nただし、年末年始（12/31～1/5）はお休みです",
+              "after": "【平日】8:30～17:15\n【土日祝日】9:30～17:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/31～1/5）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚（無料）。窓口で申し出て簡単なアンケートに協力。事前予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://rishiri-town.jp/%e8%a6%b3%e5%85%89%e3%83%bb%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/%e3%83%9e%e3%83%b3%e3%83%9b%e3%83%bc%e3%83%ab%e3%82%ab%e3%83%bc%e3%83%89%e3%81%ae%e9%85%8d%e5%b8%83/"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.town.rishiri.hokkaido.jp/rishiri/",
+              "after": "https://rishiri-town.jp/%e8%a6%b3%e5%85%89%e3%83%bb%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/%e3%83%9e%e3%83%b3%e3%83%9b%e3%83%bc%e3%83%ab%e3%82%ab%e3%83%bc%e3%83%89%e3%81%ae%e9%85%8d%e5%b8%83/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://rishiri-town.jp/%e8%a6%b3%e5%85%89%e3%83%bb%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/%e3%83%9e%e3%83%b3%e3%83%9b%e3%83%bc%e3%83%ab%e3%82%ab%e3%83%bc%e3%83%89%e3%81%ae%e9%85%8d%e5%b8%83/"
+            }
+          ]
+        },
+        {
+          "locationId": "01-633-a-01",
+          "cardName": "上士幌町",
+          "prefecture": "北海道",
+          "municipality": "上士幌町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "役場分・道の駅かみしほろ分とも在庫なし（令和8年度分配布終了）。令和9年度は予算確保時に再配布予定"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "上士幌町役場建設課 / 北海道河東郡上士幌町字上士幌東3線238番地 / 平日 8:45～17:00 / 休日及び年始年末はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ\n道の駅かみしほろ / 北海道河東郡上士幌町字上士幌東3線227番地 / 土日祝日 9:00～17:00(夏季は9:00～18:00) / 年末年始はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ",
+              "after": "上士幌町役場建設課 / 北海道河東郡上士幌町字上士幌東3線238番地 / 平日 8:45～17:00 / 休日及び年始年末はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ\n道の駅かみしほろ / 北海道河東郡上士幌町字上士幌東3線227番地 / 平日・土日祝日 9:00～17:00 / 年末年始はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8:45～17:00\nただし、休日及び年始年末はお休みです\n【土日祝日】9:00～17:00(夏季は9:00～18:00)\nただし、年末年始はお休みです",
+              "after": "【上士幌町役場建設課／平日】8:45～17:00\n【道の駅かみしほろ／平日・土日祝日】9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "道の駅かみしほろは年末年始休館"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。配布場所へ直接来訪。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.kamishihoro.jp/page/00000060"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.kamishihoro.jp/page/00000060"
+            }
+          ]
+        },
+        {
+          "locationId": "12-205-c-01",
+          "cardName": "館山市 C001",
+          "prefecture": "千葉県",
+          "municipality": "館山市",
+          "changeType": "changed",
+          "headline": "在庫・休配日・配布条件などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚、手渡し。事前予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.tateyama.chiba.jp/gesui/page100037.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.tateyama.chiba.jp/gesui/page100037.html"
+            }
+          ]
+        },
+        {
+          "locationId": "25-208-b-01",
+          "cardName": "栗東市 B001",
+          "prefecture": "滋賀県",
+          "municipality": "栗東市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "2,000枚発行予定"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "※現在、配布を一時中止しています",
+              "after": "栗東市役所1階"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": null,
+              "after": "滋賀県栗東市安養寺1丁目13-33"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "※現在、配布を一時中止しています",
+              "after": "9:00～16:45"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12/29～1/3）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚（無料）。アンケートに協力"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.0045",
+              "after": "35.021839"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.9186",
+              "after": "135.997269"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7Q2W39+RC",
+              "after": "8Q7Q2XCW+PW"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-14-edc7e3cfa47d",
       "date": "2026-09-14",
