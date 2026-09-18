@@ -1,7 +1,102 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-15T21:13:36.855Z",
+  "generatedAt": "2026-09-18T21:07:00.392Z",
   "updates": [
+    {
+      "id": "2026-09-19-bd7b71b91b78",
+      "date": "2026-09-19",
+      "generatedAt": "2026-09-18T21:07:00.392Z",
+      "source": "Official data maintenance: Urakawa and Mashiki",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-607-a-01",
+          "cardName": "浦河町",
+          "prefecture": "北海道",
+          "municipality": "浦河町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫切れ。2026年9月15日時点、10月上旬に配布再開予定（浦河町公式、2026年9月16日更新）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "浦河町役場 警備室",
+              "after": "浦河町役場（平日：上下水道課、土日祝：警備員室）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日、休日】9：00～17：15",
+              "after": "9:00～17:15"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。事前予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.town.urakawa.hokkaido.jp/gyosei/organization/detail.html?id=48",
+              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
+            }
+          ]
+        },
+        {
+          "locationId": "43-443-b-01",
+          "cardName": "益城町 B001",
+          "prefecture": "熊本県",
+          "municipality": "益城町",
+          "changeType": "changed",
+          "headline": "配布開始",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "status",
+              "before": "配布開始前",
+              "after": "配布中"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-16-c070695c78ae",
       "date": "2026-09-16",
