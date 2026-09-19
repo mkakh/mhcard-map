@@ -169,6 +169,10 @@ let updateFormConfigLoaded = false;
 let userPosition = null;
 let map = null;
 let mapReady = false;
+let mapResizeFrame = 0;
+let mapResizeFallback = 0;
+let mapResizeWidth = 0;
+let mapResizeHeight = 0;
 let activePopup = null;
 let printMapObjectUrl = "";
 let shouldFocusSelected = false;
@@ -313,6 +317,10 @@ function bindEvents() {
     resizeMapSoon();
   });
   window.addEventListener("orientationchange", resizeMapAfterOrientationChange);
+  window.addEventListener("pageshow", resizeMapAfterLayoutChange);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") resizeMapAfterLayoutChange();
+  });
   window.addEventListener("beforeprint", resizeMapForPrint);
   window.addEventListener("afterprint", resizeMapAfterPrint);
 }
@@ -415,7 +423,10 @@ function renderAll() {
 }
 
 function selectedOrHighlightedExpression() {
-  return ["any", ["==", ["get", "selected"], true], ["==", ["get", "highlighted"], true]];
+  return ["any",
+    ["all", ["==", ["get", "cardId"], selectedId], ["==", ["get", "placeId"], selectedPlaceId]],
+    ["==", ["get", "cardId"], hoveredId]
+  ];
 }
 
 function getFilteredLocations() {
@@ -693,7 +704,7 @@ function handleLocationListPointerOut(event) {
 function renderMap(filtered) {
   if (!mapReady) return;
 
-  updateLocationSource(filtered);
+  updateLocationLayerState();
 
   const currentSource = map.getSource("current-location");
   if (currentSource) currentSource.setData(toCurrentLocationFeatureCollection());
@@ -736,7 +747,7 @@ function setHoveredLocation(locationId) {
   if (listHoverSuspended) return;
   if (hoveredId === locationId) return;
   hoveredId = locationId;
-  updateLocationSource();
+  updateLocationLayerEmphasis();
 }
 
 function resumeListHover(locationId) {
@@ -748,13 +759,45 @@ function resumeListHover(locationId) {
 function clearHoveredLocation() {
   if (!hoveredId) return;
   hoveredId = "";
-  updateLocationSource();
+  updateLocationLayerEmphasis();
 }
 
-function updateLocationSource(filtered = currentFilteredLocations) {
-  if (!mapReady) return;
-  const source = map.getSource("locations");
-  if (source) source.setData(toLocationFeatureCollection(filtered));
+function updateLocationLayerState(targetMap = map) {
+  if (!targetMap || (targetMap === map && !mapReady)) return;
+  const visible = ["in", ["get", "cardId"], ["literal", currentFilteredLocations.map((location) => location.id)]];
+  const shaped = ["in", ["get", "visualState"], ["literal", markerShapeStates()]];
+  const emphasis = selectedOrHighlightedExpression();
+  targetMap.setFilter("selected-location-halo", ["all", visible, emphasis, ["!", shaped]]);
+  targetMap.setFilter("unclustered-locations", ["all", visible, ["!", shaped]]);
+  targetMap.setFilter("selected-shaped-location-halo", ["all", visible, emphasis, shaped]);
+  targetMap.setFilter("shaped-locations", ["all", visible, shaped]);
+  targetMap.setFilter("location-hit-area", visible);
+  updateLocationLayerEmphasis(targetMap);
+  updateLocationLayerColor(targetMap);
+}
+
+function updateLocationLayerEmphasis(targetMap = map) {
+  if (!targetMap || (targetMap === map && !mapReady)) return;
+  const visible = ["in", ["get", "cardId"], ["literal", currentFilteredLocations.map((location) => location.id)]];
+  const shaped = ["in", ["get", "visualState"], ["literal", markerShapeStates()]];
+  const emphasis = selectedOrHighlightedExpression();
+  targetMap.setFilter("selected-location-halo", ["all", visible, emphasis, ["!", shaped]]);
+  targetMap.setFilter("selected-shaped-location-halo", ["all", visible, emphasis, shaped]);
+  targetMap.setPaintProperty("unclustered-locations", "circle-radius", ["case", emphasis, 10, 7]);
+  targetMap.setLayoutProperty("shaped-locations", "text-size", ["case", emphasis, 24, 19]);
+  targetMap.setPaintProperty("location-hit-area", "circle-radius", ["case", emphasis, 28, 22]);
+}
+
+function updateLocationLayerColor(targetMap = map) {
+  if (!targetMap || (targetMap === map && !mapReady)) return;
+  const collected = ["in", ["get", "cardId"], ["literal", Object.keys(collections).filter((id) => collections[id]?.collected)]];
+  targetMap.setPaintProperty("unclustered-locations", "circle-color", [
+    "match", ["get", "visualState"],
+    "paused", "#b68421", "upcoming", "#b83272", "review", "#6f5aa8",
+    "stopped-known", "#6f7d86", "stopped-unknown", "#8b9298",
+    "geocode-failed", "#7b7486", "approximate", "#737373",
+    ["case", collected, "#1f7a4d", "#c5522f"]
+  ]);
 }
 
 function renderDetail() {
@@ -1259,10 +1302,17 @@ function initMap() {
 
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), "bottom-right");
   map.on("moveend", handleMapMoveEnd);
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(() => {
+      const { width, height } = elements.mapCanvas.getBoundingClientRect();
+      if (width !== mapResizeWidth || height !== mapResizeHeight) resizeMapSoon();
+    });
+    observer.observe(elements.mapCanvas);
+  }
 
   map.on("load", () => {
     mapReady = true;
-    map.resize();
+    resizeMapSoon();
     addLocationLayers(map);
     addCurrentLocationLayer(map);
     renderAll();
@@ -1278,7 +1328,7 @@ function handleMapMoveEnd() {
 function addLocationLayers(targetMap = map, bindInteractions = true) {
   targetMap.addSource("locations", {
     type: "geojson",
-    data: toLocationFeatureCollection(getFilteredLocations())
+    data: toLocationFeatureCollection(locations)
   });
 
   targetMap.addLayer({
@@ -1394,6 +1444,7 @@ function addLocationLayers(targetMap = map, bindInteractions = true) {
     }
   });
 
+  updateLocationLayerState(targetMap);
   if (!bindInteractions) return;
 
   targetMap.on("click", "location-hit-area", (event) => {
@@ -1485,7 +1536,7 @@ function toLocationFeatureCollection(items) {
             collected: Boolean(collections[location.id]?.collected),
             selected: location.id === selectedId && place.id === selectedPlaceId,
             highlighted: location.id === hoveredId,
-            visualState: pinClass(location, place),
+            visualState: pinClass(location, place) === "collected" ? "uncollected" : pinClass(location, place),
             hasApproximate: isApproximatePlace(location, place),
             hasStoppedUnknown: category === "stopped-unknown",
             hasStoppedKnown: category === "stopped-known",
@@ -1655,7 +1706,7 @@ function toggleCollected(locationId) {
     renderAll();
   } else {
     renderLocationListVirtualWindow({ force: true });
-    updateLocationSource();
+    updateLocationLayerColor();
     if (selectedId === locationId) renderDetail();
     renderSummary(currentFilteredLocations);
   }
@@ -2389,22 +2440,25 @@ function switchMobilePanel(panel) {
 
 function resizeMapSoon() {
   if (!mapReady) return;
-  window.requestAnimationFrame(() => {
+  if (mapResizeFrame) return;
+  mapResizeFrame = window.requestAnimationFrame(() => {
+    mapResizeFrame = 0;
+    const { width, height } = elements.mapCanvas.getBoundingClientRect();
+    if (!width || !height) return;
+    mapResizeWidth = width;
+    mapResizeHeight = height;
     map.resize();
-    updateLocationSource();
   });
 }
 
 function resizeMapAfterLayoutChange() {
-  [0, 120, 320].forEach((delay) => {
-    window.setTimeout(resizeMapSoon, delay);
-  });
+  resizeMapSoon();
+  window.clearTimeout(mapResizeFallback);
+  mapResizeFallback = window.setTimeout(resizeMapSoon, 250);
 }
 
 function resizeMapAfterOrientationChange() {
-  [0, 120, 320, 700].forEach((delay) => {
-    window.setTimeout(resizeMapSoon, delay);
-  });
+  resizeMapAfterLayoutChange();
 }
 
 async function printMap() {

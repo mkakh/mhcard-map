@@ -246,3 +246,31 @@ test("retains the prior collection state when localStorage rejects a write", asy
   await expect(page.locator(".toast")).toContainText("取得状態を保存できませんでした");
   await expect.poll(() => page.evaluate(() => localStorage.getItem("mhc_collections"))).toBeNull();
 });
+
+
+test("preserves filtered selection through map returns and search clear", async ({ page }) => {
+  await makePageDeterministic(page);
+  await page.goto("/");
+  await expect.poll(async () => Number(await page.locator("#totalCount").textContent())).toBeGreaterThanOrEqual(1_312);
+  const total = await page.locator("#totalCount").textContent();
+  await openMobilePanel(page, "検索");
+  await page.locator("#searchInput").fill("恵庭市 B001");
+  await expect(page.locator("#totalCount")).toHaveText("1");
+  const card = page.locator('[data-location-list-id="01-231-b-01"]');
+  await card.click();
+  await openMobilePanel(page, "検索");
+  await expect(card).toHaveAttribute("aria-current", "true");
+  await openMobilePanel(page, "地図");
+  await page.evaluate(() => {
+    window.dispatchEvent(new Event("pageshow"));
+    document.dispatchEvent(new Event("visibilitychange"));
+    window.dispatchEvent(new Event("orientationchange"));
+  });
+  await openMobilePanel(page, "検索");
+  await expect(page.locator("#totalCount")).toHaveText("1");
+  await expect(card).toHaveAttribute("aria-current", "true");
+  await page.locator("#searchInput").fill("");
+  await expect(page.locator("#totalCount")).toHaveText(total);
+  await openMobilePanel(page, "詳細");
+  await expect(page.locator("#detailContent h2")).toHaveText("恵庭市 B001");
+});
