@@ -1,7 +1,328 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-18T21:07:00.392Z",
+  "generatedAt": "2026-09-24T21:36:18.452Z",
   "updates": [
+    {
+      "id": "2026-09-25-06d5a4c72923",
+      "date": "2026-09-25",
+      "generatedAt": "2026-09-24T21:36:18.452Z",
+      "source": "Official card data maintenance (2026-09-25)",
+      "totalChanges": 6,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "17-461-a-01",
+          "cardName": "穴水町 A001",
+          "prefecture": "石川県",
+          "municipality": "穴水町",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "余裕あり（穴水町、2026-09-25確認）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.228527, 136.901154 / Plus Code 8Q9R6WH2+CF\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.231444, 136.9789 / Plus Code 8Q9R6XJH+HH"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：30",
+              "after": "【穴水町物産館 四季彩々】9:00～17:30\n【能登ワイン株式会社】9:00～16:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "四季彩々は2026年9月・10月の毎週水曜日（9月23日を除く）。能登ワインは12月30日～1月3日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "2か所で無料配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+              "after": "https://www.town.anamizu.lg.jp/page/105862.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+              "after": "https://www.town.anamizu.lg.jp/page/105862.html"
+            }
+          ]
+        },
+        {
+          "locationId": "17-461-b-01",
+          "cardName": "穴水町 B001",
+          "prefecture": "石川県",
+          "municipality": "穴水町",
+          "changeType": "changed",
+          "headline": "在庫・配布条件・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "余裕あり（穴水町、2026-09-25確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "土日・祝日は日直担当者が配布。無料配布"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+              "after": "https://www.town.anamizu.lg.jp/page/105862.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.town.anamizu.lg.jp/",
+              "after": "https://www.town.anamizu.lg.jp/page/105862.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=17#mhcard_result",
+              "after": "https://www.town.anamizu.lg.jp/page/105862.html"
+            }
+          ]
+        },
+        {
+          "locationId": "22-203-a-01",
+          "cardName": "沼津市 A001",
+          "prefecture": "静岡県",
+          "municipality": "沼津市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（沼津市、2026-09-24更新）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "沼津市役所 水道部 水道総務課 / 静岡県沼津市御幸町16-1（水道部庁舎2階） / 通常配布 / 在庫あり（沼津市、2026-09-24更新） / 平日 8:30～17:15 / 年末年始（12月29日～1月3日） / 35.096172, 138.863083 / Plus Code 8Q7W3VW7+F6\n沼津市役所 本庁舎1階 総合案内 / 静岡県沼津市御幸町16-1（本庁舎1階） / 通常配布 / 在庫あり（沼津市、2026-09-24更新） / 平日 8:30～17:15 / 年末年始（12月29日～1月3日） / 35.096172, 138.863083 / Plus Code 8Q7W3VW7+F6\n沼津市役所 水道部庁舎1階 水道部守衛室 / 静岡県沼津市御幸町16-1（水道部庁舎1階） / 通常配布 / 在庫あり（沼津市、2026-09-24更新） / 土曜日・日曜日・祝日 8:30～17:15 / 年末年始（12月29日～1月3日） / 35.096172, 138.863083 / Plus Code 8Q7W3VW7+F6"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8：30～17：15\n上記以外の日時は、守衛室にて配布します\nただし、年末年始はお休みです",
+              "after": "【平日】8:30～17:15（水道部庁舎2階 水道総務課、本庁舎1階 総合案内）\n【土日祝】8:30～17:15（水道部庁舎1階 水道部守衛室）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年末年始（12月29日～1月3日）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.numazu.shizuoka.jp/kurashi/sumai/suido/shokai/sewage_line/mhcard.htm"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
+              "after": "https://www.city.numazu.shizuoka.jp/kurashi/sumai/suido/shokai/sewage_line/mhcard.htm"
+            }
+          ]
+        },
+        {
+          "locationId": "25-209-c-01",
+          "cardName": "甲賀市 C001",
+          "prefecture": "滋賀県",
+          "municipality": "甲賀市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "公式情報を確認",
+              "after": "準備中（甲賀市、2026-09-25確認。GKPは配布一時中止と掲載）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日（祝日は開館）、2026年12月28日～2027年1月4日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "配布場所で手渡し。1人1枚。郵送不可"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.koka.lg.jp/item/39439.htm"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.koka.lg.jp/item/39439.htm"
+            }
+          ]
+        },
+        {
+          "locationId": "34-212-c-01",
+          "cardName": "東広島市 C001",
+          "prefecture": "広島県",
+          "municipality": "東広島市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所一覧・配布条件などを更新",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "公式情報を確認",
+              "after": "在庫あり。2026年9月30日で配布終了、10月1日以降の再開未定（東広島市、2026-09-25確認）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1 / 有効期間 2026-07-31から / 通常配布 / 通常配布 10:00～16:00 / 第1・3水曜日、年末年始、10月上旬に開催される酒まつり期間中はお休みです / 34.429699, 132.746811 / Plus Code 8Q6JCPHW+VP\n東広島市下水道管理課 / 広島県東広島市西条栄町8-29（本館7階） / 代替窓口 / 第1・第3水曜日、観光案内所の臨時休業日（平日のみ） 8：30～17：15 / 土日祝祭日、年末年始はお休みです / 34.426651, 132.743469 / Plus Code 8Q6JCPGV+M9",
+              "after": "西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1 / 有効期間 2026-07-31～2026-09-30 / 通常配布 / 通常配布 10:00～16:00 / 第1・3水曜日、年末年始、10月上旬に開催される酒まつり期間中はお休みです / 34.429699, 132.746811 / Plus Code 8Q6JCPHW+VP\n東広島市下水道管理課 / 広島県東広島市西条栄町8-29（本館7階） / 有効期間 2026-09-30まで / 代替窓口 / 第1・第3水曜日、観光案内所の臨時休業日（平日のみ） 8：30～17：15 / 土日祝祭日、年末年始はお休みです / 34.426651, 132.743469 / Plus Code 8Q6JCPGV+M9"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚、手渡し、郵送不可。2026年9月30日で配布終了予定"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+              "after": "https://www.city.higashihiroshima.lg.jp/soshiki/gesuido/1/2/40232.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=34#mhcard_result",
+              "after": "https://www.city.higashihiroshima.lg.jp/soshiki/gesuido/1/2/40232.html"
+            }
+          ]
+        },
+        {
+          "locationId": "41-201-b-01",
+          "cardName": "佐賀市 B001",
+          "prefecture": "佐賀県",
+          "municipality": "佐賀市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "配布休止中（佐賀市上下水道局、2026-09-25確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚。予約・郵送不可。簡単なアンケートあり"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=41#mhcard_result",
+              "after": "https://www.water.saga.saga.jp/main/5768.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=41#mhcard_result",
+              "after": "https://www.water.saga.saga.jp/main/5768.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-19-bd7b71b91b78",
       "date": "2026-09-19",
