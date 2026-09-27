@@ -1228,6 +1228,165 @@
       ]
     },
     {
+      "id": "2026-09-28-93432a5a230a",
+      "date": "2026-09-28",
+      "generatedAt": "2026-09-27T21:25:56.035Z",
+      "source": "Reviewed municipal card updates (2026-09-28)",
+      "totalChanges": 4,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-202-b-01",
+          "cardName": "足利市 B001",
+          "prefecture": "栃木県",
+          "municipality": "足利市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし（2026年5月9日終了。配布再開未定）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00\nただし、第3月曜日（祝祭日・振替休日の時は翌日）、年末（12/29～12/31）はお休みです\n※史跡足利学校の休館日に合わせ、休館日が変更となる月があります",
+              "after": "9:00～17:00（原則毎月第3水曜日休館。祝祭日・振替休日の場合は翌日。史跡足利学校の休館日に合わせ変更となる月あり）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.city.ashikaga.tochigi.jp/urban/000070/000390/000782/p003312.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.ashikaga.tochigi.jp/site/jougesuidou/manholecard-short.html",
+              "after": "https://www.city.ashikaga.tochigi.jp/urban/000070/000390/000782/p003312.html"
+            }
+          ]
+        },
+        {
+          "locationId": "12-203-c-01",
+          "cardName": "市川市 C001",
+          "prefecture": "千葉県",
+          "municipality": "市川市",
+          "changeType": "changed",
+          "headline": "在庫・配布状況を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "在庫あり（配布休止中。2026年10月1日配布再開予定）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.ichikawa.lg.jp/page/2993.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.ichikawa.lg.jp/gre07/1111000135.html",
+              "after": "https://www.city.ichikawa.lg.jp/page/2993.html"
+            }
+          ]
+        },
+        {
+          "locationId": "12-203-d-01",
+          "cardName": "市川市 D001",
+          "prefecture": "千葉県",
+          "municipality": "市川市",
+          "changeType": "changed",
+          "headline": "在庫・配布状況を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "在庫あり（配布休止中。2026年10月1日配布再開予定）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10：00～19：30（休館日を除く）\n※土日祝は18：00までとなります\nただし、毎週月曜日（祝日の場合、翌開館日に振替）、館内整理日（土曜・日曜・月曜を除く月末）、蔵書点検期間、年末年始（12月28日から1月4日）はお休みです\n※詳細は開館カレンダーを確認ください",
+              "after": "10:00～16:30（休館日を除く。毎週月曜日〔祝日と重なった場合は翌開館日〕、年末年始、館内整理日、蔵書点検期間は休館。開館カレンダーを確認）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
+              "after": "https://www.city.ichikawa.lg.jp/page/2993.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.ichikawa.lg.jp/gre07/1111000135.html",
+              "after": "https://www.city.ichikawa.lg.jp/page/2993.html"
+            }
+          ]
+        },
+        {
+          "locationId": "25-213-b-01",
+          "cardName": "東近江市 B001",
+          "prefecture": "滋賀県",
+          "municipality": "東近江市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし（配布休止中）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.higashiomi.shiga.jp/kurashi_tetsuzuki/jougesuidou/1008975/1009690.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "2026-09-25-06d5a4c72923",
       "date": "2026-09-25",
       "generatedAt": "2026-09-24T21:36:18.452Z",
