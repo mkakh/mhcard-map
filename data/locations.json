@@ -490,8 +490,8 @@
     "municipality": "北見市",
     "place": "北見市上下水道局常呂上下水道課窓口（北見市役所常呂総合支所内）",
     "address": "北海道北見市常呂町字常呂323番地",
-    "lat": 44.120422,
-    "lng": 144.073364,
+    "lat": 44.120695,
+    "lng": 144.071169,
     "hours": "【平日】8：45～17：30\n【休日】8：45～17：30\n※休日は閉庁のため、常呂総合支所正面玄関右横、階段下当直室にて配布します\n※年末年始（12月29日～1月3日）は配布しておりません。",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -511,9 +511,9 @@
     "stockUrl": "http://www.city.kitami.lg.jp/administration/life/detail.php?content=9605",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道北見市常呂町字常呂323番地",
-    "geocodeTitle": "北海道北見市常呂町常呂",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RP643CF+58"
+    "geocodeTitle": "北見市上下水道局常呂上下水道課窓口（北見市役所常呂総合支所内）（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8RP643CC+7F"
   },
   {
     "id": "01-212-a-01",
@@ -1676,8 +1676,8 @@
     "municipality": "奈井江町",
     "place": "奈井江町交流プラザみなクル",
     "address": "北海道空知郡奈井江町字奈井江町74番地",
-    "lat": 43.423855,
-    "lng": 141.893402,
+    "lat": 43.425102,
+    "lng": 141.888817,
     "hours": "9:00～18:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -1697,9 +1697,9 @@
     "stockUrl": "https://www.town.naie.hokkaido.jp/kurashi/suidou/startmanhole/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道空知郡奈井江町字奈井江町74番地",
-    "geocodeTitle": "北海道奈井江町奈井江町",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM3CVFV+G9"
+    "geocodeTitle": "奈井江町交流プラザみなクル（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8RM3CVGQ+2G"
   },
   {
     "id": "01-453-a-01",
@@ -2036,8 +2036,8 @@
     "municipality": "天塩町",
     "place": "天塩町ファミリースポーツセンター",
     "address": "北海道天塩郡天塩町字川口5702番地の1",
-    "lat": 44.924023,
-    "lng": 141.757675,
+    "lat": 44.884846,
+    "lng": 141.751,
     "hours": "10:00～17:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -2057,9 +2057,9 @@
     "stockUrl": "http://www.teshiotown.hokkaido.jp/?page_id=17381l",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道天塩郡天塩町字川口5702番地の1",
-    "geocodeTitle": "北海道天塩町川口",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RP3WQF5+J3"
+    "geocodeTitle": "天塩町ファミリースポーツセンター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8RP3VQM2+W9"
   },
   {
     "id": "01-487-b-01",
@@ -2169,8 +2169,8 @@
     "municipality": "豊富町",
     "place": "湯の杜ぽっけ",
     "address": "北海道天塩郡豊富町字温泉",
-    "lat": 45.079037,
-    "lng": 141.825745,
+    "lat": 45.07427,
+    "lng": 141.83847,
     "hours": "9:00～17:00\n※12時～13時のお昼休み、年末年始は配布致しません。\n※11月～3月の休館日（月曜日、月曜日が祝日の場合は翌日）は、豊富町役場建設課上下水道係にて配布します\n年末年始はお休みです",
     "closed": "12:00～13:00、年末年始。11～3月の月曜日（祝日の場合は翌日）は湯の杜ぽっけ休館",
     "condition": "11～3月の湯の杜ぽっけ休館日は豊富町役場で配布",
@@ -2189,9 +2189,9 @@
     "stockUrl": "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html",
     "conditionUrl": "https://www.town.toyotomi.hokkaido.jp/section/kensetuka/lepd6s0000007wkm.html",
     "geocodeQuery": "北海道天塩郡豊富町字温泉",
-    "geocodeTitle": "北海道豊富町温泉",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RQ33RHG+J7",
+    "geocodeTitle": "湯の杜ぽっけ（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8RQ33RFQ+P9",
     "distributionPlaces": [
       {
         "id": "place-toyotomi-yunomori-pokke",
@@ -2206,7 +2206,7 @@
         "coordinateAccuracy": "address",
         "geocodeQuery": "北海道天塩郡豊富町字温泉",
         "geocodeTitle": "湯の杜ぽっけ（公式配布先・地図検索照合・手動補正）",
-        "geocodedAt": "2026-07-31",
+        "geocodedAt": "2026-09-28",
         "plusCode": "8RQ33RFQ+P9"
       },
       {
@@ -2562,8 +2562,8 @@
     "municipality": "安平町",
     "place": "道の駅あびらＤ５１ステーション",
     "address": "北海道勇払郡安平町追分柏が丘49-1",
-    "lat": 42.875992,
-    "lng": 141.816544,
+    "lat": 42.875923,
+    "lng": 141.81882,
     "hours": "夏期(4月～10月) 9：00～18：00\n冬期(11月～3月) 9：00～17：00\nただし、年末年始（12/31～1/3）はお休みです\n※このほか臨時休館になる場合がありますので、あらかじめ道の駅ホームページをご確認のうえご来館ください",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -2583,9 +2583,9 @@
     "stockUrl": "https://www.town.abira.lg.jp/chiikishinko/manhole",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道勇払郡安平町追分柏が丘49-1",
-    "geocodeTitle": "北海道安平町追分柏が丘",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RJ3VRG8+9J"
+    "geocodeTitle": "道の駅あびらＤ５１ステーション（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8RJ3VRG9+9G"
   },
   {
     "id": "01-607-a-01",
@@ -3302,8 +3302,8 @@
     "municipality": "南部町",
     "place": "南部公民館",
     "address": "青森県三戸郡南部町大字沖田面字沖中51番地２",
-    "lat": 40.420063,
-    "lng": 141.282471,
+    "lat": 40.41289,
+    "lng": 141.28099,
     "hours": "9：00～21：00\nただし、毎月第3日曜日、国民の祝日、年末年始(12月29日から翌年の1月3日まで)はお休みです\n【休館日】\n9：00～21：00\nただし、年末年始(12月29日から翌年の1月3日まで)はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -3325,13 +3325,13 @@
         "hours": "9：00～21：00",
         "closed": "毎月第3日曜日、国民の祝日、年末年始(12月29日から翌年の1月3日まで)はお休みです",
         "url": "https://www.town.aomori-nanbu.lg.jp/page/1832.html",
-        "lat": 40.420063,
-        "lng": 141.282471,
-        "plusCode": "8RG3C7CJ+2X",
+        "lat": 40.41289,
+        "lng": 141.28099,
+        "plusCode": "8RG3C77J+59",
         "coordinateAccuracy": "address",
         "geocodeQuery": "青森県三戸郡南部町大字沖田面字沖中51番地2",
-        "geocodeTitle": "青森県南部町沖田面",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "南部公民館（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-ed4d53b963",
@@ -3341,13 +3341,13 @@
         "hours": "9：00～21：00",
         "closed": "年末年始(12月29日から翌年の1月3日まで)はお休みです",
         "url": "https://www.town.aomori-nanbu.lg.jp/page/1716.html",
-        "lat": 40.40588,
-        "lng": 141.342178,
-        "plusCode": "8RG3C84R+9V",
+        "lat": 40.420208,
+        "lng": 141.32994,
+        "plusCode": "8RG3C8CH+3X",
         "coordinateAccuracy": "address",
         "geocodeQuery": "青森県三戸郡南部町大字平字広場28番地1",
-        "geocodeTitle": "青森県南部町平",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "南部町いちょうホール（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-28"
       }
     ],
     "legacyIds": [
@@ -3357,9 +3357,9 @@
     "stockUrl": "https://www.town.aomori-nanbu.lg.jp/page/2052.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
     "geocodeQuery": "青森県三戸郡南部町大字沖田面字沖中51番地2",
-    "geocodeTitle": "青森県南部町沖田面",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RG3C7CJ+2X"
+    "geocodeTitle": "南部公民館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8RG3C77J+59"
   },
   {
     "id": "02-445-b-01",
@@ -3368,8 +3368,8 @@
     "municipality": "南部町",
     "place": "南部町いちょうホール",
     "address": "青森県三戸郡南部町大字平字広場28番地1",
-    "lat": 40.40588,
-    "lng": 141.342178,
+    "lat": 40.420208,
+    "lng": 141.32994,
     "hours": "9：00～21：00\nただし、年末年始(12月29日から翌年の1月3日まで)はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -3389,9 +3389,9 @@
     "stockUrl": "https://www.town.aomori-nanbu.lg.jp/page/2052.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=02#mhcard_result",
     "geocodeQuery": "青森県三戸郡南部町大字平字広場28番地1",
-    "geocodeTitle": "青森県南部町平",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RG3C84R+9V"
+    "geocodeTitle": "南部町いちょうホール（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8RG3C8CH+3X"
   },
   {
     "id": "03-000-a-01",
@@ -3654,8 +3654,8 @@
     "municipality": "花巻市",
     "place": "花巻市役所石鳥谷総合支所",
     "address": "岩手県花巻市石鳥谷町八幡4-161",
-    "lat": 39.472279,
-    "lng": 141.150543,
+    "lat": 39.484184,
+    "lng": 141.147011,
     "hours": "【平日】9:00～16:30\n【休日】9:00～17:00\nただし、12/29～1/3はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -3674,9 +3674,9 @@
     "stockUrl": "https://www.city.hanamaki.iwate.jp/kurashi/suidou/1019833/1001196/1012397.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=03#mhcard_result",
     "geocodeQuery": "岩手県花巻市石鳥谷町八幡4-161",
-    "geocodeTitle": "岩手県花巻市石鳥谷町八幡",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RF3F5C2+W6"
+    "geocodeTitle": "花巻市役所石鳥谷総合支所（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8RF3F4MW+MR"
   },
   {
     "id": "03-205-c-01",
@@ -6196,8 +6196,8 @@
     "municipality": "福島県",
     "place": "福島県あだたら清流センター",
     "address": "福島県二本松市榎戸2-96",
-    "lat": 37.592422,
-    "lng": 140.457138,
+    "lat": 37.590378,
+    "lng": 140.45401,
     "hours": "【平日】8:30～17:15\n【休日】9:00～12:15、13:00〜17:30\nただし、年末年始(12/29〜1/3)はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -6219,13 +6219,13 @@
         "hours": "8:30～17:15",
         "closed": "",
         "url": "http://www.pref.fukushima.lg.jp/sec/41055c/",
-        "lat": 37.592422,
-        "lng": 140.457138,
-        "plusCode": "8R92HFR4+XV",
+        "lat": 37.590378,
+        "lng": 140.45401,
+        "plusCode": "8R92HFR3+5J",
         "coordinateAccuracy": "address",
         "geocodeQuery": "福島県二本松市榎戸2-96",
-        "geocodeTitle": "福島県二本松市榎戸二丁目",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "福島県あだたら清流センター（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-3d9969ba87",
@@ -6251,9 +6251,9 @@
     "stockUrl": "https://www.pref.fukushima.lg.jp/sec/41055c/mhcard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
     "geocodeQuery": "福島県二本松市榎戸2-96",
-    "geocodeTitle": "福島県二本松市榎戸二丁目",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8R92HFR4+XV"
+    "geocodeTitle": "福島県あだたら清流センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8R92HFR3+5J"
   },
   {
     "id": "07-000-b-01",
@@ -6744,8 +6744,8 @@
     "municipality": "須賀川市",
     "place": "須賀川特撮アーカイブセンター",
     "address": "福島県須賀川市柱田字中地前22番地",
-    "lat": 37.318485,
-    "lng": 140.26384,
+    "lat": 37.318056,
+    "lng": 140.277094,
     "hours": "【月曜日、木曜日から日曜日まで】9:00～16:45（最終入館時間は16:45）\n※毎週、火・水曜日（火曜日または水曜日が祝日（振替休日含む）になる場合は、土曜日、日曜日、祝日を除いた翌開館日が休館日）、年末年始はお休みです。",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -6765,9 +6765,9 @@
     "stockUrl": "https://www.sukagawa-jyogesuidojigyo.jp/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
     "geocodeQuery": "福島県須賀川市柱田字中地前22番地",
-    "geocodeTitle": "福島県須賀川市柱田",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8R928797+9G"
+    "geocodeTitle": "須賀川特撮アーカイブセンター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8R92879G+6R"
   },
   {
     "id": "07-208-a-01",
@@ -7037,13 +7037,13 @@
         "hours": "9：00〜17：15",
         "closed": "年末年始はお休みです",
         "url": "http://www.city.motomiya.lg.jp/",
-        "lat": 37.49992,
-        "lng": 140.464401,
-        "plusCode": "8R92FFX7+XQ",
+        "lat": 37.508007,
+        "lng": 140.4526,
+        "plusCode": "8R92GF53+62",
         "coordinateAccuracy": "address",
         "geocodeQuery": "福島県本宮市白岩字堤崎500",
-        "geocodeTitle": "福島県本宮市白岩",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "白沢公民館（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       }
     ],
     "legacyIds": [
@@ -9891,8 +9891,8 @@
     "municipality": "大田原市",
     "place": "大田原市観光交流センター",
     "address": "栃木県大田原市黒羽田町848",
-    "lat": 36.860615,
-    "lng": 140.12439,
+    "lat": 36.862705,
+    "lng": 140.12172,
     "hours": "9:00～17:00\nただし、12/29～1/3はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -9912,9 +9912,9 @@
     "stockUrl": "https://www.city.ohtawara.tochigi.jp/docs/2022111000029/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
     "geocodeQuery": "栃木県大田原市黒羽田町848",
-    "geocodeTitle": "栃木県大田原市黒羽田町",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8R82V46F+6Q"
+    "geocodeTitle": "大田原市観光交流センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8R82V47C+3M"
   },
   {
     "id": "09-211-a-01",
@@ -11441,8 +11441,8 @@
     "municipality": "日本下水道事業団",
     "place": "日本下水道事業団研修センター管理課",
     "address": "埼玉県戸田市下笹目5141",
-    "lat": 35.827251,
-    "lng": 139.658905,
+    "lat": 35.810974,
+    "lng": 139.6403,
     "hours": "【平日】10：00～12：00、13：00～16：00\n【土日祝日】13：00～15：00\nただし、年末年始及びお盆期間は配布を行いません。\n配布については、業務都合により急遽中止等の措置を講じる場合がありますのでお越しになる前に、必ず、JS公式ホームページの最新情報をご確認いただきますようお願いいたします",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -11463,9 +11463,9 @@
     "stockUrl": "https://www.jswa.go.jp/company/50th-anniversary/manhole-card.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=00#mhcard_result",
     "geocodeQuery": "埼玉県戸田市下笹目5141",
-    "geocodeTitle": "埼玉県戸田市下笹目",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7XRMG5+WH"
+    "geocodeTitle": "日本下水道事業団研修センター管理課（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q7XRJ6R+94"
   },
   {
     "id": "11-010-a-01",
@@ -20214,8 +20214,8 @@
     "municipality": "檜原村",
     "place": "郷土資料館",
     "address": "東京都西多摩郡檜原村3221番地",
-    "lat": 35.726822,
-    "lng": 139.14888,
+    "lat": 35.743468,
+    "lng": 139.130037,
     "hours": "【火曜日～土曜日・祝日】10:00～18:00\n※ただし年末年始はお休みです\n【月曜日・日曜日】\n4月～11月 9:30～17:00\n12月～3月 10:00～16:00\n※ただし年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -20234,9 +20234,9 @@
     "stockUrl": "https://www.vill.hinohara.tokyo.jp/0000001479.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
     "geocodeQuery": "東京都西多摩郡檜原村3221番地",
-    "geocodeTitle": "東京都西多摩郡檜原村",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7XP4GX+PH"
+    "geocodeTitle": "郷土資料館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q7XP4VJ+92"
   },
   {
     "id": "13-421-a-01",
@@ -22688,8 +22688,8 @@
     "municipality": "十日町市",
     "place": "十日町温泉総合保養施設 宮中島温泉ミオンなかさと",
     "address": "新潟県十日町市宮中己4197",
-    "lat": 37.069275,
-    "lng": 138.690979,
+    "lat": 37.066691,
+    "lng": 138.707043,
     "hours": "【10～3月】10：00～22：00\nただし、木曜日（8月を除く）、は休館日のため、「ゆくら妻有日帰り温泉」で配布します\n【4～9月】8：30～16：00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -22711,13 +22711,13 @@
         "hours": "10：00～22：00",
         "closed": "木曜日（8月を除く）、は休館日のため、「ゆくら妻有日帰り温泉」で配布します",
         "url": "http://nakasato-mion.com/",
-        "lat": 37.069275,
-        "lng": 138.690979,
-        "plusCode": "8Q9W3M9R+P9",
+        "lat": 37.066691,
+        "lng": 138.707043,
+        "plusCode": "8Q9W3P84+MR",
         "coordinateAccuracy": "address",
         "geocodeQuery": "新潟県十日町市宮中己4197",
-        "geocodeTitle": "新潟県十日町市宮中",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "十日町温泉総合保養施設 宮中島温泉ミオンなかさと（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-cfefd1c836",
@@ -22743,9 +22743,9 @@
     "stockUrl": "http://www.city.tokamachi.lg.jp/soshiki/ke/jogesuidokyoku/04/event/index.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "geocodeQuery": "新潟県十日町市宮中己4197",
-    "geocodeTitle": "新潟県十日町市宮中",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q9W3M9R+P9"
+    "geocodeTitle": "十日町温泉総合保養施設 宮中島温泉ミオンなかさと（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q9W3P84+MR"
   },
   {
     "id": "15-210-c-01",
@@ -23325,8 +23325,8 @@
     "municipality": "佐渡市",
     "place": "南佐渡観光案内所",
     "address": "新潟県佐渡市小木町１９３５番地２６",
-    "lat": 37.819813,
-    "lng": 138.269623,
+    "lat": 37.815273,
+    "lng": 138.279611,
     "hours": "8：30～17：00\nただし、年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -23346,9 +23346,9 @@
     "stockUrl": "https://www.city.sado.niigata.jp/soshiki/2021/53417.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "geocodeQuery": "新潟県佐渡市小木町1935番地26",
-    "geocodeTitle": "新潟県佐渡市小木町",
+    "geocodeTitle": "南佐渡観光案内所（佐渡市公式配布先・NAVITIME施設照合・手動補正）",
     "geocodedAt": "2026-07-05",
-    "plusCode": "8Q9WR799+WR"
+    "plusCode": "8Q9WR78H+4R"
   },
   {
     "id": "15-224-d-01",
@@ -23389,8 +23389,8 @@
     "municipality": "佐渡市",
     "place": "佐渡市赤泊市民センター",
     "address": "新潟県佐渡市赤泊2458番地",
-    "lat": 37.878563,
-    "lng": 138.390518,
+    "lat": 37.865784,
+    "lng": 138.410492,
     "hours": "8：30～17：00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -23410,9 +23410,9 @@
     "stockUrl": "https://www.city.sado.niigata.jp/soshiki/2021/53417.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "geocodeQuery": "新潟県佐渡市赤泊2458番地",
-    "geocodeTitle": "新潟県佐渡市赤泊",
+    "geocodeTitle": "赤泊市民センター（佐渡市公式配布先・NAVITIME施設照合・手動補正）",
     "geocodedAt": "2026-07-05",
-    "plusCode": "8Q9WV9HR+C6"
+    "plusCode": "8Q9WVC86+85"
   },
   {
     "id": "15-224-f-01",
@@ -23421,8 +23421,8 @@
     "municipality": "佐渡市",
     "place": "佐渡市新穂市民センター",
     "address": "新潟県佐渡市新穂瓜生屋501番地",
-    "lat": 38.013241,
-    "lng": 138.44545,
+    "lat": 38.016944,
+    "lng": 138.426915,
     "hours": "8：30～17：00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -23442,9 +23442,9 @@
     "stockUrl": "https://www.city.sado.niigata.jp/soshiki/2021/53417.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
     "geocodeQuery": "新潟県佐渡市新穂瓜生屋501番地",
-    "geocodeTitle": "新潟県佐渡市新穂瓜生屋",
+    "geocodeTitle": "新穂市民センター（佐渡市公式配布先・NAVITIME施設照合・手動補正）",
     "geocodedAt": "2026-07-05",
-    "plusCode": "8QCW2C7W+75"
+    "plusCode": "8QCW2C8G+QQ"
   },
   {
     "id": "15-224-g-01",
@@ -24576,8 +24576,8 @@
     "municipality": "穴水町",
     "place": "穴水町物産館 四季彩々",
     "address": "石川県鳳珠郡穴水町字大町チの41番地6",
-    "lat": 37.228527,
-    "lng": 136.901154,
+    "lat": 37.228229,
+    "lng": 136.904676,
     "hours": "【穴水町物産館 四季彩々】9:00～17:30\n【能登ワイン株式会社】9:00～16:30",
     "closed": "四季彩々は2026年9月・10月の毎週水曜日（9月23日を除く）。能登ワインは12月30日～1月3日",
     "condition": "2か所で無料配布",
@@ -24599,13 +24599,13 @@
         "hours": "9:00～17:30",
         "closed": "2026年9月・10月の毎週水曜日（9月23日を除く）",
         "url": "https://www.town.anamizu.lg.jp/page/105862.html",
-        "lat": 37.228527,
-        "lng": 136.901154,
-        "plusCode": "8Q9R6WH2+CF",
+        "lat": 37.228229,
+        "lng": 136.904676,
+        "plusCode": "8Q9R6WH3+7V",
         "coordinateAccuracy": "address",
         "geocodeQuery": "石川県鳳珠郡穴水町字大町チの41番地6",
-        "geocodeTitle": "穴水町物産館 四季彩々（公式配布先・既存同一住所座標照合・手動補正）",
-        "geocodedAt": "2026-09-25",
+        "geocodeTitle": "穴水町物産館 四季彩々（公式配布先・石川県公式施設地図照合・手動補正）",
+        "geocodedAt": "2026-09-28",
         "distributionMode": "regular",
         "availabilityNote": "余裕あり（穴水町、2026-09-25確認）"
       },
@@ -24639,9 +24639,9 @@
     "stockUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
     "conditionUrl": "https://www.town.anamizu.lg.jp/page/105862.html",
     "geocodeQuery": "石川県鳳珠郡穴水町字大町チの41番地6",
-    "geocodeTitle": "石川県穴水町字大町チ",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q9R6WH2+CF"
+    "geocodeTitle": "穴水町物産館 四季彩々（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q9R6WH3+7V"
   },
   {
     "id": "17-461-b-01",
@@ -26151,8 +26151,8 @@
     "municipality": "上田市",
     "place": "武石ともしび博物館",
     "address": "長野県上田市下武石1902-4",
-    "lat": 36.286594,
-    "lng": 138.23909,
+    "lat": 36.287033,
+    "lng": 138.22998,
     "hours": "【4/1～12/28】9:00～16：00\nただし、月曜と祝日の翌日はお休みです\n（休館日が変更となる場合があるので、詳細は武石ともしび博物館のホームページを確認）\n【12/29～3/31】9:00～16：00\n平日は、武石地域自治センター内、武石地域建設課にて、休日祝日は武石地域自治センター宿直室にて配布します",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -26174,13 +26174,13 @@
         "hours": "9:00～16：00",
         "closed": "月曜と祝日の翌日はお休みです （休館日が変更となる場合があるので、詳細は武石ともしび博物館のホームページを確認）",
         "url": "https://www.city.ueda.nagano.jp/soshiki/tkyoiku/1974.html",
-        "lat": 36.286594,
-        "lng": 138.23909,
-        "plusCode": "8Q8W76PQ+JJ",
+        "lat": 36.287033,
+        "lng": 138.22998,
+        "plusCode": "8Q8W76PH+RX",
         "coordinateAccuracy": "address",
         "geocodeQuery": "長野県上田市下武石1902-4",
-        "geocodeTitle": "長野県上田市下武石",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "武石ともしび博物館（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-28"
       },
       {
         "id": "place-67e32581f8",
@@ -26206,9 +26206,9 @@
     "stockUrl": "https://www.city.ueda.nagano.jp/soshiki/mjogesui/109814.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
     "geocodeQuery": "長野県上田市下武石1902-4",
-    "geocodeTitle": "長野県上田市下武石",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q8W76PQ+JJ"
+    "geocodeTitle": "武石ともしび博物館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q8W76PH+RX"
   },
   {
     "id": "20-203-d-01",
@@ -26944,8 +26944,8 @@
     "municipality": "佐久市",
     "place": "道の駅 ヘルシーテラス佐久南",
     "address": "長野県佐久市伴野７－１",
-    "lat": 36.241837,
-    "lng": 138.436295,
+    "lat": 36.23628,
+    "lng": 138.44075,
     "hours": "9:00～18:00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -26965,9 +26965,9 @@
     "stockUrl": "https://www.city.saku.nagano.jp/kurashi/gesuido/gesuidojigyo/designmanhole/mannholkard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
     "geocodeQuery": "長野県佐久市伴野7-1",
-    "geocodeTitle": "長野県佐久市伴野",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q8W6CRP+PG"
+    "geocodeTitle": "道の駅 ヘルシーテラス佐久南（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q8W6CPR+G7"
   },
   {
     "id": "20-217-d-01",
@@ -27391,8 +27391,8 @@
     "municipality": "南箕輪村",
     "place": "道の駅大芝高原 味工房",
     "address": "長野県上伊那郡南箕輪村2358番地5",
-    "lat": 35.872898,
-    "lng": 137.975082,
+    "lat": 35.886482,
+    "lng": 137.94444,
     "hours": "9：30 ～ 18：00 (11月～3月は17：00まで)\nただし、毎週水曜日と年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -27412,9 +27412,9 @@
     "stockUrl": "https://www.vill.minamiminowa.lg.jp/soshiki/kensetsu/manholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
     "geocodeQuery": "長野県上伊那郡南箕輪村2358番地5",
-    "geocodeTitle": "長野県上伊那郡南箕輪村",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7VVXFG+52"
+    "geocodeTitle": "道の駅大芝高原 味工房（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q7VVWPV+HQ"
   },
   {
     "id": "20-403-a-01",
@@ -27554,8 +27554,8 @@
     "municipality": "大桑村",
     "place": "大桑村役場",
     "address": "長野県木曽郡大桑村大字長野880-1",
-    "lat": 35.696079,
-    "lng": 137.766953,
+    "lat": 35.689453,
+    "lng": 137.67163,
     "hours": "8:30～17:15（年中無休）",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -27575,9 +27575,9 @@
     "stockUrl": "https://www.vill.okuwa.lg.jp/kurashi/jogesuido/mannho-ruka-do.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
     "geocodeQuery": "長野県木曽郡大桑村大字長野880-1",
-    "geocodeTitle": "長野県大桑村長野",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7VMQW8+CQ"
+    "geocodeTitle": "大桑村役場（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q7VMMQC+QM"
   },
   {
     "id": "20-451-a-01",
@@ -28042,8 +28042,8 @@
     "municipality": "高山市",
     "place": "道の駅ひだ朝日村",
     "address": "岐阜県高山市朝日町万石150番地",
-    "lat": 36.074844,
-    "lng": 137.348541,
+    "lat": 36.088245,
+    "lng": 137.35107,
     "hours": "【通常】10：00～16：00\nただし、水曜日（祝祭日は翌日）はお休みです\n【上記の休業日】8:30～17：15\n道の駅ひだ朝日村の休業日に配布します",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -28065,13 +28065,13 @@
         "hours": "10：00～16：00",
         "closed": "水曜日（祝祭日は翌日）はお休みです",
         "url": "http://www.gix.or.jp/~z33asahi/index.html",
-        "lat": 36.074844,
-        "lng": 137.348541,
-        "plusCode": "8Q8V38FX+WC",
+        "lat": 36.088245,
+        "lng": 137.35107,
+        "plusCode": "8Q8V39Q2+7C",
         "coordinateAccuracy": "address",
         "geocodeQuery": "岐阜県高山市朝日町万石150番地",
-        "geocodeTitle": "岐阜県高山市朝日町万石",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "道の駅ひだ朝日村（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-28"
       },
       {
         "id": "place-cbb243a37d",
@@ -28081,13 +28081,13 @@
         "hours": "8:30～17：15",
         "closed": "道の駅ひだ朝日村の休業日に配布します",
         "url": "https://www.city.takayama.lg.jp/shisetsu/1004141/1004416/1004417.html",
-        "lat": 36.074844,
-        "lng": 137.348541,
-        "plusCode": "8Q8V38FX+WC",
+        "lat": 36.0888864,
+        "lng": 137.3470504,
+        "plusCode": "8Q8V38QW+HR",
         "coordinateAccuracy": "address",
         "geocodeQuery": "岐阜県高山市朝日町万石800番地",
-        "geocodeTitle": "岐阜県高山市朝日町万石",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "高山市朝日支所基盤産業課窓口（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       }
     ],
     "legacyIds": [
@@ -28097,9 +28097,9 @@
     "stockUrl": "https://www.city.takayama.lg.jp/kurashi/1000022/1000122/1001131/1022809.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=21#mhcard_result",
     "geocodeQuery": "岐阜県高山市朝日町万石150番地",
-    "geocodeTitle": "岐阜県高山市朝日町万石",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q8V38FX+WC"
+    "geocodeTitle": "道の駅ひだ朝日村（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q8V39Q2+7C"
   },
   {
     "id": "21-203-h-01",
@@ -33321,8 +33321,8 @@
     "municipality": "志摩市",
     "place": "安乗岬園地休憩舎",
     "address": "三重県志摩市阿児町安乗794－1",
-    "lat": 34.358669,
-    "lng": 136.897079,
+    "lat": 34.364815,
+    "lng": 136.9069,
     "hours": "（配布場所①）\n9：30～16：00\n臨時休業等の情報についてはこちらからご確認ください\n（配布場所②）\n9:00〜17:00\n※年末年始（12/29～1/3）も配布します。",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -33344,13 +33344,13 @@
         "hours": "（配布場所①） 9：30～16：00 （配布場所②） 9:00〜17:00",
         "closed": "臨時休業等の情報についてはこちらからご確認ください ※年末年始（12/29～1/3）も配布します。",
         "url": "https://uedashoten.jp/",
-        "lat": 34.358669,
-        "lng": 136.897079,
-        "plusCode": "8Q6R9V5W+FR",
+        "lat": 34.364815,
+        "lng": 136.9069,
+        "plusCode": "8Q6R9W74+WQ",
         "coordinateAccuracy": "address",
         "geocodeQuery": "三重県志摩市阿児町安乗794-1",
-        "geocodeTitle": "三重県志摩市阿児町安乗",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "安乗岬園地休憩舎（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-28"
       },
       {
         "id": "place-2d42793ca7",
@@ -33376,9 +33376,9 @@
     "stockUrl": "https://www.city.shima.mie.jp/kakuka/jogesuidobu/gesuidoka/gesuido/7166.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=24#mhcard_result",
     "geocodeQuery": "三重県志摩市阿児町安乗794-1",
-    "geocodeTitle": "三重県志摩市阿児町安乗",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q6R9V5W+FR"
+    "geocodeTitle": "安乗岬園地休憩舎（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q6R9W74+WQ"
   },
   {
     "id": "24-216-a-01",
@@ -38778,8 +38778,8 @@
     "municipality": "西脇市",
     "place": "西脇市日本のへそ日時計の丘公園オートキャンプ場",
     "address": "兵庫県西脇市黒田庄町門柳871-14",
-    "lat": 35.038734,
-    "lng": 135.030228,
+    "lat": 35.02828,
+    "lng": 135.01643,
     "hours": "9：00～17：00\n年末年始（12月29日～1月3日）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -38799,9 +38799,9 @@
     "stockUrl": "https://www.city.nishiwaki.lg.jp/kurashi/jyogesuido/topics/1511776919480.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
     "geocodeQuery": "兵庫県西脇市黒田庄町門柳871-14",
-    "geocodeTitle": "兵庫県西脇市黒田庄町門柳",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7Q22QJ+F3"
+    "geocodeTitle": "西脇市日本のへそ日時計の丘公園オートキャンプ場（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q7Q22H8+8H"
   },
   {
     "id": "28-214-a-01",
@@ -40427,8 +40427,8 @@
     "municipality": "有田川町",
     "place": "有田川町観光案内所",
     "address": "和歌山県有田郡有田川町明王寺37-1",
-    "lat": 34.059078,
-    "lng": 135.196838,
+    "lat": 34.057421,
+    "lng": 135.196634,
     "hours": "8：00～17：00\nただし、年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -40448,9 +40448,9 @@
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=30#mhcard_result",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=30#mhcard_result",
     "geocodeQuery": "和歌山県有田郡有田川町明王寺37-1",
-    "geocodeTitle": "和歌山県有田川町明王寺",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q6Q355W+JP"
+    "geocodeTitle": "有田川町観光案内所（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q6Q354W+XM"
   },
   {
     "id": "31-201-a-01",
@@ -43484,8 +43484,8 @@
     "municipality": "山口市",
     "place": "阿知須いぐらの館",
     "address": "山口県山口市阿知須3425",
-    "lat": 34.016357,
-    "lng": 131.343506,
+    "lat": 34.00789698277422,
+    "lng": 131.36175327042042,
     "hours": "10：00～16：00\nただし、水・木曜日（祝日の場合は翌日）、年末年始はお休みです\n【休館日】9：00～17：00\n（上下水道局の開庁日のみ）",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -43507,13 +43507,13 @@
         "hours": "10：00～16：00",
         "closed": "水・木曜日（祝日の場合は翌日）、年末年始はお休みです",
         "url": "https://www.city.yamaguchi.lg.jp/map/7299.html",
-        "lat": 34.016357,
-        "lng": 131.343506,
-        "plusCode": "8Q6H288V+GC",
+        "lat": 34.00789698277422,
+        "lng": 131.36175327042042,
+        "plusCode": "8Q6H2956+5P",
         "coordinateAccuracy": "address",
         "geocodeQuery": "山口県山口市阿知須3425",
-        "geocodeTitle": "山口県山口市阿知須",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "阿知須いぐらの館（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-92eb28ff3b",
@@ -43539,9 +43539,9 @@
     "stockUrl": "https://water-city-yamaguchi.com/for-kids/page_1089/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
     "geocodeQuery": "山口県山口市阿知須3425",
-    "geocodeTitle": "山口県山口市阿知須",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q6H288V+GC"
+    "geocodeTitle": "阿知須いぐらの館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q6H2956+5P"
   },
   {
     "id": "35-203-e-01",
@@ -44326,8 +44326,8 @@
     "municipality": "鳴門市",
     "place": "鳴門市観光情報センター",
     "address": "徳島県鳴門市撫養町大桑島濘岩浜75-1",
-    "lat": 34.183296,
-    "lng": 134.611313,
+    "lat": 34.188606,
+    "lng": 134.61084,
     "hours": "8：00～20：00",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -44347,9 +44347,9 @@
     "stockUrl": "http://www.city.naruto.tokushima.jp/kurashi/sumai/suido/gesuido/manholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=36#mhcard_result",
     "geocodeQuery": "徳島県鳴門市撫養町大桑島濘岩浜75-1",
-    "geocodeTitle": "徳島県鳴門市撫養町大桑島濘岩浜",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q6P5JM6+8G"
+    "geocodeTitle": "鳴門市観光情報センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q6P5JQ6+C8"
   },
   {
     "id": "36-202-b-01",
@@ -44906,8 +44906,8 @@
     "municipality": "丸亀市",
     "place": "丸亀市浄化センター",
     "address": "香川県丸亀市昭和町21番地1",
-    "lat": 34.294312,
-    "lng": 133.769943,
+    "lat": 34.29131393068,
+    "lng": 133.76971548682698,
     "hours": "【平日】8:30～17:00\n【休日】9:00～16:30\n※土曜日・日曜日・祝日、12月29日～1月3日に配布します",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -44929,13 +44929,13 @@
         "hours": "8:30～17:00",
         "closed": "",
         "url": "https://www.city.marugame.lg.jp/page/1402.html",
-        "lat": 34.294312,
-        "lng": 133.769943,
-        "plusCode": "8Q6M7QV9+PX",
+        "lat": 34.29131393068,
+        "lng": 133.76971548682698,
+        "plusCode": "8Q6M7QR9+GV",
         "coordinateAccuracy": "address",
         "geocodeQuery": "香川県丸亀市昭和町21番地1",
-        "geocodeTitle": "香川県丸亀市昭和町",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "丸亀市浄化センター（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-1256508b6a",
@@ -44961,9 +44961,9 @@
     "stockUrl": "https://www.city.marugame.lg.jp/page/1402.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=37#mhcard_result",
     "geocodeQuery": "香川県丸亀市昭和町21番地1",
-    "geocodeTitle": "香川県丸亀市昭和町",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q6M7QV9+PX"
+    "geocodeTitle": "丸亀市浄化センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q6M7QR9+GV"
   },
   {
     "id": "37-203-a-01",
@@ -46103,8 +46103,8 @@
     "municipality": "高知県",
     "place": "高須浄化センター",
     "address": "高知県高知市高須304",
-    "lat": 33.563995,
-    "lng": 133.575226,
+    "lat": 33.563757,
+    "lng": 133.57337,
     "hours": "【平日】8:30-17:15\n(12：00～13：00の間はお休みです)\n【休日】9:00-16:30\n※年末年始はお休みです。\n※休日は、令和2年10月10日～令和9年3月28日の試行配布です。ご注意ください。",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -46126,13 +46126,13 @@
         "hours": "8:30-17:15",
         "closed": "(12：00～13：00の間はお休みです)",
         "url": "http://www.pref.kochi.lg.jp/soshiki/171801/",
-        "lat": 33.563995,
-        "lng": 133.575226,
-        "plusCode": "8Q5MHH7G+H3",
+        "lat": 33.563757,
+        "lng": 133.57337,
+        "plusCode": "8Q5MHH7F+G8",
         "coordinateAccuracy": "address",
         "geocodeQuery": "高知県高知市高須304",
-        "geocodeTitle": "高知県高知市高須",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "高須浄化センター（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-28"
       },
       {
         "id": "place-8911adcf40",
@@ -46158,9 +46158,9 @@
     "stockUrl": "https://www.pref.kochi.lg.jp/soshiki/171801/card.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
     "geocodeQuery": "高知県高知市高須304",
-    "geocodeTitle": "高知県高知市高須",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q5MHH7G+H3"
+    "geocodeTitle": "高須浄化センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q5MHH7F+G8"
   },
   {
     "id": "39-201-a-01",
@@ -46561,8 +46561,8 @@
     "municipality": "香美市",
     "place": "龍河洞観光センター",
     "address": "高知県香美市土佐山田町逆川1424",
-    "lat": 33.60413,
-    "lng": 133.745407,
+    "lat": 33.603764,
+    "lng": 133.74385,
     "hours": "【2月～10月】8:30～17:00\n【11月～1月】8:30～16:30",
     "closed": "年中無休",
     "condition": "1人1枚。郵送不可。転売禁止",
@@ -46582,9 +46582,9 @@
     "stockUrl": "https://www.city.kami.lg.jp/soshiki/40/designmanholecard.html",
     "conditionUrl": "https://www.city.kami.lg.jp/soshiki/40/designmanholecard.html",
     "geocodeQuery": "高知県香美市土佐山田町逆川1424",
-    "geocodeTitle": "高知県香美市土佐山田町逆川",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q5MJP3W+M5"
+    "geocodeTitle": "龍河洞観光センター（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q5MJP3V+GG"
   },
   {
     "id": "39-212-b-01",
@@ -46625,8 +46625,8 @@
     "municipality": "香美市",
     "place": "奥物部ふるさと物産館",
     "address": "高知県香美市物部町大栃872-2",
-    "lat": 33.705917,
-    "lng": 133.883224,
+    "lat": 33.695644,
+    "lng": 133.875,
     "hours": "9：00～17：00\nただし、毎週水曜日、年末年始(12/29～1/3)はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -46646,9 +46646,9 @@
     "stockUrl": "https://www.city.kami.lg.jp/soshiki/40/designmanholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
     "geocodeQuery": "高知県香美市物部町大栃872-2",
-    "geocodeTitle": "高知県香美市物部町大栃",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q5MPV4M+97"
+    "geocodeTitle": "奥物部ふるさと物産館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q5MMVWF+7X"
   },
   {
     "id": "39-212-d-01",
@@ -48214,8 +48214,8 @@
     "municipality": "佐賀市",
     "place": "東よか干潟ビジターセンター「ひがさす」",
     "address": "佐賀県佐賀市東与賀町大字田中2757-4",
-    "lat": 33.196812,
-    "lng": 130.281509,
+    "lat": 33.174981,
+    "lng": 130.270227,
     "hours": "【平日】8：30～17：15\nただし、年末年始（12/29～1/3）はお休みです\n【土日祝日】9：00～17：00\nただし、年末年始（12/29～1/3）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -48235,9 +48235,9 @@
     "stockUrl": "https://www.water.saga.saga.jp/main/5768.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=41#mhcard_result",
     "geocodeQuery": "佐賀県佐賀市東与賀町大字田中2757-4",
-    "geocodeTitle": "佐賀県佐賀市東与賀町田中",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q5G57WJ+PJ"
+    "geocodeTitle": "東よか干潟ビジターセンター「ひがさす」（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "8Q5G57FC+X3"
   },
   {
     "id": "41-201-b-01",
@@ -49541,8 +49541,8 @@
     "municipality": "荒尾市",
     "place": "荒尾市企業局",
     "address": "熊本県荒尾市増永1903番地",
-    "lat": 32.97261,
-    "lng": 130.451248,
+    "lat": 32.97582,
+    "lng": 130.45209,
     "hours": "【平日】9:00～17:00\n【土日祝】9:30～17:00\nただし、年末年始はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -49564,13 +49564,13 @@
         "hours": "9:00～17:00",
         "closed": "",
         "url": "https://www.city.arao.lg.jp/",
-        "lat": 32.97261,
-        "lng": 130.451248,
-        "plusCode": "8Q4GXFF2+2F",
+        "lat": 32.97582,
+        "lng": 130.45209,
+        "plusCode": "8Q4GXFG2+8R",
         "coordinateAccuracy": "address",
         "geocodeQuery": "熊本県荒尾市増永1903番地",
-        "geocodeTitle": "熊本県荒尾市増永",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "荒尾市企業局（公式配布先・地図検索照合・手動補正）",
+        "geocodedAt": "2026-09-27"
       },
       {
         "id": "place-44ee297889",
@@ -49596,9 +49596,9 @@
     "stockUrl": "https://www.city.arao.lg.jp/oshirase/machi-wadai/page14159.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
     "geocodeQuery": "熊本県荒尾市増永1903番地",
-    "geocodeTitle": "熊本県荒尾市増永",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q4GXFF2+2F"
+    "geocodeTitle": "荒尾市企業局（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-28",
+    "plusCode": "8Q4GXFG2+8R"
   },
   {
     "id": "43-205-a-01",
@@ -51026,8 +51026,8 @@
     "municipality": "奄美市",
     "place": "奄美市立奄美博物館",
     "address": "鹿児島県奄美市名瀬長浜町517番地",
-    "lat": 28.396309,
-    "lng": 129.493546,
+    "lat": 28.398283,
+    "lng": 129.4945,
     "hours": "9：00～16：30\nただし、第3月曜日、年末年始（12月28日～1月1日）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -51047,9 +51047,9 @@
     "stockUrl": "https://www.city.amami.lg.jp/gesui/mhcard/01.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=46#mhcard_result",
     "geocodeQuery": "鹿児島県奄美市名瀬長浜町517番地",
-    "geocodeTitle": "鹿児島県奄美市名瀬長浜町",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "7QWF9FWV+GC"
+    "geocodeTitle": "奄美市立奄美博物館（公式配布先・地図検索照合・手動補正）",
+    "geocodedAt": "2026-09-27",
+    "plusCode": "7QWF9FXV+8R"
   },
   {
     "id": "46-530-a-01",

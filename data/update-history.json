@@ -1,7 +1,1232 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T21:36:18.452Z",
+  "generatedAt": "2026-09-28T12:00:00.000Z",
   "updates": [
+    {
+      "id": "2026-09-28-4675a44ac4e2",
+      "date": "2026-09-28",
+      "generatedAt": "2026-09-28T12:00:00.000Z",
+      "source": "Nationwide pin audit R10: verified official distributors and exact facility coordinates",
+      "totalChanges": 36,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "00-101-a-01",
+          "cardName": "日本下水道事業団",
+          "prefecture": "埼玉県",
+          "municipality": "日本下水道事業団",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.827251",
+              "after": "35.810974"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.658905",
+              "after": "139.6403"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7XRMG5+WH",
+              "after": "8Q7XRJ6R+94"
+            }
+          ]
+        },
+        {
+          "locationId": "01-208-b-01",
+          "cardName": "北見市 B001",
+          "prefecture": "北海道",
+          "municipality": "北見市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "44.120422",
+              "after": "44.120695"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "144.073364",
+              "after": "144.071169"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RP643CF+58",
+              "after": "8RP643CC+7F"
+            }
+          ]
+        },
+        {
+          "locationId": "01-424-a-01",
+          "cardName": "奈井江町",
+          "prefecture": "北海道",
+          "municipality": "奈井江町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.423855",
+              "after": "43.425102"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.893402",
+              "after": "141.888817"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM3CVFV+G9",
+              "after": "8RM3CVGQ+2G"
+            }
+          ]
+        },
+        {
+          "locationId": "01-487-a-01",
+          "cardName": "天塩町 A001",
+          "prefecture": "北海道",
+          "municipality": "天塩町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "44.924023",
+              "after": "44.884846"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.757675",
+              "after": "141.751"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RP3WQF5+J3",
+              "after": "8RP3VQM2+W9"
+            }
+          ]
+        },
+        {
+          "locationId": "01-516-b-01",
+          "cardName": "豊富町 B001",
+          "prefecture": "北海道",
+          "municipality": "豊富町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "45.079037",
+              "after": "45.07427"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.825745",
+              "after": "141.83847"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RQ33RHG+J7",
+              "after": "8RQ33RFQ+P9"
+            }
+          ]
+        },
+        {
+          "locationId": "01-585-a-01",
+          "cardName": "安平町",
+          "prefecture": "北海道",
+          "municipality": "安平町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "42.875992",
+              "after": "42.875923"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.816544",
+              "after": "141.81882"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RJ3VRG8+9J",
+              "after": "8RJ3VRG9+9G"
+            }
+          ]
+        },
+        {
+          "locationId": "02-445-a-01",
+          "cardName": "南部町 A001",
+          "prefecture": "青森県",
+          "municipality": "南部町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "南部公民館 / 青森県三戸郡南部町大字沖田面字沖中51番地２ / 9：00～21：00 / 毎月第3日曜日、国民の祝日、年末年始(12月29日から翌年の1月3日まで)はお休みです / 40.420063, 141.282471 / Plus Code 8RG3C7CJ+2X\n南部町いちょうホール / 青森県三戸郡南部町大字平字広場28番地1 / 休館日 9：00～21：00 / 年末年始(12月29日から翌年の1月3日まで)はお休みです / 40.40588, 141.342178 / Plus Code 8RG3C84R+9V",
+              "after": "南部公民館 / 青森県三戸郡南部町大字沖田面字沖中51番地２ / 9：00～21：00 / 毎月第3日曜日、国民の祝日、年末年始(12月29日から翌年の1月3日まで)はお休みです / 40.41289, 141.28099 / Plus Code 8RG3C77J+59\n南部町いちょうホール / 青森県三戸郡南部町大字平字広場28番地1 / 休館日 9：00～21：00 / 年末年始(12月29日から翌年の1月3日まで)はお休みです / 40.420208, 141.32994 / Plus Code 8RG3C8CH+3X"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "40.420063",
+              "after": "40.41289"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.282471",
+              "after": "141.28099"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RG3C7CJ+2X",
+              "after": "8RG3C77J+59"
+            }
+          ]
+        },
+        {
+          "locationId": "02-445-b-01",
+          "cardName": "南部町 B001",
+          "prefecture": "青森県",
+          "municipality": "南部町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "40.40588",
+              "after": "40.420208"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.342178",
+              "after": "141.32994"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RG3C84R+9V",
+              "after": "8RG3C8CH+3X"
+            }
+          ]
+        },
+        {
+          "locationId": "03-205-b-01",
+          "cardName": "花巻市 B001",
+          "prefecture": "岩手県",
+          "municipality": "花巻市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "39.472279",
+              "after": "39.484184"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.150543",
+              "after": "141.147011"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RF3F5C2+W6",
+              "after": "8RF3F4MW+MR"
+            }
+          ]
+        },
+        {
+          "locationId": "07-000-a-01",
+          "cardName": "福島県 A001",
+          "prefecture": "福島県",
+          "municipality": "福島県",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "福島県あだたら清流センター / 福島県二本松市榎戸2-96 / 平日 8:30～17:15 / 37.592422, 140.457138 / Plus Code 8R92HFR4+XV\n二本松市観光案内所 / 福島県二本松市本町2-262（JR二本松駅構内） / 土日祝日 9:00～12:15、13:00〜17:30 / 年末年始(12/29〜1/3)はお休みです / 37.589745, 140.435303 / Plus Code 8R92HCQP+V4",
+              "after": "福島県あだたら清流センター / 福島県二本松市榎戸2-96 / 平日 8:30～17:15 / 37.590378, 140.45401 / Plus Code 8R92HFR3+5J\n二本松市観光案内所 / 福島県二本松市本町2-262（JR二本松駅構内） / 土日祝日 9:00～12:15、13:00〜17:30 / 年末年始(12/29〜1/3)はお休みです / 37.589745, 140.435303 / Plus Code 8R92HCQP+V4"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.592422",
+              "after": "37.590378"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.457138",
+              "after": "140.45401"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R92HFR4+XV",
+              "after": "8R92HFR3+5J"
+            }
+          ]
+        },
+        {
+          "locationId": "07-207-c-01",
+          "cardName": "須賀川市 C001",
+          "prefecture": "福島県",
+          "municipality": "須賀川市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.318485",
+              "after": "37.318056"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.26384",
+              "after": "140.277094"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R928797+9G",
+              "after": "8R92879G+6R"
+            }
+          ]
+        },
+        {
+          "locationId": "07-214-b-01",
+          "cardName": "本宮市 B001",
+          "prefecture": "福島県",
+          "municipality": "本宮市",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "本宮市中央公民館 / 福島県本宮市本宮字矢来39-1 / 平日 9：00〜17：15 / 年末年始はお休みです / 37.51696, 140.400665 / Plus Code 8R92GC82+Q7\n白沢公民館 / 福島県本宮市白岩字堤崎500 / 平日 9：00〜17：15 / 年末年始はお休みです / 37.49992, 140.464401 / Plus Code 8R92FFX7+XQ",
+              "after": "本宮市中央公民館 / 福島県本宮市本宮字矢来39-1 / 平日 9：00〜17：15 / 年末年始はお休みです / 37.51696, 140.400665 / Plus Code 8R92GC82+Q7\n白沢公民館 / 福島県本宮市白岩字堤崎500 / 平日 9：00〜17：15 / 年末年始はお休みです / 37.508007, 140.4526 / Plus Code 8R92GF53+62"
+            }
+          ]
+        },
+        {
+          "locationId": "09-210-b-01",
+          "cardName": "大田原市 B001",
+          "prefecture": "栃木県",
+          "municipality": "大田原市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.860615",
+              "after": "36.862705"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.12439",
+              "after": "140.12172"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R82V46F+6Q",
+              "after": "8R82V47C+3M"
+            }
+          ]
+        },
+        {
+          "locationId": "13-307-a-01",
+          "cardName": "檜原村",
+          "prefecture": "東京都",
+          "municipality": "檜原村",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.726822",
+              "after": "35.743468"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.14888",
+              "after": "139.130037"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7XP4GX+PH",
+              "after": "8Q7XP4VJ+92"
+            }
+          ]
+        },
+        {
+          "locationId": "15-210-b-01",
+          "cardName": "十日町市 B001",
+          "prefecture": "新潟県",
+          "municipality": "十日町市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "十日町温泉総合保養施設 宮中島温泉ミオンなかさと / 新潟県十日町市宮中己4197 / 10～3月 10：00～22：00 / 木曜日（8月を除く）、は休館日のため、「ゆくら妻有日帰り温泉」で配布します / 37.069275, 138.690979 / Plus Code 8Q9W3M9R+P9\n清津渓谷トンネル エントランスPeriscope / 新潟県十日町市小出2119 / 4～9月 8：30～16：00 / 36.953156, 138.73494 / Plus Code 8Q8WXP3M+7X",
+              "after": "十日町温泉総合保養施設 宮中島温泉ミオンなかさと / 新潟県十日町市宮中己4197 / 10～3月 10：00～22：00 / 木曜日（8月を除く）、は休館日のため、「ゆくら妻有日帰り温泉」で配布します / 37.066691, 138.707043 / Plus Code 8Q9W3P84+MR\n清津渓谷トンネル エントランスPeriscope / 新潟県十日町市小出2119 / 4～9月 8：30～16：00 / 36.953156, 138.73494 / Plus Code 8Q8WXP3M+7X"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.069275",
+              "after": "37.066691"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.690979",
+              "after": "138.707043"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9W3M9R+P9",
+              "after": "8Q9W3P84+MR"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-c-01",
+          "cardName": "佐渡市 C001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.819813",
+              "after": "37.815273"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.269623",
+              "after": "138.279611"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9WR799+WR",
+              "after": "8Q9WR78H+4R"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-e-01",
+          "cardName": "佐渡市 E001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.878563",
+              "after": "37.865784"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.390518",
+              "after": "138.410492"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9WV9HR+C6",
+              "after": "8Q9WVC86+85"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-f-01",
+          "cardName": "佐渡市 F001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.013241",
+              "after": "38.016944"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.44545",
+              "after": "138.426915"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8QCW2C7W+75",
+              "after": "8QCW2C8G+QQ"
+            }
+          ]
+        },
+        {
+          "locationId": "17-461-a-01",
+          "cardName": "穴水町 A001",
+          "prefecture": "石川県",
+          "municipality": "穴水町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.228527, 136.901154 / Plus Code 8Q9R6WH2+CF\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.231444, 136.9789 / Plus Code 8Q9R6XJH+HH",
+              "after": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.228229, 136.904676 / Plus Code 8Q9R6WH3+7V\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.231444, 136.9789 / Plus Code 8Q9R6XJH+HH"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.228527",
+              "after": "37.228229"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "136.901154",
+              "after": "136.904676"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9R6WH2+CF",
+              "after": "8Q9R6WH3+7V"
+            }
+          ]
+        },
+        {
+          "locationId": "20-203-c-01",
+          "cardName": "上田市 C001",
+          "prefecture": "長野県",
+          "municipality": "上田市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "武石ともしび博物館 / 長野県上田市下武石1902-4 / 4/1～12/28 9:00～16：00 / 月曜と祝日の翌日はお休みです （休館日が変更となる場合があるので、詳細は武石ともしび博物館のホームページを確認） / 36.286594, 138.23909 / Plus Code 8Q8W76PQ+JJ\n上田市武石地域自治センター / 長野県上田市下武石742 / 12/29～3/31 9:00～16：00 平日は、武石地域自治センター内、武石地域建設課にて、休日祝日は武石地域自治センター宿直室にて配布します / 36.284405, 138.23044 / Plus Code 8Q8W76MJ+Q5",
+              "after": "武石ともしび博物館 / 長野県上田市下武石1902-4 / 4/1～12/28 9:00～16：00 / 月曜と祝日の翌日はお休みです （休館日が変更となる場合があるので、詳細は武石ともしび博物館のホームページを確認） / 36.287033, 138.22998 / Plus Code 8Q8W76PH+RX\n上田市武石地域自治センター / 長野県上田市下武石742 / 12/29～3/31 9:00～16：00 平日は、武石地域自治センター内、武石地域建設課にて、休日祝日は武石地域自治センター宿直室にて配布します / 36.284405, 138.23044 / Plus Code 8Q8W76MJ+Q5"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.286594",
+              "after": "36.287033"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.23909",
+              "after": "138.22998"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8W76PQ+JJ",
+              "after": "8Q8W76PH+RX"
+            }
+          ]
+        },
+        {
+          "locationId": "20-217-c-01",
+          "cardName": "佐久市 C001",
+          "prefecture": "長野県",
+          "municipality": "佐久市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.241837",
+              "after": "36.23628"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.436295",
+              "after": "138.44075"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8W6CRP+PG",
+              "after": "8Q8W6CPR+G7"
+            }
+          ]
+        },
+        {
+          "locationId": "20-385-a-01",
+          "cardName": "南箕輪村",
+          "prefecture": "長野県",
+          "municipality": "南箕輪村",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.872898",
+              "after": "35.886482"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "137.975082",
+              "after": "137.94444"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7VVXFG+52",
+              "after": "8Q7VVWPV+HQ"
+            }
+          ]
+        },
+        {
+          "locationId": "20-430-a-01",
+          "cardName": "大桑村",
+          "prefecture": "長野県",
+          "municipality": "大桑村",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.696079",
+              "after": "35.689453"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "137.766953",
+              "after": "137.67163"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7VMQW8+CQ",
+              "after": "8Q7VMMQC+QM"
+            }
+          ]
+        },
+        {
+          "locationId": "21-203-g-01",
+          "cardName": "高山市 G001",
+          "prefecture": "岐阜県",
+          "municipality": "高山市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "道の駅ひだ朝日村 / 岐阜県高山市朝日町万石150番地 / 通常 10：00～16：00 / 水曜日（祝祭日は翌日）はお休みです / 36.074844, 137.348541 / Plus Code 8Q8V38FX+WC\n高山市朝日支所基盤産業課窓口 / 岐阜県高山市朝日町万石800番地 / 上記の休業日 8:30～17：15 / 道の駅ひだ朝日村の休業日に配布します / 36.074844, 137.348541 / Plus Code 8Q8V38FX+WC",
+              "after": "道の駅ひだ朝日村 / 岐阜県高山市朝日町万石150番地 / 通常 10：00～16：00 / 水曜日（祝祭日は翌日）はお休みです / 36.088245, 137.35107 / Plus Code 8Q8V39Q2+7C\n高山市朝日支所基盤産業課窓口 / 岐阜県高山市朝日町万石800番地 / 上記の休業日 8:30～17：15 / 道の駅ひだ朝日村の休業日に配布します / 36.0888864, 137.3470504 / Plus Code 8Q8V38QW+HR"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.074844",
+              "after": "36.088245"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "137.348541",
+              "after": "137.35107"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8V38FX+WC",
+              "after": "8Q8V39Q2+7C"
+            }
+          ]
+        },
+        {
+          "locationId": "24-215-a-01",
+          "cardName": "志摩市",
+          "prefecture": "三重県",
+          "municipality": "志摩市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "安乗岬園地休憩舎 / 三重県志摩市阿児町安乗794－1 / 平日、土日祝 （配布場所①） 9：30～16：00 （配布場所②） 9:00〜17:00 / 臨時休業等の情報についてはこちらからご確認ください ※年末年始（12/29～1/3）も配布します。 / 34.358669, 136.897079 / Plus Code 8Q6R9V5W+FR\n志摩市観光協会 / 三重県志摩市阿児町鵜方1670-2 近鉄鵜方駅改札階 / 土日祝 （配布場所①） 9：30～16：00 （配布場所②） 9:00〜17:00 / 臨時休業等の情報についてはこちらからご確認ください ※年末年始（12/29～1/3）も配布します。 / 34.32925, 136.826187 / Plus Code 8Q6R8RHG+PF",
+              "after": "安乗岬園地休憩舎 / 三重県志摩市阿児町安乗794－1 / 平日、土日祝 （配布場所①） 9：30～16：00 （配布場所②） 9:00〜17:00 / 臨時休業等の情報についてはこちらからご確認ください ※年末年始（12/29～1/3）も配布します。 / 34.364815, 136.9069 / Plus Code 8Q6R9W74+WQ\n志摩市観光協会 / 三重県志摩市阿児町鵜方1670-2 近鉄鵜方駅改札階 / 土日祝 （配布場所①） 9：30～16：00 （配布場所②） 9:00〜17:00 / 臨時休業等の情報についてはこちらからご確認ください ※年末年始（12/29～1/3）も配布します。 / 34.32925, 136.826187 / Plus Code 8Q6R8RHG+PF"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.358669",
+              "after": "34.364815"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "136.897079",
+              "after": "136.9069"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6R9V5W+FR",
+              "after": "8Q6R9W74+WQ"
+            }
+          ]
+        },
+        {
+          "locationId": "28-213-b-01",
+          "cardName": "西脇市 B001",
+          "prefecture": "兵庫県",
+          "municipality": "西脇市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.038734",
+              "after": "35.02828"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.030228",
+              "after": "135.01643"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7Q22QJ+F3",
+              "after": "8Q7Q22H8+8H"
+            }
+          ]
+        },
+        {
+          "locationId": "30-366-a-01",
+          "cardName": "有田川町",
+          "prefecture": "和歌山県",
+          "municipality": "有田川町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.059078",
+              "after": "34.057421"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.196838",
+              "after": "135.196634"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6Q355W+JP",
+              "after": "8Q6Q354W+XM"
+            }
+          ]
+        },
+        {
+          "locationId": "35-203-d-01",
+          "cardName": "山口市 D001",
+          "prefecture": "山口県",
+          "municipality": "山口市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "阿知須いぐらの館 / 山口県山口市阿知須3425 / 10：00～16：00 / 水・木曜日（祝日の場合は翌日）、年末年始はお休みです / 34.016357, 131.343506 / Plus Code 8Q6H288V+GC\n山口市上下水道局下水道整備課 / 山口県山口市宮島町7番1号 / 休館日 9：00～17：00 （上下水道局の開庁日のみ） / 34.164772, 131.480728 / Plus Code 8Q6H5F7J+W7",
+              "after": "阿知須いぐらの館 / 山口県山口市阿知須3425 / 10：00～16：00 / 水・木曜日（祝日の場合は翌日）、年末年始はお休みです / 34.00789698277422, 131.36175327042042 / Plus Code 8Q6H2956+5P\n山口市上下水道局下水道整備課 / 山口県山口市宮島町7番1号 / 休館日 9：00～17：00 （上下水道局の開庁日のみ） / 34.164772, 131.480728 / Plus Code 8Q6H5F7J+W7"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.016357",
+              "after": "34.00789698277422"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "131.343506",
+              "after": "131.36175327042042"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6H288V+GC",
+              "after": "8Q6H2956+5P"
+            }
+          ]
+        },
+        {
+          "locationId": "36-202-a-01",
+          "cardName": "鳴門市 A001",
+          "prefecture": "徳島県",
+          "municipality": "鳴門市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.183296",
+              "after": "34.188606"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "134.611313",
+              "after": "134.61084"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6P5JM6+8G",
+              "after": "8Q6P5JQ6+C8"
+            }
+          ]
+        },
+        {
+          "locationId": "37-202-d-01",
+          "cardName": "丸亀市 D001",
+          "prefecture": "香川県",
+          "municipality": "丸亀市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "丸亀市浄化センター / 香川県丸亀市昭和町21番地1 / 平日 8:30～17:00 / 34.294312, 133.769943 / Plus Code 8Q6M7QV9+PX\n丸亀城内観光案内所 / 香川県丸亀市一番丁 丸亀城内 / 土日祝日 9:00～16:30 ※土曜日・日曜日・祝日、12月29日～1月3日に配布します / 34.286327, 133.800171 / Plus Code 8Q6M7RP2+G3",
+              "after": "丸亀市浄化センター / 香川県丸亀市昭和町21番地1 / 平日 8:30～17:00 / 34.29131393068, 133.76971548682698 / Plus Code 8Q6M7QR9+GV\n丸亀城内観光案内所 / 香川県丸亀市一番丁 丸亀城内 / 土日祝日 9:00～16:30 ※土曜日・日曜日・祝日、12月29日～1月3日に配布します / 34.286327, 133.800171 / Plus Code 8Q6M7RP2+G3"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.294312",
+              "after": "34.29131393068"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.769943",
+              "after": "133.76971548682698"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6M7QV9+PX",
+              "after": "8Q6M7QR9+GV"
+            }
+          ]
+        },
+        {
+          "locationId": "39-000-a-01",
+          "cardName": "高知県 （流域下水道）",
+          "prefecture": "高知県",
+          "municipality": "高知県",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "高須浄化センター / 高知県高知市高須304 / 平日 8:30-17:15 / (12：00～13：00の間はお休みです) / 33.563995, 133.575226 / Plus Code 8Q5MHH7G+H3\n高知県立美術館 １階 総合案内 / 高知県高知市高須３５３－２ / 土日祝日 9:00-16:30 ※休日は、令和2年10月10日～令和9年3月28日の試行配布です。ご注意ください。 / ※年末年始はお休みです。 / 33.562576, 133.572647 / Plus Code 8Q5MHH7F+23",
+              "after": "高須浄化センター / 高知県高知市高須304 / 平日 8:30-17:15 / (12：00～13：00の間はお休みです) / 33.563757, 133.57337 / Plus Code 8Q5MHH7F+G8\n高知県立美術館 １階 総合案内 / 高知県高知市高須３５３－２ / 土日祝日 9:00-16:30 ※休日は、令和2年10月10日～令和9年3月28日の試行配布です。ご注意ください。 / ※年末年始はお休みです。 / 33.562576, 133.572647 / Plus Code 8Q5MHH7F+23"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.563995",
+              "after": "33.563757"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.575226",
+              "after": "133.57337"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5MHH7G+H3",
+              "after": "8Q5MHH7F+G8"
+            }
+          ]
+        },
+        {
+          "locationId": "39-212-a-01",
+          "cardName": "香美市 A001",
+          "prefecture": "高知県",
+          "municipality": "香美市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.60413",
+              "after": "33.603764"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.745407",
+              "after": "133.74385"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5MJP3W+M5",
+              "after": "8Q5MJP3V+GG"
+            }
+          ]
+        },
+        {
+          "locationId": "39-212-c-01",
+          "cardName": "香美市 C001",
+          "prefecture": "高知県",
+          "municipality": "香美市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.705917",
+              "after": "33.695644"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.883224",
+              "after": "133.875"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5MPV4M+97",
+              "after": "8Q5MMVWF+7X"
+            }
+          ]
+        },
+        {
+          "locationId": "41-201-a-01",
+          "cardName": "佐賀市 A001",
+          "prefecture": "佐賀県",
+          "municipality": "佐賀市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.196812",
+              "after": "33.174981"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "130.281509",
+              "after": "130.270227"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5G57WJ+PJ",
+              "after": "8Q5G57FC+X3"
+            }
+          ]
+        },
+        {
+          "locationId": "43-204-a-01",
+          "cardName": "荒尾市",
+          "prefecture": "熊本県",
+          "municipality": "荒尾市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "荒尾市企業局 / 熊本県荒尾市増永1903番地 / 平日 9:00～17:00 / 32.97261, 130.451248 / Plus Code 8Q4GXFF2+2F\n万田坑ステーション / 熊本県荒尾市原万田200番地2 / 土日祝 9:30～17:00 / 年末年始はお休みです / 33.001663, 130.449966 / Plus Code 8Q5G2C2X+MX",
+              "after": "荒尾市企業局 / 熊本県荒尾市増永1903番地 / 平日 9:00～17:00 / 32.97582, 130.45209 / Plus Code 8Q4GXFG2+8R\n万田坑ステーション / 熊本県荒尾市原万田200番地2 / 土日祝 9:30～17:00 / 年末年始はお休みです / 33.001663, 130.449966 / Plus Code 8Q5G2C2X+MX"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "32.97261",
+              "after": "32.97582"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "130.451248",
+              "after": "130.45209"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q4GXFF2+2F",
+              "after": "8Q4GXFG2+8R"
+            }
+          ]
+        },
+        {
+          "locationId": "46-222-b-01",
+          "cardName": "奄美市 B001",
+          "prefecture": "鹿児島県",
+          "municipality": "奄美市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "28.396309",
+              "after": "28.398283"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "129.493546",
+              "after": "129.4945"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "7QWF9FWV+GC",
+              "after": "7QWF9FXV+8R"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-25-06d5a4c72923",
       "date": "2026-09-25",
