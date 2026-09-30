@@ -1,7 +1,35 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-28T12:00:00.000Z",
+  "generatedAt": "2026-09-30T14:13:41.743Z",
   "updates": [
+    {
+      "id": "2026-09-30-65699091814a",
+      "date": "2026-09-30",
+      "generatedAt": "2026-09-30T14:13:41.743Z",
+      "source": "鹿嶋市公式：英語版配布場所・時間の訂正",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "08-222-a-01",
+          "cardName": "鹿嶋市",
+          "prefecture": "茨城県",
+          "municipality": "鹿嶋市",
+          "changeType": "changed",
+          "headline": "英語版の案内を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "englishVersionNote",
+              "label": "英語版の案内",
+              "kind": "general",
+              "before": "日本語・英語版共に、下記配布場所へ直接お越しいただき、1人につき1枚限定でお渡しします。",
+              "after": "英語版は鹿嶋市観光案内所（JR鹿島神宮駅構内、鹿嶋市宮下4丁目1-2）で配布。平日9時～17時、土日祝日9時～16時、年末年始休業。日本語版とは配布場所が異なります。1人1枚、直接来所のみ。"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-28-4675a44ac4e2",
       "date": "2026-09-28",
