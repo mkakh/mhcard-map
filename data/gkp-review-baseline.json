@@ -161,7 +161,7 @@
     },
     "01-230-a-01": {
       "gkpListing": true,
-      "fingerprints": "k7aSOlmJiKES|5EttemKPbxef|DqNS8T-LEwUg|IueWkoQRIfd_|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|q_gGGhCVQ5Xl|kYerbS7rl0jx"
+      "fingerprints": "k7aSOlmJiKES|5EttemKPbxef|DqNS8T-LEwUg|ypbKFONNpz6h|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|q_gGGhCVQ5Xl|kYerbS7rl0jx"
     },
     "01-231-a-01": {
       "gkpListing": true,
@@ -1023,10 +1023,6 @@
       "gkpListing": true,
       "fingerprints": "eg2fCcxnSJTa|7XG4sEOE83l-|LgTAms5sQ1p5|F1-lamucMonv|kpna2_-yADzF|6sn16-POvsOa|b1FcrOieQHtF|xjtXM9FHQqMj|0|0|0|0|0|0|K2Zh25t580-y|dEvWMeX8ZYk1"
     },
-    "09-215-c-01": {
-      "gkpListing": true,
-      "fingerprints": "nYHN712kfpfT|7XG4sEOE83l-|LgTAms5sQ1p5|GUe8rv-_T6IN|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|wLr8Jbo0eCo1|Ev8M4hIvZ5AP|0|0|0|0|0|K2Zh25t580-y|fVinqlUyM1yE"
-    },
     "09-216-a-01": {
       "gkpListing": true,
       "fingerprints": "Fpoef5jsfo59|aAG3w1bg6PR4|yMowIDkQRb6H|55aaTLXAFeAw|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|Y00xm6QuUEJd|GmHHzVGpTnUF"
@@ -1263,10 +1259,6 @@
       "gkpListing": true,
       "fingerprints": "bxd5biseStnv|EYLPvlVQrG09|kOJN-boy0KvQ|g2d9a07FXE2w|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|EZsHwmByIXYx|0|0|0|0|prDz6wiVYu9v|prDz6wiVYu9v"
     },
-    "11-219-a-01": {
-      "gkpListing": true,
-      "fingerprints": "wbIrfnjOjpKY|jWLLUwgZ2sEp|BgxppRD2uxi-|CmpmtWCdKkSs|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|pwqj_IPIa4cs|pwqj_IPIa4cs"
-    },
     "11-219-b-01": {
       "gkpListing": true,
       "fingerprints": "WSRlDBXoIOiE|2cul0OiDFJb-|wA_ilb0Jf_FS|kxsUPDBB0HOR|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|y_UGjISqvmi6|pwqj_IPIa4cs"
@@ -1338,14 +1330,6 @@
     "11-239-a-01": {
       "gkpListing": true,
       "fingerprints": "cbK_5mX2-ulc|OVzos-7ODCu_|Yx0s-L3lmmF3|ljihuCSJQ_Cf|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|0zUPpYgu9Awr|LX52PJYaB8G4"
-    },
-    "11-242-a-01": {
-      "gkpListing": true,
-      "fingerprints": "BnYfI_rIJVM7|TLDR-lt9cat3|38GZMQWMNTii|EUFDfjek6cYv|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|5Dy0ZOhNB9rk|0|0|0|0|0|lQ3htAZObMaG"
-    },
-    "11-242-b-01": {
-      "gkpListing": true,
-      "fingerprints": "qhKKpa8ZQQoh|dzZExjq7y0D3|APzreQLFadz7|kjNRZNRf1Ixy|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|0|lQ3htAZObMaG"
     },
     "11-246-a-01": {
       "gkpListing": true,
@@ -2701,7 +2685,7 @@
     },
     "21-221-a-01": {
       "gkpListing": true,
-      "fingerprints": "H3Hs8t5fJsvM|GIB8KjMmAnlc|L_sk140Yg6xH|dVJpc4riUZzK|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|zsw9atkVLqAD|jdEqvFo8vKUs"
+      "fingerprints": "H3Hs8t5fJsvM|GIB8KjMmAnlc|L_sk140Yg6xH|8WexcQx_Xz28|kpna2_-yADzF|6sn16-POvsOa|GURF3KvDQRKP|JQbehiuNpQip|0|0|0|0|0|0|zsw9atkVLqAD|jdEqvFo8vKUs"
     },
     "21-361-a-01": {
       "gkpListing": true,
