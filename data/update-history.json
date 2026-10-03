@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-30T14:41:11.567Z",
+  "generatedAt": "2026-10-03T14:09:10.011Z",
   "updates": [
+    {
+      "id": "2026-10-03-adfcadf4af8b",
+      "date": "2026-10-03",
+      "generatedAt": "2026-10-03T14:09:10.011Z",
+      "source": "Official Miyashiro distribution review 2026-10-03",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "11-442-a-01",
+          "cardName": "宮代町 A001",
+          "prefecture": "埼玉県",
+          "municipality": "宮代町",
+          "changeType": "changed",
+          "headline": "配布場所一覧・配布時間・情報元を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "新しい村 / 埼玉県南埼玉郡宮代町字山崎777-1 / 月曜日以外(月曜日が祝日の場合は配布） 9：30～17：00 月曜日が祝日の場合は配布します / 月曜日はお休みです / 36.017666, 139.719955 / Plus Code 8Q8X2P99+3X\n宮代町上下水道事務所 / 埼玉県南埼玉郡宮代町字宮東51 / 月曜日（祝日を除く） 8：30～17：15 / 月曜日（新しい村の休業日）に配布します 年末年始はお休みです / 36.012714, 139.73909 / Plus Code 8Q8X2P7Q+3J",
+              "after": "新しい村 / 埼玉県南埼玉郡宮代町字山崎777-1 / 新しい村の営業日 9:30～17:00 / 休業日は新しい村の公式サイトを確認（月曜定休） / 36.017666, 139.719955 / Plus Code 8Q8X2P99+3X\n宮代町上下水道事務所 / 埼玉県南埼玉郡宮代町字宮東51 / 行政機関の休日を除く新しい村の休業日 8:45～16:30 / 行政機関の休日は配布なし / 36.012714, 139.73909 / Plus Code 8Q8X2P7Q+3J"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【新しい村】9：30～17：00\nただし、月曜日はお休みです\n月曜日が祝日の場合は配布します\n【上下水道事務所】8：30～17：15\n月曜日（新しい村の休業日）に配布します\nただし、年末年始はお休みです",
+              "after": "【新しい村（森の市場 結）】9:30～17:00（休業日は新しい村の公式サイトを確認）\n【宮代町上下水道事務所】行政機関の休日を除く新しい村の休業日のみ 8:45～16:30"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
+              "after": "https://www.town.miyashiro.lg.jp/0000013667.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-09-30-2430e40c29eb",
       "date": "2026-09-30",
