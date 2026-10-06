@@ -1,7 +1,181 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-03T14:09:10.011Z",
+  "generatedAt": "2026-10-06T14:03:44.161Z",
   "updates": [
+    {
+      "id": "2026-10-06-20cbf6ef85c7",
+      "date": "2026-10-06",
+      "generatedAt": "2026-10-06T14:03:44.161Z",
+      "source": "Automated location data update",
+      "totalChanges": 6,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-204-a-01",
+          "cardName": "旭川市 A001",
+          "prefecture": "北海道",
+          "municipality": "旭川市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.7812334, 142.2954047 / Plus Code 8RM4Q7JW+F5\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.780354, 142.2940639 / Plus Code 8RM4Q7JV+4J",
+              "after": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.7812334",
+              "after": "43.783279"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "142.2954047",
+              "after": "142.29689"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM4Q7JW+F5",
+              "after": "8RM4Q7MW+8Q"
+            }
+          ]
+        },
+        {
+          "locationId": "08-208-b-01",
+          "cardName": "龍ケ崎市 B001",
+          "prefecture": "茨城県",
+          "municipality": "龍ケ崎市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.929466, 140.13837 / Plus Code 8R72W4HQ+Q8\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV",
+              "after": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.928963, 140.138031 / Plus Code 8R72W4HQ+H6\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.929466",
+              "after": "35.928963"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.13837",
+              "after": "140.138031"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R72W4HQ+Q8",
+              "after": "8R72W4HQ+H6"
+            }
+          ]
+        },
+        {
+          "locationId": "08-222-a-01",
+          "cardName": "鹿嶋市",
+          "prefecture": "茨城県",
+          "municipality": "鹿嶋市",
+          "changeType": "changed",
+          "headline": "英語版の案内を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "englishVersionNote",
+              "label": "英語版の案内",
+              "kind": "general",
+              "before": "英語版は鹿嶋市観光案内所（JR鹿島神宮駅構内、鹿嶋市宮下4丁目1-2）で配布。平日9時～17時、土日祝日9時～16時、年末年始休業。日本語版とは配布場所が異なります。1人1枚、直接来所のみ。",
+              "after": "また、平成31年（2019年）2月15日から、英語版の配布も開始しています。"
+            }
+          ]
+        },
+        {
+          "locationId": "09-211-a-01",
+          "cardName": "矢板市 A001",
+          "prefecture": "栃木県",
+          "municipality": "矢板市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.793873",
+              "after": "36.790005"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.91774",
+              "after": "139.917679"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XQWV9+G3",
+              "after": "8Q8XQWR9+23"
+            }
+          ]
+        },
+        {
+          "locationId": "17-461-a-01",
+          "cardName": "穴水町 A001",
+          "prefecture": "石川県",
+          "municipality": "穴水町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.228229, 136.904676 / Plus Code 8Q9R6WH3+7V\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.231444, 136.9789 / Plus Code 8Q9R6XJH+HH",
+              "after": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.228229, 136.904676 / Plus Code 8Q9R6WH3+7V\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.220726, 136.982178 / Plus Code 8Q9R6XCJ+7V"
+            }
+          ]
+        },
+        {
+          "locationId": "20-321-b-01",
+          "cardName": "軽井沢町 B001",
+          "prefecture": "長野県",
+          "municipality": "軽井沢町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341034, 138.54686 / Plus Code 8Q8W8GRW+CP\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.347736, 138.59213 / Plus Code 8Q8W8HXR+3V",
+              "after": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341034, 138.54686 / Plus Code 8Q8W8GRW+CP\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.348129, 138.59079 / Plus Code 8Q8W8HXR+78"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-10-03-adfcadf4af8b",
       "date": "2026-10-03",
@@ -11640,484 +11814,6 @@
               "kind": "link",
               "before": "http://www.city.nago.okinawa.jp/soshiki/kankyousuidou/keiei/",
               "after": "https://www.city.nago.okinawa.jp/articles/2026062900018/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-07-14-2483cddd34b8",
-      "date": "2026-07-14",
-      "generatedAt": "2026-07-14T09:00:00.000Z",
-      "source": "第29弾26件と配布開始前表示を追加（PR #41）",
-      "totalChanges": 26,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-229-b-01",
-          "cardName": "富良野市 B001",
-          "prefecture": "北海道",
-          "municipality": "富良野市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "富良野市 B001 / 北海道 / 富良野市 / 富良野チーズ工房 2階直販コーナー / 北海道富良野市中五区"
-            }
-          ]
-        },
-        {
-          "locationId": "01-634-a-01",
-          "cardName": "鹿追町 A001",
-          "prefecture": "北海道",
-          "municipality": "鹿追町",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "鹿追町 A001 / 北海道 / 鹿追町 / 道の駅しかおい 芝生広場（裏庭） / 北海道河東郡鹿追町東町3丁目2-7"
-            }
-          ]
-        },
-        {
-          "locationId": "08-203-j-01",
-          "cardName": "土浦市 J001",
-          "prefecture": "茨城県",
-          "municipality": "土浦市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "土浦市 J001 / 茨城県 / 土浦市 / りんりんポート土浦 / 茨城県土浦市川口二丁目13-25"
-            }
-          ]
-        },
-        {
-          "locationId": "08-219-b-01",
-          "cardName": "牛久市 B001",
-          "prefecture": "茨城県",
-          "municipality": "牛久市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "牛久市 B001 / 茨城県 / 牛久市 / 牛久シャトーショップ / 茨城県牛久市中央3丁目20-1"
-            }
-          ]
-        },
-        {
-          "locationId": "09-204-b-01",
-          "cardName": "佐野市 B001",
-          "prefecture": "栃木県",
-          "municipality": "佐野市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "佐野市 B001 / 栃木県 / 佐野市 / 佐野市国際クリケット場TeaRoom / 栃木県佐野市栃本町300-1"
-            }
-          ]
-        },
-        {
-          "locationId": "09-215-c-01",
-          "cardName": "那須烏山市 C001",
-          "prefecture": "栃木県",
-          "municipality": "那須烏山市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "那須烏山市 C001 / 栃木県 / 那須烏山市 / 山あげ会館（那須烏山市観光協会） / 栃木県那須烏山市金井2-5-26"
-            }
-          ]
-        },
-        {
-          "locationId": "09-411-a-01",
-          "cardName": "那珂川町 A001",
-          "prefecture": "栃木県",
-          "municipality": "那珂川町",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "那珂川町 A001 / 栃木県 / 那珂川町 / 那珂川町上下水道庁舎 / 栃木県那須郡那珂川町久那瀬983-3"
-            }
-          ]
-        },
-        {
-          "locationId": "11-222-d-01",
-          "cardName": "越谷市 D001",
-          "prefecture": "埼玉県",
-          "municipality": "越谷市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "越谷市 D001 / 埼玉県 / 越谷市 / ガーヤちゃんの蔵屋敷 / 埼玉県越谷市弥生町505-2"
-            }
-          ]
-        },
-        {
-          "locationId": "11-245-b-01",
-          "cardName": "ふじみ野市 B001",
-          "prefecture": "埼玉県",
-          "municipality": "ふじみ野市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "ふじみ野市 B001 / 埼玉県 / ふじみ野市 / ふじみ野ステラ・イースト / 埼玉県ふじみ野市福岡一丁目1番8号"
-            }
-          ]
-        },
-        {
-          "locationId": "12-423-c-01",
-          "cardName": "長生村 C001",
-          "prefecture": "千葉県",
-          "municipality": "長生村",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "長生村 C001 / 千葉県 / 長生村 / 長生村役場産業課 / 千葉県長生郡長生村本郷1番地77"
-            }
-          ]
-        },
-        {
-          "locationId": "13-204-b-01",
-          "cardName": "三鷹市 B001",
-          "prefecture": "東京都",
-          "municipality": "三鷹市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "三鷹市 B001 / 東京都 / 三鷹市 / みたか観光BASE / 東京都三鷹市下連雀3-24-3-105"
-            }
-          ]
-        },
-        {
-          "locationId": "13-229-a-01",
-          "cardName": "西東京市 A001",
-          "prefecture": "東京都",
-          "municipality": "西東京市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "西東京市 A001 / 東京都 / 西東京市 / まちテナ西東京 / 東京都西東京市田無町4-1-2（田無駅改札横）"
-            }
-          ]
-        },
-        {
-          "locationId": "15-202-g-01",
-          "cardName": "長岡市 G001",
-          "prefecture": "新潟県",
-          "municipality": "長岡市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "長岡市 G001 / 新潟県 / 長岡市 / 米百俵プレイス ミライエ長岡 / 新潟県長岡市大手通2丁目3番地10 米百俵プレイス ミライエ長岡3階インフォメ-ションカウンタ-"
-            }
-          ]
-        },
-        {
-          "locationId": "15-213-e-01",
-          "cardName": "燕市 E001",
-          "prefecture": "新潟県",
-          "municipality": "燕市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "燕市 E001 / 新潟県 / 燕市 / 燕市役所 2階 下水道課（20番窓口） / 新潟県燕市吉田西太田1934番地"
-            }
-          ]
-        },
-        {
-          "locationId": "15-224-i-01",
-          "cardName": "佐渡市 I001",
-          "prefecture": "新潟県",
-          "municipality": "佐渡市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "佐渡市 I001 / 新潟県 / 佐渡市 / 佐和田市民センター / 新潟県佐渡市河原田本町394番地"
-            }
-          ]
-        },
-        {
-          "locationId": "20-218-d-01",
-          "cardName": "千曲市 D001",
-          "prefecture": "長野県",
-          "municipality": "千曲市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "千曲市 D001 / 長野県 / 千曲市 / 千曲市上山田文化会館 / 長野県千曲市上山田温泉三丁目1番地1"
-            }
-          ]
-        },
-        {
-          "locationId": "21-206-b-01",
-          "cardName": "中津川市 B001",
-          "prefecture": "岐阜県",
-          "municipality": "中津川市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "中津川市 B001 / 岐阜県 / 中津川市 / にぎわい特産館（にぎわいプラザ1階） / 岐阜県中津川市栄町1-1"
-            }
-          ]
-        },
-        {
-          "locationId": "21-505-a-01",
-          "cardName": "八百津町 A001",
-          "prefecture": "岐阜県",
-          "municipality": "八百津町",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "八百津町 A001 / 岐阜県 / 八百津町 / 八百津町港町公民館前 / 岐阜県加茂郡八百津町八百津4037-1"
-            }
-          ]
-        },
-        {
-          "locationId": "22-210-c-01",
-          "cardName": "富士市 C001",
-          "prefecture": "静岡県",
-          "municipality": "富士市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "富士市 C001 / 静岡県 / 富士市 / イオンタウン富士南 2階モールインフォメーション / 静岡県富士市鮫島118-10"
-            }
-          ]
-        },
-        {
-          "locationId": "22-221-b-01",
-          "cardName": "湖西市 B001",
-          "prefecture": "静岡県",
-          "municipality": "湖西市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "湖西市 B001 / 静岡県 / 湖西市 / 道の駅 潮見坂 / 静岡県湖西市白須賀1896-2"
-            }
-          ]
-        },
-        {
-          "locationId": "25-209-c-01",
-          "cardName": "甲賀市 C001",
-          "prefecture": "滋賀県",
-          "municipality": "甲賀市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "甲賀市 C001 / 滋賀県 / 甲賀市 / 観光インフォメーションセンター甲賀流リアル忍者館 / 滋賀県甲賀市甲南町竜法師600番地"
-            }
-          ]
-        },
-        {
-          "locationId": "28-100-d-01",
-          "cardName": "神戸市 D001",
-          "prefecture": "兵庫県",
-          "municipality": "神戸市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "神戸市 D001 / 兵庫県 / 神戸市 / 北野観光案内所 / 兵庫県神戸市中央区北野町3-10-20"
-            }
-          ]
-        },
-        {
-          "locationId": "34-212-c-01",
-          "cardName": "東広島市 C001",
-          "prefecture": "広島県",
-          "municipality": "東広島市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "東広島市 C001 / 広島県 / 東広島市 / 西条酒蔵通り観光案内所 / 広島県東広島市西条本町17-1"
-            }
-          ]
-        },
-        {
-          "locationId": "40-204-a-01",
-          "cardName": "直方市 A001",
-          "prefecture": "福岡県",
-          "municipality": "直方市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "直方市 A001 / 福岡県 / 直方市 / 直方市役所 2階 下水道課 / 福岡県直方市殿町7-1"
-            }
-          ]
-        },
-        {
-          "locationId": "46-215-b-01",
-          "cardName": "薩摩川内市 B001",
-          "prefecture": "鹿児島県",
-          "municipality": "薩摩川内市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "薩摩川内市 B001 / 鹿児島県 / 薩摩川内市 / 下甑島観光案内所 / 鹿児島県薩摩川内市下甑町長浜913番4号"
-            }
-          ]
-        },
-        {
-          "locationId": "47-214-a-01",
-          "cardName": "宮古島市 A001",
-          "prefecture": "沖縄県",
-          "municipality": "宮古島市",
-          "changeType": "added",
-          "headline": "カードを追加",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "location",
-              "label": "カード",
-              "kind": "added",
-              "before": null,
-              "after": "宮古島市 A001 / 沖縄県 / 宮古島市 / 宮古島市 下水道課 / 沖縄県宮古島市平良字西仲宗根565-6"
             }
           ]
         }
