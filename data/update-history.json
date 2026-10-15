@@ -1,7 +1,198 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-12T14:01:46.962Z",
+  "generatedAt": "2026-10-15T14:06:53.765Z",
   "updates": [
+    {
+      "id": "2026-10-15-7e32dcbca6a5",
+      "date": "2026-10-15",
+      "generatedAt": "2026-10-15T14:06:53.765Z",
+      "source": "Reviewed official stock and temporary opening dates",
+      "totalChanges": 5,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-301-a-01",
+          "cardName": "上三川町",
+          "prefecture": "栃木県",
+          "municipality": "上三川町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし。配布中止中（上三川町公式、2026-10-15確認）。再開時は町が告知"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.kaminokawa.lg.jp/0366/info-0000003312-0.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.town.kaminokawa.lg.jp/0092/info-0000003312-0.html",
+              "after": "https://www.town.kaminokawa.lg.jp/0366/info-0000003312-0.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-100-s-01",
+          "cardName": "東京都 品川区 S001",
+          "prefecture": "東京都",
+          "municipality": "東京都 品川区",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・施設情報を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】13：00～18：00\n【土日祝】9：00～18：00\nただし、毎月第３火曜日、年末年始（12/29～1/3)はお休みです",
+              "after": "【平日】13：00～18：00\n【土日祝】9：00～18：00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "2026年10～12月は催事のため月曜休館（祝日の場合は翌火曜）。休館日：10/13・10/19・10/26、11/2・11/9・11/16・11/24・11/30、12/7・12/14。年末年始12/29～1/3休館。通常は毎月第3火曜休館（期間中は上記の施設公式案内を優先）"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://isleshinagawa.com/",
+              "after": "https://isleshinagawa.com/archives/489"
+            }
+          ]
+        },
+        {
+          "locationId": "13-206-a-01",
+          "cardName": "府中市 A001",
+          "prefecture": "東京都",
+          "municipality": "府中市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫なし。配布中止中（府中市公式、2026-10-15確認）。11月上旬再開予定・確定日は公式を確認"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.fuchu.tokyo.jp/kanko/manga_anime/manhole.html"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-c-01",
+          "cardName": "熊本市 C001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "在庫あり（熊本市上下水道局の配布一覧、2026-10-15確認）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        },
+        {
+          "locationId": "43-100-g-01",
+          "cardName": "熊本市 G001",
+          "prefecture": "熊本県",
+          "municipality": "熊本市",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※令和8年熊本地震の影響により、配布を一時休止します",
+              "after": "在庫あり（熊本市上下水道局の配布一覧、2026-10-15確認）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=43#mhcard_result",
+              "after": "https://www.kumamoto-waterworks.jp/waterworks_article/42607/"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-10-12-6bb5056eabdd",
       "date": "2026-10-12",
@@ -9001,308 +9192,6 @@
               "kind": "general",
               "before": "公式情報を確認",
               "after": "12/29～1/3は日出町役場時間外受付窓口で配布（GKP現行カタログによる）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-07-31-c0b4def18fe4",
-      "date": "2026-07-31",
-      "generatedAt": "2026-07-31T10:00:00.000Z",
-      "source": "下松市・宇部市の配布場所修正（PR #47）",
-      "totalChanges": 3,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "35-202-b-01",
-          "cardName": "宇部市 B001",
-          "prefecture": "山口県",
-          "municipality": "宇部市",
-          "changeType": "changed",
-          "headline": "在庫・配布場所・住所などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください。",
-              "after": "在庫は残りわずか（2026-07-31公式確認）"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "宇部市新川ふれあいセンター",
-              "after": "新川ふれあいセンター"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "山口県宇部市朝日町8-20",
-              "after": "山口県宇部市朝日町8番20号"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "9:00~17:00\nただし、年末年始(12/29~ 1/3)はお休みです",
-              "after": "9:00～17:00"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "年末年始（12/29～1/3）はお休みです"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "33.957844",
-              "after": "33.958658879566556"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "131.245132",
-              "after": "131.24468926891254"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.ube.yamaguchi.jp/kurashi/gasgesui/1015032/1015277/1015113.html"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": null,
-              "after": "https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_public/fureai_center/1009885.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q5HX65W+43",
-              "after": "8Q5HX65V+FV"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.ube.yamaguchi.jp/kurashi/gasgesui/1015032/1015277/1015113.html"
-            }
-          ]
-        },
-        {
-          "locationId": "35-207-a-01",
-          "cardName": "下松市 A001",
-          "prefecture": "山口県",
-          "municipality": "下松市",
-          "changeType": "changed",
-          "headline": "在庫・配布場所・住所などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり（2026-07-31公式確認）"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "下松市上下水道局 窓口",
-              "after": "下松市上下水道局 2階窓口"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "山口県下松市大手町3-3-2（上下水道局２階）",
-              "after": "山口県下松市大手町3丁目3番2号（上下水道局2階）"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "下松市上下水道局 2階窓口 / 山口県下松市大手町3丁目3番2号（上下水道局2階） / 平日 8:30～17:15 / 土日祝日・年末年始（12/29～1/3）はお休みです / 34.015379, 131.870881 / Plus Code 8Q6H2V8C+59\n下松市観光案内所 / 山口県下松市西豊井1247（下松駅南口） / 土日祝日 9:00～16:30 / 月・木（祝日の場合は休館日を振替）・年末年始（12/29～1/3）はお休みです / 34.008648, 131.86722 / Plus Code 8Q6H2V58+FV"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日】8：30〜17：15\nただし、土日、祝日及び年末年始（１２月２９日～１月３日）はお休みです\n【土日、祝日】9：00〜16：30\nただし、月、木曜日（祝日の場合は振替）及び年末年始（１２月２９日～１月３日）はお休みです",
-              "after": "【平日】8:30～17:15\n【土日祝日】9:00～16:30"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "年末年始。土日祝日は下松市観光案内所の休館日（月・木。祝日の場合は振替）を除き配布"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "34.014641",
-              "after": "34.015379"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "131.869873",
-              "after": "131.870881"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
-              "after": "https://www.city.kudamatsu.lg.jp/keitai/shisetsu/shi-shisetsu/suidoukyoku.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q6H2V79+VW",
-              "after": "8Q6H2V8C+59"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
-            }
-          ]
-        },
-        {
-          "locationId": "35-207-b-01",
-          "cardName": "下松市 B001",
-          "prefecture": "山口県",
-          "municipality": "下松市",
-          "changeType": "changed",
-          "headline": "在庫・配布場所・住所などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり（2026-07-31公式確認）"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "下松市上下水道局 窓口",
-              "after": "下松市観光案内所"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "山口県下松市大手町3-3-2（上下水道局２階）",
-              "after": "山口県下松市西豊井1247（下松駅南口）"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "下松市観光案内所 / 山口県下松市西豊井1247（下松駅南口） / 開館日（月・木以外。祝日の場合は休館日を振替） 9:00～16:30 / 年末年始（12/29～1/3）はお休みです / 34.008648, 131.86722 / Plus Code 8Q6H2V58+FV\n下松市上下水道局 2階窓口 / 山口県下松市大手町3丁目3番2号（上下水道局2階） / 観光案内所の休館日（月・木。祝日の場合は振替）のうち平日 8:30～17:15 / 土日祝日・年末年始（12/29～1/3）はお休みです / 34.015379, 131.870881 / Plus Code 8Q6H2V8C+59"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【月・木以外】9：00〜16：30\nただし、月、木曜日（祝日の場合は振替）及び年末年始（１２月２９日～１月３日）はお休みです\n【月・木・閉館日】8：30〜17：15\nただし、土日、祝日及び年末年始（１２月２９日～１月３日）はお休みです",
-              "after": "【下松市観光案内所の開館日】9:00～16:30\n【同案内所の休館日（月・木。祝日の場合は振替）のうち平日】8:30～17:15"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "年末年始。観光案内所の休館日が土日祝日に当たる場合は配布なし"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "34.014641",
-              "after": "34.008648"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "131.869873",
-              "after": "131.86722"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": null,
-              "after": "https://kudamatsu-kanko.jp/info/"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q6H2V79+VW",
-              "after": "8Q6H2V58+FV"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=35#mhcard_result",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html",
-              "after": "https://www.city.kudamatsu.lg.jp/sui-gesui/kurashi/jougesuidou/gesuidou/manhole-card.html"
             }
           ]
         }
