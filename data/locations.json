@@ -2658,8 +2658,8 @@
     "municipality": "上士幌町",
     "place": "上士幌町役場建設課",
     "address": "北海道河東郡上士幌町字上士幌東3線238番地",
-    "lat": 43.261906,
-    "lng": 143.30162,
+    "lat": 43.232693,
+    "lng": 143.29561,
     "hours": "【上士幌町役場建設課／平日】8:45～17:00\n【道の駅かみしほろ／平日・土日祝日】9:00～17:00",
     "closed": "道の駅かみしほろは年末年始休館",
     "condition": "1人1枚。配布場所へ直接来訪。予約・郵送不可",
@@ -2671,7 +2671,7 @@
     "issuedOn": "2025/12/19",
     "sourceType": "official_public_body_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-09-16",
+    "updatedAt": "2026-10-18",
     "distributionPlaces": [
       {
         "id": "place-9385810bf9",
@@ -2681,13 +2681,13 @@
         "hours": "8:45～17:00",
         "closed": "休日及び年始年末はお休みです",
         "url": "https://www.kamishihoro.jp/page/00000060",
-        "lat": 43.261906,
-        "lng": 143.30162,
-        "plusCode": "8RM57862+QJ",
+        "lat": 43.232693,
+        "lng": 143.29561,
+        "plusCode": "8RM567MW+36",
         "coordinateAccuracy": "address",
         "geocodeQuery": "北海道河東郡上士幌町字上士幌東3線238番地",
-        "geocodeTitle": "北海道上士幌町上士幌東三線",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "上士幌町役場建設課（公式配布先・住所電話一致Places照合・手動補正）",
+        "geocodedAt": "2026-10-18"
       },
       {
         "id": "place-44cf2e6f88",
@@ -2697,13 +2697,13 @@
         "hours": "9:00～17:00",
         "closed": "年末年始はお休みです",
         "url": "https://www.kamishihoro.jp/place/00000251",
-        "lat": 43.261906,
-        "lng": 143.30162,
-        "plusCode": "8RM57862+QJ",
+        "lat": 43.22440697913821,
+        "lng": 143.29053531619658,
+        "plusCode": "8RM567FR+Q6",
         "coordinateAccuracy": "address",
         "geocodeQuery": "北海道河東郡上士幌町字上士幌東3線227番地",
-        "geocodeTitle": "北海道上士幌町上士幌東三線",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "道の駅かみしほろ（公式配布先・運営者埋込地図照合・手動補正）",
+        "geocodedAt": "2026-10-18"
       }
     ],
     "legacyIds": [
@@ -2713,9 +2713,9 @@
     "stockUrl": "https://www.kamishihoro.jp/page/00000060",
     "conditionUrl": "https://www.kamishihoro.jp/page/00000060",
     "geocodeQuery": "北海道河東郡上士幌町字上士幌東3線238番地",
-    "geocodeTitle": "北海道上士幌町上士幌東三線",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM57862+QJ"
+    "geocodeTitle": "上士幌町役場建設課（公式配布先・住所電話一致Places照合・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8RM567MW+36"
   },
   {
     "id": "01-634-a-01",
@@ -15912,8 +15912,8 @@
     "municipality": "長生村",
     "place": "長生村役場下水環境課",
     "address": "千葉県長生郡長生村本郷1番地77",
-    "lat": 35.415359,
-    "lng": 140.350388,
+    "lat": 35.41216,
+    "lng": 140.35435,
     "hours": "9:00～16:30（平日・土日祝日共通）\nただし、年末年始（12/28～1/3）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -15925,7 +15925,7 @@
     "issuedOn": "2023/12/15",
     "sourceType": "gkp_prefecture_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-07-05",
+    "updatedAt": "2026-10-18",
     "distributionPlaces": [
       {
         "id": "place-b6cf312d01",
@@ -15935,13 +15935,13 @@
         "hours": "9:00～16:30（平日・土日祝日共通）",
         "closed": "年末年始（12/28～1/3）はお休みです",
         "url": "https://www.vill.chosei.chiba.jp/soshiki/6-0-0-0-0_1.html",
-        "lat": 35.415359,
-        "lng": 140.350388,
-        "plusCode": "8R72C982+45",
+        "lat": 35.41216,
+        "lng": 140.35435,
+        "plusCode": "8R72C963+VP",
         "coordinateAccuracy": "address",
         "geocodeQuery": "千葉県長生郡長生村本郷1番地77",
-        "geocodeTitle": "千葉県長生村本郷１番地",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "長生村役場下水環境課（公式配布先・同一役場の施設地点照合・手動補正）",
+        "geocodedAt": "2026-10-18"
       },
       {
         "id": "place-63b1b735cd",
@@ -15967,9 +15967,9 @@
     "stockUrl": "https://www.vill.chosei.chiba.jp/0000002173.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
     "geocodeQuery": "千葉県長生郡長生村本郷1番地77",
-    "geocodeTitle": "千葉県長生村本郷１番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8R72C982+45"
+    "geocodeTitle": "長生村役場下水環境課（公式配布先・同一役場の施設地点照合・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8R72C963+VP"
   },
   {
     "id": "12-423-b-01",
@@ -28693,8 +28693,8 @@
     "municipality": "郡上市",
     "place": "道の駅 美並物産館",
     "address": "郡上市美並町上田2605",
-    "lat": 35.628452,
-    "lng": 136.926865,
+    "lat": 35.6085299,
+    "lng": 136.9428537,
     "hours": "8:00～17:00\nただし、12月31日・1月1日はお休みです。天候等により予告なく変更する場合があります",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -28706,17 +28706,17 @@
     "issuedOn": "2024/12/20",
     "sourceType": "official_public_body_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-10-09",
+    "updatedAt": "2026-10-18",
     "legacyIds": [
       "21-郡上市-d001-024"
     ],
     "facilityUrl": "https://jm-minami.com/",
     "stockUrl": "https://www.city.gujo.gifu.jp/admin/info/post-1158.html",
     "conditionUrl": "https://www.city.gujo.gifu.jp/admin/info/post-1158.html",
-    "geocodeQuery": "郡上市美並町上田2605",
-    "geocodeTitle": "岐阜県郡上市美並町上田",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7RJWHG+9P"
+    "geocodeQuery": "岐阜県郡上市美並町上田2605",
+    "geocodeTitle": "道の駅 美並物産館（公式配布先・観光連盟の施設地図照合・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8Q7RJW5V+C4"
   },
   {
     "id": "21-221-a-01",
@@ -40638,8 +40638,8 @@
     "municipality": "琴浦町",
     "place": "道の駅 琴の浦 琴浦町観光協会",
     "address": "鳥取県東伯郡琴浦町別所1030-1",
-    "lat": 35.494026,
-    "lng": 133.652802,
+    "lat": 35.5021457,
+    "lng": 133.6579858,
     "hours": "9：00～17：15\nただし、年末年始（12/30～1/3）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -40651,7 +40651,7 @@
     "issuedOn": "2018/04/28",
     "sourceType": "gkp_prefecture_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-07-05",
+    "updatedAt": "2026-10-18",
     "legacyIds": [
       "31-琴浦町-007"
     ],
@@ -40659,9 +40659,9 @@
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=31#mhcard_result",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=31#mhcard_result",
     "geocodeQuery": "鳥取県東伯郡琴浦町別所1030-1",
-    "geocodeTitle": "鳥取県琴浦町別所",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7MFMV3+J4"
+    "geocodeTitle": "道の駅 琴の浦（町公式配布先・観光協会地図照合・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8Q7MGM25+V5"
   },
   {
     "id": "31-372-a-01",
@@ -41731,8 +41731,8 @@
     "municipality": "真庭市",
     "place": "GREENable HIRUZEN（グリーナブル ヒルゼン）",
     "address": "岡山県真庭市蒜山上福田1205番地220",
-    "lat": 35.309883,
-    "lng": 133.626846,
+    "lat": 35.2913333,
+    "lng": 133.63675,
     "hours": "9：00～17：00\nただし、水曜日（祝日の場合には翌平日）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -41744,7 +41744,7 @@
     "issuedOn": "2021/08/17",
     "sourceType": "gkp_prefecture_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-07-05",
+    "updatedAt": "2026-10-18",
     "legacyIds": [
       "33-真庭市-014"
     ],
@@ -41752,9 +41752,9 @@
     "stockUrl": "http://www.city.maniwa.lg.jp/soshiki/147/55500.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
     "geocodeQuery": "岡山県真庭市蒜山上福田1205番地220",
-    "geocodeTitle": "岡山県真庭市蒜山上福田",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7M8J5G+XP"
+    "geocodeTitle": "GREENable HIRUZEN（市公式配布先・運営者地図地点照合・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8Q7M7JRP+GP"
   },
   {
     "id": "33-215-a-01",
@@ -46686,8 +46686,8 @@
     "municipality": "土佐町",
     "place": "道の駅さめうら",
     "address": "高知県土佐郡土佐町田井448-2",
-    "lat": 33.727287,
-    "lng": 133.565002,
+    "lat": 33.7426279,
+    "lng": 133.5442656,
     "hours": "9：00～18：00\nただし、年末年始（12/31～1/2、1/3午前）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -46699,7 +46699,7 @@
     "issuedOn": "2018/08/11",
     "sourceType": "gkp_prefecture_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-07-05",
+    "updatedAt": "2026-10-18",
     "legacyIds": [
       "39-土佐町-014"
     ],
@@ -46707,9 +46707,9 @@
     "stockUrl": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
     "geocodeQuery": "高知県土佐郡土佐町田井448-2",
-    "geocodeTitle": "高知県土佐町田井",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q5MPHG8+W2"
+    "geocodeTitle": "道の駅さめうら（運営者アクセス地図・住所一致・手動補正）",
+    "geocodedAt": "2026-10-18",
+    "plusCode": "8Q5MPGVV+3P"
   },
   {
     "id": "40-000-a-01",
