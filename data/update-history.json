@@ -1,7 +1,527 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T06:04:03.112Z",
+  "generatedAt": "2026-10-18T07:30:19.832Z",
   "updates": [
+    {
+      "id": "2026-10-18-ea3403dc92f6",
+      "date": "2026-10-18",
+      "generatedAt": "2026-10-18T07:30:19.832Z",
+      "source": "全件配布pin監査 第1群：公式施設位置12カードの補正",
+      "totalChanges": 12,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-235-b-01",
+          "cardName": "石狩市 B001",
+          "prefecture": "北海道",
+          "municipality": "石狩市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.235241",
+              "after": "43.243740737075925"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.341064",
+              "after": "141.3511178586446"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM368PR+3C",
+              "after": "8RM369V2+FC"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
+              "after": "https://www.city.ishikari.hokkaido.jp/kurashi/suido/1005214/1005685/1002720.html"
+            }
+          ]
+        },
+        {
+          "locationId": "03-208-a-01",
+          "cardName": "遠野市",
+          "prefecture": "岩手県",
+          "municipality": "遠野市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "39.35638",
+              "after": "39.346073"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.359421",
+              "after": "141.35168"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RF39945+HQ",
+              "after": "8RF389W2+CM"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=03#mhcard_result",
+              "after": "https://www.city.tono.iwate.jp/index.cfm/45,58494,249,482,html"
+            }
+          ]
+        },
+        {
+          "locationId": "03-210-a-01",
+          "cardName": "陸前高田市 A001",
+          "prefecture": "岩手県",
+          "municipality": "陸前高田市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.998348",
+              "after": "39.009082"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.596268",
+              "after": "141.615105"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC3XHXW+8G",
+              "after": "8RF32J58+J2"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=03#mhcard_result",
+              "after": "https://www.city.rikuzentakata.iwate.jp/soshiki/kyouikusoumuka/bunkazaigakari/1/1/3/4/8681.html"
+            }
+          ]
+        },
+        {
+          "locationId": "04-000-b-01",
+          "cardName": "宮城県 B001",
+          "prefecture": "宮城県",
+          "municipality": "宮城県",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "【平日】県南浄化センター内 (株)みずむすびサービスみやぎ 県南浄化センター管理棟内",
+              "after": "【平日】宮城県県南浄化センター管理棟"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "宮城県中南部下水道事務所",
+              "after": "宮城県岩沼市下野郷字赤江川1-3"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "宮城県県南浄化センター管理棟 / 宮城県岩沼市下野郷字赤江川1-3 / 平日 9:00～12:00、13:00～16:00 / 年末年始は配布しない / 38.11266391873677, 140.92905501542577 / Plus Code 8RC24W7H+3J\n道の駅「村田」（村田町物産交流センター） / 宮城県柴田郡村田町大字村田字北塩内41 / 土日祝日 9:00～17:00 / 12月30日～1月2日は配布しない / 38.118675, 140.71729 / Plus Code 8RC24P98+FW"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.268578",
+              "after": "38.11266391873677"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.87207",
+              "after": "140.92905501542577"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.pref.miyagi.jp/soshiki/senen-wwt/mhcard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.pref.miyagi.jp/soshiki/senen-wwt/sisetusyoukai.html",
+              "after": "https://www.pref.miyagi.jp/soshiki/senen-wwt/kennanzyoukasenta-annai.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC27V9C+CR",
+              "after": "8RC24W7H+3J"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.pref.miyagi.jp/soshiki/senen-wwt/mhcard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "07-461-a-01",
+          "cardName": "西郷村",
+          "prefecture": "福島県",
+          "municipality": "西郷村",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.138748",
+              "after": "37.139996"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.141815",
+              "after": "140.15437"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R9244QR+FP",
+              "after": "8R9245Q3+XP"
+            }
+          ]
+        },
+        {
+          "locationId": "08-227-b-01",
+          "cardName": "筑西市 B001",
+          "prefecture": "茨城県",
+          "municipality": "筑西市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.327576",
+              "after": "36.322857"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.995834",
+              "after": "139.99382"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8X8XHW+28",
+              "after": "8Q8X8XFV+4G"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=08#mhcard_result",
+              "after": "https://www.city.chikusei.lg.jp/kankou/kankou-news/page012070.html"
+            }
+          ]
+        },
+        {
+          "locationId": "12-423-b-01",
+          "cardName": "長生村 B001",
+          "prefecture": "千葉県",
+          "municipality": "長生村",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "長生村保健センター / 千葉県長生郡長生村本郷1番地77 / 平日 9:00～16:30 / 年末年始（12/28～1/3）はお休みです / 35.415359, 140.350388 / Plus Code 8R72C982+45\n長生村交流センター / 千葉県長生郡長生村岩沼874番地1 / 土日祝日 9:00～16:30 / 年末年始（12/28～1/3）はお休みです / 35.404217, 140.34697 / Plus Code 8R72C83W+MQ",
+              "after": "長生村保健センター / 千葉県長生郡長生村本郷1番地77 / 平日 9:00～16:30 / 年末年始（12/28～1/3）はお休みです / 35.41178, 140.35359 / Plus Code 8R72C963+PC\n長生村交流センター / 千葉県長生郡長生村岩沼874番地1 / 土日祝日 9:00～16:30 / 年末年始（12/28～1/3）はお休みです / 35.404217, 140.34697 / Plus Code 8R72C83W+MQ"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.415359",
+              "after": "35.41178"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.350388",
+              "after": "140.35359"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R72C982+45",
+              "after": "8R72C963+PC"
+            }
+          ]
+        },
+        {
+          "locationId": "20-212-a-01",
+          "cardName": "大町市",
+          "prefecture": "長野県",
+          "municipality": "大町市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.524632",
+              "after": "36.50006"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "137.870621",
+              "after": "137.86137"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8VGVFC+V6",
+              "after": "8Q8VGV26+2G"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
+              "after": "https://www.city.omachi.nagano.jp/kurashi/jogesuido/gesuido/g80bnt6kwadraigxjmdzbwck"
+            }
+          ]
+        },
+        {
+          "locationId": "20-220-a-01",
+          "cardName": "安曇野市",
+          "prefecture": "長野県",
+          "municipality": "安曇野市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeなどを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.288673",
+              "after": "36.303856"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "137.909012",
+              "after": "137.9058"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8V7WQ5+FJ",
+              "after": "8Q8V8W34+G8"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
+              "after": "https://www.city.azumino.nagano.jp/soshiki/39/77330.html"
+            }
+          ]
+        },
+        {
+          "locationId": "26-206-b-01",
+          "cardName": "亀岡市 B001",
+          "prefecture": "京都府",
+          "municipality": "亀岡市",
+          "changeType": "changed",
+          "headline": "住所・配布時間・緯度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "京都府亀岡市安町釜ケ前20番地",
+              "after": "京都府亀岡市古世町中内坪1"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00\nただし、毎週月曜日と年末年始（12/28～1/4）はお休みです",
+              "after": "9:00～17:00\nただし、毎週月曜日と年末年始（12/29～1/3）はお休みです"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.013275",
+              "after": "35.013561"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.574234",
+              "after": "135.58546"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.kameoka.kyoto.jp/map/19153.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7Q2H7F+8M",
+              "after": "8Q7Q2H7P+C5"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
+              "after": "https://www.city.kameoka.kyoto.jp/site/jougesuidou/3966.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-231-a-01",
+          "cardName": "大阪狭山市 A001",
+          "prefecture": "大阪府",
+          "municipality": "大阪狭山市",
+          "changeType": "changed",
+          "headline": "住所・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "大阪府大阪狭市池尻中二丁目",
+              "after": "大阪府大阪狭山市池尻中二丁目"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.503662",
+              "after": "34.507118"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.555695",
+              "after": "135.551848"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://sayamaikehaku.osakasayama.osaka.jp/?page_id=49"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6QGH34+F7",
+              "after": "8Q6QGH42+RP"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=27#mhcard_result",
+              "after": "https://www.city.osakasayama.osaka.jp/tetsuzuki/jogesuido/1/1/3315.html"
+            }
+          ]
+        },
+        {
+          "locationId": "27-231-b-01",
+          "cardName": "大阪狭山市 B001",
+          "prefecture": "大阪府",
+          "municipality": "大阪狭山市",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "大阪狭山市役所庁舎2階 水政策部下水道・水路グループ / 大阪府大阪狭山市狭山1-2384-１ / 平日 9：00～17：30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.503681, 135.555862 / Plus Code 8Q6QGH34+F8\n大阪府立狭山池博物館 / 大阪府大阪狭山市池尻中二丁目 / 土日祝 10：00時～17：00（入館は16：30まで） / 年末年始（12/28～1/4）はお休みです / 34.510361, 135.551895 / Plus Code 8Q6QGH62+4Q",
+              "after": "大阪狭山市役所庁舎2階 水政策部下水道・水路グループ / 大阪府大阪狭山市狭山1-2384-１ / 平日 9：00～17：30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.503681, 135.555862 / Plus Code 8Q6QGH34+F8\n大阪府立狭山池博物館 / 大阪府大阪狭山市池尻中二丁目 / 土日祝 10：00時～17：00（入館は16：30まで） / 年末年始（12/28～1/4）はお休みです / 34.507118, 135.551848 / Plus Code 8Q6QGH42+RP"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-10-18-3e7dd7e42b9d",
       "date": "2026-10-18",
@@ -6447,41 +6967,6 @@
               "kind": "link",
               "before": "https://www.town.mashiki.lg.jp/default.html",
               "after": "https://www.town.mashiki.lg.jp/kiji0037336/index.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-08-11-7aecba9f91f8",
-      "date": "2026-08-11",
-      "generatedAt": "2026-08-10T20:59:04.526Z",
-      "source": "全体セルフレビュー修正",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "27-218-b-01",
-          "cardName": "大東市 B001",
-          "prefecture": "大阪府",
-          "municipality": "大東市",
-          "changeType": "changed",
-          "headline": "配布場所・住所を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "大東市上下水道局宿直室",
-              "after": "大東市上下水道局庁舎2階 総務課"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "大阪府大東市灰塚4-1-1",
-              "after": "大阪府大東市灰塚四丁目1番1号"
             }
           ]
         }
