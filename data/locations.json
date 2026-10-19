@@ -11377,8 +11377,8 @@
     "municipality": "邑楽町",
     "place": "邑楽町役場１階 休日受付窓口",
     "address": "群馬県邑楽郡邑楽町大字中野2570-1",
-    "lat": 36.252743,
-    "lng": 139.462158,
+    "lat": 36.2523916,
+    "lng": 139.4623,
     "hours": "8：30～17：15",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -11394,13 +11394,13 @@
     "legacyIds": [
       "10-邑楽町-a001-020"
     ],
-    "facilityUrl": "http://www.town.ora.gunma.jp/",
+    "facilityUrl": "https://www.town.ora.gunma.jp/map/010/20180901172000.html",
     "stockUrl": "https://www.town.ora.gunma.jp/s018/2024-manho-rucard1th.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=10#mhcard_result",
     "geocodeQuery": "群馬県邑楽郡邑楽町大字中野2570-1",
-    "geocodeTitle": "群馬県邑楽町中野２５７０番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q8X7F36+3V"
+    "geocodeTitle": "邑楽町役場１階 休日受付窓口（町カード案内・町施設地図マーカー照合・手動補正）",
+    "geocodedAt": "2026-10-19",
+    "plusCode": "8Q8X7F26+XW"
   },
   {
     "id": "10-525-b-01",
@@ -11409,8 +11409,8 @@
     "municipality": "邑楽町",
     "place": "シンボルタワー 未来MiRAi",
     "address": "群馬県邑楽郡邑楽町大字中野2639番地1",
-    "lat": 36.252743,
-    "lng": 139.462158,
+    "lat": 36.2531638,
+    "lng": 139.4625222,
     "hours": "【通常】10：00～18：00（４月～９月）\n10：00～16：00（10月～３月）\n※イルミーネション開催時期については21:00まで\n※ただし、月・火（祝日を除く）、年末年始はお休みです\n【上記休館日】8：30～17：15\n休館日（月・火（祝日を除く）、年末年始）に配布します",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -11432,13 +11432,14 @@
         "hours": "10：00～18：00（４月～９月） 10：00～16：00（10月～３月） ※イルミーネション開催時期については21:00まで",
         "closed": "※ただし、月・火（祝日を除く）、年末年始はお休みです",
         "url": "https://www.town.ora.gunma.jp/orabiyori/050/010/symbol-tower.html",
-        "lat": 36.252743,
-        "lng": 139.462158,
-        "plusCode": "8Q8X7F36+3V",
+        "lat": 36.2531638,
+        "lng": 139.4625222,
+        "plusCode": "8Q8X7F37+72",
         "coordinateAccuracy": "address",
         "geocodeQuery": "群馬県邑楽郡邑楽町大字中野2639番地1",
-        "geocodeTitle": "群馬県邑楽町中野２６３９番地",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "シンボルタワー 未来MiRAi（町カード案内・町施設地図マーカー照合・手動補正）",
+        "geocodedAt": "2026-10-19",
+        "facilityUrl": "https://www.town.ora.gunma.jp/map/030/030/20180901155000.html"
       },
       {
         "id": "place-a7ba6eaed2",
@@ -11448,13 +11449,14 @@
         "hours": "8：30～17：15",
         "closed": "休館日（月・火（祝日を除く）、年末年始）に配布します",
         "url": "https://www.town.ora.gunma.jp/orabiyori/050/010/symbol-tower.html",
-        "lat": 36.252743,
-        "lng": 139.462158,
-        "plusCode": "8Q8X7F36+3V",
+        "lat": 36.2523916,
+        "lng": 139.4623,
+        "plusCode": "8Q8X7F26+XW",
         "coordinateAccuracy": "address",
         "geocodeQuery": "群馬県邑楽郡邑楽町大字中野2570番地1",
-        "geocodeTitle": "群馬県邑楽町中野２５７０番地",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "邑楽町役場都市計画課2F（月、火 ※祝日を除く）（町カード案内・町施設地図マーカー照合・手動補正）",
+        "geocodedAt": "2026-10-19",
+        "facilityUrl": "https://www.town.ora.gunma.jp/map/010/20180901172000.html"
       }
     ],
     "legacyIds": [
@@ -11464,9 +11466,9 @@
     "stockUrl": "https://www.town.ora.gunma.jp/s018/020/050/120/2023-manho-rucard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=10#mhcard_result",
     "geocodeQuery": "群馬県邑楽郡邑楽町大字中野2639番地1",
-    "geocodeTitle": "群馬県邑楽町中野２６３９番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q8X7F36+3V"
+    "geocodeTitle": "シンボルタワー 未来MiRAi（町カード案内・町施設地図マーカー照合・手動補正）",
+    "geocodedAt": "2026-10-19",
+    "plusCode": "8Q8X7F37+72"
   },
   {
     "id": "00-101-a-01",
