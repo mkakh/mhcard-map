@@ -21,3 +21,5 @@
 2026-10-19 午後の並列個別調査: 邑楽町A本体／B本体と通常・休館日窓口計4targetは、町のカード別告知と役場・シンボルタワーそれぞれの施設地図の名称付きマーカーに照合し、旧共通pinから施設別代表点へ修正PR提案（公開実値の照合までは corrected_pending_deploy）。長生村A/C本体・琴浦・真庭・土佐町各本体の計5targetは、施設マーカーまたはカード別公式案内が未立証のためpinを維持し unresolved に記録。内訳 **16 corrected / 2 confirmed / 4 corrected_pending_deploy / 11 unresolved / 1856 pending / 計1889**。町施設の代表点は窓口入口の実測値ではなく、Bの年末年始1階窓口条件は今回のpin変更対象外。
 
 2026-10-19 13:55 JST 公開照合: [PR #122](https://github.com/mkakh/mhcard-map/pull/122) は独立レビュー・必須CIを通過しマージ。Pages deploy成功後、通常の公開 `data/locations.json` とmainのSHA-256が `1dbf314ede36c27f61b194d6e720c01dca75d4755190255648675c67329e9a70` で一致し、邑楽町4targetの実座標を確認。状態は **20 corrected / 2 confirmed / 11 unresolved / 1856 pending / 計1889**。施設の代表点は入口の実測値ではなく、保留11件は解決済みと数えない。
+
+2026-10-19 続行（PR #124）: 小樽市A002本体・水道局本庁舎と旭川市A001休館期間窓口・下水処理センター管理本館2Fをカード別市公式案内で個別照合。小樽は庁舎の公式施設座標マーカー、旭川は処理センター内の管理本館棟の地点根拠が未立証のため、両対象を unresolved として座標維持。各行に公式URL・根拠・閲覧日を記録。#123マージ後のmain基準で **20 corrected / 2 confirmed / 13 unresolved / 1854 pending / 計1889**。未確認を確認済みと数えない。
