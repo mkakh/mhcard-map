@@ -946,8 +946,8 @@
     "municipality": "名寄市",
     "place": "道の駅「もち米の里☆なよろ」",
     "address": "北海道名寄市風連町西町334番地1",
-    "lat": 44.28738,
-    "lng": 142.411835,
+    "lat": 44.28741,
+    "lng": 142.41378,
     "hours": "9:00～18:00\nただし、元日（1/1）はお休みです。",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -966,9 +966,9 @@
     "stockUrl": "http://www.city.nayoro.lg.jp/section/suidou/prkeql0000020lqo.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道名寄市風連町西町334番地1",
-    "geocodeTitle": "北海道名寄市風連町西町３３４番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RP47CP6+XP"
+    "geocodeTitle": "もち米の里☆なよろ（北海道道の駅施設名付きマーカー・手動補正）",
+    "geocodedAt": "2026-10-19",
+    "plusCode": "8RP47CP7+XG"
   },
   {
     "id": "01-221-b-01",
