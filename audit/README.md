@@ -19,3 +19,5 @@
 2026-10-19 続行: 旭川市Aの本体・バナナ館窓口をそれぞれ、市カード案内が明示的にリンクする「バナナ館の場所」の施設マーカー（43.7812334,142.2954047）と照合し、両targetを confirmed にした。管理本館は別棟・別targetで未検証のまま。内訳 **16 corrected / 2 confirmed / 6 unresolved / 1865 pending / 計1889**。
 
 2026-10-19 午後の並列個別調査: 邑楽町A本体／B本体と通常・休館日窓口計4targetは、町のカード別告知と役場・シンボルタワーそれぞれの施設地図の名称付きマーカーに照合し、旧共通pinから施設別代表点へ修正PR提案（公開実値の照合までは corrected_pending_deploy）。長生村A/C本体・琴浦・真庭・土佐町各本体の計5targetは、施設マーカーまたはカード別公式案内が未立証のためpinを維持し unresolved に記録。内訳 **16 corrected / 2 confirmed / 4 corrected_pending_deploy / 11 unresolved / 1856 pending / 計1889**。町施設の代表点は窓口入口の実測値ではなく、Bの年末年始1階窓口条件は今回のpin変更対象外。
+
+2026-10-19 13:55 JST 公開照合: [PR #122](https://github.com/mkakh/mhcard-map/pull/122) は独立レビュー・必須CIを通過しマージ。Pages deploy成功後、通常の公開 `data/locations.json` とmainのSHA-256が `1dbf314ede36c27f61b194d6e720c01dca75d4755190255648675c67329e9a70` で一致し、邑楽町4targetの実座標を確認。状態は **20 corrected / 2 confirmed / 11 unresolved / 1856 pending / 計1889**。施設の代表点は入口の実測値ではなく、保留11件は解決済みと数えない。
