@@ -1139,8 +1139,8 @@
     "municipality": "深川市",
     "place": "道の駅ライスランドふかがわ １階総合案内所",
     "address": "北海道深川市音江町字広里59番7",
-    "lat": 43.701065,
-    "lng": 142.070953,
+    "lat": 43.6995531,
+    "lng": 142.0705943,
     "hours": "10:00～16:00\nただし、年末年始（12/31～1/2）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -1161,9 +1161,9 @@
     "stockUrl": "https://www.city.fukagawa.lg.jp/cms/section/jogesuid/qnv6ca0000000fkv.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道深川市音江町字広里59番7",
-    "geocodeTitle": "北海道深川市音江町広里５９番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM4P32C+C9"
+    "geocodeTitle": "道の駅ライスランドふかがわ（施設名付きGoogleマップ地点・手動補正）",
+    "geocodedAt": "2026-10-20",
+    "plusCode": "8RM4M3XC+R6"
   },
   {
     "id": "01-229-a-01",
