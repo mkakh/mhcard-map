@@ -849,8 +849,8 @@
     "municipality": "赤平市",
     "place": "情報発信基地 AKABIRAベース",
     "address": "北海道赤平市幌岡町54",
-    "lat": 43.578049,
-    "lng": 142.035248,
+    "lat": 43.579389,
+    "lng": 142.037444,
     "hours": "【１〜４月】10:00〜17:00（火・水曜定休）\n【５〜６月】10:00〜18:00（火曜定休）\n【７〜９月】10:00〜18:00（無休）\n【１０月】10:00〜17:00（火曜定休）\n【１１〜１２月】10:00〜17:00（火・水曜定休）",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -871,9 +871,9 @@
     "stockUrl": "https://www.city.akabira.hokkaido.jp/docs/2019080200024.html?cat=/kurashi/suido/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道赤平市幌岡町54",
-    "geocodeTitle": "北海道赤平市幌岡町５４番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM4H2HP+63"
+    "geocodeTitle": "AKABIRAベース（施設運営者埋込マップの地点・手動補正）",
+    "geocodedAt": "2026-10-19",
+    "plusCode": "8RM4H2HP+QX"
   },
   {
     "id": "01-219-a-01",
@@ -882,8 +882,8 @@
     "municipality": "紋別市",
     "place": "(平日)紋別市役所 水道部事業課 下水道施設係",
     "address": "北海道紋別市幸町2-1-18",
-    "lat": 44.355999,
-    "lng": 143.354828,
+    "lat": 44.3564132,
+    "lng": 143.3544026,
     "hours": "8:45～17:30",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -903,9 +903,9 @@
     "stockUrl": "https://mombetsu.jp/life/?content=2384",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道紋別市幸町2-1-18",
-    "geocodeTitle": "北海道紋別市幸町二丁目１番１８号",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RP59943+9W"
+    "geocodeTitle": "紋別市役所（名称付きOSM建物代表点・手動補正）",
+    "geocodedAt": "2026-10-19",
+    "plusCode": "8RP59943+HQ"
   },
   {
     "id": "01-220-a-01",
