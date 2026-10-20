@@ -2341,13 +2341,13 @@
         "hours": "9:30～17:30",
         "closed": "年末年始（12/31～1/5）",
         "url": "https://rishiri-town.jp/%e8%a6%b3%e5%85%89%e3%83%bb%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/%e3%83%9e%e3%83%b3%e3%83%9b%e3%83%bc%e3%83%ab%e3%82%ab%e3%83%bc%e3%83%89%e3%81%ae%e9%85%8d%e5%b8%83/",
-        "lat": 45.187016,
-        "lng": 141.139587,
+        "lat": 45.18552,
+        "lng": 141.13478,
         "coordinateAccuracy": "address",
         "geocodeQuery": "北海道利尻郡利尻町字富士見町2番地2",
-        "geocodeTitle": "北海道利尻郡利尻町",
-        "geocodedAt": "2026-09-15",
-        "plusCode": "8RQ354PQ+RR"
+        "geocodeTitle": "利尻町交流促進施設どんと（施設公式GeoCoordinates・手動補正）",
+        "geocodedAt": "2026-10-20",
+        "plusCode": "8RQ354PM+6W"
       }
     ],
     "legacyIds": [
