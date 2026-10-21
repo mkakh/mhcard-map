@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-21T14:05:35.307Z",
+  "generatedAt": "2026-10-21T14:13:26.352Z",
   "updates": [
     {
       "id": "2026-10-21-dee0b2ac3f48",
       "date": "2026-10-21",
-      "generatedAt": "2026-10-21T14:05:35.307Z",
+      "generatedAt": "2026-10-21T14:13:26.352Z",
       "source": "西予市・鹿児島市公式 配布先・在庫更新 2026-10-21",
       "totalChanges": 2,
       "omittedChanges": 0,
@@ -127,6 +127,104 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=46#mhcard_result",
               "after": "https://www.city.kagoshima.lg.jp/suido/gesuido/geken/manholecard.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2026-10-21-a90ade2ba3c6",
+      "date": "2026-10-21",
+      "generatedAt": "2026-10-21T14:03:12.377Z",
+      "source": "石巻市公式 ロボコン配布先一時変更 2026-10-21",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "04-202-b-01",
+          "cardName": "石巻市 B001",
+          "prefecture": "宮城県",
+          "municipality": "石巻市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "石ノ森萬画館",
+              "after": "石巻市かわまち交流センター 1階"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "宮城県石巻市中瀬2番7号",
+              "after": "宮城県石巻市中央二丁目11番21"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00（12/31は15:00閉館）\nただし、毎週火曜日（GW、夏休み、冬休み、春休み期間は除く）はお休みです\n※休館日が休日になる場合は翌営業日が休館日となります",
+              "after": "9:00～17:00（2026年10月19日から石ノ森萬画館の工事期間中）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "かわまち交流センターは12月29日～1月3日休業（カード配布の例外有無は市の案内を確認）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "ロボコンカードは2026年10月19日から工事期間中、かわまち交流センター1階で配布。2027年4月上旬までの見込みだが終了日未確定。在庫僅少（10月16日時点）、10月24日再入荷予定。来所1人1枚、郵送・代理・予約不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.429367",
+              "after": "38.430588"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.310959",
+              "after": "141.3097"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.ishinomaki.lg.jp/cont/10505200/1212/20180919113612.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.mangattan.jp/manga/",
+              "after": "https://www.city.ishinomaki.lg.jp/cont/10452000a/-map/0001/20180918094836.html"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC3C8H6+P9",
+              "after": "8RC3C8J5+6V"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.ishinomaki.lg.jp/cont/10505200/1212/20180919113612.html"
             }
           ]
         }
@@ -4035,101 +4133,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=41#mhcard_result",
               "after": "https://www.water.saga.saga.jp/main/5768.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-09-19-bd7b71b91b78",
-      "date": "2026-09-19",
-      "generatedAt": "2026-09-18T21:07:00.392Z",
-      "source": "Official data maintenance: Urakawa and Mashiki",
-      "totalChanges": 2,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-607-a-01",
-          "cardName": "浦河町",
-          "prefecture": "北海道",
-          "municipality": "浦河町",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫切れ。2026年9月15日時点、10月上旬に配布再開予定（浦河町公式、2026年9月16日更新）"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "浦河町役場 警備室",
-              "after": "浦河町役場（平日：上下水道課、土日祝：警備員室）"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日、休日】9：00～17：15",
-              "after": "9:00～17:15"
-            },
-            {
-              "field": "condition",
-              "label": "配布条件",
-              "kind": "general",
-              "before": "公式情報を確認",
-              "after": "1人1枚。事前予約・郵送不可"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
-              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "https://www.town.urakawa.hokkaido.jp/gyosei/organization/detail.html?id=48",
-              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
-              "after": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576"
-            }
-          ]
-        },
-        {
-          "locationId": "43-443-b-01",
-          "cardName": "益城町 B001",
-          "prefecture": "熊本県",
-          "municipality": "益城町",
-          "changeType": "changed",
-          "headline": "配布開始",
-          "importance": "normal",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "status",
-              "before": "配布開始前",
-              "after": "配布中"
             }
           ]
         }
