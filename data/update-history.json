@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24T14:36:10.339Z",
+  "generatedAt": "2026-10-24T14:39:11.946Z",
   "updates": [
     {
-      "id": "2026-10-24-2f0c8852b0f1",
+      "id": "2026-10-24-f88bf59e9d33",
       "date": "2026-10-24",
-      "generatedAt": "2026-10-24T14:36:10.339Z",
+      "generatedAt": "2026-10-24T14:39:11.946Z",
       "source": "所沢市公式カード案内の在庫リンク確認",
-      "totalChanges": 3,
+      "totalChanges": 4,
       "omittedChanges": 0,
       "changes": [
         {
@@ -33,6 +33,24 @@
               "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
               "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
             },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
+              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "11-208-b-01",
+          "cardName": "所沢市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "所沢市",
+          "changeType": "changed",
+          "headline": "在庫情報を更新",
+          "importance": "normal",
+          "fields": [
             {
               "field": "stockUrl",
               "label": "在庫情報",
