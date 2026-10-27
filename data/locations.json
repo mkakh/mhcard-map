@@ -38,8 +38,8 @@
     "municipality": "札幌市",
     "place": "札幌市環境プラザ",
     "address": "北海道札幌市北区北8条西3丁目札幌エルプラザ2階",
-    "lat": 43.070877,
-    "lng": 141.350281,
+    "lat": 43.071064,
+    "lng": 141.34993,
     "hours": "9：00～18：00\nただし、年末年始（12/29～1/3）はお休みです\nその他、施設の点検等で休館する場合があります",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -59,9 +59,9 @@
     "stockUrl": "http://www.city.sapporo.jp/gesui/manholecard.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道札幌市北区北8条西3丁目札幌エルプラザ2階",
-    "geocodeTitle": "北海道札幌市北区北八条西三丁目",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM339C2+94"
+    "geocodeTitle": "札幌市環境プラザ（同名・住所・電話・公式URL一致のSerper Places施設代表点・手動補正）",
+    "geocodedAt": "2026-10-21",
+    "plusCode": "8RM338CX+CX"
   },
   {
     "id": "01-100-c-01",
@@ -136,8 +136,8 @@
     "municipality": "函館市",
     "place": "函館市地域交流まちづくりセンター",
     "address": "北海道函館市末広町4-19",
-    "lat": 41.763802,
-    "lng": 140.717148,
+    "lat": 41.76378,
+    "lng": 140.71704,
     "hours": "9:00～21:00\nただし、年末年始（12/31～1/3）はお休みです\nまた、器材点検のために月1回程度休館する場合があります",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -157,9 +157,9 @@
     "stockUrl": "http://www.city.hakodate.hokkaido.jp/docs/2016111100025/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "北海道函館市末広町4-19",
-    "geocodeTitle": "北海道函館市末広町４番１９号",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RH2QP78+GV"
+    "geocodeTitle": "函館市地域交流まちづくりセンター（運営者URL一致のSerper Places施設代表点・手動補正）",
+    "geocodedAt": "2026-10-21",
+    "plusCode": "8RH2QP78+GR"
   },
   {
     "id": "01-203-a-02",
@@ -817,8 +817,8 @@
     "municipality": "江別市",
     "place": "江別市民活動センター・あい",
     "address": "江別市東野幌本町6-43",
-    "lat": 43.091351,
-    "lng": 141.529663,
+    "lat": 43.091274,
+    "lng": 141.52936,
     "hours": "【平日】9:00～21:00\n【土日祝】9:00～18:00\nただし、年末年始（12/29～1/3）はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -838,9 +838,9 @@
     "stockUrl": "https://center-i.jp/",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=01#mhcard_result",
     "geocodeQuery": "江別市東野幌本町6-43",
-    "geocodeTitle": "北海道江別市東野幌本町６番",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8RM33GRH+GV"
+    "geocodeTitle": "江別市民活動センター・あい（市公式配布案内・運営者URL一致のSerper Places施設代表点・手動補正）",
+    "geocodedAt": "2026-10-21",
+    "plusCode": "8RM33GRH+GP"
   },
   {
     "id": "01-218-a-01",
