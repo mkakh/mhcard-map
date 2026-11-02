@@ -1,7 +1,109 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28T03:04:12.856Z",
+  "generatedAt": "2026-11-02T14:00:52.753Z",
   "updates": [
+    {
+      "id": "2026-11-02-06d24298fc08",
+      "date": "2026-11-02",
+      "generatedAt": "2026-11-02T14:00:52.753Z",
+      "source": "2026-11-02 official card notices",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "13-207-a-01",
+          "cardName": "昭島市 A001",
+          "prefecture": "東京都",
+          "municipality": "昭島市",
+          "changeType": "changed",
+          "headline": "配布時間・休配日・配布条件情報などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】\n4月～9月 9:00～18:00\n10月～3月 9:00～17:00\n【土日祝】\n（通年） 9:00～17:00\nただし、月曜日（祝日の時は翌日）と年末年始はお休みです",
+              "after": "【平日】\n4月～9月 9:00～18:00\n10月～3月 9:00～17:00\n【土日祝】10:00～15:00\n月曜日・木曜日（祝日の場合は翌日）と年末年始は休みです。\n※2026年11月1日から当面の間"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "月曜日・木曜日（祝日の場合は翌日）、年末年始"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.akishima.lg.jp/s087/010/010/010/140/010/20190319120320.html",
+              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
+            }
+          ]
+        },
+        {
+          "locationId": "13-214-e-01",
+          "cardName": "国分寺市 E001",
+          "prefecture": "東京都",
+          "municipality": "国分寺市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫切れのため配布終了（再開日未定）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
+              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.kokubunji.tokyo.jp/kurashi/koutsuu/jougesuido/1017218.html",
+              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-10-28-99048677cb45",
       "date": "2026-10-28",
@@ -9238,144 +9340,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
               "after": "https://www.town.miyashiro.lg.jp/0000013667.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-09-30-2430e40c29eb",
-      "date": "2026-09-30",
-      "generatedAt": "2026-09-30T14:41:11.567Z",
-      "source": "Official distribution review 2026-09-30",
-      "totalChanges": 4,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "09-215-c-01",
-          "cardName": "那須烏山市 C001",
-          "prefecture": "栃木県",
-          "municipality": "那須烏山市",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "公式情報を確認",
-              "after": "旧烏山駅舎デザインは2026年9月4日に在庫切れ。増刷予定・再開日未定（市公式、2026-09-30確認）"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
-              "after": "https://www.city.nasukarasuyama.lg.jp/kurashi/public-transport-road/jr-karasuyama-line/news/page005906.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-219-a-01",
-          "cardName": "上尾市 A001",
-          "prefecture": "埼玉県",
-          "municipality": "上尾市",
-          "changeType": "changed",
-          "headline": "配布時間・施設情報・情報元を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30〜17：00\n※ただし、土日、祝日、年末年始はお休みです",
-              "after": "【2026年9月30日まで】8:30～17:00\n【10月1日から】9:00～16:30（平日、土日祝・12/29～1/3は配布なし）"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "https://www.city.ageo.lg.jp/site/suido/list218-1040.html",
-              "after": "https://www.city.ageo.lg.jp/site/suido/430079.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.ageo.lg.jp/site/suido/430079.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-242-a-01",
-          "cardName": "日高市 A001",
-          "prefecture": "埼玉県",
-          "municipality": "日高市",
-          "changeType": "changed",
-          "headline": "配布場所一覧・配布時間・情報元を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "日高市浄化センター / 埼玉県日高市大字高萩1385番地1 / 平日 8：30～17：15 / 35.903378, 139.388535 / Plus Code 8Q7XW93Q+9C\n日高市役所 / 埼玉県日高市大字南平沢1020番地 / 土日祝日 8：30～17：15 / 35.907543, 139.339035 / Plus Code 8Q7XW85Q+2J",
-              "after": "日高市浄化センター / 埼玉県日高市大字高萩1385番地1 / 平日 2026年9月30日まで 8:30～17:15／10月1日から 9:00～16:30 / 35.903378, 139.388535 / Plus Code 8Q7XW93Q+9C\n日高市役所 / 埼玉県日高市大字南平沢1020番地 / 土日祝日 8：30～17：15 / 35.907543, 139.339035 / Plus Code 8Q7XW85Q+2J"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30～17：15",
-              "after": "【平日・浄化センター】2026年9月30日まで 8:30～17:15／10月1日から 9:00～16:30\n【土日祝・市役所】8:30～17:15（変更なし）"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.hidaka.lg.jp/soshiki/jogesuido/gesuido/koumu/gesuido/20234.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-242-b-01",
-          "cardName": "日高市 B001",
-          "prefecture": "埼玉県",
-          "municipality": "日高市",
-          "changeType": "changed",
-          "headline": "配布時間・施設情報・情報元を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30～17：00\nただし、年末年始（12月29日～1月3日）はお休みです",
-              "after": "【高麗公民館】2026年9月30日まで 8:30～17:00／10月1日から 9:00～16:30（12/29～1/3休み）"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": null,
-              "after": "https://www.city.hidaka.lg.jp/soshiki/jogesuido/gesuido/koumu/gesuido/20234.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.hidaka.lg.jp/soshiki/jogesuido/gesuido/koumu/gesuido/20234.html"
             }
           ]
         }
