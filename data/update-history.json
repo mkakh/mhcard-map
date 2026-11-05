@@ -1,7 +1,597 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-03T03:18:38.672Z",
+  "generatedAt": "2026-11-05T14:03:25.642Z",
   "updates": [
+    {
+      "id": "2026-11-05-5e213a1d192a",
+      "date": "2026-11-05",
+      "generatedAt": "2026-11-05T14:03:25.642Z",
+      "source": "Automated location data update",
+      "totalChanges": 19,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-204-a-01",
+          "cardName": "旭川市 A001",
+          "prefecture": "北海道",
+          "municipality": "旭川市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.7812334, 142.2954047 / Plus Code 8RM4Q7JW+F5\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.780354, 142.2940639 / Plus Code 8RM4Q7JV+4J",
+              "after": "旭川市下水処理センター バナナ館 / 北海道旭川市神居町忠和287番地（バナナ館） / バナナ館開館期間の火～日曜日 9:00～16:00 / 月曜日（祝日・振替休日の場合は翌日） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q\n旭川市下水処理センター 管理本館2階事務室 / 北海道旭川市神居町忠和287番地（管理本館） / バナナ館休館期間の平日 8:45～17:15 / 土日、祝日、振替休日、年末年始（12/30～1/4） / 43.783279, 142.29689 / Plus Code 8RM4Q7MW+8Q"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "43.7812334",
+              "after": "43.783279"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "142.2954047",
+              "after": "142.29689"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RM4Q7JW+F5",
+              "after": "8RM4Q7MW+8Q"
+            }
+          ]
+        },
+        {
+          "locationId": "01-563-a-01",
+          "cardName": "雄武町",
+          "prefecture": "北海道",
+          "municipality": "雄武町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "44.583023",
+              "after": "44.583515"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "142.95963",
+              "after": "142.958832"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RP4HXM5+6V",
+              "after": "8RP4HXM5+CG"
+            }
+          ]
+        },
+        {
+          "locationId": "04-202-b-01",
+          "cardName": "石巻市 B001",
+          "prefecture": "宮城県",
+          "municipality": "石巻市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.430588",
+              "after": "38.430428"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.3097",
+              "after": "141.310135"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC3C8J5+6V",
+              "after": "8RC3C8J6+53"
+            }
+          ]
+        },
+        {
+          "locationId": "08-204-a-01",
+          "cardName": "古河市",
+          "prefecture": "茨城県",
+          "municipality": "古河市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.19481",
+              "after": "36.194443"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.70966",
+              "after": "139.709229"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8X5PV5+WV",
+              "after": "8Q8X5PV5+QM"
+            }
+          ]
+        },
+        {
+          "locationId": "08-208-b-01",
+          "cardName": "龍ケ崎市 B001",
+          "prefecture": "茨城県",
+          "municipality": "龍ケ崎市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.929466, 140.13837 / Plus Code 8R72W4HQ+Q8\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV",
+              "after": "龍ケ崎市観光物産センター / 茨城県龍ケ崎市佐貫町645-1 関鉄佐貫ビル2 1階南側 / 平日（月曜を除く）・土日祝日 平日 10:00～18:00／土日祝日 10:00～17:00 / 月曜日（月曜が祝日の場合は翌日）、1/1～1/3 / 35.928963, 140.138031 / Plus Code 8R72W4HQ+H6\n龍ケ崎市役所 下水道課 / 茨城県龍ケ崎市3710番地 / 観光物産センターの定休日 9:00～17:00 / 年末年始 / 35.911594, 140.1822 / Plus Code 8R72W56J+JV"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.929466",
+              "after": "35.928963"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.13837",
+              "after": "140.138031"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R72W4HQ+Q8",
+              "after": "8R72W4HQ+H6"
+            }
+          ]
+        },
+        {
+          "locationId": "08-212-a-01",
+          "cardName": "常陸太田市",
+          "prefecture": "茨城県",
+          "municipality": "常陸太田市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.531275",
+              "after": "36.527523"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.527666",
+              "after": "140.528366"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R82GGJH+G3",
+              "after": "8R82GGHH+28"
+            }
+          ]
+        },
+        {
+          "locationId": "08-222-a-01",
+          "cardName": "鹿嶋市",
+          "prefecture": "茨城県",
+          "municipality": "鹿嶋市",
+          "changeType": "changed",
+          "headline": "英語版の案内を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "englishVersionNote",
+              "label": "英語版の案内",
+              "kind": "general",
+              "before": "英語版は鹿嶋市観光案内所（JR鹿島神宮駅構内、鹿嶋市宮下4丁目1-2）で配布。平日9時～17時、土日祝日9時～16時、年末年始休業。日本語版とは配布場所が異なります。1人1枚、直接来所のみ。",
+              "after": "また、平成31年（2019年）2月15日から、英語版の配布も開始しています。"
+            }
+          ]
+        },
+        {
+          "locationId": "09-211-a-01",
+          "cardName": "矢板市 A001",
+          "prefecture": "栃木県",
+          "municipality": "矢板市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.79378",
+              "after": "36.790005"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.91788",
+              "after": "139.917679"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XQWV9+G5",
+              "after": "8Q8XQWR9+23"
+            }
+          ]
+        },
+        {
+          "locationId": "11-208-b-01",
+          "cardName": "所沢市 B001",
+          "prefecture": "埼玉県",
+          "municipality": "所沢市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "所沢市役所別館 商業観光課 / 埼玉県所沢市並木1丁目1番地の1 / 平日 9：00～16：30 / 35.79949, 139.46985 / Plus Code 8Q7XQFX9+QW\n所沢市役所１階 夜間休日受付 / 埼玉県所沢市並木1丁目1番地の1 / 土日祝日・年末年始 9：00～16：30 / 35.799435, 139.4688 / Plus Code 8Q7XQFX9+QG",
+              "after": "所沢市役所別館 商業観光課 / 埼玉県所沢市並木1丁目1番地の1 / 平日 9：00～16：30 / 35.799072, 139.467957 / Plus Code 8Q7XQFX9+J5\n所沢市役所１階 夜間休日受付 / 埼玉県所沢市並木1丁目1番地の1 / 土日祝日・年末年始 9：00～16：30 / 35.799072, 139.467957 / Plus Code 8Q7XQFX9+J5"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.79949",
+              "after": "35.799072"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.46985",
+              "after": "139.467957"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7XQFX9+QW",
+              "after": "8Q7XQFX9+J5"
+            }
+          ]
+        },
+        {
+          "locationId": "15-202-c-01",
+          "cardName": "長岡市 C001",
+          "prefecture": "新潟県",
+          "municipality": "長岡市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.44645",
+              "after": "37.446819"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "138.8511",
+              "after": "138.851379"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9WCVW2+HC",
+              "after": "8Q9WCVW2+PH"
+            }
+          ]
+        },
+        {
+          "locationId": "15-206-a-01",
+          "cardName": "新発田市 A001",
+          "prefecture": "新潟県",
+          "municipality": "新発田市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.94763",
+              "after": "37.947678"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.32684",
+              "after": "139.32695"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9XW8XG+3P",
+              "after": "8Q9XW8XG+3Q"
+            }
+          ]
+        },
+        {
+          "locationId": "17-461-a-01",
+          "cardName": "穴水町 A001",
+          "prefecture": "石川県",
+          "municipality": "穴水町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.22831, 136.90459 / Plus Code 8Q9R6WH3+8R\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.231444, 136.9789 / Plus Code 8Q9R6XJH+HH",
+              "after": "穴水町物産館 四季彩々 / 石川県鳳珠郡穴水町字大町チの41番地6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～17:30 / 2026年9月・10月の毎週水曜日（9月23日を除く） / 37.22831, 136.90459 / Plus Code 8Q9R6WH3+8R\n能登ワイン株式会社 / 石川県穴水町字旭ケ丘り5番6 / 通常配布 / 余裕あり（穴水町、2026-09-25確認） / 通常配布 9:00～16:30 / 12月30日～1月3日 / 37.220726, 136.982178 / Plus Code 8Q9R6XCJ+7V"
+            }
+          ]
+        },
+        {
+          "locationId": "20-321-b-01",
+          "cardName": "軽井沢町 B001",
+          "prefecture": "長野県",
+          "municipality": "軽井沢町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341404, 138.54749 / Plus Code 8Q8W8GRW+HX\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.347736, 138.59213 / Plus Code 8Q8W8HXR+3V",
+              "after": "追分宿郷土館 / 長野県軽井沢町追分1155-8 / 追分宿郷土館 9:00～17:00 7月15日～10月31日は無休です / 水曜日（水曜日が祝日の場合は開館）、年末年始（12/28～1/4）はお休み / 36.341404, 138.54749 / Plus Code 8Q8W8GRW+HX\n中軽井沢駅内観光案内所 / 長野県軽井沢町長倉3037-18 くつかけテラス内 / 中軽井沢駅内観光案内所 9:00～12:00、13:00～17:00 / 12/29～1/3は、10:00～12:00、13:00～15:00 / 36.348129, 138.59079 / Plus Code 8Q8W8HXR+78"
+            }
+          ]
+        },
+        {
+          "locationId": "27-207-c-01",
+          "cardName": "高槻市 C001",
+          "prefecture": "大阪府",
+          "municipality": "高槻市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.84413",
+              "after": "34.844921"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "135.62161",
+              "after": "135.62178"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6QRJVC+MJ",
+              "after": "8Q6QRJVC+XP"
+            }
+          ]
+        },
+        {
+          "locationId": "31-202-a-01",
+          "cardName": "米子市",
+          "prefecture": "鳥取県",
+          "municipality": "米子市",
+          "changeType": "changed",
+          "headline": "緯度・経度・英語版の配布場所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.456272",
+              "after": "35.456242"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "133.36171",
+              "after": "133.361511"
+            },
+            {
+              "field": "englishVersionDistributionPlaces",
+              "label": "英語版の配布場所",
+              "kind": "location",
+              "before": "米子市国際観光案内所 / 米子市弥生町2 JR米子駅1F / 英語版 午前9時から午後5時30分まで / 12月31日・1月1日 / 35.42331, 133.33627 / Plus Code 8Q7MC8FP+8G",
+              "after": "米子市国際観光案内所 / 米子市弥生町2 JR米子駅1F / 英語版 午前9時から午後6時まで（年中無休） / 35.422791, 133.336426 / Plus Code 8Q7MC8FP+4H"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7MF946+GM",
+              "after": "8Q7MF946+FJ"
+            }
+          ]
+        },
+        {
+          "locationId": "32-000-a-01",
+          "cardName": "島根県 (流域下水道)",
+          "prefecture": "島根県",
+          "municipality": "島根県",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.36089",
+              "after": "35.36105"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "132.75713",
+              "after": "132.756561"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7J9Q64+9V",
+              "after": "8Q7J9Q64+CJ"
+            }
+          ]
+        },
+        {
+          "locationId": "32-501-a-01",
+          "cardName": "津和野町",
+          "prefecture": "島根県",
+          "municipality": "津和野町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "34.47294",
+              "after": "34.473564"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "131.77422",
+              "after": "131.774063"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q6HFQFF+5M",
+              "after": "8Q6HFQFF+CJ"
+            }
+          ]
+        },
+        {
+          "locationId": "38-214-a-01",
+          "cardName": "西予市 A001",
+          "prefecture": "愛媛県",
+          "municipality": "西予市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.362915",
+              "after": "33.362453"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "132.5152",
+              "after": "132.515152"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5J9G78+53",
+              "after": "8Q5J9G68+X3"
+            }
+          ]
+        },
+        {
+          "locationId": "42-307-a-01",
+          "cardName": "長与町",
+          "prefecture": "長崎県",
+          "municipality": "長与町",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "長与町水道局 / 長崎県西彼杵郡長与町嬉里郷659番地1 / 平日 9：00～17：00 / 32.82472, 129.8754 / Plus Code 8Q4FRVFG+V5\n中尾城公園管理事務所 / 長崎県西彼杵郡長与町吉無田郷61番地1 / 土日祝 9:00～17:00 / 12月28日～1月1日 / 32.820446, 129.88196 / Plus Code 8Q4FRVCJ+5Q",
+              "after": "長与町水道局 / 長崎県西彼杵郡長与町嬉里郷659番地1 / 平日 9：00～17：00 / 32.82472, 129.8754 / Plus Code 8Q4FRVFG+V5\n中尾城公園管理事務所 / 長崎県西彼杵郡長与町吉無田郷61番地1 / 土日祝 9:00～17:00 / 12月28日～1月1日 / 32.820766, 129.882324 / Plus Code 8Q4FRVCJ+8W"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-03-cdd270567614",
       "date": "2026-11-03",
@@ -16365,147 +16955,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
               "after": "https://www.city.chikugo.lg.jp/kurashi/_2274/_6228/_26356.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-07-71df70cf5691",
-      "date": "2026-10-07",
-      "generatedAt": "2026-10-06T15:13:07.253Z",
-      "source": "Official distribution status and hours review",
-      "totalChanges": 3,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "12-216-a-01",
-          "cardName": "習志野市 A001",
-          "prefecture": "千葉県",
-          "municipality": "習志野市",
-          "changeType": "changed",
-          "headline": "在庫・配布状況を更新",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫残りわずか。なくなり次第配布一時中止（市公式で確認）"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30～17：15\nただし、土日、祝日、年末年始はお休みです",
-              "after": "9：00～16：30\nただし、土日、祝日、年末年始はお休みです"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
-              "after": "https://www.city.narashino.lg.jp/kigyoukyoku/about/gesuido/manholecard/narashino_city_manholecard.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
-              "after": "https://www.city.narashino.lg.jp/kigyoukyoku/about/gesuido/manholecard/narashino_city_manholecard.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.city.narashino.lg.jp/soshiki/gesuido/gyoumuannai_gesui/M_card_H290831.html",
-              "after": "https://www.city.narashino.lg.jp/kigyoukyoku/about/gesuido/manholecard/narashino_city_manholecard.html"
-            }
-          ]
-        },
-        {
-          "locationId": "15-213-b-01",
-          "cardName": "燕市 B001",
-          "prefecture": "新潟県",
-          "municipality": "燕市",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫なし。2026年10月5日から配布休止中（11月上旬再開予定。再開は公式サイトで確認）"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
-              "after": "https://www.city.tsubame.niigata.jp/soshiki/toshi_seibi/2/1/967.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=15#mhcard_result",
-              "after": "https://www.city.tsubame.niigata.jp/soshiki/toshi_seibi/2/1/967.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.city.tsubame.niigata.jp/kurashi/joge/1/3772.html",
-              "after": "https://www.city.tsubame.niigata.jp/soshiki/toshi_seibi/2/1/967.html"
-            }
-          ]
-        },
-        {
-          "locationId": "39-201-a-01",
-          "cardName": "高知市",
-          "prefecture": "高知県",
-          "municipality": "高知市",
-          "changeType": "changed",
-          "headline": "配布場所一覧・配布時間・配布条件情報などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "海老ノ丸ポンプ場 / 高知市海老ノ丸13-6 / 平日 8：30～17：15 / ※土日、祝日、年末年始はお休みです / 33.563213, 133.565994 / Plus Code 8Q5MHH78+79\n高知県立美術館 １階 総合案内 / 高知県高知市高須353-2 / 土日祝日 9:00～16:30 ※休日は、令和7年4月1日～令和8年3月31日の試行配布です。ご注意ください / ※年末年始はお休みです / 33.562576, 133.572647 / Plus Code 8Q5MHH7F+23",
-              "after": "海老ノ丸ポンプ場 / 高知市海老ノ丸13-6 / 平日 8：30～17：15 / ※土日、祝日、年末年始はお休みです / 33.563213, 133.565994 / Plus Code 8Q5MHH78+79\n高知県立美術館 １階 総合案内 / 高知県高知市高須353-2 / 土日祝日 9:00～16:30 ※休日は令和8年4月1日～令和9年3月31日の試行配布 / 美術館休館日12/27～1/1 / 33.562576, 133.572647 / Plus Code 8Q5MHH7F+23"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日】8：30～17：15\n※土日、祝日、年末年始はお休みです\n【休日】9:00～16:30\n※年末年始はお休みです\n※休日は、令和7年4月1日～令和8年3月31日の試行配布です。ご注意ください",
-              "after": "【平日】8：30～17：15\n※土日、祝日、年末年始はお休みです\n【休日】9:00～16:30\n※美術館休館日（12/27～1/1）はお休みです\n※休日は令和8年4月1日～令和9年3月31日の試行配布"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
-              "after": "https://www.city.kochi.kochi.jp/soshiki/91/manhole-card.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=39#mhcard_result",
-              "after": "https://www.city.kochi.kochi.jp/soshiki/91/manhole-card.html"
             }
           ]
         }
