@@ -12,6 +12,15 @@
     return `${values.year}-${values.month}-${values.day}`;
   }
 
+  function activeDistributionPlaces(places, today = calendarDateInJapan()) {
+    if (!Array.isArray(places) || !isIsoDate(today)) return Array.isArray(places) ? places : [];
+    return places.filter((place) => {
+      const startsOn = normalizedBound(place?.startsOn);
+      const endsOn = normalizedBound(place?.endsOn);
+      return (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn);
+    });
+  }
+
   function selectPrimaryDistributionPlace(places, today = calendarDateInJapan()) {
     if (!Array.isArray(places) || places.length === 0) return null;
     if (!isIsoDate(today)) return places[0];
@@ -64,6 +73,7 @@
 
   globalThis.MhcardAppUtils = Object.freeze({
     calendarDateInJapan,
+    activeDistributionPlaces,
     selectPrimaryDistributionPlace,
     placeCoordinateCategory
   });
