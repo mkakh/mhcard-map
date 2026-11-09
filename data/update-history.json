@@ -1,7 +1,221 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T15:04:18.136Z",
+  "generatedAt": "2026-11-09T21:26:03.119Z",
   "updates": [
+    {
+      "id": "2026-11-10-fccf1863ecbb",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-09T21:26:03.119Z",
+      "source": "東松島市B・Cの通常窓口と休業日代替窓口を市公式案内に合わせ修正",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "04-214-b-01",
+          "cardName": "東松島市 B001",
+          "prefecture": "宮城県",
+          "municipality": "東松島市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫状況は市公式案内を確認（2026-11-10）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "東松島市震災復興伝承館",
+              "after": "東松島市商工会"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "宮城県東松島市野蒜字北余景56番地36",
+              "after": "宮城県東松島市矢本字河戸7"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "東松島市商工会 / 宮城県東松島市矢本字河戸7 / 平日（商工会の定休日を除く） 9:00～17:00 / 土曜日・日曜日・祝日 / 38.41916, 141.20996 / Plus Code 8RC3C695+MX\n東松島市震災復興伝承館 / 宮城県東松島市野蒜字北余景56番地36 / 東松島市商工会の定休日（土日・祝日） 9:00～17:00 / 伝承館の休館日（月曜日、祝日の場合は翌営業日、年末年始）は市公式案内を確認 / 38.374825, 141.1601 / Plus Code 8RC395F6+W2"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00\nただし、土日、祝日はお休みです\n【定休日】\n9:00～17:00",
+              "after": "9:00～17:00（平日（商工会の定休日を除く））。定休日は東松島市震災復興伝承館 9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "土曜日・日曜日・祝日"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "在庫がなくなり次第今年度の配布を終了。東松島市震災復興伝承館の休館日は市公式案内を確認"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.374825",
+              "after": "38.41916"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.1601",
+              "after": "141.20996"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.higashimatsushima.miyagi.jp/kurashi/sumiyoimachini/lifeline-gesui/gesuido/manholecard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://higamatsu-shokokai.com/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC395F6+W2",
+              "after": "8RC3C695+MX"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.higashimatsushima.miyagi.jp/kurashi/sumiyoimachini/lifeline-gesui/gesuido/manholecard.html"
+            }
+          ]
+        },
+        {
+          "locationId": "04-214-c-01",
+          "cardName": "東松島市 C001",
+          "prefecture": "宮城県",
+          "municipality": "東松島市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫状況は市公式案内を確認（2026-11-10）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "東松島市震災復興伝承館",
+              "after": "東松島市役所 鳴瀬庁舎2階 都市整備課窓口"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "宮城県東松島市野蒜字北余景56番地36",
+              "after": "宮城県東松島市小野字新宮前5"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "東松島市役所 鳴瀬庁舎2階 都市整備課窓口 / 宮城県東松島市小野字新宮前5 / 開庁日（平日） 9:00～17:00 / 土曜日・日曜日・祝日・年末年始 / 38.400116, 141.1642 / Plus Code 8RC3C527+2M\n東松島市震災復興伝承館 / 宮城県東松島市野蒜字北余景56番地36 / 鳴瀬庁舎の閉庁日（土日・祝日・年末年始） 9:00～17:00 / 伝承館の休館日は市公式案内を確認 / 38.374825, 141.1601 / Plus Code 8RC395F6+W2"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9:00～17:00\nただし、土日、祝日、年末年始はお休みです\n【定休日】\n9:00～17:00",
+              "after": "9:00～17:00（開庁日（平日））。定休日は東松島市震災復興伝承館 9:00～17:00"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "土曜日・日曜日・祝日・年末年始"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "在庫がなくなり次第今年度の配布を終了。東松島市震災復興伝承館の休館日は市公式案内を確認"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.374825",
+              "after": "38.400116"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "141.1601",
+              "after": "141.1642"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.higashimatsushima.miyagi.jp/kurashi/sumiyoimachini/lifeline-gesui/gesuido/manholecard.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.higashimatsushima.miyagi.jp/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC395F6+W2",
+              "after": "8RC3C527+2M"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.city.higashimatsushima.miyagi.jp/kurashi/sumiyoimachini/lifeline-gesui/gesuido/manholecard.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-648be1f1adb6",
       "date": "2026-11-10",
@@ -17942,76 +18156,6 @@
               "kind": "coordinates",
               "before": "8Q8X7F36+3V",
               "after": "8Q8X7F37+72"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-18-422b91e99c9c",
-      "date": "2026-10-18",
-      "generatedAt": "2026-10-18T14:00:47.438Z",
-      "source": "長与町の公式配布窓口・休日時間を確認",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "42-307-a-01",
-          "cardName": "長与町",
-          "prefecture": "長崎県",
-          "municipality": "長与町",
-          "changeType": "changed",
-          "headline": "在庫・配布場所一覧・配布時間などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫は十分にあります"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "長与町水道局 / 長崎県西彼杵郡長与町嬉里郷659番地1 / 平日 9：00～17：00 / 32.825459, 129.874817 / Plus Code 8Q4FRVGF+5W\n長与町図書館 / 長崎県西彼杵郡長与町嬉里郷636番地 / 土日 10：00～17：00 長与町図書館ホームページの開館日カレンダーを参考ください。 / 祝日、年末年始、蔵書整理期間はお休みです。 / 32.825714, 129.875839 / Plus Code 8Q4FRVGG+78",
-              "after": "長与町水道局 / 長崎県西彼杵郡長与町嬉里郷659番地1 / 平日 9：00～17：00 / 32.825459, 129.874817 / Plus Code 8Q4FRVGF+5W\n中尾城公園管理事務所 / 長崎県西彼杵郡長与町吉無田郷61番地1 / 土日祝 9:00～17:00 / 12月28日～1月1日 / 32.820446, 129.88196 / Plus Code 8Q4FRVCJ+5Q"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日】 9：00～17：00\n【土日】10：00～17：00\nただし、祝日、年末年始、蔵書整理期間はお休みです。\n長与町図書館ホームページの開館日カレンダーを参考ください。",
-              "after": "【平日・長与町水道局】9:00～17:00\n【土日祝・中尾城公園管理事務所】9:00～17:00"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "中尾城公園管理事務所は12月28日～1月1日休園"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=42#mhcard_result",
-              "after": "https://webtown.nagayo.jp/suido/kiji0034473/index.html"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "https://webtown.nagayo.jp/suido/default.html",
-              "after": "https://webtown.nagayo.jp/suido/kiji0034473/index.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=42#mhcard_result",
-              "after": "https://webtown.nagayo.jp/suido/kiji0034473/index.html"
             }
           ]
         }
