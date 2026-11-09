@@ -36848,5 +36848,51 @@
         "title": "太宰府市観光案内所（駅構内・臨時配布先・Serper Places施設代表点・手動補正）"
       }
     }
+  },
+  "神奈川県横須賀市汐入町1-1（ヴェルニー公園内） ヴェルニー公園管理事務所": {
+    "reviewedResults": {
+      "distributionPlaces:14-201-c-01:place-yokosuka-c-temporary-park-office": {
+        "lat": 35.284473,
+        "lng": 139.6573,
+        "title": "ヴェルニー公園管理事務所（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      },
+      "location:14-201-c-01": {
+        "lat": 35.284473,
+        "lng": 139.6573,
+        "title": "ヴェルニー公園管理事務所（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "横須賀市汐入町1-1（ヴェルニー公園内） ヴェルニー公園管理事務所": {
+    "reviewedResults": {
+      "distributionPlaces:14-201-c-01:place-yokosuka-c-temporary-park-office": {
+        "lat": 35.284473,
+        "lng": 139.6573,
+        "title": "ヴェルニー公園管理事務所（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      },
+      "location:14-201-c-01": {
+        "lat": 35.284473,
+        "lng": 139.6573,
+        "title": "ヴェルニー公園管理事務所（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "神奈川県横須賀市汐入町1-1（ヴェルニー公園内） よこすか近代遺産ミュージアム ティボディエ邸": {
+    "reviewedResults": {
+      "distributionPlaces:14-201-c-01:place-yokosuka-c-museum-after-renewal": {
+        "lat": 35.283054,
+        "lng": 139.65967,
+        "title": "よこすか近代遺産ミュージアム ティボディエ邸（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "横須賀市汐入町1-1（ヴェルニー公園内） よこすか近代遺産ミュージアム ティボディエ邸": {
+    "reviewedResults": {
+      "distributionPlaces:14-201-c-01:place-yokosuka-c-museum-after-renewal": {
+        "lat": 35.283054,
+        "lng": 139.65967,
+        "title": "よこすか近代遺産ミュージアム ティボディエ邸（市公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
   }
 }
