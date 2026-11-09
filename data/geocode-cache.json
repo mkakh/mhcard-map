@@ -36730,5 +36730,95 @@
         "title": "福井市まちなか案内所（ウェルカムセンター）（公式配布先・Serper Places施設代表点・手動補正）"
       }
     }
+  },
+  "富山県富山市新桜町7-38 富山市役所 西館 2階 上下水道局お客さまサービスステーション": {
+    "reviewedResults": {
+      "distributionPlaces:16-201-a-01:place-toyama-a-weekday-station": {
+        "lng": 137.2136,
+        "lat": 36.69559,
+        "title": "富山市役所 西館 2階 上下水道局お客さまサービスステーション（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "富山市新桜町7-38 富山市役所 西館 2階 上下水道局お客さまサービスステーション": {
+    "reviewedResults": {
+      "distributionPlaces:16-201-a-01:place-toyama-a-weekday-station": {
+        "lng": 137.2136,
+        "lat": 36.69559,
+        "title": "富山市役所 西館 2階 上下水道局お客さまサービスステーション（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "富山県富山市新富町一丁目2-3 CiCビル3階 富山市国際交流センター": {
+    "reviewedResults": {
+      "distributionPlaces:16-201-a-01:place-toyama-a-weekend-exchange": {
+        "lng": 137.21246,
+        "lat": 36.699574,
+        "title": "富山市国際交流センター（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "富山市新富町一丁目2-3 CiCビル3階 富山市国際交流センター": {
+    "reviewedResults": {
+      "distributionPlaces:16-201-a-01:place-toyama-a-weekend-exchange": {
+        "lng": 137.21246,
+        "lat": 36.699574,
+        "title": "富山市国際交流センター（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "岡山県倉敷市玉島3丁目8-25 旧柚木家住宅（西爽亭）": {
+    "reviewedResults": {
+      "distributionPlaces:33-202-c-01:place-kurashiki-c-saisoutei": {
+        "lng": 133.671493,
+        "lat": 34.541415,
+        "title": "旧柚木家住宅（西爽亭）（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "倉敷市玉島3丁目8-25 旧柚木家住宅（西爽亭）": {
+    "reviewedResults": {
+      "distributionPlaces:33-202-c-01:place-kurashiki-c-saisoutei": {
+        "lng": 133.671493,
+        "lat": 34.541415,
+        "title": "旧柚木家住宅（西爽亭）（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "岡山県倉敷市玉島爪崎390-4（JR新倉敷駅構内2階） 新倉敷駅観光案内所": {
+    "reviewedResults": {
+      "distributionPlaces:33-202-c-01:place-kurashiki-c-station-fallback": {
+        "lng": 133.67856,
+        "lat": 34.564945,
+        "title": "新倉敷駅観光案内所（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "倉敷市玉島爪崎390-4（JR新倉敷駅構内2階） 新倉敷駅観光案内所": {
+    "reviewedResults": {
+      "distributionPlaces:33-202-c-01:place-kurashiki-c-station-fallback": {
+        "lng": 133.67856,
+        "lat": 34.564945,
+        "title": "新倉敷駅観光案内所（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "長崎県大村市玖島1丁目45番地3 大村公園観光案内所": {
+    "reviewedResults": {
+      "distributionPlaces:42-000-a-01:place-nagasaki-a-omura-park": {
+        "lng": 129.95909,
+        "lat": 32.89915,
+        "title": "大村公園観光案内所（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "大村市玖島1丁目45番地3 大村公園観光案内所": {
+    "reviewedResults": {
+      "distributionPlaces:42-000-a-01:place-nagasaki-a-omura-park": {
+        "lng": 129.95909,
+        "lat": 32.89915,
+        "title": "大村公園観光案内所（公式カード配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
   }
 }
