@@ -94,3 +94,14 @@ test("East Matsushima B and C keep card-specific normal and closure-day outlets"
     assert.match(card.distributionPlaces[1].days, /定休日|閉庁日/);
   }
 });
+
+test("Miyakojima weekday card pin uses the named on-site management building", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = locations.find((item) => item.id === "47-214-a-01");
+  const weekday = card.distributionPlaces.find((place) => place.id === "place-200cf1c5fa");
+  assert.deepEqual([card.lat, card.lng], [24.813734, 125.29509]);
+  assert.deepEqual([weekday.lat, weekday.lng], [card.lat, card.lng]);
+  assert.match(weekday.name, /管理棟/);
+  assert.equal(card.distributionPlaces.length, 2);
+});
