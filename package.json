@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "node server.js",
     "import:gkp": "node scripts/import-gkp-data.js",
+    "audit:gkp-full": "node scripts/audit-gkp-full-catalog.js",
     "verify:image-codes": "node scripts/verify-card-image-codes.js",
     "verify:image-codes:changed": "node scripts/verify-card-image-codes.js --changed",
     "apply:image-codes": "node scripts/verify-card-image-codes.js --apply --strict",

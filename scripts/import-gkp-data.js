@@ -95,6 +95,8 @@ const existingByImageKey = new Map(
 );
 
 const locations = [];
+const auditObservations = [];
+const auditPrefectureCounts = [];
 await mkdir(htmlDir, { recursive: true });
 
 for (const [code, prefecture, baseLat, baseLng] of prefectures) {
@@ -137,6 +139,13 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
     const municipalityCode = municipalityCodes[municipalityCodeKey(prefecture, municipalityName)] ?? "";
     const id = stableLocationId(imageUrl, legacyId, cardCode, municipalityCode);
     const stock = cleanupText(stockHtml) || "不明";
+    if (process.env.GKP_AUDIT_OBSERVATIONS_ONLY === "1") {
+      auditObservations.push({
+        id, prefecture: code, municipality: municipalityName,
+        distributionText, hoursText: cleanupText(hoursHtml), stockText: stock,
+        place: primaryPlace, address: primaryAddress
+      });
+    }
 
     const stopped = isCurrentDistributionStopped(stock, distributionText);
     const status = statusForDistributionStart({ startsOn: distributionStartsOn, today, stopped });
@@ -174,6 +183,19 @@ for (const [code, prefecture, baseLat, baseLng] of prefectures) {
 
     prefectureIndex += 1;
   }
+  if (process.env.GKP_AUDIT_OBSERVATIONS_ONLY === "1") {
+    if (!prefectureIndex) throw new Error(`No GKP card rows parsed for prefecture ${code}`);
+    auditPrefectureCounts.push({ code, count: prefectureIndex });
+  }
+}
+
+if (process.env.GKP_AUDIT_OBSERVATIONS_ONLY === "1") {
+  const ids = new Set(auditObservations.map((row) => row.id));
+  if (ids.size !== auditObservations.length) throw new Error("Duplicate GKP card ID in full audit");
+  await writeFile(join(process.cwd(), ".tmp", "gkp-full-observations.json"),
+    `${JSON.stringify({ checkedAt: new Date().toISOString(), prefectures: prefectures.length, prefectureCounts: auditPrefectureCounts, rows: auditObservations }, null, 2)}\n`);
+  console.log(`GKP full audit: ${prefectures.length} prefectures, ${ids.size} unique cards`);
+  process.exit(0);
 }
 
 const currentIds = new Set(locations.map((location) => location.id));
@@ -790,19 +812,22 @@ function approximateCoordinate(baseLat, baseLng, index) {
 
 async function readPrefectureHtml(code) {
   const filePath = join(htmlDir, `pref-${code}.html`);
-  try {
-    return await readFile(filePath, "utf8");
-  } catch {
-    const url = `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${url}: HTTP ${response.status}`);
+  if (process.env.GKP_AUDIT_OBSERVATIONS_ONLY !== "1") {
+    try {
+      return await readFile(filePath, "utf8");
+    } catch {
+      // Fetch if there is no cached page.
     }
-    const html = await response.text();
-    await writeFile(filePath, html, "utf8");
-    await new Promise((resolve) => setTimeout(resolve, 150));
-    return html;
   }
+  const url = `https://www.gk-p.jp/mhcard/?pref=${code}#mhcard_result`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: HTTP ${response.status}`);
+  }
+  const html = await response.text();
+  await writeFile(filePath, html, "utf8");
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  return html;
 }
 
 async function readExistingLocations() {
