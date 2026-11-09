@@ -14782,8 +14782,8 @@
     "municipality": "市川市",
     "place": "市川市観賞植物園",
     "address": "千葉県市川市大町213番11外",
-    "lat": 35.769077,
-    "lng": 139.971664,
+    "lat": 35.768387,
+    "lng": 139.97037,
     "hours": "9:30～16:30（休園日を除く）\nただし、毎週月曜日（祝日と重なった場合は翌日）、年末年始はお休みです\n※詳細はこちらをご確認ください",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -14803,9 +14803,9 @@
     "stockUrl": "https://www.city.ichikawa.lg.jp/gre07/1111000135.html",
     "conditionUrl": "https://www.gk-p.jp/mhcard/?pref=12#mhcard_result",
     "geocodeQuery": "千葉県市川市大町213番11外",
-    "geocodeTitle": "千葉県市川市大町２１３番地",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "8Q7XQX9C+JM"
+    "geocodeTitle": "市川市観賞植物園（市カード案内・同名/市公式URL一致のSerper Places施設代表点・手動補正）",
+    "geocodedAt": "2026-11-09",
+    "plusCode": "8Q7XQX9C+94"
   },
   {
     "id": "12-203-c-01",
