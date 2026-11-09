@@ -1,7 +1,70 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T22:10:44.054Z",
+  "generatedAt": "2026-11-09T23:22:02.591Z",
   "updates": [
+    {
+      "id": "2026-11-10-8f6ed5f850f9",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-09T23:22:02.591Z",
+      "source": "宮古島市Aの同敷地内管理棟を同名Serper施設代表点へ補正",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "47-214-a-01",
+          "cardName": "宮古島市 A001",
+          "prefecture": "沖縄県",
+          "municipality": "宮古島市",
+          "changeType": "changed",
+          "headline": "配布場所・住所・配布場所一覧などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "宮古島市 下水道課",
+              "after": "宮古島市下水道課（クリーンセンター管理棟）"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "沖縄県宮古島市平良字西仲宗根565-6",
+              "after": "沖縄県宮古島市平良字西仲宗根565番地6 クリーンセンター管理棟"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "宮古島市 下水道課 / 沖縄県宮古島市平良字西仲宗根565-6 / 有効期間 2026-07-31から / 通常配布 / 宮古島市公式カードページ掲載の通常配布先 / 平日 9:00～12:00、13:00～17:00 / 24.812847, 125.296478 / Plus Code 7QP7R77W+4H\n宮古島市未来創造センター / 沖縄県宮古島市平良字東仲宗根807 / 有効期間 2026-08-01から / 通常配布 / 宮古島市公式カードページ掲載の通常配布先 / 土日 10:00～17:30 / 祝日、閉館日、年末年始はお休みです / 24.801208, 125.29082 / Plus Code 7QP7R72R+F8",
+              "after": "宮古島市下水道課（クリーンセンター管理棟） / 沖縄県宮古島市平良字西仲宗根565番地6 クリーンセンター管理棟 / 有効期間 2026-07-31から / 通常配布 / 宮古島市公式カードページ掲載の通常配布先 / 平日 9:00～12:00、13:00～17:00 / 24.813734, 125.29509 / Plus Code 7QP7R77W+F2\n宮古島市未来創造センター / 沖縄県宮古島市平良字東仲宗根807 / 有効期間 2026-08-01から / 通常配布 / 宮古島市公式カードページ掲載の通常配布先 / 土日 10:00～17:30 / 祝日、閉館日、年末年始はお休みです / 24.801208, 125.29082 / Plus Code 7QP7R72R+F8"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "24.812847",
+              "after": "24.813734"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "125.296478",
+              "after": "125.29509"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "7QP7R77W+4H",
+              "after": "7QP7R77W+F2"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-8141fa4c30ca",
       "date": "2026-11-10",
@@ -18057,48 +18120,6 @@
               "kind": "coordinates",
               "before": "8RP59943+9W",
               "after": "8RP59943+HQ"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-19-669ea5ad32c9",
-      "date": "2026-10-19",
-      "generatedAt": "2026-10-19T11:05:34.576Z",
-      "source": "Official Ashibetsu roadside-station facility marker review",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-216-a-01",
-          "cardName": "芦別市",
-          "prefecture": "北海道",
-          "municipality": "芦別市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.525181",
-              "after": "43.5252"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "142.188354",
-              "after": "142.18936"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM4G5GQ+38",
-              "after": "8RM4G5GQ+3P"
             }
           ]
         }
