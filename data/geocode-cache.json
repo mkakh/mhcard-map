@@ -35899,6 +35899,11 @@
         "lng": 136.90419,
         "lat": 37.388927,
         "title": "輪島市上下水道局（河井町21部1番地・施設代表点）"
+      },
+      "location:17-204-a-01": {
+        "lng": 136.90419,
+        "lat": 37.388927,
+        "title": "輪島市上下水道局（A001現行配布先・Serper Places施設代表点・手動補正）"
       }
     }
   },
@@ -36660,6 +36665,69 @@
         "lng": 130.08139,
         "lat": 32.523445,
         "title": "苓北町観光案内所（上津深江4535-1・Serper Places施設同定・手動補正）"
+      }
+    }
+  },
+  "輪島市河井町21部1番地": {
+    "reviewedResults": {
+      "location:17-204-a-01": {
+        "lng": 136.90419,
+        "lat": 37.388927,
+        "title": "輪島市上下水道局（A001現行配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井県福井市大手3丁目13番1号（上下水道局庁舎3階） 福井市上下水道局経営部経営管理課": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekday-waterworks": {
+        "lng": 136.21841,
+        "lat": 36.065662,
+        "title": "福井市上下水道局経営部経営管理課（公式配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井市大手3丁目13番1号（上下水道局庁舎3階） 福井市上下水道局経営部経営管理課": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekday-waterworks": {
+        "lng": 136.21841,
+        "lat": 36.065662,
+        "title": "福井市上下水道局経営部経営管理課（公式配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井県福井市足羽1丁目7番35号 福井市水道記念館": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekend-water-museum": {
+        "lng": 136.21133,
+        "lat": 36.058678,
+        "title": "福井市水道記念館（公式配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井市足羽1丁目7番35号 福井市水道記念館": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekend-water-museum": {
+        "lng": 136.21133,
+        "lat": 36.058678,
+        "title": "福井市水道記念館（公式配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井県福井市中央1丁目2-1 福井市まちなか案内所（ウェルカムセンター）": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekend-welcome-center": {
+        "lng": 136.22244,
+        "lat": 36.061504,
+        "title": "福井市まちなか案内所（ウェルカムセンター）（公式配布先・Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "福井市中央1丁目2-1 福井市まちなか案内所（ウェルカムセンター）": {
+    "reviewedResults": {
+      "distributionPlaces:18-201-a-01:place-fukui-a-weekend-welcome-center": {
+        "lng": 136.22244,
+        "lat": 36.061504,
+        "title": "福井市まちなか案内所（ウェルカムセンター）（公式配布先・Serper Places施設代表点・手動補正）"
       }
     }
   }
