@@ -71,3 +71,14 @@ test("hides a temporary Dazaifu outlet after its final day", async () => {
   assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-12-22").length, 1);
   assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-12-23").length, 0);
 });
+
+test("Yokosuka C001 switches from park office to museum without overlapping pins", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = locations.find((item) => item.id === "14-201-c-01");
+  assert.ok(card);
+  assert.deepEqual(card.distributionPlaces.map((place) => place.name), ["ヴェルニー公園管理事務所", "よこすか近代遺産ミュージアム ティボディエ邸"]);
+  assert.deepEqual(activeDistributionPlaces(card.distributionPlaces, "2026-11-13").map((place) => place.id), ["place-yokosuka-c-temporary-park-office"]);
+  assert.deepEqual(activeDistributionPlaces(card.distributionPlaces, "2026-11-14").map((place) => place.id), ["place-yokosuka-c-museum-after-renewal"]);
+  assert.notDeepEqual([card.distributionPlaces[0].lat, card.distributionPlaces[0].lng], [card.distributionPlaces[1].lat, card.distributionPlaces[1].lng]);
+});
