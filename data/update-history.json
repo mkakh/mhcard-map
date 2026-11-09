@@ -1,7 +1,119 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T14:38:32.577Z",
+  "generatedAt": "2026-11-09T14:51:53.343Z",
   "updates": [
+    {
+      "id": "2026-11-09-ab2165a2c386",
+      "date": "2026-11-09",
+      "generatedAt": "2026-11-09T14:51:53.343Z",
+      "source": "太宰府市C001の期間限定配布先を公式資料で訂正",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "40-221-c-01",
+          "cardName": "太宰府市 C001",
+          "prefecture": "福岡県",
+          "municipality": "太宰府市",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "十分な在庫があります（市公式、2026-11-09確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "太宰府館",
+              "after": "太宰府市観光案内所（西鉄太宰府駅構内）"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "福岡県太宰府市宰府3-2-3",
+              "after": "福岡県太宰府市宰府2-5-1（西鉄太宰府駅構内）"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "太宰府市観光案内所（西鉄太宰府駅構内） / 福岡県太宰府市宰府2-5-1（西鉄太宰府駅構内） / 有効期間 2026-10-01～2026-12-22 / 限定配布 / 12月22日まで。12月23日以降の配布先は市公式の再案内を確認 / 2026年10月1日～12月22日 9:00～17:00 / 年中無休（期間中） / 33.51913, 130.53154 / Plus Code 8Q5GGG9J+MJ"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10:00〜18:00\nただし、毎週水曜日(祝日の場合は翌日)はお休みです",
+              "after": "9:00～17:00（2026/10/1～12/22の臨時配布先）"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "年中無休（臨時配布期間中）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "臨時配布は2026年12月22日まで。終了後の配布先は市公式案内で再確認"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "33.519825",
+              "after": "33.51913"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "130.532394",
+              "after": "130.53154"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.dazaifu.lg.jp/soshiki/22/22649.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.dazaifu.lg.jp/site/kanko/3625.html",
+              "after": "https://dazaifu.org/about/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q5GGG9J+WX",
+              "after": "8Q5GGG9J+MJ"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
+              "after": "https://www.city.dazaifu.lg.jp/soshiki/22/22649.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-09-6fd8d660deb1",
       "date": "2026-11-09",
@@ -18308,222 +18420,6 @@
               "kind": "location",
               "before": "大阪狭山市役所庁舎2階 水政策部下水道・水路グループ / 大阪府大阪狭山市狭山1-2384-１ / 平日 9：00～17：30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.503681, 135.555862 / Plus Code 8Q6QGH34+F8\n大阪府立狭山池博物館 / 大阪府大阪狭山市池尻中二丁目 / 土日祝 10：00時～17：00（入館は16：30まで） / 年末年始（12/28～1/4）はお休みです / 34.510361, 135.551895 / Plus Code 8Q6QGH62+4Q",
               "after": "大阪狭山市役所庁舎2階 水政策部下水道・水路グループ / 大阪府大阪狭山市狭山1-2384-１ / 平日 9：00～17：30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.503681, 135.555862 / Plus Code 8Q6QGH34+F8\n大阪府立狭山池博物館 / 大阪府大阪狭山市池尻中二丁目 / 土日祝 10：00時～17：00（入館は16：30まで） / 年末年始（12/28～1/4）はお休みです / 34.507118, 135.551848 / Plus Code 8Q6QGH42+RP"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-18-3e7dd7e42b9d",
-      "date": "2026-10-18",
-      "generatedAt": "2026-10-18T06:04:03.112Z",
-      "source": "公式施設地図を照合した配布先ピン6件の修正",
-      "totalChanges": 6,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-633-a-01",
-          "cardName": "上士幌町",
-          "prefecture": "北海道",
-          "municipality": "上士幌町",
-          "changeType": "changed",
-          "headline": "配布場所一覧・緯度・経度などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "上士幌町役場建設課 / 北海道河東郡上士幌町字上士幌東3線238番地 / 平日 8:45～17:00 / 休日及び年始年末はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ\n道の駅かみしほろ / 北海道河東郡上士幌町字上士幌東3線227番地 / 平日・土日祝日 9:00～17:00 / 年末年始はお休みです / 43.261906, 143.30162 / Plus Code 8RM57862+QJ",
-              "after": "上士幌町役場建設課 / 北海道河東郡上士幌町字上士幌東3線238番地 / 平日 8:45～17:00 / 休日及び年始年末はお休みです / 43.232693, 143.29561 / Plus Code 8RM567MW+36\n道の駅かみしほろ / 北海道河東郡上士幌町字上士幌東3線227番地 / 平日・土日祝日 9:00～17:00 / 年末年始はお休みです / 43.22440697913821, 143.29053531619658 / Plus Code 8RM567FR+Q6"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.261906",
-              "after": "43.232693"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "143.30162",
-              "after": "143.29561"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM57862+QJ",
-              "after": "8RM567MW+36"
-            }
-          ]
-        },
-        {
-          "locationId": "12-423-a-01",
-          "cardName": "長生村 A001",
-          "prefecture": "千葉県",
-          "municipality": "長生村",
-          "changeType": "changed",
-          "headline": "配布場所一覧・緯度・経度などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "長生村役場下水環境課 / 千葉県長生郡長生村本郷1番地77 / 平日 9:00～16:30（平日・土日祝日共通） / 年末年始（12/28～1/3）はお休みです / 35.415359, 140.350388 / Plus Code 8R72C982+45\n長生村文化会館 / 千葉県長生郡長生村岩沼2119番地 / 土日祝日 9:00～16:30（平日・土日祝日共通） / 年末年始（12/28～1/3）はお休みです / 35.40414, 140.350952 / Plus Code 8R72C932+M9",
-              "after": "長生村役場下水環境課 / 千葉県長生郡長生村本郷1番地77 / 平日 9:00～16:30（平日・土日祝日共通） / 年末年始（12/28～1/3）はお休みです / 35.41216, 140.35435 / Plus Code 8R72C963+VP\n長生村文化会館 / 千葉県長生郡長生村岩沼2119番地 / 土日祝日 9:00～16:30（平日・土日祝日共通） / 年末年始（12/28～1/3）はお休みです / 35.40414, 140.350952 / Plus Code 8R72C932+M9"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.415359",
-              "after": "35.41216"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "140.350388",
-              "after": "140.35435"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8R72C982+45",
-              "after": "8R72C963+VP"
-            }
-          ]
-        },
-        {
-          "locationId": "21-219-d-01",
-          "cardName": "郡上市 D001",
-          "prefecture": "岐阜県",
-          "municipality": "郡上市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.628452",
-              "after": "35.6085299"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "136.926865",
-              "after": "136.9428537"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7RJWHG+9P",
-              "after": "8Q7RJW5V+C4"
-            }
-          ]
-        },
-        {
-          "locationId": "31-371-a-01",
-          "cardName": "琴浦町",
-          "prefecture": "鳥取県",
-          "municipality": "琴浦町",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.494026",
-              "after": "35.5021457"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "133.652802",
-              "after": "133.6579858"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7MFMV3+J4",
-              "after": "8Q7MGM25+V5"
-            }
-          ]
-        },
-        {
-          "locationId": "33-214-a-01",
-          "cardName": "真庭市",
-          "prefecture": "岡山県",
-          "municipality": "真庭市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.309883",
-              "after": "35.2913333"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "133.626846",
-              "after": "133.63675"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7M8J5G+XP",
-              "after": "8Q7M7JRP+GP"
-            }
-          ]
-        },
-        {
-          "locationId": "39-363-a-01",
-          "cardName": "土佐町",
-          "prefecture": "高知県",
-          "municipality": "土佐町",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "33.727287",
-              "after": "33.7426279"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "133.565002",
-              "after": "133.5442656"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q5MPHG8+W2",
-              "after": "8Q5MPGVV+3P"
             }
           ]
         }

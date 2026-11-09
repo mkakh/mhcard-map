@@ -25,3 +25,11 @@ test("uses the Japan calendar and date-aware place selector in the application",
   assert.match(spec, /current Asia\/Tokyo date/);
   assert.match(spec, /earliest upcoming place/);
 });
+
+test("map features and list navigation exclude expired temporary distributor", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile("app.js", "utf8");
+  assert.ok(source.includes("activeDistributionPlaces(allDistributionPlaces(location)).map"));
+  assert.ok(source.includes("shouldFocusSelected = hasCurrentPlace"));
+  assert.ok(source.includes("掲載配布期間は終了しました"));
+});

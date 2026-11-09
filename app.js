@@ -456,7 +456,7 @@ function getFilteredLocations() {
       return (
         (!query || haystack.includes(query)) &&
         (prefecture === "all" || location.prefecture === prefecture) &&
-        (status === "all" || location.status === status) &&
+        (status === "all" || currentDistributionStatus(location) === status) &&
         isInsideActiveViewport(location) &&
         (collectionFilter === "all" ||
           (collectionFilter === "collected" && collected) ||
@@ -711,7 +711,7 @@ function renderMap(filtered) {
 
   if (shouldFocusSelected) {
     const selected = locations.find((location) => location.id === selectedId);
-    if (selected) {
+    if (selected && globalThis.MhcardAppUtils.activeDistributionPlaces(allDistributionPlaces(selected)).length) {
       const place = selectedDistributionPlace(selected);
       map.easeTo({
         center: [place.lng, place.lat],
@@ -734,13 +734,14 @@ function selectListLocation(locationId, options = {}) {
 
   if (options.clearFilters) clearFilters();
   selectedId = location.id;
-  selectedPlaceId = primaryDistributionPlace(location).id;
+  const hasCurrentPlace = globalThis.MhcardAppUtils.activeDistributionPlaces(allDistributionPlaces(location)).length > 0;
+  selectedPlaceId = hasCurrentPlace ? primaryDistributionPlace(location).id : "";
   clearHoveredLocation();
   listHoverSuspended = true;
-  shouldFocusSelected = true;
+  shouldFocusSelected = hasCurrentPlace;
   renderAll();
   switchMobilePanel("map");
-  showLocationPopup(location);
+  if (hasCurrentPlace) showLocationPopup(location);
 }
 
 function setHoveredLocation(locationId) {
@@ -806,6 +807,11 @@ function renderDetail() {
     elements.detailContent.innerHTML = '<div class="empty-state">配布場所を選択してください。</div>';
     return;
   }
+  if (location.distributionPlaces?.length && location.distributionPlaces.every((place) => Boolean(place.endsOn))
+    && globalThis.MhcardAppUtils.activeDistributionPlaces(allDistributionPlaces(location)).length === 0) {
+    elements.detailContent.innerHTML = `<div class="empty-state">${escapeHtml(location.cardName)}の掲載配布期間は終了しました。現在の配布先は<a href="${escapeHtml(safeExternalUrl(location.sourceUrl) || "#")}" target="_blank" rel="noopener noreferrer">自治体の公式案内</a>で確認してください。</div>`;
+    return;
+  }
 
   const collection = collections[location.id] ?? {};
   const places = allDistributionPlaces(location);
@@ -849,7 +855,7 @@ function renderDetail() {
       ${renderInfoCodeRow("緯度経度", coordinatesText, true, "copyCoordinates")}
       ${renderInfoCodeRow("住所", selectedAddress, selectedAddress !== "未登録", "copyAddress")}
       ${renderMapPositionRows(location, selectedPlace)}
-      <tr><th>配布状況</th><td>${renderSourceLinkedValue(location.status, sourceUrl)}</td></tr>
+      <tr><th>配布状況</th><td>${renderSourceLinkedValue(currentDistributionStatus(location), sourceUrl)}</td></tr>
       ${renderDistributionScheduleRows(location, selectedPlace)}
       <tr><th>配布時間</th><td>${escapeHtml(selectedPlace.hours || location.hours || "未登録")}</td></tr>
       <tr><th>休館日</th><td>${escapeHtml(selectedPlace.closed || location.closed || "未登録")}</td></tr>
@@ -1125,17 +1131,25 @@ function renderSummary(filtered) {
   elements.requestCount.textContent = String(updateRequests.length);
 }
 
+function currentDistributionStatus(location) {
+  if (location.status !== "配布中" || !location.distributionPlaces?.length) return location.status;
+  const places = location.distributionPlaces;
+  if (places.every((place) => Boolean(place.endsOn))
+    && globalThis.MhcardAppUtils.activeDistributionPlaces(places).length === 0) return "要確認";
+  return location.status;
+}
+
 function renderStatusBadge(location) {
-  if (location.status === "配布開始前") {
+  if (currentDistributionStatus(location) === "配布開始前") {
     const startsOn = formatShortDate(location.distributionStartsOn);
     return `<span class="badge upcoming">配布開始前${startsOn ? ` ${escapeHtml(startsOn)}` : ""}</span>`;
   }
 
-  if (location.status === "休止中") {
+  if (currentDistributionStatus(location) === "休止中") {
     return '<span class="badge paused">休止中</span>';
   }
 
-  if (location.status === "要確認") {
+  if (currentDistributionStatus(location) === "要確認") {
     return '<span class="badge review">要確認</span>';
   }
 
@@ -1507,7 +1521,7 @@ function toLocationFeatureCollection(items) {
   return {
     type: "FeatureCollection",
     features: items.flatMap((location) =>
-      allDistributionPlaces(location).map((place) => {
+      globalThis.MhcardAppUtils.activeDistributionPlaces(allDistributionPlaces(location)).map((place) => {
         const category = placeCoordinateCategory(location, place);
         return {
           type: "Feature",

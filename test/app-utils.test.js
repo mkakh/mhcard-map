@@ -3,7 +3,7 @@ import test from "node:test";
 
 await import("../app-utils.js");
 
-const { calendarDateInJapan, selectPrimaryDistributionPlace, placeCoordinateCategory } = globalThis.MhcardAppUtils;
+const { calendarDateInJapan, activeDistributionPlaces, selectPrimaryDistributionPlace, placeCoordinateCategory } = globalThis.MhcardAppUtils;
 
 test("uses the Asia/Tokyo calendar date at the local midnight boundary", () => {
   assert.equal(calendarDateInJapan(new Date("2026-08-10T14:59:59Z")), "2026-08-10");
@@ -57,4 +57,17 @@ test("classifies suspended places with and without a known address", () => {
     placeCoordinateCategory({ status: "配布中" }, { address: "", geocodeError: "not found" }),
     "geocode-failed"
   );
+});
+
+test("hides a temporary Dazaifu outlet after its final day", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = locations.find((item) => item.id === "40-221-c-01");
+  assert.ok(card);
+  assert.equal(card.distributionPlaces.length, 1);
+  assert.equal(card.distributionPlaces[0].name, "太宰府市観光案内所（西鉄太宰府駅構内）");
+  assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-09-30").length, 0);
+  assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-10-01").length, 1);
+  assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-12-22").length, 1);
+  assert.equal(activeDistributionPlaces(card.distributionPlaces, "2026-12-23").length, 0);
 });
