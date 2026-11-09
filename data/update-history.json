@@ -1,7 +1,42 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T21:26:03.119Z",
+  "generatedAt": "2026-11-09T21:31:29.202Z",
   "updates": [
+    {
+      "id": "2026-11-10-b78103887984",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-09T21:31:29.202Z",
+      "source": "石巻市Bの再入荷予定表現を市の10月23日付案内に更新",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "04-202-b-01",
+          "cardName": "石巻市 B001",
+          "prefecture": "宮城県",
+          "municipality": "石巻市",
+          "changeType": "changed",
+          "headline": "在庫・配布条件を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫の最新状況は市公式案内を確認。2026年10月23日時点の再入荷案内を現在の在庫保証とは扱わない"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "ロボコンカードは2026年10月19日から工事期間中、かわまち交流センター1階で配布。2027年4月上旬までの見込みだが終了日未確定。在庫僅少（10月16日時点）、10月24日再入荷予定。来所1人1枚、郵送・代理・予約不可",
+              "after": "ロボコンカードは石ノ森萬画館の改修工事中、2026年10月19日から石巻市かわまち交流センター1階で配布。2027年4月上旬までの見込み（終了日未確定）。2026年10月24日から配布再開済みとの市案内（10月23日付）。来所1人1枚、郵送・代理・予約不可。在庫終了時は今年度の配布終了"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-fccf1863ecbb",
       "date": "2026-11-10",
@@ -18068,94 +18103,6 @@
               "kind": "location",
               "before": "苫小牧市役所上下水道部下水道課 / 北海道苫小牧市旭町4-5-6 / 平日 8:45～17:15 / 42.634579, 141.604599 / Plus Code 8RJ3JJM3+RR\n苫小牧観光案内所 / 北海道苫小牧市表町5-11-5 / 土日祝日 9:30～18:00 / 年末年始（12/29～1/3）はお休みです / 42.639725, 141.598343 / Plus Code 8RJ3JHQX+V8",
               "after": "苫小牧市役所上下水道部下水道課 / 北海道苫小牧市旭町4-5-6 / 平日 8:45～17:15 / 42.6343047, 141.6052738 / Plus Code 8RJ3JJM4+P4\n苫小牧観光案内所 / 北海道苫小牧市表町5-11-5 / 土日祝日 9:30～18:00 / 年末年始（12/29～1/3）はお休みです / 42.639725, 141.598343 / Plus Code 8RJ3JHQX+V8"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-19-93a01915f9a6",
-      "date": "2026-10-19",
-      "generatedAt": "2026-10-19T04:51:52.664Z",
-      "source": "邑楽町A/B配布施設pinを町施設地図マーカーに個別照合",
-      "totalChanges": 2,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "10-525-a-01",
-          "cardName": "邑楽町 A001",
-          "prefecture": "群馬県",
-          "municipality": "邑楽町",
-          "changeType": "changed",
-          "headline": "緯度・経度・施設情報などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "36.252743",
-              "after": "36.2523916"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.462158",
-              "after": "139.4623"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "http://www.town.ora.gunma.jp/",
-              "after": "https://www.town.ora.gunma.jp/map/010/20180901172000.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q8X7F36+3V",
-              "after": "8Q8X7F26+XW"
-            }
-          ]
-        },
-        {
-          "locationId": "10-525-b-01",
-          "cardName": "邑楽町 B001",
-          "prefecture": "群馬県",
-          "municipality": "邑楽町",
-          "changeType": "changed",
-          "headline": "配布場所一覧・緯度・経度などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "シンボルタワー 未来MiRAi / 群馬県邑楽郡邑楽町大字中野2639番地1 / 通常 10：00～18：00（４月～９月） 10：00～16：00（10月～３月） ※イルミーネション開催時期については21:00まで / ※ただし、月・火（祝日を除く）、年末年始はお休みです / 36.252743, 139.462158 / Plus Code 8Q8X7F36+3V\n邑楽町役場都市計画課2F（月、火 ※祝日を除く） / 群馬県邑楽郡邑楽町大字中野2570番地1 / 上記休館日 8：30～17：15 / 休館日（月・火（祝日を除く）、年末年始）に配布します / 36.252743, 139.462158 / Plus Code 8Q8X7F36+3V",
-              "after": "シンボルタワー 未来MiRAi / 群馬県邑楽郡邑楽町大字中野2639番地1 / 通常 10：00～18：00（４月～９月） 10：00～16：00（10月～３月） ※イルミーネション開催時期については21:00まで / ※ただし、月・火（祝日を除く）、年末年始はお休みです / 36.2531638, 139.4625222 / Plus Code 8Q8X7F37+72\n邑楽町役場都市計画課2F（月、火 ※祝日を除く） / 群馬県邑楽郡邑楽町大字中野2570番地1 / 上記休館日 8：30～17：15 / 休館日（月・火（祝日を除く）、年末年始）に配布します / 36.2523916, 139.4623 / Plus Code 8Q8X7F26+XW"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "36.252743",
-              "after": "36.2531638"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.462158",
-              "after": "139.4625222"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q8X7F36+3V",
-              "after": "8Q8X7F37+72"
             }
           ]
         }
