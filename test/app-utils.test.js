@@ -82,3 +82,15 @@ test("Yokosuka C001 switches from park office to museum without overlapping pins
   assert.deepEqual(activeDistributionPlaces(card.distributionPlaces, "2026-11-14").map((place) => place.id), ["place-yokosuka-c-museum-after-renewal"]);
   assert.notDeepEqual([card.distributionPlaces[0].lat, card.distributionPlaces[0].lng], [card.distributionPlaces[1].lat, card.distributionPlaces[1].lng]);
 });
+
+test("East Matsushima B and C keep card-specific normal and closure-day outlets", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  for (const [id, normal] of [["04-214-b-01", "東松島市商工会"], ["04-214-c-01", "東松島市役所 鳴瀬庁舎2階 都市整備課窓口"]]) {
+    const card = locations.find((item) => item.id === id);
+    assert.equal(card.place, normal);
+    assert.deepEqual(card.distributionPlaces.map((place) => place.name), [normal, "東松島市震災復興伝承館"]);
+    assert.notDeepEqual([card.distributionPlaces[0].lat, card.distributionPlaces[0].lng], [card.distributionPlaces[1].lat, card.distributionPlaces[1].lng]);
+    assert.match(card.distributionPlaces[1].days, /定休日|閉庁日/);
+  }
+});
