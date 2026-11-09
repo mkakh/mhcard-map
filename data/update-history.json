@@ -1,7 +1,152 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T14:07:16.203Z",
+  "generatedAt": "2026-11-09T14:38:32.577Z",
   "updates": [
+    {
+      "id": "2026-11-09-6fd8d660deb1",
+      "date": "2026-11-09",
+      "generatedAt": "2026-11-09T14:38:32.577Z",
+      "source": "GKP全件照合: 曜日別3カードと軽井沢在庫の公式訂正",
+      "totalChanges": 4,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "16-201-a-01",
+          "cardName": "富山市 A001",
+          "prefecture": "富山県",
+          "municipality": "富山市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・施設情報・情報元などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "富山市役所 西館 2階 上下水道局お客さまサービスステーション / 富山県富山市新桜町7-38 / 平日 9:00～16:00 / 年末年始 / 36.69559, 137.2136 / Plus Code 8Q8VM6W7+6C\n富山市国際交流センター / 富山県富山市新富町一丁目2-3 CiCビル3階 / 土日祝日 10:00～20:30 / 年末年始、CiC休館日 / 36.699574, 137.21246 / Plus Code 8Q8VM6X6+RX"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.city.toyama.lg.jp/",
+              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
+              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.toyama.lg.jp/kurashi/suido/1010356/1010360/1011634.html",
+              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
+            }
+          ]
+        },
+        {
+          "locationId": "20-321-a-01",
+          "cardName": "軽井沢町",
+          "prefecture": "長野県",
+          "municipality": "軽井沢町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "さわやかハット・町役場の日本語版とも在庫なし（町公式、2026-11-09確認）。再開は公式案内を確認"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
+              "after": "https://www.town.karuizawa.lg.jp/page/14115.html"
+            }
+          ]
+        },
+        {
+          "locationId": "33-202-c-01",
+          "cardName": "倉敷市 C001",
+          "prefecture": "岡山県",
+          "municipality": "倉敷市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・施設情報・情報元などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "旧柚木家住宅（西爽亭） / 岡山県倉敷市玉島3丁目8-25 / 西爽亭の開館日 9:00～17:00 / 毎週月曜日（祝日の場合は振替）、12/28～1/4など / 34.541415, 133.671493 / Plus Code 8Q6MGMRC+HH\n新倉敷駅観光案内所 / 岡山県倉敷市玉島爪崎390-4（JR新倉敷駅構内2階） / 代替窓口 / 西爽亭の休館日 9:00～17:30（12:00～13:00休憩） / 12/29～1/3はお休み / 34.564945, 133.67856 / Plus Code 8Q6MHM7H+XC"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": null,
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
+              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
+            }
+          ]
+        },
+        {
+          "locationId": "42-000-a-01",
+          "cardName": "長崎県 （流域下水道）",
+          "prefecture": "長崎県",
+          "municipality": "長崎県",
+          "changeType": "changed",
+          "headline": "配布場所一覧・情報元を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "大村湾南部浄化センター / 長崎県諫早市貝津町1410 / 平日 9：00～17：00 / 32.844166, 130.01277 / Plus Code 8Q4GR2V7+M4\n諫早物産ホール諫早観光物産コンベンション協会 / 長崎県諫早市高城町5-10 / 土日祝日 9：00～17：00 / 年末年始はお休みです / 32.845242, 130.052734 / Plus Code 8Q4GR3W3+33",
+              "after": "大村湾南部浄化センター / 長崎県諫早市貝津町1410 / 平日 9：00～17：00 / 32.844166, 130.01277 / Plus Code 8Q4GR2V7+M4\n諫早物産ホール諫早観光物産コンベンション協会 / 長崎県諫早市高城町5-10 / 土日祝日 9：00～17：00 / 年末年始はお休みです / 32.845242, 130.052734 / Plus Code 8Q4GR3W3+33\n大村公園観光案内所 / 長崎県大村市玖島1丁目45番地3 / 土日祝日（平日も配布） 9:00～17:00 / 水曜日（おおむら花まつり期間を除く）、年末年始 / 32.89915, 129.95909 / Plus Code 8Q4FVXX5+MJ"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=42#mhcard_result",
+              "after": "https://www.pref.nagasaki.jp/doc/page-359173.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-09-a8a1a16f3087",
       "date": "2026-11-09",
@@ -18379,185 +18524,6 @@
               "kind": "coordinates",
               "before": "8Q5MPHG8+W2",
               "after": "8Q5MPGVV+3P"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-16-9769debf650b",
-      "date": "2026-10-16",
-      "generatedAt": "2026-10-15T15:39:12.676Z",
-      "source": "公式確認: 深谷C・神河町の配布施設移転",
-      "totalChanges": 2,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "11-218-c-01",
-          "cardName": "深谷市 C001",
-          "prefecture": "埼玉県",
-          "municipality": "深谷市",
-          "changeType": "changed",
-          "headline": "配布場所・住所・配布場所一覧などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "深谷市役所水道庁舎2F 下水道工務課",
-              "after": "道の駅かわもと 深谷市物産館"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "埼玉県深谷市岡部1086",
-              "after": "埼玉県深谷市長在家1280-1"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "深谷市役所水道庁舎2F 下水道工務課 / 埼玉県深谷市岡部1086 / 平日 9:00～17:00 / 36.18111, 139.243576 / Plus Code 8Q8X56JV+CC\n深谷市役所本庁舎 警備員室 / 埼玉県深谷市仲町11-1 / 土日祝日 9:00～17:00 / 年末年始はお休みです / 36.197369, 139.281769 / Plus Code 8Q8X57WJ+WP",
-              "after": null
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日】9:00～17:00\n【土日祝日】9:00～17:00\nただし、年末年始はお休みです",
-              "after": "10:00～16:00（12:30～13:30を除く）"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "12月29日～1月3日"
-            },
-            {
-              "field": "condition",
-              "label": "配布条件",
-              "kind": "general",
-              "before": "公式情報を確認",
-              "after": "アンケート記入・用紙引換えで1人1枚。事前予約・郵送不可"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "36.18111",
-              "after": "36.151525"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.243576",
-              "after": "139.289032"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.fukaya.saitama.jp/soshiki/kankyosuido/gesuido/tanto/00218/18676.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q8X56JV+CC",
-              "after": "8Q8X572Q+JJ"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.fukaya.saitama.jp/soshiki/kankyosuido/gesuido/tanto/00218/18676.html"
-            }
-          ]
-        },
-        {
-          "locationId": "28-446-a-01",
-          "cardName": "神河町",
-          "prefecture": "兵庫県",
-          "municipality": "神河町",
-          "changeType": "changed",
-          "headline": "在庫・配布場所・住所などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "村営ふれあいマーケット長谷店",
-              "after": "カーミンの観光案内所"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "兵庫県神崎郡神河町長谷1058番地",
-              "after": "兵庫県神崎郡神河町鍛治142番地の47"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "10:00～17:00\nただし、年末年始（12月29日～1月3日）はお休みです",
-              "after": "9:00～17:00"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "水曜日、年末年始"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.125141",
-              "after": "35.0648958"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "134.730881",
-              "after": "134.7427609"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
-              "after": "https://www.town.kamikawa.hyogo.jp/0000002459.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7P4PGJ+39",
-              "after": "8Q7P3P7V+X4"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=28#mhcard_result",
-              "after": "https://www.town.kamikawa.hyogo.jp/0000002459.html"
             }
           ]
         }

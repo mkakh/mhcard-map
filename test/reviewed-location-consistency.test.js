@@ -47,3 +47,24 @@ test("Fukui A001 keeps separately pinned weekday and two weekend outlets", async
   assert.deepEqual([card.lat, card.lng], [card.distributionPlaces[0].lat, card.distributionPlaces[0].lng]);
   assert.equal(new Set(card.distributionPlaces.map((place) => [place.lat, place.lng].join(','))).size, 3);
 });
+
+test("fresh GKP comparison fixes three independently listed alternate venues", async () => {
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  for (const [id, names] of [
+    ["16-201-a-01", ["富山市役所 西館 2階 上下水道局お客さまサービスステーション", "富山市国際交流センター"]],
+    ["33-202-c-01", ["旧柚木家住宅（西爽亭）", "新倉敷駅観光案内所"]],
+    ["42-000-a-01", ["大村湾南部浄化センター", "諫早物産ホール諫早観光物産コンベンション協会", "大村公園観光案内所"]]
+  ]) {
+    const card = locations.find((item) => item.id === id);
+    assert.ok(card);
+    assert.deepEqual(card.distributionPlaces.map((place) => place.name), names);
+    assert.deepEqual([card.lat, card.lng], [card.distributionPlaces[0].lat, card.distributionPlaces[0].lng]);
+  }
+});
+
+test("Karuizawa A001 does not present exhausted cards as available", async () => {
+  const locations = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = locations.find((item) => item.id === "20-321-a-01");
+  assert.equal(card.status, "休止中");
+  assert.match(card.stock, /さわやかハット.*町役場.*在庫なし/);
+});
