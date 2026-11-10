@@ -1,7 +1,67 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T15:05:11.827Z",
+  "generatedAt": "2026-11-10T17:04:23.635Z",
   "updates": [
+    {
+      "id": "2026-11-11-ef7e433da458",
+      "date": "2026-11-11",
+      "generatedAt": "2026-11-10T17:04:23.635Z",
+      "source": "名護市B/Cカード配布先施設代表点の個別確認",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "47-209-b-01",
+          "cardName": "名護市 B001",
+          "prefecture": "沖縄県",
+          "municipality": "名護市",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "公益財団法人 名護市観光協会 / 沖縄県名護市大中1-19-24 名護市産業支援センタ-1階 / 平日 9:00～17:00 / 26.590437, 127.985344 / Plus Code 7QR9HXRP+54\n名護市環境水道部料金窓口 / 名護市港1-1-1 / 土日・祝日 10:00～17:00 / 1/1～1/3はお休みです / 26.592291, 127.977242 / Plus Code 7QR9HXRG+WV",
+              "after": "公益財団法人 名護市観光協会 / 沖縄県名護市大中1-19-24 名護市産業支援センタ-1階 / 平日 9:00～17:00 / 26.590437, 127.985344 / Plus Code 7QR9HXRP+54\n名護市環境水道部料金窓口 / 名護市港1-1-1 / 土日・祝日 10:00～17:00 / 1/1～1/3はお休みです / 26.591702, 127.97755 / Plus Code 7QR9HXRH+M2"
+            }
+          ]
+        },
+        {
+          "locationId": "47-209-c-01",
+          "cardName": "名護市 C001",
+          "prefecture": "沖縄県",
+          "municipality": "名護市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "26.592291",
+              "after": "26.591702"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "127.977242",
+              "after": "127.97755"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "7QR9HXRG+WV",
+              "after": "7QR9HXRH+M2"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-11-6c551f308339",
       "date": "2026-11-11",
@@ -17995,112 +18055,6 @@
               "kind": "coordinates",
               "before": "8Q8XM6C5+V3",
               "after": "8Q8XM6C5+CV"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-28-84eb7307cf7d",
-      "date": "2026-10-28",
-      "generatedAt": "2026-10-27T21:57:17.821Z",
-      "source": "配布施設pinの個別確認済み中間公開（札幌・函館・江別）",
-      "totalChanges": 3,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-100-b-01",
-          "cardName": "札幌市 B001",
-          "prefecture": "北海道",
-          "municipality": "札幌市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.070877",
-              "after": "43.071064"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "141.350281",
-              "after": "141.34993"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM339C2+94",
-              "after": "8RM338CX+CX"
-            }
-          ]
-        },
-        {
-          "locationId": "01-202-a-01",
-          "cardName": "函館市",
-          "prefecture": "北海道",
-          "municipality": "函館市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "41.763802",
-              "after": "41.76378"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "140.717148",
-              "after": "140.71704"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RH2QP78+GV",
-              "after": "8RH2QP78+GR"
-            }
-          ]
-        },
-        {
-          "locationId": "01-217-b-01",
-          "cardName": "江別市 B001",
-          "prefecture": "北海道",
-          "municipality": "江別市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.091351",
-              "after": "43.091274"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "141.529663",
-              "after": "141.52936"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM33GRH+GV",
-              "after": "8RM33GRH+GP"
             }
           ]
         }
