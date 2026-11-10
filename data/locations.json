@@ -2599,15 +2599,15 @@
     "hours": "9:00～17:15",
     "closed": "要確認",
     "condition": "1人1枚。事前予約・郵送不可",
-    "stock": "在庫切れ。2026年9月15日時点、10月上旬に配布再開予定（浦河町公式、2026年9月16日更新）",
-    "status": "休止中",
+    "stock": "2026年10月1日から配布再開（浦河町公式、2026-11-10確認）",
+    "status": "配布中",
     "sourceUrl": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=576",
     "imageUrl": "https://www.gk-p.jp/wp-content/uploads/mhc/01-607-A-01.jpg",
     "series": "第10弾",
     "issuedOn": "2019/08/07",
     "sourceType": "official_public_body_page",
     "coordinateAccuracy": "address",
-    "updatedAt": "2026-09-19",
+    "updatedAt": "2026-11-10",
     "legacyIds": [
       "01-浦河町-067"
     ],

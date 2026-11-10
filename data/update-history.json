@@ -1,7 +1,42 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T01:04:18.104Z",
+  "generatedAt": "2026-11-10T03:35:56.608Z",
   "updates": [
+    {
+      "id": "2026-11-10-d7c88b18f0e7",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-10T03:35:56.608Z",
+      "source": "浦河町公式の配布再開確認",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-607-a-01",
+          "cardName": "浦河町",
+          "prefecture": "北海道",
+          "municipality": "浦河町",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "在庫切れ。2026年9月15日時点、10月上旬に配布再開予定（浦河町公式、2026年9月16日更新）",
+              "after": "2026年10月1日から配布再開（浦河町公式、2026-11-10確認）"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-575bcd04ec96",
       "date": "2026-11-10",
@@ -18123,48 +18158,6 @@
               "kind": "coordinates",
               "before": "8RM4P32C+C9",
               "after": "8RM4M3XC+R6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-19-79395361f2df",
-      "date": "2026-10-19",
-      "generatedAt": "2026-10-19T13:35:59.490Z",
-      "source": "名寄市A道の駅施設マーカー個別照合",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-221-a-01",
-          "cardName": "名寄市 A001",
-          "prefecture": "北海道",
-          "municipality": "名寄市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "44.28738",
-              "after": "44.28741"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "142.411835",
-              "after": "142.41378"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RP47CP6+XP",
-              "after": "8RP47CP7+XG"
             }
           ]
         }
