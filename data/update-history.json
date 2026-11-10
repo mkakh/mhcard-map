@@ -1,7 +1,81 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T06:30:16.179Z",
+  "generatedAt": "2026-11-10T06:39:00.335Z",
   "updates": [
+    {
+      "id": "2026-11-10-f0027773f7dc",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-10T06:39:00.335Z",
+      "source": "鹿沼・三春の配布施設代表pinを個別補正",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "07-521-a-01",
+          "cardName": "三春町",
+          "prefecture": "福島県",
+          "municipality": "三春町",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.443161",
+              "after": "37.443214"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.491013",
+              "after": "140.49126"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8R92CFVR+7C",
+              "after": "8R92CFVR+7G"
+            }
+          ]
+        },
+        {
+          "locationId": "09-205-a-01",
+          "cardName": "鹿沼市",
+          "prefecture": "栃木県",
+          "municipality": "鹿沼市",
+          "changeType": "changed",
+          "headline": "緯度・経度・Plus Codeを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.564056",
+              "after": "36.56392"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.746017",
+              "after": "139.74641"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XHP7W+JC",
+              "after": "8Q8XHP7W+HH"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-8cea84d48467",
       "date": "2026-11-10",
@@ -18144,34 +18218,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
               "after": "https://www.city.ishinomaki.lg.jp/cont/10505200/1212/20180919113612.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-20-b0865f464925",
-      "date": "2026-10-20",
-      "generatedAt": "2026-10-20T00:02:17.138Z",
-      "source": "利尻町どんと休日窓口の施設公式地点確認",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-518-a-01",
-          "cardName": "利尻町",
-          "prefecture": "北海道",
-          "municipality": "利尻町",
-          "changeType": "changed",
-          "headline": "配布場所一覧を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "利尻町役場建設課 / 北海道利尻郡利尻町沓形字緑町14番地1 / 平日 8:30～17:15 / 年末年始（12/31～1/5） / 45.187096, 141.13954 / Plus Code 8RQ354PQ+RR\n交流促進施設どんと1階郷土資料室（図書室） / 北海道利尻郡利尻町字富士見町2番地2 / 土日祝日 9:30～17:30 / 年末年始（12/31～1/5） / 45.187016, 141.139587 / Plus Code 8RQ354PQ+RR",
-              "after": "利尻町役場建設課 / 北海道利尻郡利尻町沓形字緑町14番地1 / 平日 8:30～17:15 / 年末年始（12/31～1/5） / 45.187096, 141.13954 / Plus Code 8RQ354PQ+RR\n交流促進施設どんと1階郷土資料室（図書室） / 北海道利尻郡利尻町字富士見町2番地2 / 土日祝日 9:30～17:30 / 年末年始（12/31～1/5） / 45.18552, 141.13478 / Plus Code 8RQ354PM+6W"
             }
           ]
         }
