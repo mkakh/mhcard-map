@@ -1,7 +1,126 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09T23:22:02.591Z",
+  "generatedAt": "2026-11-10T01:04:18.104Z",
   "updates": [
+    {
+      "id": "2026-11-10-575bcd04ec96",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-10T01:04:18.104Z",
+      "source": "壬生町B001配布再開・町役場へ移転（公式案内とSerper施設点確認）",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-361-b-01",
+          "cardName": "壬生町 B001",
+          "prefecture": "栃木県",
+          "municipality": "壬生町",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "2026年11月10日から配布再開。在庫は公式案内で要確認"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "壬生町おもちゃ博物館",
+              "after": "壬生町役場"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "栃木県下都賀郡壬生町国谷2300番地",
+              "after": "栃木県下都賀郡壬生町大字壬生甲3841番地1"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "壬生町役場 建設部下水道課 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2026-11-10から / 通常配布 / 平日 9:00～17:00 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV\n壬生町役場 日直室 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2026-11-10から / 通常配布 / 土日祝日 9:00～17:00 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "10：45～16：30\nただし、毎週月曜・年末年始はお休みです。\n（月曜日が祝日・振替休日の場合は翌日が休みとなります。）",
+              "after": "9:00～17:00（平日：建設部下水道課、土日祝日：日直室）"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "1人1枚、無料。事前予約・郵送不可。在庫がなくなり次第今年度分終了"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "36.461922",
+              "after": "36.44229"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.80838",
+              "after": "139.81471"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2023102000042/"
+            },
+            {
+              "field": "distributionStartsOn",
+              "label": "配布開始日",
+              "kind": "general",
+              "before": null,
+              "after": "2026-11-10"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://omohaku.michinoeki-mibu.jp/",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2023102000042/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q8XFR65+Q9",
+              "after": "8Q8XCRR7+WV"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2023102000042/"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-8f6ed5f850f9",
       "date": "2026-11-10",
@@ -18046,80 +18165,6 @@
               "kind": "coordinates",
               "before": "8RP47CP6+XP",
               "after": "8RP47CP7+XG"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-19-23a2a2b2306a",
-      "date": "2026-10-19",
-      "generatedAt": "2026-10-19T11:40:17.909Z",
-      "source": "赤平・紋別 配布施設pin個別照合",
-      "totalChanges": 2,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-218-a-01",
-          "cardName": "赤平市",
-          "prefecture": "北海道",
-          "municipality": "赤平市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.578049",
-              "after": "43.579389"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "142.035248",
-              "after": "142.037444"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM4H2HP+63",
-              "after": "8RM4H2HP+QX"
-            }
-          ]
-        },
-        {
-          "locationId": "01-219-a-01",
-          "cardName": "紋別市",
-          "prefecture": "北海道",
-          "municipality": "紋別市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "44.355999",
-              "after": "44.3564132"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "143.354828",
-              "after": "143.3544026"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RP59943+9W",
-              "after": "8RP59943+HQ"
             }
           ]
         }
