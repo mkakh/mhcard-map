@@ -51901,13 +51901,13 @@
         "hours": "10:00～17:00",
         "closed": "1/1～1/3はお休みです",
         "url": "https://nagomun.or.jp/",
-        "lat": 26.592291,
-        "lng": 127.977242,
-        "plusCode": "7QR9HXRG+WV",
+        "lat": 26.591702,
+        "lng": 127.97755,
         "coordinateAccuracy": "address",
         "geocodeQuery": "名護市港1-1-1",
-        "geocodeTitle": "沖縄県名護市港一丁目１番１号",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "名護市役所（Serper Places同一敷地施設代表点・手動補正）",
+        "geocodedAt": "2026-11-11",
+        "plusCode": "7QR9HXRH+M2"
       }
     ],
     "legacyIds": [
@@ -51928,8 +51928,8 @@
     "municipality": "名護市",
     "place": "名護市環境水道部経営課 料金窓口",
     "address": "沖縄県名護市港一丁目１番１号",
-    "lat": 26.592291,
-    "lng": 127.977242,
+    "lat": 26.591702,
+    "lng": 127.97755,
     "hours": "【平日】9：00～17：00\n【土日祝日】10：00～17：00\nただし、1/1～1/3はお休みです",
     "closed": "要確認",
     "condition": "公式情報を確認",
@@ -51949,9 +51949,9 @@
     "stockUrl": "https://www.city.nago.okinawa.jp/articles/2026062900018/",
     "conditionUrl": "https://www.city.nago.okinawa.jp/articles/2026062900018/",
     "geocodeQuery": "沖縄県名護市港一丁目1番1号",
-    "geocodeTitle": "沖縄県名護市港一丁目１番１号",
-    "geocodedAt": "2026-07-05",
-    "plusCode": "7QR9HXRG+WV"
+    "geocodeTitle": "名護市役所（Serper Places同一敷地施設代表点・手動補正）",
+    "geocodedAt": "2026-11-11",
+    "plusCode": "7QR9HXRH+M2"
   },
   {
     "id": "47-211-a-01",
