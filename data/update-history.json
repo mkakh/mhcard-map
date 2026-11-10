@@ -1,7 +1,112 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T12:46:48.023Z",
+  "generatedAt": "2026-11-10T15:05:11.827Z",
   "updates": [
+    {
+      "id": "2026-11-11-6c551f308339",
+      "date": "2026-11-11",
+      "generatedAt": "2026-11-10T15:05:11.827Z",
+      "source": "会津坂下町A001 町公式配布窓口と役場施設代表点確認",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "07-421-a-01",
+          "cardName": "会津坂下町",
+          "prefecture": "福島県",
+          "municipality": "会津坂下町",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・配布時間などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "在庫あり（町公式案内を確認）"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "会津坂下町役場 日直窓口（戸籍環境班）",
+              "after": "会津坂下町役場 正面玄関前ホール（総合案内窓口・建設課上下水道班）"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "8:30～17:15（年中無休）",
+              "after": "8:30～17:15"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "休庁日等は町公式案内を確認"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "来訪者1人1枚、郵送不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "37.561451",
+              "after": "37.561382"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.821701",
+              "after": "139.82161"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.town.aizubange.fukushima.jp/soshiki/28/7745.html"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.town.aizubange.fukushima.jp/",
+              "after": "https://www.town.aizubange.fukushima.jp/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q9XHR6C+HM",
+              "after": "8Q9XHR6C+HJ"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=07#mhcard_result",
+              "after": "https://www.town.aizubange.fukushima.jp/soshiki/28/7745.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.town.aizubange.fukushima.jp/soshiki/28/7745.html",
+              "after": "https://www.town.aizubange.fukushima.jp/soshiki/28/7745.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-d1f6f6bfa227",
       "date": "2026-11-10",
@@ -17996,90 +18101,6 @@
               "kind": "coordinates",
               "before": "8RM33GRH+GV",
               "after": "8RM33GRH+GP"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-27-012e2fbadafe",
-      "date": "2026-10-27",
-      "generatedAt": "2026-10-27T14:05:57.307Z",
-      "source": "Reviewed Tokorozawa B facility hours and building pins",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "11-208-b-01",
-          "cardName": "所沢市 B001",
-          "prefecture": "埼玉県",
-          "municipality": "所沢市",
-          "changeType": "changed",
-          "headline": "住所・配布場所一覧・配布時間などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "埼玉県所沢市並木1-1",
-              "after": "埼玉県所沢市並木1丁目1番地の1"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "所沢市役所別館 商業観光課 / 埼玉県所沢市並木1-1 / 平日 8：30～17：15 / 35.799072, 139.467957 / Plus Code 8Q7XQFX9+J5\n所沢市役所１階 夜間休日受付 / 埼玉県所沢市並木1-1-1 / 土日祝日 8：30～17：15 / 35.799072, 139.467957 / Plus Code 8Q7XQFX9+J5",
-              "after": "所沢市役所別館 商業観光課 / 埼玉県所沢市並木1丁目1番地の1 / 平日 9：00～16：30 / 35.79949, 139.46985 / Plus Code 8Q7XQFX9+QW\n所沢市役所１階 夜間休日受付 / 埼玉県所沢市並木1丁目1番地の1 / 土日祝日・年末年始 9：00～16：30 / 35.799435, 139.4688 / Plus Code 8Q7XQFX9+QG"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30～17：15",
-              "after": "9：00～16：30"
-            },
-            {
-              "field": "condition",
-              "label": "配布条件",
-              "kind": "general",
-              "before": "公式情報を確認",
-              "after": "第8弾。平日は市役所別館 商業観光課、土日祝日・年末年始は市役所1階 夜間休日受付。両窓口とも9:00～16:30。"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.799072",
-              "after": "35.79949"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.467957",
-              "after": "139.46985"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7XQFX9+J5",
-              "after": "8Q7XQFX9+QW"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
             }
           ]
         }
