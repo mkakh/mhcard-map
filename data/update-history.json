@@ -1,7 +1,56 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T03:35:56.608Z",
+  "generatedAt": "2026-11-10T04:06:11.580Z",
   "updates": [
+    {
+      "id": "2026-11-10-23163f05f926",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-10T04:06:11.580Z",
+      "source": "富士見市A001 市役所同一敷地Serper施設代表点の3キー補正",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "11-235-a-01",
+          "cardName": "富士見市",
+          "prefecture": "埼玉県",
+          "municipality": "富士見市",
+          "changeType": "changed",
+          "headline": "配布場所一覧・緯度・経度などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "富士見市役所下水道課 / 埼玉県富士見市大字鶴馬1800番地の1（分館3階） / 平日 8：30～17：15 / 35.856644, 139.549149 / Plus Code 8Q7XVG4X+MM\n富士見市役所警備員室 / 埼玉県富士見市大字鶴馬1800番地の1（本庁舎地下1階） / 土日祝日 9：00～17：00 / 年末年始はお休みです / 35.856644, 139.549149 / Plus Code 8Q7XVG4X+MM",
+              "after": "富士見市役所下水道課 / 埼玉県富士見市大字鶴馬1800番地の1（分館3階） / 平日 8：30～17：15 / 35.85677, 139.54909 / Plus Code 8Q7XVG4X+PJ\n富士見市役所警備員室 / 埼玉県富士見市大字鶴馬1800番地の1（本庁舎地下1階） / 土日祝日 9：00～17：00 / 年末年始はお休みです / 35.85677, 139.54909 / Plus Code 8Q7XVG4X+PJ"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "35.856644",
+              "after": "35.85677"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "139.549149",
+              "after": "139.54909"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8Q7XVG4X+MM",
+              "after": "8Q7XVG4X+PJ"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-d7c88b18f0e7",
       "date": "2026-11-10",
@@ -18116,48 +18165,6 @@
               "kind": "coordinates",
               "before": "8RM4MFW2+HG",
               "after": "8RM4MFW2+M7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-20-4832a6839d03",
-      "date": "2026-10-20",
-      "generatedAt": "2026-10-19T15:16:06.100Z",
-      "source": "深川市道の駅の配布地点を施設名付きマーカーへ補正",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "01-228-a-01",
-          "cardName": "深川市",
-          "prefecture": "北海道",
-          "municipality": "深川市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "43.701065",
-              "after": "43.6995531"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "142.070953",
-              "after": "142.0705943"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8RM4P32C+C9",
-              "after": "8RM4M3XC+R6"
             }
           ]
         }
