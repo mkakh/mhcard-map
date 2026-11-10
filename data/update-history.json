@@ -1,7 +1,126 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T10:34:17.796Z",
+  "generatedAt": "2026-11-10T12:46:48.023Z",
   "updates": [
+    {
+      "id": "2026-11-10-d1f6f6bfa227",
+      "date": "2026-11-10",
+      "generatedAt": "2026-11-10T12:46:48.023Z",
+      "source": "亘理町カード別曜日窓口と施設代表点を確認",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "04-361-a-01",
+          "cardName": "亘理町",
+          "prefecture": "宮城県",
+          "municipality": "亘理町",
+          "changeType": "changed",
+          "headline": "在庫・配布場所・住所などを更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "配布状況は町公式案内を確認"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "亘理町立郷土資料館",
+              "after": "亘理町役場"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "宮城県亘理郡亘理町字西郷140",
+              "after": "宮城県亘理郡亘理町字悠里1"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "亘理町役場 2階上下水道課 / 宮城県亘理郡亘理町字悠里1 / 平日（年末年始を除く） 8:30～17:15 / 土日・祝日・年末年始 / 38.044193, 140.86748 / Plus Code 8RC22VV8+MX\n亘理町立郷土資料館 / 宮城県亘理郡亘理町字西郷140 / 土日 9:00～16:30 / 祝日・年末年始・資料館休館日は町公式案内を確認 / 38.040165, 140.86174 / Plus Code 8RC22VR6+3M\n亘理町役場 警備室 / 宮城県亘理郡亘理町字悠里1 / 祝日・年末年始 8:30～17:15 / 平日・土日（祝日を除く） / 38.044193, 140.86748 / Plus Code 8RC22VV8+MX"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "【平日】8：30～17：15\n【土日】9：00～16：30\n【祝日、年末年始】8：30～17：15",
+              "after": "【平日・祝日・年末年始】8:30～17:15\n【土日】9:00～16:30"
+            },
+            {
+              "field": "closed",
+              "label": "休配日",
+              "kind": "hours",
+              "before": "要確認",
+              "after": "配布場所は曜日により異なる。町公式案内を確認"
+            },
+            {
+              "field": "condition",
+              "label": "配布条件",
+              "kind": "general",
+              "before": "公式情報を確認",
+              "after": "平日は町役場2階上下水道課、土日は郷土資料館、祝日・年末年始は町役場警備室。1人1枚、予約・郵送不可"
+            },
+            {
+              "field": "lat",
+              "label": "緯度",
+              "kind": "coordinates",
+              "before": "38.040375",
+              "after": "38.044193"
+            },
+            {
+              "field": "lng",
+              "label": "経度",
+              "kind": "coordinates",
+              "before": "140.861481",
+              "after": "140.86748"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.town.watari.miyagi.jp/life/detail.php?content=782"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "http://www.town.watari.miyagi.jp/",
+              "after": "https://www.town.watari.miyagi.jp/"
+            },
+            {
+              "field": "plusCode",
+              "label": "Plus Code",
+              "kind": "coordinates",
+              "before": "8RC22VR6+4H",
+              "after": "8RC22VV8+MX"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
+              "after": "https://www.town.watari.miyagi.jp/life/detail.php?content=782"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.town.watari.miyagi.jp/",
+              "after": "https://www.town.watari.miyagi.jp/life/detail.php?content=782"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-10-fa7f1016e956",
       "date": "2026-11-10",
@@ -17960,144 +18079,6 @@
               "label": "情報元",
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-10-24-f88bf59e9d33",
-      "date": "2026-10-24",
-      "generatedAt": "2026-10-24T14:39:11.946Z",
-      "source": "所沢市公式カード案内の在庫リンク確認",
-      "totalChanges": 4,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "11-208-a-01",
-          "cardName": "所沢市 A001",
-          "prefecture": "埼玉県",
-          "municipality": "所沢市",
-          "changeType": "changed",
-          "headline": "配布条件情報・情報元・在庫情報を更新",
-          "importance": "normal",
-          "fields": [
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-208-b-01",
-          "cardName": "所沢市 B001",
-          "prefecture": "埼玉県",
-          "municipality": "所沢市",
-          "changeType": "changed",
-          "headline": "在庫情報を更新",
-          "importance": "normal",
-          "fields": [
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-208-c-01",
-          "cardName": "所沢市 C001",
-          "prefecture": "埼玉県",
-          "municipality": "所沢市",
-          "changeType": "changed",
-          "headline": "配布条件情報・英語版の情報元・情報元などを更新",
-          "importance": "normal",
-          "fields": [
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "englishVersionUrl",
-              "label": "英語版の情報元",
-              "kind": "link",
-              "before": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            }
-          ]
-        },
-        {
-          "locationId": "11-208-d-01",
-          "cardName": "所沢市 D001",
-          "prefecture": "埼玉県",
-          "municipality": "所沢市",
-          "changeType": "changed",
-          "headline": "配布条件情報・英語版の情報元・情報元などを更新",
-          "importance": "normal",
-          "fields": [
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "englishVersionUrl",
-              "label": "英語版の情報元",
-              "kind": "link",
-              "before": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=11#mhcard_result",
-              "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/gesiji20210324141853995.html",
               "after": "https://www.city.tokorozawa.saitama.jp/kurashi/jogesuido/gesui/manholecard/tokorozawacitymanholecard.html"
             }
           ]

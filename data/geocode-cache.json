@@ -37084,5 +37084,61 @@
         "title": "三春きたまち蔵（町カード別TENJIN・北町10・運営者URL一致の同一敷地Serper Places施設代表点・手動補正）"
       }
     }
+  },
+  "宮城県亘理郡亘理町字悠里1 亘理町役場": {
+    "reviewedResults": {
+      "location:04-361-a-01": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名全番地Serper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:04-361-a-01:place-watari-weekday-townhall": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:04-361-a-01:place-watari-holiday-townhall": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "亘理郡亘理町字悠里1 亘理町役場": {
+    "reviewedResults": {
+      "location:04-361-a-01": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名全番地Serper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:04-361-a-01:place-watari-weekday-townhall": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:04-361-a-01:place-watari-holiday-townhall": {
+        "lng": 140.86748,
+        "lat": 38.044193,
+        "title": "亘理町役場（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "宮城県亘理郡亘理町字西郷140 亘理町立郷土資料館": {
+    "reviewedResults": {
+      "distributionPlaces:04-361-a-01:place-watari-weekend-museum": {
+        "lng": 140.86174,
+        "lat": 38.040165,
+        "title": "亘理町立郷土資料館（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      }
+    }
+  },
+  "亘理郡亘理町字西郷140 亘理町立郷土資料館": {
+    "reviewedResults": {
+      "distributionPlaces:04-361-a-01:place-watari-weekend-museum": {
+        "lng": 140.86174,
+        "lat": 38.040165,
+        "title": "亘理町立郷土資料館（町カード別案内・同名Serper Places施設代表点・手動補正）"
+      }
+    }
   }
 }
