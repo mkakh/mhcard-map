@@ -2822,6 +2822,21 @@
         "lng": 139.81471,
         "lat": 36.44229,
         "title": "壬生町役場（同名・住所・電話・公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "location:09-361-b-01": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:09-361-b-01:place-mibu-b-weekday-townhall": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:09-361-b-01:place-mibu-b-holiday-townhall": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
       }
     }
   },
@@ -34663,6 +34678,21 @@
         "lng": 139.81471,
         "lat": 36.44229,
         "title": "壬生町役場（同名・住所・電話・公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "location:09-361-b-01": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:09-361-b-01:place-mibu-b-weekday-townhall": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
+      },
+      "distributionPlaces:09-361-b-01:place-mibu-b-holiday-townhall": {
+        "lng": 139.81471,
+        "lat": 36.44229,
+        "title": "壬生町役場（町カード別公式案内・同名/番地/公式URL一致のSerper Places施設代表点・手動補正）"
       }
     }
   },
