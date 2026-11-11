@@ -12,12 +12,33 @@
     return `${values.year}-${values.month}-${values.day}`;
   }
 
+  // Cabinet Office holidays: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+  const holidayDates = new Set([
+    "2026-11-03", "2026-11-23", "2027-01-01", "2027-01-11",
+    "2027-02-11", "2027-02-23", "2027-03-21", "2027-03-22",
+    "2027-04-29", "2027-05-03", "2027-05-04", "2027-05-05",
+    "2027-07-19", "2027-08-11", "2027-09-20", "2027-09-23",
+    "2027-10-11", "2027-11-03", "2027-11-23"
+  ]);
+
+  function matchesDistributionDay(days, today) {
+    if (days !== "平日" && days !== "土日祝日") return true;
+    const weekday = new Date(today + "T00:00:00Z").getUTCDay();
+    if (!today.startsWith("2026-") && !today.startsWith("2027-")) {
+      if (weekday === 0 || weekday === 6) return days === "土日祝日";
+      return true;
+    }
+    const holiday = weekday === 0 || weekday === 6 || holidayDates.has(today);
+    return days === "土日祝日" ? holiday : !holiday;
+  }
+
   function activeDistributionPlaces(places, today = calendarDateInJapan()) {
     if (!Array.isArray(places) || !isIsoDate(today)) return Array.isArray(places) ? places : [];
     return places.filter((place) => {
       const startsOn = normalizedBound(place?.startsOn);
       const endsOn = normalizedBound(place?.endsOn);
-      return (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn);
+      return (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn)
+        && matchesDistributionDay(place?.days, today);
     });
   }
 
@@ -25,11 +46,11 @@
     if (!Array.isArray(places) || places.length === 0) return null;
     if (!isIsoDate(today)) return places[0];
 
-    const active = places.find((place) => {
-      const startsOn = normalizedBound(place?.startsOn);
-      const endsOn = normalizedBound(place?.endsOn);
-      return (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn);
-    });
+    const eligible = activeDistributionPlaces(places, today);
+    if (!today.startsWith("2026-") && !today.startsWith("2027-")
+      && eligible.some((place) => place.days === "平日")
+      && eligible.some((place) => place.days === "土日祝日")) return null;
+    const active = eligible[0];
     if (active) return active;
 
     const upcoming = places.reduce((current, place) => {
