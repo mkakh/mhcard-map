@@ -1,7 +1,35 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T04:09:33.369Z",
+  "generatedAt": "2026-11-11T07:04:25.964Z",
   "updates": [
+    {
+      "id": "2026-11-11-7f1c109c7e30",
+      "date": "2026-11-11",
+      "generatedAt": "2026-11-11T07:04:25.964Z",
+      "source": "上三川町観光協会休日窓口の施設代表点再確認",
+      "totalChanges": 1,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-000-a-01",
+          "cardName": "栃木県 （流域下水道）",
+          "prefecture": "栃木県",
+          "municipality": "栃木県",
+          "changeType": "changed",
+          "headline": "配布場所一覧を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": "栃木県下水道管理事務所 / 栃木県河内郡上三川町多功1159 / 平日 9:00～16:00 / 36.414955, 139.86446 / Plus Code 8Q8XCV77+XQ\n上三川町観光協会 / 栃木県河内郡上三川町しらさぎ1-3-5（むかしなつかし館内） / 土日祝日 11:00～16:00 / 年末年始はお休みです / 36.439472, 139.907974 / Plus Code 8Q8XCWQ5+Q5",
+              "after": "栃木県下水道管理事務所 / 栃木県河内郡上三川町多功1159 / 平日 9:00～16:00 / 36.414955, 139.86446 / Plus Code 8Q8XCV77+XQ\n上三川町観光協会 / 栃木県河内郡上三川町しらさぎ1-3-5（むかしなつかし館内） / 土日祝日 11:00～16:00 / 年末年始はお休みです / 36.439167, 139.90823 / Plus Code 8Q8XCWQ5+M7"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-11-116671c496b3",
       "date": "2026-11-11",
@@ -11333,108 +11361,6 @@
               "kind": "coordinates",
               "before": "8Q6QC9R9+CV",
               "after": "8Q6QC9RC+P2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-11-02-06d24298fc08",
-      "date": "2026-11-02",
-      "generatedAt": "2026-11-02T14:00:52.753Z",
-      "source": "2026-11-02 official card notices",
-      "totalChanges": 2,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "13-207-a-01",
-          "cardName": "昭島市 A001",
-          "prefecture": "東京都",
-          "municipality": "昭島市",
-          "changeType": "changed",
-          "headline": "配布時間・休配日・配布条件情報などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "【平日】\n4月～9月 9:00～18:00\n10月～3月 9:00～17:00\n【土日祝】\n（通年） 9:00～17:00\nただし、月曜日（祝日の時は翌日）と年末年始はお休みです",
-              "after": "【平日】\n4月～9月 9:00～18:00\n10月～3月 9:00～17:00\n【土日祝】10:00～15:00\n月曜日・木曜日（祝日の場合は翌日）と年末年始は休みです。\n※2026年11月1日から当面の間"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "月曜日・木曜日（祝日の場合は翌日）、年末年始"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
-              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
-              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.city.akishima.lg.jp/s087/010/010/010/140/010/20190319120320.html",
-              "after": "https://www.city.akishima.lg.jp/kurashi/sumai/1001689/1001744/1001746.html"
-            }
-          ]
-        },
-        {
-          "locationId": "13-214-e-01",
-          "cardName": "国分寺市 E001",
-          "prefecture": "東京都",
-          "municipality": "国分寺市",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫切れのため配布終了（再開日未定）"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
-              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=13#mhcard_result",
-              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.city.kokubunji.tokyo.jp/kurashi/koutsuu/jougesuido/1017218.html",
-              "after": "https://www.city.kokubunji.tokyo.jp/kurashi/seikatsu/jougesuido/1017218.html"
             }
           ]
         }
