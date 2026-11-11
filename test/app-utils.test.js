@@ -118,6 +118,7 @@ test("Mibu A and B select the correct weekday, weekend and public holiday desk",
   assert.match(activeDistributionPlaces(a.distributionPlaces, "2027-02-11")[0].name, /日直室/);
   assert.deepEqual(activeDistributionPlaces(a.distributionPlaces, "2028-01-01").map((x) => x.days), ["土日祝日"]);
   assert.match(selectPrimaryDistributionPlace(a.distributionPlaces, "2028-01-01").name, /日直室/);
+  assert.deepEqual(activeDistributionPlaces(a.distributionPlaces, "2028-01-03"), []);
   assert.equal(selectPrimaryDistributionPlace(a.distributionPlaces, "2028-01-03"), null);
 });
 

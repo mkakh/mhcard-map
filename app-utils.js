@@ -26,7 +26,7 @@
     const weekday = new Date(today + "T00:00:00Z").getUTCDay();
     if (!today.startsWith("2026-") && !today.startsWith("2027-")) {
       if (weekday === 0 || weekday === 6) return days === "土日祝日";
-      return true;
+      return false; // Unpublished future holidays: no guessed current desk pin.
     }
     const holiday = weekday === 0 || weekday === 6 || holidayDates.has(today);
     return days === "土日祝日" ? holiday : !holiday;
@@ -47,11 +47,14 @@
     if (!isIsoDate(today)) return places[0];
 
     const eligible = activeDistributionPlaces(places, today);
-    if (!today.startsWith("2026-") && !today.startsWith("2027-")
-      && eligible.some((place) => place.days === "平日")
-      && eligible.some((place) => place.days === "土日祝日")) return null;
     const active = eligible[0];
     if (active) return active;
+    if (places.some((place) => {
+      const startsOn = normalizedBound(place?.startsOn);
+      const endsOn = normalizedBound(place?.endsOn);
+      return (place?.days === "平日" || place?.days === "土日祝日")
+        && (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn);
+    })) return null;
 
     const upcoming = places.reduce((current, place) => {
       const startsOn = normalizedBound(place?.startsOn);
