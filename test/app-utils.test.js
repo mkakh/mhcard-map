@@ -105,3 +105,16 @@ test("Miyakojima weekday card pin uses the named on-site management building", a
   assert.match(weekday.name, /管理棟/);
   assert.equal(card.distributionPlaces.length, 2);
 });
+
+test("weekday Asahikawa hours and Tomakomai city-hall representative survive release", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const cards = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const asahikawa = cards.find((card) => card.id === "01-204-a-01");
+  const office = asahikawa.distributionPlaces.find((place) => place.id === "place-asahikawa-treatment-main-office");
+  assert.equal(office.hours, "9:00～17:00");
+  assert.deepEqual([office.lat, office.lng], [43.780346, 142.29404]);
+  const tomakomai = cards.find((card) => card.id === "01-213-a-01");
+  assert.deepEqual([tomakomai.lat, tomakomai.lng], [42.634014, 141.6056]);
+  assert.deepEqual([tomakomai.distributionPlaces[0].lat, tomakomai.distributionPlaces[0].lng], [tomakomai.lat, tomakomai.lng]);
+  assert.deepEqual([tomakomai.distributionPlaces[1].lat, tomakomai.distributionPlaces[1].lng], [42.63964, 141.59773]);
+});
