@@ -9496,13 +9496,13 @@
         "hours": "11:00～16:00",
         "closed": "年末年始はお休みです",
         "url": "http://kaminokawa-kankou.org/",
-        "lat": 36.439472,
-        "lng": 139.907974,
-        "plusCode": "8Q8XCWQ5+Q5",
+        "lat": 36.439167,
+        "lng": 139.90823,
+        "plusCode": "8Q8XCWQ5+M7",
         "coordinateAccuracy": "address",
         "geocodeQuery": "栃木県河内郡上三川町しらさぎ1-3-5",
-        "geocodeTitle": "栃木県上三川町しらさぎ一丁目３番",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "上三川町観光協会（むかしなつかし館・カード別公式案内とSerper Places施設代表点照合・手動補正）",
+        "geocodedAt": "2026-11-11"
       }
     ],
     "legacyIds": [
