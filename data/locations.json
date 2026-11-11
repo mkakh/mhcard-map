@@ -10868,13 +10868,13 @@
         "hours": "9：00～17：00",
         "closed": "",
         "url": "https://www.city.kiryu.lg.jp/kurashi/suido/gesui/1013174.html",
-        "lat": 36.405319,
-        "lng": 139.330597,
-        "plusCode": "8Q8XC84J+46",
+        "lat": 36.405804,
+        "lng": 139.33083,
+        "plusCode": "8Q8XC84J+88",
         "coordinateAccuracy": "address",
         "geocodeQuery": "群馬県桐生市織姫町1番1号",
-        "geocodeTitle": "群馬県桐生市織姫町１番",
-        "geocodedAt": "2026-07-01"
+        "geocodeTitle": "桐生市役所（同名・織姫町1-1・代表電話・市URL一致のSerper Places施設代表点）",
+        "geocodedAt": "2026-11-11"
       }
     ],
     "legacyIds": [
