@@ -95,6 +95,33 @@ test("East Matsushima B and C keep card-specific normal and closure-day outlets"
   }
 });
 
+test("Mibu A and B select the correct weekday, weekend and public holiday desk", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const cards = JSON.parse(await readFile("data/locations.json", "utf8"));
+  for (const id of ["09-361-a-01", "09-361-b-01"]) {
+    const card = cards.find((entry) => entry.id === id);
+    for (const [date, desk, time] of [
+      ["2026-11-11", "下水道課", "17:00"],
+      ["2026-11-14", "日直室", "17:00"],
+      ["2026-11-23", "日直室", "17:00"]
+    ]) {
+      const active = activeDistributionPlaces(card.distributionPlaces, date);
+      assert.equal(active.length, 1, `${id} ${date}`);
+      assert.match(active[0].name, new RegExp(desk));
+      assert.match(selectPrimaryDistributionPlace(card.distributionPlaces, date).name, new RegExp(desk));
+      assert.match(active[0].hours, new RegExp(time));
+    }
+  }
+  const a = cards.find((entry) => entry.id === "09-361-a-01");
+  assert.equal(activeDistributionPlaces(a.distributionPlaces, "2027-01-19")[0].hours, "9:00～17:00");
+  assert.equal(activeDistributionPlaces(a.distributionPlaces, "2027-01-20")[0].hours, "9:00～16:30");
+  assert.match(activeDistributionPlaces(a.distributionPlaces, "2027-02-11")[0].name, /日直室/);
+  assert.deepEqual(activeDistributionPlaces(a.distributionPlaces, "2028-01-01").map((x) => x.days), ["土日祝日"]);
+  assert.match(selectPrimaryDistributionPlace(a.distributionPlaces, "2028-01-01").name, /日直室/);
+  assert.deepEqual(activeDistributionPlaces(a.distributionPlaces, "2028-01-03"), []);
+  assert.equal(selectPrimaryDistributionPlace(a.distributionPlaces, "2028-01-03"), null);
+});
+
 test("Miyakojima weekday card pin uses the named on-site management building", async () => {
   const { readFile } = await import("node:fs/promises");
   const locations = JSON.parse(await readFile("data/locations.json", "utf8"));

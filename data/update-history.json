@@ -1,7 +1,187 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-11T10:25:38.701Z",
+  "generatedAt": "2026-11-11T14:07:23.410Z",
   "updates": [
+    {
+      "id": "2026-11-11-7cacdde3d086",
+      "date": "2026-11-11",
+      "generatedAt": "2026-11-11T14:07:23.410Z",
+      "source": "2026-11-11 official Mibu/Himi schedules and Ritto/Arita stock",
+      "totalChanges": 4,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "09-361-a-01",
+          "cardName": "壬生町 A001",
+          "prefecture": "栃木県",
+          "municipality": "壬生町",
+          "changeType": "changed",
+          "headline": "配布再開",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "resumed",
+              "before": "休止中",
+              "after": "配布中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "2026/11/10配布再開。在庫は公式案内で要確認"
+            },
+            {
+              "field": "place",
+              "label": "配布場所",
+              "kind": "location",
+              "before": "壬生町役場下水道課",
+              "after": "壬生町役場"
+            },
+            {
+              "field": "address",
+              "label": "住所",
+              "kind": "location",
+              "before": "栃木県下都賀郡壬生町大字壬生甲３８４１番地１",
+              "after": "栃木県下都賀郡壬生町大字壬生甲3841番地1"
+            },
+            {
+              "field": "distributionPlaces",
+              "label": "配布場所一覧",
+              "kind": "location",
+              "before": null,
+              "after": "壬生町役場 建設部下水道課 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2026-11-10～2027-01-19 / 通常配布 / 再開初日から約1週間は役場内の特設会場。現地案内に従う / 平日 9:00～17:00 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV\n壬生町役場 建設部下水道課 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2027-01-20から / 通常配布 / 平日 9:00～16:30 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV\n壬生町役場 日直室 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2026-11-10～2027-01-19 / 通常配布 / 再開初日から約1週間は役場内の特設会場。現地案内に従う / 土日祝日 9:00～17:00 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV\n壬生町役場 日直室 / 栃木県下都賀郡壬生町大字壬生甲3841番地1 / 有効期間 2027-01-20から / 通常配布 / 土日祝日 9:00～16:30 / 36.44229, 139.81471 / Plus Code 8Q8XCRR7+WV"
+            },
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00－17：00（年中無休）",
+              "after": "9:00～17:00（2027/1/20から16:30まで。平日：下水道課、土日祝：日直室）"
+            },
+            {
+              "field": "conditionUrl",
+              "label": "配布条件情報",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2021041300025/"
+            },
+            {
+              "field": "distributionStartsOn",
+              "label": "配布開始日",
+              "kind": "general",
+              "before": null,
+              "after": "2026-11-10"
+            },
+            {
+              "field": "facilityUrl",
+              "label": "施設情報",
+              "kind": "link",
+              "before": "https://www.town.mibu.tochigi.jp/",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2021041300025/"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=09#mhcard_result",
+              "after": "https://www.town.mibu.tochigi.jp/docs/2021041300025/"
+            }
+          ]
+        },
+        {
+          "locationId": "16-205-a-01",
+          "cardName": "氷見市",
+          "prefecture": "富山県",
+          "municipality": "氷見市",
+          "changeType": "changed",
+          "headline": "配布時間・情報元を更新",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "hours",
+              "label": "配布時間",
+              "kind": "hours",
+              "before": "9：00～17：00\nただし、毎週水曜（祝日の場合は翌日）、祝日の翌平日及び年末年始はお休みです",
+              "after": "9：00～16：30（最終入館時間）\nただし、毎週水曜（祝日の場合は翌日）、祝日の翌平日及び年末年始はお休みです"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
+              "after": "https://www.city.himi.toyama.jp/gyosei/soshiki/jogesuido/1/4/1261.html"
+            }
+          ]
+        },
+        {
+          "locationId": "25-208-a-01",
+          "cardName": "栗東市 A001",
+          "prefecture": "滋賀県",
+          "municipality": "栗東市",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "栗東市公式「メジロ」在庫なし（2026-11-11確認）。再開未定"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=25#mhcard_result",
+              "after": "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html"
+            },
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "http://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html",
+              "after": "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html"
+            }
+          ]
+        },
+        {
+          "locationId": "41-401-a-01",
+          "cardName": "有田町",
+          "prefecture": "佐賀県",
+          "municipality": "有田町",
+          "changeType": "changed",
+          "headline": "配布休止",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "status",
+              "label": "配布状態",
+              "kind": "suspended",
+              "before": "配布中",
+              "after": "休止中"
+            },
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください",
+              "after": "有田観光協会公式「RX-78-2 ガンダム」在庫終了（2026-11-11確認）。増刷検討中"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-11-9c0705c87dc5",
       "date": "2026-11-11",
@@ -4047,207 +4227,6 @@
               "kind": "coordinates",
               "before": "127.762677",
               "after": "127.76267"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-11-08-fd0f97dbf092",
-      "date": "2026-11-08",
-      "generatedAt": "2026-11-08T14:43:37.683Z",
-      "source": "Official municipal card review 2026-11-08",
-      "totalChanges": 4,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "22-215-a-01",
-          "cardName": "御殿場市",
-          "prefecture": "静岡県",
-          "municipality": "御殿場市",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "令和8年度分は配布終了。令和9年度に再開予定"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
-              "after": "https://www.city.gotemba.lg.jp/kurashi/b-6/b-6-1/7287.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=22#mhcard_result",
-              "after": "https://www.city.gotemba.lg.jp/kurashi/b-6/b-6-1/7287.html"
-            }
-          ]
-        },
-        {
-          "locationId": "26-344-a-01",
-          "cardName": "宇治田原町",
-          "prefecture": "京都府",
-          "municipality": "宇治田原町",
-          "changeType": "changed",
-          "headline": "在庫・配布場所一覧・配布時間などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "宇治田原町役場上下水道課 / 京都府綴喜郡宇治田原町大字立川小字坂口18番地1（宇治田原町役場2階） / 9:00～16:30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.844864, 135.8681 / Plus Code 8Q6QRVV9+W6\n宇治田原町総合文化センター / 京都府綴喜郡宇治田原町大字岩山小字沼尻46番地1 / 9:00～17:00 / 火曜日、12/28～1/4はお休みです / 34.8559, 135.86353 / Plus Code 8Q6QVV47+9C"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "8：30～17：15\nただし、土日、祝日、年末年始はお休みです",
-              "after": "役場上下水道課：平日9:00～16:30／総合文化センター事務室：9:00～17:00（火曜・12/28～1/4休）"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "役場：土日祝・12/29～1/3／文化センター：火曜・12/28～1/4"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
-              "after": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/782.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
-              "after": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/782.html"
-            }
-          ]
-        },
-        {
-          "locationId": "26-344-b-01",
-          "cardName": "宇治田原町 B001",
-          "prefecture": "京都府",
-          "municipality": "宇治田原町",
-          "changeType": "changed",
-          "headline": "在庫・配布場所一覧・配布時間などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "宇治田原町役場上下水道課 / 京都府綴喜郡宇治田原町大字立川小字坂口18番地1（宇治田原町役場2階） / 8:30～17:15 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.844864, 135.8681 / Plus Code 8Q6QRVV9+W6\n宇治田原町総合文化センター / 京都府綴喜郡宇治田原町大字岩山小字沼尻46番地1 / 9:00～17:00 / 火曜日、12/28～1/4はお休みです / 34.8559, 135.86353 / Plus Code 8Q6QVV47+9C",
-              "after": "宇治田原町役場上下水道課 / 京都府綴喜郡宇治田原町大字立川小字坂口18番地1（宇治田原町役場2階） / 9:00～16:30 / 土日、祝日、年末年始（12/29～1/3）はお休みです / 34.844864, 135.8681 / Plus Code 8Q6QRVV9+W6\n宇治田原町総合文化センター / 京都府綴喜郡宇治田原町大字岩山小字沼尻46番地1 / 9:00～17:00 / 火曜日、12/28～1/4はお休みです / 34.8559, 135.86353 / Plus Code 8Q6QVV47+9C"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "①8:30～17:15\nただし、土日、祝日、年末年始（12/29～1/3）はお休みです\n②9:00～17:00\nただし、火曜日、12/28～1/4はお休みです",
-              "after": "役場上下水道課：平日9:00～16:30／総合文化センター事務室：9:00～17:00（火曜・12/28～1/4休）"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
-              "after": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/4328.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=26#mhcard_result",
-              "after": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/4328.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/782.html",
-              "after": "https://www.town.ujitawara.kyoto.jp/soshiki/jogesuidoka/seikatsu_kankyo/1/4328.html"
-            }
-          ]
-        },
-        {
-          "locationId": "38-202-b-01",
-          "cardName": "今治市 B001",
-          "prefecture": "愛媛県",
-          "municipality": "今治市",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫切れのため一時中止。2027年度以降再開予定"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=38#mhcard_result",
-              "after": "https://www.city.imabari.ehime.jp/gesuig/mhcard/"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=38#mhcard_result",
-              "after": "https://www.city.imabari.ehime.jp/gesuig/mhcard/"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "http://www.city.imabari.ehime.jp/gesuig/",
-              "after": "https://www.city.imabari.ehime.jp/gesuig/mhcard/"
             }
           ]
         }
