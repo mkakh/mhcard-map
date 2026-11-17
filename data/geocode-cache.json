@@ -37189,5 +37189,23 @@
         "title": "亘理町立郷土資料館（町カード別案内・同名Serper Places施設代表点・手動補正）"
       }
     }
+  },
+  "秋田県大仙市大曲通町6-5 大仙市観光情報センター グランポール": {
+    "reviewedResults": {
+      "distributionPlaces:05-212-a-01:place-daisen-grandpaul": {
+        "lng": 140.47977,
+        "lat": 39.4654,
+        "title": "大仙市観光情報センター グランポール（市カード別案内・運営者所在地・Serper Places同名施設代表点・手動補正）"
+      }
+    }
+  },
+  "大仙市大曲通町6-5 大仙市観光情報センター グランポール": {
+    "reviewedResults": {
+      "distributionPlaces:05-212-a-01:place-daisen-grandpaul": {
+        "lng": 140.47977,
+        "lat": 39.4654,
+        "title": "大仙市観光情報センター グランポール（市カード別案内・運営者所在地・Serper Places同名施設代表点・手動補正）"
+      }
+    }
   }
 }
