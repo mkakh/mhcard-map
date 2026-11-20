@@ -1,7 +1,60 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-20T14:01:35.885Z",
+  "generatedAt": "2026-11-20T14:03:22.022Z",
   "updates": [
+    {
+      "id": "2026-11-20-9acdcbb64383",
+      "date": "2026-11-20",
+      "generatedAt": "2026-11-20T14:03:22.022Z",
+      "source": "葉山町Cの配布終了・熱海市A公式URLの更新（2026-11-20確認）",
+      "totalChanges": 2,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "14-301-c-01",
+          "cardName": "葉山町 C001",
+          "prefecture": "神奈川県",
+          "municipality": "葉山町",
+          "changeType": "changed",
+          "headline": "在庫・情報元を更新",
+          "importance": "critical",
+          "fields": [
+            {
+              "field": "stock",
+              "label": "在庫",
+              "kind": "stock",
+              "before": "こちらからご確認ください\n※現在、配布を一時中止しています",
+              "after": "配布終了（町制施行100周年記念デザイン・一般の部。町公式、2026-11-20確認）"
+            },
+            {
+              "field": "sourceUrl",
+              "label": "情報元",
+              "kind": "link",
+              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
+              "after": "https://www.town.hayama.lg.jp/soshiki/gesui/1_1/10040.html"
+            }
+          ]
+        },
+        {
+          "locationId": "22-205-a-01",
+          "cardName": "熱海市 A001",
+          "prefecture": "静岡県",
+          "municipality": "熱海市",
+          "changeType": "changed",
+          "headline": "在庫情報を更新",
+          "importance": "normal",
+          "fields": [
+            {
+              "field": "stockUrl",
+              "label": "在庫情報",
+              "kind": "link",
+              "before": "https://www.city.atami.lg.jp/kurashi/suido/1000884/1016443.html",
+              "after": "https://www.city.atami.lg.jp/kurashi/suido/1000884/1011837/1016443.html"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-20-150cc4601055",
       "date": "2026-11-20",
@@ -2045,151 +2098,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=40#mhcard_result",
               "after": "https://www.city.dazaifu.lg.jp/soshiki/22/22649.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-11-09-6fd8d660deb1",
-      "date": "2026-11-09",
-      "generatedAt": "2026-11-09T14:38:32.577Z",
-      "source": "GKP全件照合: 曜日別3カードと軽井沢在庫の公式訂正",
-      "totalChanges": 4,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "16-201-a-01",
-          "cardName": "富山市 A001",
-          "prefecture": "富山県",
-          "municipality": "富山市",
-          "changeType": "changed",
-          "headline": "配布場所一覧・施設情報・情報元などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "富山市役所 西館 2階 上下水道局お客さまサービスステーション / 富山県富山市新桜町7-38 / 平日 9:00～16:00 / 年末年始 / 36.69559, 137.2136 / Plus Code 8Q8VM6W7+6C\n富山市国際交流センター / 富山県富山市新富町一丁目2-3 CiCビル3階 / 土日祝日 10:00～20:30 / 年末年始、CiC休館日 / 36.699574, 137.21246 / Plus Code 8Q8VM6X6+RX"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "https://www.city.toyama.lg.jp/",
-              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=16#mhcard_result",
-              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.city.toyama.lg.jp/kurashi/suido/1010356/1010360/1011634.html",
-              "after": "https://www.city.toyama.lg.jp/kurashi/suido/1018440/1018454/1011634.html"
-            }
-          ]
-        },
-        {
-          "locationId": "20-321-a-01",
-          "cardName": "軽井沢町",
-          "prefecture": "長野県",
-          "municipality": "軽井沢町",
-          "changeType": "changed",
-          "headline": "配布休止",
-          "importance": "critical",
-          "fields": [
-            {
-              "field": "status",
-              "label": "配布状態",
-              "kind": "suspended",
-              "before": "配布中",
-              "after": "休止中"
-            },
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "さわやかハット・町役場の日本語版とも在庫なし（町公式、2026-11-09確認）。再開は公式案内を確認"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=20#mhcard_result",
-              "after": "https://www.town.karuizawa.lg.jp/page/14115.html"
-            }
-          ]
-        },
-        {
-          "locationId": "33-202-c-01",
-          "cardName": "倉敷市 C001",
-          "prefecture": "岡山県",
-          "municipality": "倉敷市",
-          "changeType": "changed",
-          "headline": "配布場所一覧・施設情報・情報元などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "旧柚木家住宅（西爽亭） / 岡山県倉敷市玉島3丁目8-25 / 西爽亭の開館日 9:00～17:00 / 毎週月曜日（祝日の場合は振替）、12/28～1/4など / 34.541415, 133.671493 / Plus Code 8Q6MGMRC+HH\n新倉敷駅観光案内所 / 岡山県倉敷市玉島爪崎390-4（JR新倉敷駅構内2階） / 代替窓口 / 西爽亭の休館日 9:00～17:30（12:00～13:00休憩） / 12/29～1/3はお休み / 34.564945, 133.67856 / Plus Code 8Q6MHM7H+XC"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": null,
-              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
-              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
-            },
-            {
-              "field": "stockUrl",
-              "label": "在庫情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=33#mhcard_result",
-              "after": "https://www.city.kurashiki.okayama.jp/kurashi/suidou/1003847/1013233/1010897.html"
-            }
-          ]
-        },
-        {
-          "locationId": "42-000-a-01",
-          "cardName": "長崎県 （流域下水道）",
-          "prefecture": "長崎県",
-          "municipality": "長崎県",
-          "changeType": "changed",
-          "headline": "配布場所一覧・情報元を更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": "大村湾南部浄化センター / 長崎県諫早市貝津町1410 / 平日 9：00～17：00 / 32.844166, 130.01277 / Plus Code 8Q4GR2V7+M4\n諫早物産ホール諫早観光物産コンベンション協会 / 長崎県諫早市高城町5-10 / 土日祝日 9：00～17：00 / 年末年始はお休みです / 32.845242, 130.052734 / Plus Code 8Q4GR3W3+33",
-              "after": "大村湾南部浄化センター / 長崎県諫早市貝津町1410 / 平日 9：00～17：00 / 32.844166, 130.01277 / Plus Code 8Q4GR2V7+M4\n諫早物産ホール諫早観光物産コンベンション協会 / 長崎県諫早市高城町5-10 / 土日祝日 9：00～17：00 / 年末年始はお休みです / 32.845242, 130.052734 / Plus Code 8Q4GR3W3+33\n大村公園観光案内所 / 長崎県大村市玖島1丁目45番地3 / 土日祝日（平日も配布） 9:00～17:00 / 水曜日（おおむら花まつり期間を除く）、年末年始 / 32.89915, 129.95909 / Plus Code 8Q4FVXX5+MJ"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=42#mhcard_result",
-              "after": "https://www.pref.nagasaki.jp/doc/page-359173.html"
             }
           ]
         }
