@@ -145,3 +145,34 @@ test("weekday Asahikawa hours and Tomakomai city-hall representative survive rel
   assert.deepEqual([tomakomai.distributionPlaces[0].lat, tomakomai.distributionPlaces[0].lng], [tomakomai.lat, tomakomai.lng]);
   assert.deepEqual([tomakomai.distributionPlaces[1].lat, tomakomai.distributionPlaces[1].lng], [42.63964, 141.59773]);
 });
+
+test("new Nakashibetsu weekend desks exclude weekdays and weekday holidays", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const cards = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = cards.find((c) => c.id === "01-692-a-01");
+  const names = (date) => activeDistributionPlaces(card.distributionPlaces, date).map((p) => p.name);
+  assert.deepEqual(names("2026-12-18"), ["中標津町役場 1階 上下水道課"]);
+  assert.deepEqual(names("2026-12-19"), ["中標津町総合文化会館（しるべっと）"]);
+  assert.deepEqual(names("2027-05-03"), []);
+  assert.deepEqual(names("2027-05-08"), ["中標津町総合文化会館（しるべっと）", "中標津町観光案内所"]);
+  assert.deepEqual(names("2027-11-06"), ["中標津町総合文化会館（しるべっと）"]);
+  assert.equal(selectPrimaryDistributionPlace(card.distributionPlaces, "2027-05-03"), null);
+});
+
+test("new Gonohe weekday and weekend windows never overlap", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const cards = JSON.parse(await readFile("data/locations.json", "utf8"));
+  const card = cards.find((c) => c.id === "02-442-a-01");
+  for (const [date, hours] of [["2026-12-22", "10:00～19:00"], ["2026-12-19", "9:00～17:00"], ["2027-02-11", "9:00～17:00"]]) {
+    const active = activeDistributionPlaces(card.distributionPlaces, date);
+    assert.equal(active.length, 1, date);
+    assert.equal(active[0].hours, hours);
+  }
+});
+
+test("weekend-only selector needs no future holiday calendar", () => {
+  const places = [{ id: "weekend", days: "土日" }];
+  assert.deepEqual(activeDistributionPlaces(places, "2028-01-01"), places);
+  assert.deepEqual(activeDistributionPlaces(places, "2028-01-03"), []);
+  assert.equal(selectPrimaryDistributionPlace(places, "2028-01-03"), null);
+});

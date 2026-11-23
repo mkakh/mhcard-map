@@ -1,7 +1,233 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-23T14:04:02.965Z",
+  "generatedAt": "2026-11-23T14:18:44.805Z",
   "updates": [
+    {
+      "id": "2026-11-23-90f479d7ce8e",
+      "date": "2026-11-23",
+      "generatedAt": "2026-11-23T14:18:44.805Z",
+      "source": "第30弾12カードの公式配布開始予定・曜日別窓口を追加（2026-11-23）",
+      "totalChanges": 12,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "01-692-a-01",
+          "cardName": "中標津町 A001",
+          "prefecture": "北海道",
+          "municipality": "中標津町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "中標津町 A001 / 北海道 / 中標津町 / 中標津町役場 1階 上下水道課 / 北海道標津郡中標津町丸山2丁目22番地"
+            }
+          ]
+        },
+        {
+          "locationId": "02-201-b-01",
+          "cardName": "青森市 B001",
+          "prefecture": "青森県",
+          "municipality": "青森市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "青森市 B001 / 青森県 / 青森市 / 青函連絡船メモリアルシップ八甲田丸 受付窓口 / 青森県青森市柳川一丁目112-15地先"
+            }
+          ]
+        },
+        {
+          "locationId": "02-442-a-01",
+          "cardName": "五戸町 A001",
+          "prefecture": "青森県",
+          "municipality": "五戸町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "五戸町 A001 / 青森県 / 五戸町 / 五戸町図書館 / 青森県五戸町字舘1-1"
+            }
+          ]
+        },
+        {
+          "locationId": "04-341-a-01",
+          "cardName": "丸森町 A001",
+          "prefecture": "宮城県",
+          "municipality": "丸森町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "丸森町 A001 / 宮城県 / 丸森町 / 丸森町観光案内所 / 宮城県伊具郡丸森町字町東83-1"
+            }
+          ]
+        },
+        {
+          "locationId": "07-209-b-01",
+          "cardName": "相馬市 B001",
+          "prefecture": "福島県",
+          "municipality": "相馬市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "相馬市 B001 / 福島県 / 相馬市 / 浜の駅松川浦（相馬復興市民市場） / 福島県相馬市尾浜字追川196"
+            }
+          ]
+        },
+        {
+          "locationId": "07-211-b-01",
+          "cardName": "田村市 B001",
+          "prefecture": "福島県",
+          "municipality": "田村市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "田村市 B001 / 福島県 / 田村市 / スカイパレスときわ / 福島県田村市常葉町山根字殿上160"
+            }
+          ]
+        },
+        {
+          "locationId": "11-207-a-01",
+          "cardName": "秩父市 A001",
+          "prefecture": "埼玉県",
+          "municipality": "秩父市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "秩父市 A001 / 埼玉県 / 秩父市 / 秩父観光情報館 / 埼玉県秩父市野坂町1-16-15"
+            }
+          ]
+        },
+        {
+          "locationId": "13-209-c-01",
+          "cardName": "町田市 C001",
+          "prefecture": "東京都",
+          "municipality": "町田市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "町田市 C001 / 東京都 / 町田市 / 町田駅前交流拠点 はっとまちだ / 東京都町田市原町田6-13-14"
+            }
+          ]
+        },
+        {
+          "locationId": "15-224-j-01",
+          "cardName": "佐渡市 J001",
+          "prefecture": "新潟県",
+          "municipality": "佐渡市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "佐渡市 J001 / 新潟県 / 佐渡市 / 真野市民センター / 新潟県佐渡市真野新町489番地"
+            }
+          ]
+        },
+        {
+          "locationId": "19-368-a-01",
+          "cardName": "富士川町 A001",
+          "prefecture": "山梨県",
+          "municipality": "富士川町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "富士川町 A001 / 山梨県 / 富士川町 / 富士川町役場2階上下水道課 / 山梨県南巨摩郡富士川町天神中條1134"
+            }
+          ]
+        },
+        {
+          "locationId": "21-206-c-01",
+          "cardName": "中津川市 C001",
+          "prefecture": "岐阜県",
+          "municipality": "中津川市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "中津川市 C001 / 岐阜県 / 中津川市 / 道の駅きりら坂下1階ロビー 特設ブース / 岐阜県中津川市坂下450-2"
+            }
+          ]
+        },
+        {
+          "locationId": "23-202-h-01",
+          "cardName": "岡崎市 H001",
+          "prefecture": "愛知県",
+          "municipality": "岡崎市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "岡崎市 H001 / 愛知県 / 岡崎市 / 岩津天満宮 授与所 / 愛知県岡崎市岩津町字東山53"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-23-098496f9b0ba",
       "date": "2026-11-23",
@@ -2203,118 +2429,6 @@
               "kind": "link",
               "before": "https://www.gk-p.jp/mhcard/?pref=04#mhcard_result",
               "after": "https://www.city.higashimatsushima.miyagi.jp/kurashi/sumiyoimachini/lifeline-gesui/gesuido/manholecard.html"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-11-10-648be1f1adb6",
-      "date": "2026-11-10",
-      "generatedAt": "2026-11-09T15:04:18.136Z",
-      "source": "横須賀市C001の展示改修中・改修後配布先を日付別に修正",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "14-201-c-01",
-          "cardName": "横須賀市 C001",
-          "prefecture": "神奈川県",
-          "municipality": "横須賀市",
-          "changeType": "changed",
-          "headline": "在庫・配布場所・住所などを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "stock",
-              "label": "在庫",
-              "kind": "stock",
-              "before": "こちらからご確認ください",
-              "after": "在庫あり（横須賀市公式、2026-11-10確認）"
-            },
-            {
-              "field": "place",
-              "label": "配布場所",
-              "kind": "location",
-              "before": "よこすか近代遺産ミュージアム ティボディエ邸",
-              "after": "ヴェルニー公園管理事務所"
-            },
-            {
-              "field": "address",
-              "label": "住所",
-              "kind": "location",
-              "before": "横須賀市汐入町１丁目１ ヴェルニ-公園内",
-              "after": "神奈川県横須賀市汐入町1-1（ヴェルニー公園内）"
-            },
-            {
-              "field": "distributionPlaces",
-              "label": "配布場所一覧",
-              "kind": "location",
-              "before": null,
-              "after": "ヴェルニー公園管理事務所 / 神奈川県横須賀市汐入町1-1（ヴェルニー公園内） / 有効期間 2026-10-26～2026-11-13 / 限定配布 / 展示リニューアル休館期間中のみ。11月14日以降は通常のティボディエ邸 / 2026年10月26日～11月13日 9:00～16:00 / 年中無休（期間中） / 35.284473, 139.6573 / Plus Code 8Q7X7MM4+QW\nよこすか近代遺産ミュージアム ティボディエ邸 / 神奈川県横須賀市汐入町1-1（ヴェルニー公園内） / 有効期間 2026-11-14から / 通常配布 / 2026年11月14日以降 9:00～17:00 / 年中無休（臨時休館日は公式案内を確認） / 35.283054, 139.65967 / Plus Code 8Q7X7MM5+6V"
-            },
-            {
-              "field": "hours",
-              "label": "配布時間",
-              "kind": "hours",
-              "before": "9：00～17：00",
-              "after": "2026/10/26～11/13 9:00～16:00（ヴェルニー公園管理事務所）／11/14以降 9:00～17:00（ティボディエ邸）"
-            },
-            {
-              "field": "closed",
-              "label": "休配日",
-              "kind": "hours",
-              "before": "要確認",
-              "after": "年中無休（施設の臨時休館は公式確認）"
-            },
-            {
-              "field": "condition",
-              "label": "配布条件",
-              "kind": "general",
-              "before": "公式情報を確認",
-              "after": "2026年11月13日まで管理事務所に一時移転。11月14日以降はティボディエ邸"
-            },
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.28447",
-              "after": "35.284473"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.657227",
-              "after": "139.6573"
-            },
-            {
-              "field": "conditionUrl",
-              "label": "配布条件情報",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
-              "after": "https://www.city.yokosuka.kanagawa.jp/6710/torikukmi/manhole.html"
-            },
-            {
-              "field": "facilityUrl",
-              "label": "施設情報",
-              "kind": "link",
-              "before": "https://thibaudier-yokosuka.com/",
-              "after": "https://www.kanagawaparks.com/verny/facility.html"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7X7MM4+QV",
-              "after": "8Q7X7MM4+QW"
-            },
-            {
-              "field": "sourceUrl",
-              "label": "情報元",
-              "kind": "link",
-              "before": "https://www.gk-p.jp/mhcard/?pref=14#mhcard_result",
-              "after": "https://www.city.yokosuka.kanagawa.jp/6710/torikukmi/manhole.html"
             }
           ]
         }
