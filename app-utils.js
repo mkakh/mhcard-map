@@ -22,8 +22,9 @@
   ]);
 
   function matchesDistributionDay(days, today) {
-    if (days !== "平日" && days !== "土日祝日") return true;
+    if (days !== "平日" && days !== "土日祝日" && days !== "土日") return true;
     const weekday = new Date(today + "T00:00:00Z").getUTCDay();
+    if (days === "土日") return weekday === 0 || weekday === 6;
     if (!today.startsWith("2026-") && !today.startsWith("2027-")) {
       if (weekday === 0 || weekday === 6) return days === "土日祝日";
       return false; // Unpublished future holidays: no guessed current desk pin.
@@ -52,7 +53,7 @@
     if (places.some((place) => {
       const startsOn = normalizedBound(place?.startsOn);
       const endsOn = normalizedBound(place?.endsOn);
-      return (place?.days === "平日" || place?.days === "土日祝日")
+      return (place?.days === "平日" || place?.days === "土日祝日" || place?.days === "土日")
         && (!startsOn || startsOn <= today) && (!endsOn || today <= endsOn);
     })) return null;
 
