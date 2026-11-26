@@ -1,7 +1,179 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-26T14:09:15.253Z",
+  "generatedAt": "2026-11-26T14:17:08.410Z",
   "updates": [
+    {
+      "id": "2026-11-26-983491c7f7d6",
+      "date": "2026-11-26",
+      "generatedAt": "2026-11-26T14:17:08.410Z",
+      "source": "第30弾9カードの公式配布先・初日別窓口を追加",
+      "totalChanges": 9,
+      "omittedChanges": 0,
+      "changes": [
+        {
+          "locationId": "07-466-a-01",
+          "cardName": "矢吹町 A001",
+          "prefecture": "福島県",
+          "municipality": "矢吹町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "矢吹町 A001 / 福島県 / 矢吹町 / やぶき観光案内所 / 福島県西白河郡矢吹町中町235-4（矢吹駅西口1階）"
+            }
+          ]
+        },
+        {
+          "locationId": "09-000-b-01",
+          "cardName": "栃木県 （流域下水道・B001）",
+          "prefecture": "栃木県",
+          "municipality": "栃木県",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "栃木県 （流域下水道・B001） / 栃木県 / 栃木県 / 日光だいや川公園（12/18～20休憩所付近、12/21から緑の相談所） / 栃木県日光市瀬川1021-54（12/18～20）／瀬川844（12/21から）"
+            }
+          ]
+        },
+        {
+          "locationId": "09-204-c-01",
+          "cardName": "佐野市 C001",
+          "prefecture": "栃木県",
+          "municipality": "佐野市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "佐野市 C001 / 栃木県 / 佐野市 / 道の駅どまんなかたぬま インフォメーションカウンター / 栃木県佐野市吉水町366-2"
+            }
+          ]
+        },
+        {
+          "locationId": "15-202-h-01",
+          "cardName": "長岡市 H001",
+          "prefecture": "新潟県",
+          "municipality": "長岡市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "長岡市 H001 / 新潟県 / 長岡市 / 道の駅ながおか花火館（初日イベントルーム／以降観光案内所） / 新潟県長岡市喜多町707番地"
+            }
+          ]
+        },
+        {
+          "locationId": "20-521-a-01",
+          "cardName": "坂城町 A001",
+          "prefecture": "長野県",
+          "municipality": "坂城町",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "坂城町 A001 / 長野県 / 坂城町 / 坂城町役場 建設課 下水道係 / 長野県埴科郡坂城町大字坂城10050番地"
+            }
+          ]
+        },
+        {
+          "locationId": "25-209-d-01",
+          "cardName": "甲賀市 D001",
+          "prefecture": "滋賀県",
+          "municipality": "甲賀市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "甲賀市 D001 / 滋賀県 / 甲賀市 / 道の駅あいの土山 / 滋賀県甲賀市土山町北土山505-13"
+            }
+          ]
+        },
+        {
+          "locationId": "28-201-b-01",
+          "cardName": "姫路市 B001",
+          "prefecture": "兵庫県",
+          "municipality": "姫路市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "姫路市 B001 / 兵庫県 / 姫路市 / 姫路科学館 / 兵庫県姫路市青山1470-15"
+            }
+          ]
+        },
+        {
+          "locationId": "29-211-a-01",
+          "cardName": "葛城市 A001",
+          "prefecture": "奈良県",
+          "municipality": "葛城市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "葛城市 A001 / 奈良県 / 葛城市 / 葛城市相撲館「けはや座」 / 奈良県葛城市當麻83番地1"
+            }
+          ]
+        },
+        {
+          "locationId": "39-212-f-01",
+          "cardName": "香美市 F001",
+          "prefecture": "高知県",
+          "municipality": "香美市",
+          "changeType": "added",
+          "headline": "カードを追加",
+          "importance": "high",
+          "fields": [
+            {
+              "field": "location",
+              "label": "カード",
+              "kind": "added",
+              "before": null,
+              "after": "香美市 F001 / 高知県 / 香美市 / 協同組合土佐刃物流通センター / 高知県香美市土佐山田町上改田109"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "2026-11-26-6c8a56a97c56",
       "date": "2026-11-26",
@@ -2677,48 +2849,6 @@
               "kind": "coordinates",
               "before": "7QP7R77W+4H",
               "after": "7QP7R77W+F2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2026-11-10-8141fa4c30ca",
-      "date": "2026-11-10",
-      "generatedAt": "2026-11-09T22:10:44.054Z",
-      "source": "Ichikawa-B001-garden-pin",
-      "totalChanges": 1,
-      "omittedChanges": 0,
-      "changes": [
-        {
-          "locationId": "12-203-b-01",
-          "cardName": "市川市 B001",
-          "prefecture": "千葉県",
-          "municipality": "市川市",
-          "changeType": "changed",
-          "headline": "緯度・経度・Plus Codeを更新",
-          "importance": "high",
-          "fields": [
-            {
-              "field": "lat",
-              "label": "緯度",
-              "kind": "coordinates",
-              "before": "35.769077",
-              "after": "35.768387"
-            },
-            {
-              "field": "lng",
-              "label": "経度",
-              "kind": "coordinates",
-              "before": "139.971664",
-              "after": "139.97037"
-            },
-            {
-              "field": "plusCode",
-              "label": "Plus Code",
-              "kind": "coordinates",
-              "before": "8Q7XQX9C+JM",
-              "after": "8Q7XQX9C+94"
             }
           ]
         }
